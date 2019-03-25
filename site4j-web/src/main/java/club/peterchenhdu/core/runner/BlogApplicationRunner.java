@@ -3,12 +3,14 @@
  */
 package club.peterchenhdu.core.runner;
 
+import club.peterchenhdu.BlogWebApplication;
 import club.peterchenhdu.biz.entity.Resource;
 import club.peterchenhdu.biz.service.privilegemgt.SysResourcesService;
 import club.peterchenhdu.biz.web.SpringInit;
 import club.peterchenhdu.common.annotation.PublicService;
 import club.peterchenhdu.common.enums.ResourceTypeEnum;
 import club.peterchenhdu.common.util.DateUtils;
+import club.peterchenhdu.common.util.LogUtils;
 import club.peterchenhdu.common.util.ObjectUtils;
 import club.peterchenhdu.common.util.UuidUtils;
 import club.peterchenhdu.core.job.base.AbstractBaseCronJob;
@@ -30,18 +32,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
@@ -51,7 +48,6 @@ import java.util.stream.Collectors;
  *
  * @author chenpi
  * @version 1.0
- *
  * @since 2018/6/6 16:07
  * @since 1.0
  */
@@ -65,35 +61,39 @@ public class BlogApplicationRunner implements ApplicationRunner {
     @Transactional
     @Override
     public void run(ApplicationArguments applicationArguments) {
+        //程序启动完成，执行一些初始化操作
+        ApplicationContext appContext = SpringInit.getApplicationContext();
 
-        ApplicationContext context =SpringInit.getApplicationContext();
-        Map<String, AbstractBaseCronJob> map =  context.getBeansOfType(AbstractBaseCronJob.class);
+        //启动所有任务
+        Map<String, AbstractBaseCronJob> map = appContext.getBeansOfType(AbstractBaseCronJob.class);
         map.values().forEach(AbstractBaseCronJob::scheduleJobs);
 
 
-        List<Class<?>> controllerClazzList = getClasses("club.peterchenhdu", Controller.class);
+        //获取所有controller
+        List<Class<?>> controllerClazzList = getPackageClasses(BlogWebApplication.ROOT_PACKAGE_PATH).stream()
+                .filter(clazz -> ObjectUtils.isNotEmpty(AnnotationUtils.findAnnotation(clazz, Controller.class))
+                        && !clazz.isAnnotationPresent(PublicService.class))
+                .collect(Collectors.toList());
 
 
         Wrapper<Resource> wrap = new EntityWrapper<>();
         wrap.isNotNull("url");
-        List<Resource> resourceList = sysResourcesService.selectList(wrap);
-        Map<String , Resource> resourceMap = resourceList.stream().collect(Collectors.toMap(Resource::getUrl, dto-> dto));
-        List<Resource> newResourceList = new ArrayList<>();
+        List<Resource> oldDbResourceList = sysResourcesService.selectList(wrap);
+        Map<String, Resource> resourceMap = oldDbResourceList.stream().collect(Collectors.toMap(Resource::getUrl, dto -> dto));
+        List<Resource> newCodeResourceList = new ArrayList<>();
 
         for (Class<?> beanType : controllerClazzList) {
 
-            if(ObjectUtils.isEmpty(beanType)) {
+            if (ObjectUtils.isEmpty(beanType)) {
                 continue;
             }
 
             Api api = beanType.getAnnotation(Api.class);
             RequestMapping requestMapping = beanType.getAnnotation(RequestMapping.class);
-            if(ObjectUtils.isEmpty(api)) {
-                continue;
-            }
 
-            if(ObjectUtils.isEmpty(requestMapping.value()) || !requestMapping.value()[0].startsWith("/admin")) {
-continue;
+            if (ObjectUtils.isEmpty(api) || ObjectUtils.isEmpty(requestMapping.value()) ||
+                    !requestMapping.value()[0].startsWith("/admin")) {
+                continue;
             }
 
             System.out.println(api.value() + ":" + requestMapping.value()[0]);
@@ -104,17 +104,16 @@ continue;
             parentResource.setId(UuidUtils.getUuid());
             parentResource.setName(api.value());
             parentResource.setParentId("");
-            parentResource.setPermission(urlArr[urlArr.length-1]);
+            parentResource.setPermission(urlArr[urlArr.length - 1]);
             parentResource.setType(ResourceTypeEnum.MENU.getKey());
             parentResource.setUrl(requestMapping.value()[0]);
-            newResourceList.add(parentResource);
-
+            newCodeResourceList.add(parentResource);
 
 
             Method[] methods = beanType.getDeclaredMethods();
-            for(Method m:methods) {
+            for (Method m : methods) {
                 ApiOperation apiOperation = m.getAnnotation(ApiOperation.class);
-                if(ObjectUtils.isEmpty(apiOperation)) {
+                if (ObjectUtils.isEmpty(apiOperation)) {
                     continue;
                 }
 
@@ -122,15 +121,15 @@ continue;
                 GetMapping getMapping = m.getAnnotation(GetMapping.class);
 
                 String url;
-                if(ObjectUtils.isEmpty(postMapping)) {
+                if (ObjectUtils.isEmpty(postMapping)) {
                     url = getMapping.value()[0];
-                    System.out.println(apiOperation.value()+":"+getMapping.value()[0]);
+                    System.out.println(apiOperation.value() + ":" + getMapping.value()[0]);
                 } else {
-                    url =postMapping.value()[0];
-                    System.out.println(apiOperation.value()+":"+postMapping.value()[0]);
+                    url = postMapping.value()[0];
+                    System.out.println(apiOperation.value() + ":" + postMapping.value()[0]);
                 }
 
-                if(ObjectUtils.isEmpty(url)) {
+                if (ObjectUtils.isEmpty(url)) {
                     continue;
                 }
 
@@ -139,29 +138,27 @@ continue;
                 resource.setIcon("");
                 resource.setName(apiOperation.value());
                 resource.setParentId(parentResource.getId());
-                resource.setPermission(parentResource.getPermission()+":"+(urlArr2.length<2?"":urlArr2[1]));
+                resource.setPermission(parentResource.getPermission() + ":" + (urlArr2.length < 2 ? "" : urlArr2[1]));
                 resource.setType(ResourceTypeEnum.BUTTON.getKey());
-                resource.setUrl(parentResource.getUrl()+url);
-                newResourceList.add(resource);
+                resource.setUrl(parentResource.getUrl() + url);
+                newCodeResourceList.add(resource);
             }
 
         }
 
-        Map<String , Resource> newResourceMap = newResourceList.stream().collect(Collectors.toMap(Resource::getUrl, dto->
-                dto));
-
+        Map<String, Resource> newResourceMap = newCodeResourceList.stream()
+                .collect(Collectors.toMap(Resource::getUrl, dto -> dto));
 
         List<Resource> addResourceList = new ArrayList<>();
         List<Resource> updateResourceList = new ArrayList<>();
         List<String> delResourceList = new ArrayList<>();
 
-        for (Resource resourceTmp : newResourceList) {
+        for (Resource resourceTmp : newCodeResourceList) {
             Resource r = resourceMap.get(resourceTmp.getUrl());
             if (ObjectUtils.isEmpty(r)) {
                 addResourceList.add(resourceTmp);
-            } else if(!r.getName().equals(resourceTmp.getName()) ||
-                    !r.getType().equals(resourceTmp.getType()) ||
-                    !r.getPermission().equals(resourceTmp.getPermission()) ) {
+            } else if (!r.getName().equals(resourceTmp.getName()) || !r.getType().equals(resourceTmp.getType()) ||
+                    !r.getPermission().equals(resourceTmp.getPermission())) {
                 //修改
                 r.setName(resourceTmp.getName());
                 r.setType(resourceTmp.getType());
@@ -169,149 +166,154 @@ continue;
                 updateResourceList.add(r);
             } else {
                 //未修改
+                LogUtils.debug("{}未修改", resourceTmp.getUrl());
             }
         }
 
-        for(Resource resourceTmp : resourceList) {
+        for (Resource resourceTmp : oldDbResourceList) {
             if (ObjectUtils.isEmpty(newResourceMap.get(resourceTmp.getUrl()))) {
+                //删除
                 delResourceList.add(resourceTmp.getId());
             }
         }
 
-
-        if(ObjectUtils.isNotEmpty(updateResourceList))
-        sysResourcesService.updateBatchById(updateResourceList);
-        if(ObjectUtils.isNotEmpty(addResourceList))
-        sysResourcesService.insertBatch(addResourceList);
-        if(ObjectUtils.isNotEmpty(delResourceList))
-        sysResourcesService.deleteBatchIds(delResourceList);
-
+        if (ObjectUtils.isNotEmpty(updateResourceList)) {
+            sysResourcesService.updateBatchById(updateResourceList);
+        }
+        if (ObjectUtils.isNotEmpty(addResourceList)) {
+            sysResourcesService.insertBatch(addResourceList);
+        }
+        if (ObjectUtils.isNotEmpty(delResourceList)) {
+            sysResourcesService.deleteBatchIds(delResourceList);
+        }
 
         log.info("博客部署完成，当前时间：" + DateUtils.date2Str(LocalDateTime.now(), DateUtils.YYYY_MM_DD_HH_MM_SS));
     }
 
 
-    public static List<Class<?>> getClasses(String packageName, Class<? extends Annotation> annotationType){
+    /**
+     * 获取包下的所有Class对象
+     *
+     * @param packageName packageName
+     * @return List
+     *//**/
+    private static List<Class<?>> getPackageClasses(String packageName) {
 
-        //第一个class类的集合
-        List<Class<?>> classes = new ArrayList<>();
-        //是否循环迭代
-        boolean recursive = true;
-        //获取包的名字 并进行替换
+        List<Class<?>> clazzList = new ArrayList<>();
         String packageDirName = packageName.replace('.', '/');
-        //定义一个枚举的集合 并进行循环来处理这个目录下的things
-        Enumeration<URL> dirs;
+        Enumeration<URL> urlEnums;
         try {
-            dirs = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
-            //循环迭代下去
-            while (dirs.hasMoreElements()){
-                //获取下一个元素
-                URL url = dirs.nextElement();
-                //得到协议的名称
+            urlEnums = Thread.currentThread().getContextClassLoader().getResources(packageDirName);
+            while (urlEnums.hasMoreElements()) {
+                URL url = urlEnums.nextElement();
                 String protocol = url.getProtocol();
-                //如果是以文件的形式保存在服务器上
                 if ("file".equals(protocol)) {
-                    //获取包的物理路径
-                    String filePath = URLDecoder.decode(url.getFile(), "UTF-8");
-                    //以文件的方式扫描整个包下的文件 并添加到集合中
-                    findAndAddClassesInPackageByFile(packageName, filePath, recursive, classes);
-                } else if ("jar".equals(protocol)){
-                    //如果是jar包文件
-                    //定义一个JarFile
-                    JarFile jar;
-                    try {
-                        //获取jar
-                        jar = ((JarURLConnection) url.openConnection()).getJarFile();
-                        //从此jar包 得到一个枚举类
-                        Enumeration<JarEntry> entries = jar.entries();
-                        //同样的进行循环迭代
-                        while (entries.hasMoreElements()) {
-                            //获取jar里的一个实体 可以是目录 和一些jar包里的其他文件 如META-INF等文件
-                            JarEntry entry = entries.nextElement();
-                            String name = entry.getName();
-                            //如果是以/开头的
-                            if (name.charAt(0) == '/') {
-                                //获取后面的字符串
-                                name = name.substring(1);
-                            }
-                            //如果前半部分和定义的包名相同
-                            if (name.startsWith(packageDirName)) {
-                                int idx = name.lastIndexOf('/');
-                                //如果以"/"结尾 是一个包
-                                if (idx != -1) {
-                                    //获取包名 把"/"替换成"."
-                                    packageName = name.substring(0, idx).replace('/', '.');
-                                }
-                                //如果可以迭代下去 并且是一个包
-                                if ((idx != -1) || recursive){
-                                    //如果是一个.class文件 而且不是目录
-                                    if (name.endsWith(".class") && !entry.isDirectory()) {
-                                        //去掉后面的".class" 获取真正的类名
-                                        String className = name.substring(packageName.length() + 1, name.length() - 6);
-                                        try {
-                                            //添加到classes
-                                            classes.add(Class.forName(packageName + '.' + className));
-                                        } catch (ClassNotFoundException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    String absolutePath = URLDecoder.decode(url.getFile(), "UTF-8");
+                    getDirClass(absolutePath, packageName, clazzList);
+                } else if ("jar".equals(protocol)) {
+                    getJarClass(url, packageName, clazzList);
+                } else {
+                    throw new RuntimeException("不支持的协议");
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtils.exception(e);
+            return Collections.emptyList();
         }
 
-        return classes.stream().filter(clazz-> ObjectUtils.isNotEmpty(AnnotationUtils.findAnnotation(clazz,
-                annotationType) )&& !clazz.isAnnotationPresent(PublicService.class))
-                .collect(Collectors.toList());
+
+        return clazzList;
     }
 
     /**
-     * 以文件的形式来获取包下的所有Class
-     * @param packageName
-     * @param packagePath
-     * @param recursive
-     * @param classes
+     * 获取目录下的所有Class对象
+     *
+     * @param absolutePath 包绝对路径
+     * @param packageName  包名
+     * @param clazzList    class对象列表
      */
-    public static void findAndAddClassesInPackageByFile(String packageName, String packagePath, final boolean recursive, List<Class<?>> classes){
-        //获取此包的目录 建立一个File
-        File dir = new File(packagePath);
-        //如果不存在或者 也不是目录就直接返回
-        if (!dir.exists() || !dir.isDirectory()) {
+    private static void getDirClass(String absolutePath, String packageName, List<Class<?>> clazzList) {
+        File dir = new File(absolutePath);
+        if (!dir.isDirectory()) {
+            //如果不是目录，则不处理
             return;
         }
-        //如果存在 就获取包下的所有文件 包括目录
-        File[] dirfiles = dir.listFiles(new FileFilter() {
-            //自定义过滤规则 如果可以循环(包含子目录) 或则是以.class结尾的文件(编译好的java类文件)
-            public boolean accept(File file) {
-                return (recursive && file.isDirectory()) || (file.getName().endsWith(".class"));
-            }
-        });
-        //循环所有文件
-        for (File file : dirfiles) {
-            //如果是目录 则继续扫描
+
+        //获取目录下的所有文件，包括目录
+        //过滤
+        File[] dirFiles = dir.listFiles(file -> file.isDirectory() || file.getName().endsWith(".class"));
+        if (ObjectUtils.isEmpty(dirFiles)) {
+            return;
+        }
+
+        for (File file : dirFiles) {
+            String fileName = file.getName();
             if (file.isDirectory()) {
-                findAndAddClassesInPackageByFile(packageName + "." + file.getName(),
-                        file.getAbsolutePath(),
-                        recursive,
-                        classes);
-            }
-            else {
-                //如果是java类文件 去掉后面的.class 只留下类名
-                String className = file.getName().substring(0, file.getName().length() - 6);
-                try {
-                    //添加到集合中去
-                    classes.add(Class.forName(packageName + '.' + className));
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                getDirClass(packageName + "." + fileName, file.getAbsolutePath(), clazzList);
+            } else {
+                addClassToList(packageName + '.' + fileName.substring(0, fileName.length() - 6), clazzList);
             }
         }
+
+    }
+
+    /**
+     * 获取jar下的所有Class对象
+     *
+     * @param url         url
+     * @param packageName 包名
+     * @param clazzList   class对象列表
+     */
+    private static void getJarClass(URL url, String packageName, List<Class<?>> clazzList) {
+        String packageDirName = packageName.replace('.', '/');
+        JarFile jar;
+
+        try {
+            jar = ((JarURLConnection) url.openConnection()).getJarFile();
+        } catch (IOException e) {
+            LogUtils.exception(e);
+            return;
+        }
+
+        Enumeration<JarEntry> entries = jar.entries();
+        while (entries.hasMoreElements()) {
+            //获取jar里的一个实体 可以是目录 和一些jar包里的其他文件 如META-INF等文件
+            JarEntry entry = entries.nextElement();
+            String name = entry.getName();
+            name = name.charAt(0) == '/' ? name.substring(1) : name;
+            //过滤不符合要求的数据
+            if (!name.startsWith(packageDirName) || !name.contains("/") || !name.endsWith(".class") || entry.isDirectory()) {
+                continue;
+            }
+
+            packageName = name.substring(0, name.lastIndexOf('/')).replace('/', '.');
+            String className = name.substring(packageName.length() + 1, name.length() - 6);
+            addClassToList(packageName + '.' + className, clazzList);
+        }
+
+    }
+
+    /**
+     * 根据className生成Class对象添加到clazzList
+     *
+     * @param className className
+     * @param clazzList clazzList
+     */
+    private static void addClassToList(String className, List<Class<?>> clazzList) {
+        LogUtils.debug("scan class: {}", className);
+        try {
+            Class<?> clazz = Class.forName(className);
+            clazzList.add(clazz);
+        } catch (ClassNotFoundException | NoClassDefFoundError e) {
+            LogUtils.warn("{}类未找到或未定义", className);
+        }
+    }
+
+    public static void main(String[] args) {
+        getPackageClasses("org.springframework.web").forEach(dto -> {
+            System.out.println(dto.getName());
+        });
+
+
     }
 }

@@ -21,8 +21,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ServletComponentScan
 @EnableTransactionManagement
 public class BlogWebApplication {
+    public static final String ROOT_PACKAGE_PATH = BlogWebApplication.class.getPackage().getName();
 
     public static void main(String[] args) {
+        System.out.println(ROOT_PACKAGE_PATH);
         SpringApplication.run(BlogWebApplication.class, args);
     }
 
