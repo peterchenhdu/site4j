@@ -32,7 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 2018/4/24 14:37
  * @since 1.0
  */
-@Api(value="角色管理")
+@Api(value="角色管理", tags="权限管理")
 @RestController
 @RequestMapping("/admin/role")
 public class RoleController {

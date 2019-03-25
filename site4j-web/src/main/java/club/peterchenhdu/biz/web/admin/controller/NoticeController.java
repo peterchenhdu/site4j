@@ -30,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 2018/4/24 14:37
  * @since 1.0
  */
-@Api(value="公告管理")
+@Api(value="公告管理", tags="网站管理")
 @RestController
 @RequestMapping("/admin/notice")
 public class NoticeController {

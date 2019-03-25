@@ -28,7 +28,7 @@ import java.util.Map;
  * @since 2018/4/24 14:37
  * @since 1.0
  */
-@Api(value="公共模块")
+@Api(value="公共模块", tags="未分类")
 @RestController
 @RequestMapping("/admin/common")
 public class CommonController {

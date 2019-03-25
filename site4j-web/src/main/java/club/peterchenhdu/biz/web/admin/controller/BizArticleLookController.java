@@ -29,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author PiChen
  * @since 2019-03-04
  */
-@Api(value="文章查看记录")
+@Api(value="文章查看记录", tags="网站数据")
 @RestController
 @RequestMapping("/admin/bizArticleLook")
 public class BizArticleLookController {

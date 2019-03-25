@@ -96,6 +96,30 @@ public class BlogApplicationRunner implements ApplicationRunner {
                 continue;
             }
 
+            String[] tags = api.tags();
+            String parentId = "";
+            if(ObjectUtils.isNotEmpty(tags)) {
+                Wrapper<Resource> nameWrap = new EntityWrapper<>();
+                nameWrap.eq("name", tags[0]);
+                nameWrap.isNull("url");
+                List<Resource> parentMenu = sysResourcesService.selectList(nameWrap);
+                if(ObjectUtils.isNotEmpty(parentMenu)) {
+                    parentId = parentMenu.get(0).getId();
+                } else {
+                    parentId = UuidUtils.getUuid();
+                    Resource menuResource = new Resource();
+                    menuResource.setIcon("");
+                    menuResource.setId(parentId);
+                    menuResource.setName(tags[0]);
+                    menuResource.setParentId("");
+                    menuResource.setPermission("");
+                    menuResource.setType(ResourceTypeEnum.MENU.getKey());
+                    menuResource.setUrl("");
+                    sysResourcesService.insert(menuResource);
+                }
+            }
+
+
             System.out.println(api.value() + ":" + requestMapping.value()[0]);
             String[] urlArr = requestMapping.value()[0].split("/");
 
@@ -103,7 +127,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
             parentResource.setIcon("");
             parentResource.setId(UuidUtils.getUuid());
             parentResource.setName(api.value());
-            parentResource.setParentId("");
+            parentResource.setParentId(parentId);
             parentResource.setPermission(urlArr[urlArr.length - 1]);
             parentResource.setType(ResourceTypeEnum.MENU.getKey());
             parentResource.setUrl(requestMapping.value()[0]);
@@ -157,12 +181,15 @@ public class BlogApplicationRunner implements ApplicationRunner {
             Resource r = resourceMap.get(resourceTmp.getUrl());
             if (ObjectUtils.isEmpty(r)) {
                 addResourceList.add(resourceTmp);
-            } else if (!r.getName().equals(resourceTmp.getName()) || !r.getType().equals(resourceTmp.getType()) ||
+            } else if (!r.getName().equals(resourceTmp.getName()) ||
+                    !r.getType().equals(resourceTmp.getType()) ||
+                    !r.getParentId().equals(resourceTmp.getParentId()) ||
                     !r.getPermission().equals(resourceTmp.getPermission())) {
                 //修改
                 r.setName(resourceTmp.getName());
                 r.setType(resourceTmp.getType());
                 r.setPermission(resourceTmp.getPermission());
+                r.setParentId(resourceTmp.getParentId());
                 updateResourceList.add(r);
             } else {
                 //未修改
@@ -249,7 +276,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
         for (File file : dirFiles) {
             String fileName = file.getName();
             if (file.isDirectory()) {
-                getDirClass(packageName + "." + fileName, file.getAbsolutePath(), clazzList);
+                getDirClass(file.getAbsolutePath(), packageName + "." + fileName, clazzList);
             } else {
                 addClassToList(packageName + '.' + fileName.substring(0, fileName.length() - 6), clazzList);
             }

@@ -29,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 2018/4/24 14:37
  * @since 1.0
  */
-@Api(value="标签管理")
+@Api(value="标签管理", tags="文章管理")
 @RestController
 @RequestMapping("/admin/tag")
 public class TagController {

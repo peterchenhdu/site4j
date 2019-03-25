@@ -11,7 +11,6 @@ import club.peterchenhdu.biz.service.sitemgt.SysConfigService;
 import club.peterchenhdu.common.base.Response;
 import club.peterchenhdu.common.enums.ImageType;
 import club.peterchenhdu.util.ResultUtils;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +29,6 @@ import java.util.Map;
  * @since 1.0
  */
 @RestController
-@Api(value = "API接口", description = "后台公共接口")
 @RequestMapping("/admin/api")
 public class AdminCommonController {
 

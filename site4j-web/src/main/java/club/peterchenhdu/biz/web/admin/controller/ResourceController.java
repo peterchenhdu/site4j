@@ -36,7 +36,7 @@ import java.util.Map;
  * @since 2018/4/24 14:37
  * @since 1.0
  */
-@Api(value="资源管理")
+@Api(value="资源管理", tags="权限管理")
 @RestController
 @RequestMapping("/admin/resource")
 public class ResourceController {

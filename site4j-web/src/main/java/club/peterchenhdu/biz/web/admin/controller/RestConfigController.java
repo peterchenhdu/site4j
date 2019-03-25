@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 2018/4/24 14:37
  * @since 1.0
  */
-@Api(value="系统配置")
+@Api(value="系统配置", tags="网站管理")
 @RestController
 @RequestMapping("/admin/config")
 public class RestConfigController {

@@ -36,7 +36,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @since 1.0
  */
 @Slf4j
-@Api(value="文章管理")
+@Api(value="文章管理", tags="文章管理")
 @RestController
 @RequestMapping("/admin/article")
 public class RestArticleController {
