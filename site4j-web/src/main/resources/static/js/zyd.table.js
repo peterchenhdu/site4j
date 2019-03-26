@@ -4,7 +4,7 @@
             _option: {},
             init: function (options) {
                 $.tableUtil._option = options;
-                $('#tablelist').bootstrapTable('destroy').bootstrapTable({
+                $('#table-list').bootstrapTable('destroy').bootstrapTable({
                     url: options.url,
                     method: 'post',                      //请求方式（*）
                     toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -37,7 +37,7 @@
             },
 
             refresh: function () {
-                $("#tablelist").bootstrapTable('refresh', {url: $.tableUtil._option.url});
+                $("#table-list").bootstrapTable('refresh', {url: $.tableUtil._option.url});
             }
         },
         buttonUtil: {
@@ -80,7 +80,7 @@
 
 
                 $("#btn_query").bind("click",function(){
-                    $("#tablelist").bootstrapTable('refresh');
+                    $("#table-list").bootstrapTable('refresh');
                 });
 
                 /* 添加 */
@@ -99,7 +99,7 @@
                 });
 
                 /* 修改 */
-                $('#tablelist').on('click', '.btn-update', function () {
+                $('#table-list').on('click', '.btn-update', function () {
                     var $this = $(this);
                     var userId = $this.attr("data-id");
                     $.ajax({
@@ -155,7 +155,7 @@
                 });
 
                 /* 删除 */
-                $('#tablelist').on('click', '.btn-remove', function () {
+                $('#table-list').on('click', '.btn-remove', function () {
                     var $this = $(this);
                     var userId = $this.attr("data-id");
                     $.alert.confirm("确定删除该" + options.modalName + "信息？", function () {
@@ -280,7 +280,7 @@ function clearText($this, type, info, options) {
  * @returns {Array}
  */
 function getSelectedId() {
-    var selectedJson = $("#tablelist").bootstrapTable('getAllSelections');
+    var selectedJson = $("#table-list").bootstrapTable('getAllSelections');
     var ids = [];
     $.each(selectedJson, function (i) {
         ids.push(selectedJson[i].id);
@@ -293,7 +293,7 @@ function getSelectedId() {
  * @returns {*|jQuery}
  */
 function getSelectedObj() {
-    return $("#tablelist").bootstrapTable('getAllSelections');
+    return $("#table-list").bootstrapTable('getAllSelections');
 }
 
 

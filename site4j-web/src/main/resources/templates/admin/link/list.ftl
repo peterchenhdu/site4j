@@ -22,7 +22,7 @@
                         </button>
                     </@shiro.hasPermission>
                     </div>
-                    <table id="tablelist">
+                    <table id="table-list">
                     </table>
                 </div>
             </div>

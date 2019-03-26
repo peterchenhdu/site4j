@@ -22,7 +22,7 @@
                         </button>
                     </@shiro.hasPermission>
                     </div>
-                    <table id="tablelist">
+                    <table id="table-list">
                     </table>
                 </div>
             </div>
@@ -168,7 +168,7 @@
         });
 
         /* 分配资源权限 */
-        $('#tablelist').on('click', '.btn-allot', function () {
+        $('#table-list').on('click', '.btn-allot', function () {
             console.log("分配资源权限");
             var $this = $(this);
             var rolesId = $this.attr("data-id");

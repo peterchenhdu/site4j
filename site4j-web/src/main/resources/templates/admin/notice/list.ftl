@@ -22,7 +22,7 @@
                         </button>
                     </@shiro.hasPermission>
                     </div>
-                    <table id="tablelist">
+                    <table id="table-list">
                     </table>
                 </div>
             </div>
@@ -163,7 +163,7 @@
         $.buttonUtil.init(options);
 
         // 发布
-        $('#tablelist').on('click', '.btn-release', function () {
+        $('#table-list').on('click', '.btn-release', function () {
             var $this = $(this);
             var id = $this.data("id");
             $.alert.confirm("确定发布该条通知？发布后将对用户可见！", function () {
@@ -181,7 +181,7 @@
             }, 5000);
         });
         // 撤回
-        $('#tablelist').on('click', '.btn-withdraw', function () {
+        $('#table-list').on('click', '.btn-withdraw', function () {
             var $this = $(this);
             var id = $this.data("id");
             $.alert.confirm("确定撤回该条通知？撤回后将对用户不可见！", function () {

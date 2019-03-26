@@ -16,7 +16,7 @@
                         <div class="panel-body">
                             <form id="formSearch" class="form-horizontal">
                                 <div class="form-group" style="margin-top:15px">
-                                    <label class="control-label col-sm-1" for="txt_search_departmentname">资源类别</label>
+                                    <label class="control-label col-sm-1" for="search-type">资源类别</label>
                                     <div class="col-sm-3">
                                         <select class="form-control" name="search-type" id="search-type">
                                             <option value="">请选择</option>
@@ -30,9 +30,13 @@
                                                placeholder="请输入资源名称...">
                                     </div>
                                     <div class="col-sm-4" style="text-align:left;">
-                                        <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary"  >查询</button>
+                                        <button type="button" style="margin-left:50px" id="btn_query"
+                                                class="btn btn-primary">查询
+                                        </button>
 
-                                        <button type="reset" style="margin-left:20px" id="btn_reset" class="btn btn-primary"  >重置</button>
+                                        <button type="reset" style="margin-left:20px" id="btn_reset"
+                                                class="btn btn-primary">重置
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -40,19 +44,19 @@
                     </div>
 
                     <div class="btn-group hidden-xs" id="toolbar">
-                        <@shiro.hasPermission name="resource:add">
+                    <@shiro.hasPermission name="resource:add">
                         <button id="btn_add" type="button" class="btn btn-default" title="新增资源">
                             <i class="fa fa-plus"></i>
                         </button>
-                        </@shiro.hasPermission>
-                        <@shiro.hasPermission name="resource:batchDelete">
+                    </@shiro.hasPermission>
+                    <@shiro.hasPermission name="resource:batchDelete">
                         <button id="btn_delete_ids" type="button" class="btn btn-default" title="删除选中">
                             <i class="fa fa-trash-o"></i>
                         </button>
-                        </@shiro.hasPermission>
+                    </@shiro.hasPermission>
                     </div>
 
-                    <table id="tablelist"></table>
+                    <table id="table-list"></table>
                 </div>
 
             </div>
@@ -189,6 +193,7 @@
                 field: 'operate',
                 title: '操作',
                 formatter: function (code, row, index) {
+                    console.log('code:' + code + 'row:' + row + 'index:' + index);
                     var operateBtn = [];
                     operateBtn.push('<@permissionUpdateBtn permission="resource:update" id="' + row.id +'" />');
                     operateBtn.push('<@permissionDelBtn permission="resource:delete" id="' + row.id +'" />');

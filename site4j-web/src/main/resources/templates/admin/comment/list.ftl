@@ -18,7 +18,7 @@
                             </button>
                         </@shiro.hasPermission>
                         </div>
-                        <table id="tablelist">
+                        <table id="table-list">
                         </table>
                     </div>
                 </div>
@@ -221,11 +221,11 @@
         //2.初始化Button的点击事件
         $.buttonUtil.init(options);
 
-        var $tablelist = $('#tablelist');
+        var $table-list = $('#table-list');
         /**
          * 回复
          */
-        $tablelist.on('click', '.btn-reply', function () {
+        $table-list.on('click', '.btn-reply', function () {
             var $this = $(this);
             var $replyForm = $("#replyForm");
             $replyForm.find("input,select,textarea").each(function () {
@@ -258,7 +258,7 @@
         /**
          * audit
          */
-        $tablelist.on('click', '.btn-audit', function () {
+        $table-list.on('click', '.btn-audit', function () {
             var $this = $(this);
             var userId = $this.attr("data-id");
             var $auditForm = $("#auditForm");

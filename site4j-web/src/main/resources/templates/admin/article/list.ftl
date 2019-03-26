@@ -33,7 +33,7 @@
                             </button>
                         </@shiro.hasPermission>
                         </div>
-                        <table id="tablelist">
+                        <table id="table-list">
                         </table>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
         /**
          * 推荐
          */
-        $('#tablelist').on('click', '.btn-recommend', function () {
+        $('#table-list').on('click', '.btn-recommend', function () {
             var $this = $(this);
             var id = $this.attr("data-id");
             update("recommend", id);
@@ -170,7 +170,7 @@
         /**
          * 置顶
          */
-        $('#tablelist').on('click', '.btn-top', function () {
+        $('#table-list').on('click', '.btn-top', function () {
             var $this = $(this);
             var id = $this.attr("data-id");
             update("top", id);
@@ -192,7 +192,7 @@
         /**
          * 推送到百度
          */
-        $('#tablelist').on('click', '.btn-push', function () {
+        $('#table-list').on('click', '.btn-push', function () {
             var $this = $(this);
             var userId = $this.attr("data-id");
             push(userId);
