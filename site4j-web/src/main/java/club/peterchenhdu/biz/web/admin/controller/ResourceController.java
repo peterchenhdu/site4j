@@ -21,9 +21,11 @@ import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +41,7 @@ import java.util.Map;
 @Api(value="资源管理", tags="权限管理")
 @RestController
 @RequestMapping("/admin/resource")
+@Validated
 public class ResourceController {
 
     @Autowired
@@ -71,7 +74,7 @@ public class ResourceController {
 
     @ApiOperation(value="新增资源")
     @PostMapping(value = "/add")
-    public Response add(ResourcesDto resources) {
+    public Response add(@Valid ResourcesDto resources) {
         resourcesService.insert(resources);
         //更新权限
         updatePermission();

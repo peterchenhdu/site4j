@@ -13,12 +13,12 @@ import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.PageUtils;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -135,48 +135,18 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
     /**
      * 保存一个实体，null的属性不会保存，会使用数据库默认值
      *
-     * @param entity
+     * @param dto
      * @return
      */
     @Override
-    public ResourcesDto insert(ResourcesDto entity) {
-        Assert.notNull(entity, "Resources不可为空！");
-//        entity.setCreateTime(LocalDateTime.now());
-//        entity.setUpdateTime(LocalDateTime.now());
-//        entity.setId(UuidUtils.getUuid());
+    public ResourcesDto insert(ResourcesDto dto) {
+        Assert.notNull(dto, "Resources不可为空！");
 
-//
-//        if(ResourceTypeEnum.MENU.getKey().equals(entity.getType())) {
-//            entity.setName(ModuleEnum.getByKey(entity.getModule()).getDescription() + "管理");
-//            entity.setUrl("/admin/"+entity.getModule());
-//            entity.setPermission(entity.getModule());
-//        } else {
-//            StringBuilder name = new StringBuilder();
-//            if(ObjectUtils.isNotEmpty(entity.getOperation())) {
-//                name.append(OperationEnum.getByKey(entity.getOperation()).getDescription());
-//            }
-//            name.append(ModuleEnum.getByKey(entity.getModule()).getDescription());
-//            entity.setName(name.toString());
-//
-//            StringBuilder url = new StringBuilder();
-//            url.append("/admin/").append(entity.getModule());
-//            if(ObjectUtils.isNotEmpty(entity.getOperation())) {
-//                url.append("/").append(entity.getOperation());
-//            }
-//            entity.setUrl(url.toString());
-//
-//            StringBuilder permission = new StringBuilder();
-//            permission.append(entity.getModule());
-//            if(ObjectUtils.isNotEmpty(entity.getOperation())) {
-//                permission.append(":").append(entity.getOperation());
-//            }
-//            entity.setPermission(permission.toString());
-//        }
-
-
+        Resource entity = new Resource();
+        BeanUtils.copyProperties(dto, entity);
 
         resourceMapper.insert(entity);
-        return entity;
+        return new ResourcesDto(entity);
     }
 
 
@@ -196,13 +166,14 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
     /**
      * 根据主键更新属性不为null的值
      *
-     * @param entity
+     * @param dto
      * @return
      */
     @Override
-    public boolean updateSelective(ResourcesDto entity) {
-        Assert.notNull(entity, "Resources不可为空！");
-        entity.setUpdateTime(LocalDateTime.now());
+    public boolean updateSelective(ResourcesDto dto) {
+        Assert.notNull(dto, "Resources不可为空！");
+        Resource entity = new Resource();
+        BeanUtils.copyProperties(dto, entity);
         return resourceMapper.updateById(entity) > 0;
     }
 

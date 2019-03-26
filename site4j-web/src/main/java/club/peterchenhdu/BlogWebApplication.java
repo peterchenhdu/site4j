@@ -17,8 +17,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @since 2018/4/18 11:48
  * @since 1.0
  */
-@SpringBootApplication
 @ServletComponentScan
+@SpringBootApplication(scanBasePackages = {"club.peterchenhdu"})
 @EnableTransactionManagement
 public class BlogWebApplication {
     public static final String ROOT_PACKAGE_PATH = BlogWebApplication.class.getPackage().getName();

@@ -4,7 +4,6 @@
 package club.peterchenhdu.biz.web.vo;
 
 import club.peterchenhdu.common.base.BaseCondition;
-import club.peterchenhdu.biz.dto.ResourcesDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,6 +17,24 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ResourceConditionVO extends BaseCondition {
-    private ResourcesDto resources;
+
+    private String name;
+    private String type;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
 

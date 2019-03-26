@@ -19,6 +19,11 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -80,7 +85,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
         wrap.isNotNull("url");
         List<Resource> oldDbResourceList = sysResourcesService.selectList(wrap);
         Map<String, Resource> resourceMap = oldDbResourceList.stream().collect(Collectors.toMap(Resource::getUrl, dto -> dto));
-        List<Resource> newCodeResourceList = new ArrayList<>();
+        Set<Resource> newCodeResourceList = new HashSet<>();
 
         for (Class<?> beanType : controllerClazzList) {
 
@@ -98,13 +103,21 @@ public class BlogApplicationRunner implements ApplicationRunner {
 
             String[] tags = api.tags();
             String parentId = "";
-            if(ObjectUtils.isNotEmpty(tags)) {
+            if (ObjectUtils.isNotEmpty(tags)) {
                 Wrapper<Resource> nameWrap = new EntityWrapper<>();
                 nameWrap.eq("name", tags[0]);
-                nameWrap.isNull("url");
+                nameWrap.isNull("parent_id");
                 List<Resource> parentMenu = sysResourcesService.selectList(nameWrap);
-                if(ObjectUtils.isNotEmpty(parentMenu)) {
+                List<Resource> newCodeParentMenuList = newCodeResourceList.stream()
+                        .filter(dto -> tags[0].equals(dto.getName()) && ObjectUtils.isEmpty(dto.getParentId()))
+                        .collect(Collectors.toList());
+
+                if (ObjectUtils.isNotEmpty(parentMenu)) {
+                    newCodeResourceList.add(parentMenu.get(0));
                     parentId = parentMenu.get(0).getId();
+                } else if (ObjectUtils.isNotEmpty(newCodeParentMenuList)) {
+                    newCodeResourceList.add(newCodeParentMenuList.get(0));
+                    parentId = newCodeParentMenuList.get(0).getId();
                 } else {
                     parentId = UuidUtils.getUuid();
                     Resource menuResource = new Resource();
@@ -112,10 +125,10 @@ public class BlogApplicationRunner implements ApplicationRunner {
                     menuResource.setId(parentId);
                     menuResource.setName(tags[0]);
                     menuResource.setParentId("");
-                    menuResource.setPermission("");
+                    menuResource.setPermission(ToPinyin(tags[0]));
                     menuResource.setType(ResourceTypeEnum.MENU.getKey());
-                    menuResource.setUrl("");
-                    sysResourcesService.insert(menuResource);
+                    menuResource.setUrl("/admin/" + ToPinyin(tags[0]));
+                    newCodeResourceList.add(menuResource);
                 }
             }
 
@@ -123,14 +136,23 @@ public class BlogApplicationRunner implements ApplicationRunner {
             System.out.println(api.value() + ":" + requestMapping.value()[0]);
             String[] urlArr = requestMapping.value()[0].split("/");
 
-            Resource parentResource = new Resource();
-            parentResource.setIcon("");
-            parentResource.setId(UuidUtils.getUuid());
-            parentResource.setName(api.value());
-            parentResource.setParentId(parentId);
-            parentResource.setPermission(urlArr[urlArr.length - 1]);
-            parentResource.setType(ResourceTypeEnum.MENU.getKey());
-            parentResource.setUrl(requestMapping.value()[0]);
+
+            Resource parentResource ;
+            List<Resource> newCodeParentMenuList = oldDbResourceList.stream()
+                    .filter(dto -> requestMapping.value()[0].equals(dto.getUrl())).collect(Collectors.toList());
+            if(ObjectUtils.isNotEmpty(newCodeParentMenuList)){
+                parentResource = newCodeParentMenuList.get(0);
+            } else {
+                parentResource = new Resource();
+                parentResource.setIcon("");
+                parentResource.setId(UuidUtils.getUuid());
+                parentResource.setName(api.value());
+                parentResource.setParentId(parentId);
+                parentResource.setPermission(urlArr[urlArr.length - 1]);
+                parentResource.setType(ResourceTypeEnum.MENU.getKey());
+                parentResource.setUrl(requestMapping.value()[0]);
+            }
+
             newCodeResourceList.add(parentResource);
 
 
@@ -170,8 +192,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
 
         }
 
-        Map<String, Resource> newResourceMap = newCodeResourceList.stream()
-                .collect(Collectors.toMap(Resource::getUrl, dto -> dto));
+        Map<String, Resource> newResourceMap = newCodeResourceList.stream().collect(Collectors.toMap(Resource::getUrl, dto -> dto));
 
         List<Resource> addResourceList = new ArrayList<>();
         List<Resource> updateResourceList = new ArrayList<>();
@@ -183,7 +204,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
                 addResourceList.add(resourceTmp);
             } else if (!r.getName().equals(resourceTmp.getName()) ||
                     !r.getType().equals(resourceTmp.getType()) ||
-                    !r.getParentId().equals(resourceTmp.getParentId()) ||
+                    (resourceTmp.getParentId() != null && !resourceTmp.getParentId().equals(r.getParentId())) ||
                     !r.getPermission().equals(resourceTmp.getPermission())) {
                 //修改
                 r.setName(resourceTmp.getName());
@@ -336,10 +357,23 @@ public class BlogApplicationRunner implements ApplicationRunner {
         }
     }
 
+    private static String ToPinyin(String chinese) {
+        StringBuilder pinyinStr = new StringBuilder();
+        HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
+        defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        try {
+            for (char c : chinese.toCharArray()) {
+                pinyinStr.append(c > 128 ? PinyinHelper.toHanyuPinyinStringArray(c, defaultFormat)[0] : c);
+            }
+        } catch (BadHanyuPinyinOutputFormatCombination e) {
+            LogUtils.exception(e);
+        }
+        return pinyinStr.toString();
+    }
+
     public static void main(String[] args) {
-        getPackageClasses("org.springframework.web").forEach(dto -> {
-            System.out.println(dto.getName());
-        });
+        System.out.println(ToPinyin("网站管理"));
 
 
     }

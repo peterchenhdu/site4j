@@ -44,12 +44,11 @@
         LEFT JOIN resource f ON com.parent_id = f.id
         WHERE
         1 = 1
-        <if test="keywords !=null and keywords != ''">
-            AND (
-            com.name LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
-            com.url LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
-            com.permission LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
-            )
+        <if test="type !=null and type != ''">
+        AND com.type =#{type , jdbcType=VARCHAR}
+        </if>
+        <if test="name !=null and name != ''">
+            AND com.name like '%'|| #{name , jdbcType=VARCHAR}||'%'
         </if>
         ORDER by
         com.create_time DESC

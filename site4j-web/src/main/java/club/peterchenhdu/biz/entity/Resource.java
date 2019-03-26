@@ -4,6 +4,7 @@
 package club.peterchenhdu.biz.entity;
 
 import club.peterchenhdu.common.base.BaseEntity;
+import com.google.common.base.Objects;
 
 /**
  * @author chenpi
@@ -89,5 +90,24 @@ public class Resource extends BaseEntity {
                 ", sort=" + sort +
                 ", icon='" + icon + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Resource resource = (Resource) o;
+        return Objects.equal(name, resource.name) &&
+                Objects.equal(type, resource.type) &&
+                Objects.equal(url, resource.url) &&
+                Objects.equal(permission, resource.permission) &&
+                Objects.equal(parentId, resource.parentId) &&
+                Objects.equal(sort, resource.sort) &&
+                Objects.equal(icon, resource.icon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name, type, url, permission, parentId, sort, icon);
     }
 }
