@@ -32,13 +32,11 @@
             <result property="icon" jdbcType="VARCHAR" column="node_icon"/>
         </collection>
     </resultMap>
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.web.vo.ResourceConditionVO" resultMap="rm">
+    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.web.vo.ResourceConditionVO"
+            resultType="club.peterchenhdu.biz.dto.ResourcesDto">
         SELECT
         com.*,
-        f.id parent_id,
-        f.name parent_name,
-        f.icon parent_icon,
-        f.type parent_type
+        f.name parentName
         FROM
         resource com
         LEFT JOIN resource f ON com.parent_id = f.id

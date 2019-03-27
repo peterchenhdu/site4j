@@ -44,18 +44,9 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
      */
     @Override
     public PageInfo<ResourcesDto> findPageBreakByCondition(ResourceConditionVO vo) {
-
-        Page<SysResourceDto> page = PageUtils.getPage(vo);
-        List<SysResourceDto> sysResources = resourceMapper.findPageBreakByCondition(page, vo);
-        if (CollectionUtils.isEmpty(sysResources)) {
-            return null;
-        }
-        List<ResourcesDto> resources = new ArrayList<>();
-        for (Resource r : sysResources) {
-            resources.add(new ResourcesDto(r));
-        }
-
-        return new PageInfo<>(page.getTotal(), resources);
+        Page<ResourcesDto> page = PageUtils.getPage(vo);
+        List<ResourcesDto> resourcesDtoList = resourceMapper.findPageBreakByCondition(page, vo);
+        return new PageInfo<>(page.getTotal(), resourcesDtoList);
     }
 
     /**

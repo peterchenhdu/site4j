@@ -3,10 +3,12 @@
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
+
         <ol class="breadcrumb">
             <li><a href="/">首页</a></li>
             <li class="active">资源管理</li>
         </ol>
+
         <div class="x_panel">
             <div class="x_content">
                 <div class="<#--table-responsive-->">
@@ -58,23 +60,27 @@
 
                     <table id="table-list"></table>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
 <!--添加资源弹框-->
 <div class="modal fade" id="addOrUpdateModal" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title" id="addroleLabel">添加资源链接</h4>
             </div>
+
             <div class="modal-body">
                 <form id="addOrUpdateForm" class="form-horizontal form-label-left" novalidate>
+
                     <input type="hidden" name="id">
+
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">资源名称: <span
                                 class="required">*</span></label>
@@ -83,6 +89,7 @@
                                    required="required" placeholder="请输入资源名称"/>
                         </div>
                     </div>
+
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">资源类型: <span
                                 class="required">*</span></label>
@@ -94,7 +101,6 @@
                             </select>
                         </div>
                     </div>
-
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">父级资源: </label>
@@ -120,15 +126,18 @@
                     </div>
                 </form>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"> 关闭</i>
                 </button>
                 <button type="button" class="btn btn-success addOrUpdateBtn"><i class="fa fa-save"> 保存</i></button>
             </div>
+
         </div>
     </div>
 </div>
 <!--/添加资源弹框-->
+
 <@footer>
 <script>
     $(function () {
@@ -154,7 +163,7 @@
                     return code === 'menu' ? '菜单' : '按钮';
                 }
             }, {
-                field: 'parent.name',
+                field: 'parentName',
                 title: '父级资源',
                 editable: false,
                 formatter: function (value) {

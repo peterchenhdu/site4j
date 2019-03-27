@@ -3,6 +3,7 @@
  */
 package club.peterchenhdu.biz.mapper;
 
+import club.peterchenhdu.biz.dto.ResourcesDto;
 import club.peterchenhdu.biz.dto.SysResourceDto;
 import club.peterchenhdu.biz.entity.Resource;
 import club.peterchenhdu.biz.web.vo.ResourceConditionVO;
@@ -29,7 +30,7 @@ public interface ResourceMapper extends BaseMapper<Resource> {
      * @param vo
      * @return
      */
-    List<SysResourceDto> findPageBreakByCondition(Page<SysResourceDto> page, ResourceConditionVO vo);
+    List<ResourcesDto> findPageBreakByCondition(Page<ResourcesDto> page, ResourceConditionVO vo);
 
     List<SysResourceDto> listUserResources(Map<String, Object> map);
 

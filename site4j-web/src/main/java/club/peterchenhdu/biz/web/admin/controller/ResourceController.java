@@ -34,11 +34,10 @@ import java.util.Map;
  *
  * @author chenpi
  * @version 1.0
- *
  * @since 2018/4/24 14:37
  * @since 1.0
  */
-@Api(value="资源管理", tags="权限管理")
+@Api(value = "资源管理", tags = "权限管理")
 @RestController
 @RequestMapping("/admin/resource")
 @Validated
@@ -51,7 +50,7 @@ public class ResourceController {
     @Autowired
     private ShiroFilterFactoryBean shirFilter;
 
-    @ApiOperation(value="路由到资源管理页面")
+    @ApiOperation(value = "路由到资源管理页面")
     @BusinessLog("进入资源列表页")
     @GetMapping("")
     public ModelAndView resources() {
@@ -59,20 +58,20 @@ public class ResourceController {
     }
 
 
-    @ApiOperation(value="查询资源")
+    @ApiOperation(value = "查询资源")
     @PostMapping("/query")
     public PageResult getAll(ResourceConditionVO vo) {
         PageInfo<ResourcesDto> pageInfo = resourcesService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
-    @ApiOperation(value="修改资源")
+    @ApiOperation(value = "修改资源")
     @PostMapping("/resourcesWithSelected")
     public Response<List<Map<String, Object>>> resourcesWithSelected(String rid) {
         return ResultUtils.success(null, resourcesService.queryResourcesListWithSelected(rid));
     }
 
-    @ApiOperation(value="新增资源")
+    @ApiOperation(value = "新增资源")
     @PostMapping(value = "/add")
     public Response add(@Valid ResourcesDto resources) {
         resourcesService.insert(resources);
@@ -88,12 +87,12 @@ public class ResourceController {
     public synchronized void updatePermission() {
         AbstractShiroFilter shiroFilter;
         try {
-            shiroFilter = (AbstractShiroFilter)shirFilter.getObject();
+            shiroFilter = (AbstractShiroFilter) shirFilter.getObject();
         } catch (Exception e) {
             throw new RuntimeException("get ShiroFilter from shiroFilterFactoryBean error!");
         }
 
-        if(ObjectUtils.isEmpty(shiroFilter)) {
+        if (ObjectUtils.isEmpty(shiroFilter)) {
             throw new RuntimeException("get ShiroFilter from shiroFilterFactoryBean error!");
         }
 
@@ -108,11 +107,11 @@ public class ResourceController {
 
         // 重新构建生成
         Map<String, String> chains = shirFilter.getFilterChainDefinitionMap();
-        chains.keySet().forEach(key-> manager.createChain(key, chains.get(key).trim().replace(" ", "")));
+        chains.keySet().forEach(key -> manager.createChain(key, chains.get(key).trim().replace(" ", "")));
 
     }
 
-    @ApiOperation(value="批量删除资源")
+    @ApiOperation(value = "批量删除资源")
     @PostMapping(value = "/batchDelete")
     public Response batchDelete(String[] ids) {
         if (null == ids) {
@@ -128,33 +127,25 @@ public class ResourceController {
     }
 
 
-    @ApiOperation(value="单个删除资源")
+    @ApiOperation(value = "单个删除资源")
     @PostMapping(value = "/delete")
     public Response delete(String id) {
-
-            resourcesService.removeByPrimaryKey(id);
-
-
+        resourcesService.removeByPrimaryKey(id);
         //更新权限
         updatePermission();
         return ResultUtils.success("成功删除");
     }
 
-    @ApiOperation(value="查看单个资源")
+    @ApiOperation(value = "查看单个资源")
     @PostMapping("/get/{id}")
     public Response get(@PathVariable String id) {
         return ResultUtils.success(null, this.resourcesService.getByPrimaryKey(id));
     }
 
-    @ApiOperation(value="修改资源")
+    @ApiOperation(value = "修改资源")
     @PostMapping("/update")
     public Response update(ResourcesDto resources) {
-        try {
-            resourcesService.updateSelective(resources);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResultUtils.error("资源修改失败！");
-        }
+        resourcesService.updateSelective(resources);
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }
 }

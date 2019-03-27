@@ -16,21 +16,20 @@ import javax.validation.constraints.NotNull;
  * @since 1.0
  */
 public class ResourcesDto {
-
-    private Resource parent;
-
     private String id;
-
     @NotNull
     private String name;
     @NotNull
     private String type;
     private String url;
     private String permission;
+    private String parentName;
     private String parentId;
-
     private Integer sort;
     private String icon;
+
+    public ResourcesDto() {
+    }
 
     public ResourcesDto(Resource resource) {
         if (ObjectUtils.isEmpty(resource)) {
@@ -39,12 +38,12 @@ public class ResourcesDto {
         BeanUtils.copyProperties(resource, this);
     }
 
-    public Resource getParent() {
-        return parent;
+    public String getParentName() {
+        return parentName;
     }
 
-    public void setParent(Resource parent) {
-        this.parent = parent;
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 
     public String getName() {
