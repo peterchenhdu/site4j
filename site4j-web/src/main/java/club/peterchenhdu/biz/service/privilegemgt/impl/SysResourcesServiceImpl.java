@@ -4,13 +4,13 @@
 package club.peterchenhdu.biz.service.privilegemgt.impl;
 
 import club.peterchenhdu.biz.dto.ResourcesDto;
-import club.peterchenhdu.biz.dto.SysResourceDto;
 import club.peterchenhdu.biz.entity.Resource;
 import club.peterchenhdu.biz.mapper.ResourceMapper;
 import club.peterchenhdu.biz.service.privilegemgt.SysResourcesService;
 import club.peterchenhdu.biz.web.vo.ResourceConditionVO;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.PageUtils;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
@@ -20,18 +20,18 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 系统资源
  *
  * @author chenpi
  * @version 1.0
- *
  * @since 2018/4/16 16:26
  * @since 1.0
  */
 @Service
-public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource> implements SysResourcesService {
+public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resource> implements SysResourcesService {
 
     @Autowired
     private ResourceMapper resourceMapper;
@@ -56,8 +56,8 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
      * @return
      */
     @Override
-    public List<SysResourceDto> listUserResources(Map<String, Object> map) {
-        List<SysResourceDto> sysResources = resourceMapper.listUserResources(map);
+    public List<ResourcesDto> listUserResources(Map<String, Object> map) {
+        List<ResourcesDto> sysResources = resourceMapper.listUserResources(map);
         if (CollectionUtils.isEmpty(sysResources)) {
             return Collections.emptyList();
         }
@@ -71,21 +71,17 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
      * @return
      */
     @Override
-    public List<Map<String, Object>> queryResourcesListWithSelected(String rid) {
-        List<SysResourceDto> sysResources = resourceMapper.queryResourcesListWithSelected(rid);
-        if (CollectionUtils.isEmpty(sysResources)) {
-            return null;
-        }
-        List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
-        Map<String, Object> map = null;
-        for (SysResourceDto resources : sysResources) {
-            map = new HashMap<String, Object>(3);
-            map.put("id", resources.getId());
-            map.put("pId", resources.getParentId());
-            map.put("checked", resources.getChecked());
-            map.put("name", resources.getName());
+    public List<Map<String, Object>> queryResourceTree(String rid) {
+        List<Resource> resourceList = resourceMapper.selectList(new EntityWrapper<>());
+        List<Map<String, Object>> mapList = new ArrayList<>();
+        resourceList.forEach(r -> {
+            Map<String, Object> map = new HashMap<>(3);
+            map.put("id", r.getId());
+            map.put("pId", r.getParentId());
+            map.put("checked", "false");
+            map.put("name", r.getName());
             mapList.add(map);
-        }
+        });
         return mapList;
     }
 
@@ -96,20 +92,11 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
      */
     @Override
     public List<ResourcesDto> listUrlAndPermission() {
-        List<SysResourceDto> sysResources = resourceMapper.listUrlAndPermission();
-        return getResources(sysResources);
+        List<Resource> sysResources = resourceMapper.selectList(new EntityWrapper<>());;
+        return sysResources.stream().map(ResourcesDto::new).collect(Collectors.toList());
     }
 
-    /**
-     * 获取所有可用的菜单资源
-     *
-     * @return
-     */
-    @Override
-    public List<ResourcesDto> listAllAvailableMenu() {
-        List<SysResourceDto> sysResources = resourceMapper.listAllAvailableMenu();
-        return getResources(sysResources);
-    }
+
 
     /**
      * 获取用户关联的所有资源
@@ -119,8 +106,8 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
      */
     @Override
     public List<ResourcesDto> listByUserId(String userId) {
-        List<SysResourceDto> sysResources = resourceMapper.listByUserId(userId);
-        return getResources(sysResources);
+
+        return resourceMapper.listByUserId(userId);
     }
 
     /**
@@ -153,7 +140,6 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
     }
 
 
-
     /**
      * 根据主键更新属性不为null的值
      *
@@ -182,7 +168,6 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
     }
 
 
-
     /**
      * 查询全部结果，listByEntity(null)方法能达到同样的效果
      *
@@ -190,20 +175,9 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper,Resource
      */
     @Override
     public List<ResourcesDto> listAll() {
-        List<SysResourceDto> sysResources = resourceMapper.listAll();
-        return getResources(sysResources);
+        List<Resource> sysResources = resourceMapper.selectList(new EntityWrapper<>());
+        return sysResources.stream().map(ResourcesDto::new).collect(Collectors.toList());
     }
 
 
-
-    private List<ResourcesDto> getResources(List<SysResourceDto> sysResources) {
-        if (CollectionUtils.isEmpty(sysResources)) {
-            return Collections.emptyList();
-        }
-        List<ResourcesDto> resources = new ArrayList<>();
-        for (Resource r : sysResources) {
-            resources.add(new ResourcesDto(r));
-        }
-        return resources;
-    }
 }

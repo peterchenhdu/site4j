@@ -4,7 +4,6 @@
 package club.peterchenhdu.biz.service.privilegemgt;
 
 import club.peterchenhdu.biz.dto.ResourcesDto;
-import club.peterchenhdu.biz.dto.SysResourceDto;
 import club.peterchenhdu.biz.entity.Resource;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.biz.web.vo.ResourceConditionVO;
@@ -38,7 +37,7 @@ public interface SysResourcesService extends IService<Resource> {
      * @param map
      * @return
      */
-    List<SysResourceDto> listUserResources(Map<String, Object> map);
+    List<ResourcesDto> listUserResources(Map<String, Object> map);
 
     /**
      * 获取ztree使用的资源列表
@@ -46,7 +45,7 @@ public interface SysResourcesService extends IService<Resource> {
      * @param rid
      * @return
      */
-    List<Map<String, Object>> queryResourcesListWithSelected(String rid);
+    List<Map<String, Object>> queryResourceTree(String rid);
 
     /**
      * 获取资源的url和permission
@@ -55,12 +54,7 @@ public interface SysResourcesService extends IService<Resource> {
      */
     List<ResourcesDto> listUrlAndPermission();
 
-    /**
-     * 获取所有可用的菜单资源
-     *
-     * @return
-     */
-    List<ResourcesDto> listAllAvailableMenu();
+
 
     /**
      * 获取用户关联的所有资源

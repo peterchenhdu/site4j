@@ -4,7 +4,6 @@
 package club.peterchenhdu.biz.mapper;
 
 import club.peterchenhdu.biz.dto.ResourcesDto;
-import club.peterchenhdu.biz.dto.SysResourceDto;
 import club.peterchenhdu.biz.entity.Resource;
 import club.peterchenhdu.biz.web.vo.ResourceConditionVO;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
@@ -32,15 +31,8 @@ public interface ResourceMapper extends BaseMapper<Resource> {
      */
     List<ResourcesDto> findPageBreakByCondition(Page<ResourcesDto> page, ResourceConditionVO vo);
 
-    List<SysResourceDto> listUserResources(Map<String, Object> map);
+    List<ResourcesDto> listUserResources(Map<String, Object> map);
 
-    List<SysResourceDto> queryResourcesListWithSelected(String rid);
+    List<ResourcesDto> listByUserId(String userId);
 
-    List<SysResourceDto> listUrlAndPermission();
-
-    List<SysResourceDto> listAllAvailableMenu();
-
-    List<SysResourceDto> listByUserId(String userId);
-
-    List<SysResourceDto> listAll();
 }

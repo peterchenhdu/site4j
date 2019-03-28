@@ -41,39 +41,7 @@
         buttonUtil: {
             init: function (options) {
 
-                if (options.getTreeUrl !== null) {
-                    $.ajax({
-                        async: false,
-                        type: "POST",
-                        data: {rid: ""},
-                        url: options.getTreeUrl,
-                        dataType: 'json',
-                        success: function (json) {
-                            var data = json.data;
-                            console.log(data);
-                            var setting = {
-                                check: {
-                                    enable: true,
-                                    chkStyle: "radio",
-                                    radioType: "all"
-                                },
-                                data: {
-                                    simpleData: {
-                                        enable: true
-                                    }
-                                },
-                                callback: {
-                                    onCheck: function (event, treeId, treeNode) {
-                                        console.log(treeNode.id + "," + treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
-                                        $("#treeDemo").prev().val(treeNode.id);
 
-                                    }
-                                }
-                            };
-                            $.fn.zTree.init($("#treeDemo"), setting, data);
-                        }
-                    });
-                }
 
 
                 $("#btn_query").bind("click", function () {
@@ -82,6 +50,41 @@
 
                 /* 添加 */
                 $("#btn_add").click(function () {
+
+                    if (options.getTreeUrl !== null) {
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            data: {rid: ""},
+                            url: options.getTreeUrl,
+                            dataType: 'json',
+                            success: function (json) {
+                                var data = json.data;
+                                console.log(data);
+                                var setting = {
+                                    check: {
+                                        enable: true,
+                                        chkStyle: "radio",
+                                        radioType: "all"
+                                    },
+                                    data: {
+                                        simpleData: {
+                                            enable: true
+                                        }
+                                    },
+                                    callback: {
+                                        onCheck: function (event, treeId, treeNode) {
+                                            console.log(treeNode.id + "," + treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+                                            $("#treeDemo").prev().val(treeNode.id);
+
+                                        }
+                                    }
+                                };
+                                $.fn.zTree.init($("#treeDemo"), setting, data);
+                            }
+                        });
+                    }
+
                     resetForm();
 
                     var $addOrUpdateModal = $("#addOrUpdateModal");

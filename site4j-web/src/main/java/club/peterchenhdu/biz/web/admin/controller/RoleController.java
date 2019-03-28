@@ -60,9 +60,9 @@ public class RoleController {
     }
 
 //    @RequiresPermissions("role:allotResource")
-//    @PostMapping("/resourcesWithSelected")
-//    public Response<List<Map<String, Object>>> resourcesWithSelected(String rid) {
-//        return ResultUtils.success(null, resourcesService.queryResourcesListWithSelected(rid));
+//    @PostMapping("/queryResourceTree")
+//    public Response<List<Map<String, Object>>> queryResourceTree(String rid) {
+//        return ResultUtils.success(null, resourcesService.queryResourceTree(rid));
 //    }
 
     @ApiOperation(value="分配角色资源")

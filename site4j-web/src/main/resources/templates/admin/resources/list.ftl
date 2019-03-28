@@ -148,7 +148,7 @@
             deleteUrl: "/admin/resource/delete",
             batchDeleteUrl: "/admin/resource/batchDelete",
             createUrl: "/admin/resource/add",
-            getTreeUrl: '/admin/resource/resourcesWithSelected',
+            getTreeUrl: '/admin/resource/queryResourceTree',
             columns: [{
                 checkbox: true
             }, {

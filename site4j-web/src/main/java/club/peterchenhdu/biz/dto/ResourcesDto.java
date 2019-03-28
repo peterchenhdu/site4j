@@ -8,6 +8,7 @@ import club.peterchenhdu.common.util.ObjectUtils;
 import org.springframework.beans.BeanUtils;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * @author chenpi
@@ -21,6 +22,7 @@ public class ResourcesDto {
     private String name;
     @NotNull
     private String type;
+    @NotNull(message = "当前版本不支持添加外部资源")
     private String url;
     private String permission;
     private String parentName;
@@ -37,7 +39,15 @@ public class ResourcesDto {
         }
         BeanUtils.copyProperties(resource, this);
     }
+    private List<Resource> nodes;
 
+    public List<Resource> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<Resource> nodes) {
+        this.nodes = nodes;
+    }
     public String getParentName() {
         return parentName;
     }

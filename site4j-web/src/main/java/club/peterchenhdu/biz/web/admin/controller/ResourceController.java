@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +44,6 @@ import java.util.Map;
 @RequestMapping("/admin/resource")
 @Validated
 public class ResourceController {
-
     @Autowired
     private SysResourcesService resourcesService;
     @Autowired
@@ -65,10 +66,10 @@ public class ResourceController {
         return ResultUtils.tablePage(pageInfo);
     }
 
-    @ApiOperation(value = "修改资源")
-    @PostMapping("/resourcesWithSelected")
-    public Response<List<Map<String, Object>>> resourcesWithSelected(String rid) {
-        return ResultUtils.success(null, resourcesService.queryResourcesListWithSelected(rid));
+    @ApiOperation(value = "查询资源树")
+    @PostMapping("/queryResourceTree")
+    public Response<List<Map<String, Object>>> queryResourceTree(String rid) {
+        return ResultUtils.success(null, resourcesService.queryResourceTree(rid));
     }
 
     @ApiOperation(value = "新增资源")
@@ -81,46 +82,10 @@ public class ResourceController {
     }
 
 
-    /**
-     * 重新加载权限
-     */
-    public synchronized void updatePermission() {
-        AbstractShiroFilter shiroFilter;
-        try {
-            shiroFilter = (AbstractShiroFilter) shirFilter.getObject();
-        } catch (Exception e) {
-            throw new RuntimeException("get ShiroFilter from shiroFilterFactoryBean error!");
-        }
-
-        if (ObjectUtils.isEmpty(shiroFilter)) {
-            throw new RuntimeException("get ShiroFilter from shiroFilterFactoryBean error!");
-        }
-
-        PathMatchingFilterChainResolver filterChainResolver = (PathMatchingFilterChainResolver) shiroFilter.getFilterChainResolver();
-        DefaultFilterChainManager manager = (DefaultFilterChainManager) filterChainResolver.getFilterChainManager();
-
-        // 清空老的权限控制
-        manager.getFilterChains().clear();
-
-        shirFilter.getFilterChainDefinitionMap().clear();
-        shirFilter.setFilterChainDefinitionMap(shiroService.loadFilterChainDefinitions());
-
-        // 重新构建生成
-        Map<String, String> chains = shirFilter.getFilterChainDefinitionMap();
-        chains.keySet().forEach(key -> manager.createChain(key, chains.get(key).trim().replace(" ", "")));
-
-    }
-
     @ApiOperation(value = "批量删除资源")
     @PostMapping(value = "/batchDelete")
-    public Response batchDelete(String[] ids) {
-        if (null == ids) {
-            return ResultUtils.error(500, "请至少选择一条记录");
-        }
-        for (String id : ids) {
-            resourcesService.removeByPrimaryKey(id);
-        }
-
+    public Response batchDelete(@NotNull String[] ids) {
+        resourcesService.deleteBatchIds(Arrays.asList(ids));
         //更新权限
         updatePermission();
         return ResultUtils.success("成功删除 [" + ids.length + "] 个资源");
@@ -147,5 +112,35 @@ public class ResourceController {
     public Response update(ResourcesDto resources) {
         resourcesService.updateSelective(resources);
         return ResultUtils.success(ResponseStatus.SUCCESS);
+    }
+
+    /**
+     * 重新加载权限
+     */
+    private synchronized void updatePermission() {
+        AbstractShiroFilter shiroFilter;
+        try {
+            shiroFilter = (AbstractShiroFilter) shirFilter.getObject();
+        } catch (Exception e) {
+            throw new RuntimeException("get ShiroFilter from shiroFilterFactoryBean error!");
+        }
+
+        if (ObjectUtils.isEmpty(shiroFilter)) {
+            throw new RuntimeException("get ShiroFilter from shiroFilterFactoryBean error!");
+        }
+
+        PathMatchingFilterChainResolver filterChainResolver = (PathMatchingFilterChainResolver) shiroFilter.getFilterChainResolver();
+        DefaultFilterChainManager manager = (DefaultFilterChainManager) filterChainResolver.getFilterChainManager();
+
+        // 清空老的权限控制
+        manager.getFilterChains().clear();
+
+        shirFilter.getFilterChainDefinitionMap().clear();
+        shirFilter.setFilterChainDefinitionMap(shiroService.loadFilterChainDefinitions());
+
+        // 重新构建生成
+        Map<String, String> chains = shirFilter.getFilterChainDefinitionMap();
+        chains.keySet().forEach(key -> manager.createChain(key, chains.get(key).trim().replace(" ", "")));
+
     }
 }

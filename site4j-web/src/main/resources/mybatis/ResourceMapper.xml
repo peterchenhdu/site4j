@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="club.peterchenhdu.biz.mapper.ResourceMapper">
-    <resultMap id="rm" type="club.peterchenhdu.biz.dto.SysResourceDto">
+    <resultMap id="rm" type="club.peterchenhdu.biz.dto.ResourcesDto">
         <result property="id" jdbcType="VARCHAR" column="id"/>
         <result property="name" jdbcType="VARCHAR" column="name"/>
         <result property="type" jdbcType="VARCHAR" column="type"/>
@@ -11,16 +11,6 @@
         <result property="parentId" jdbcType="BIGINT" column="parent_id"/>
         <result column="sort" jdbcType="INTEGER" property="sort"/>
         <result property="icon" jdbcType="VARCHAR" column="icon"/>
-        <result property="checked" jdbcType="VARCHAR" column="checked"/>
-        <association property="parent" javaType="club.peterchenhdu.biz.entity.Resource">
-            <result property="id" jdbcType="VARCHAR" column="parent_id"/>
-            <result property="name" jdbcType="VARCHAR" column="parent_name"/>
-            <result property="type" jdbcType="VARCHAR" column="parent_type"/>
-            <result property="url" jdbcType="VARCHAR" column="parent_url"/>
-            <result property="parentId" jdbcType="VARCHAR" column="parent_parent_id"/>
-            <result property="permission" jdbcType="VARCHAR" column="parent_permission"/>
-            <result property="icon" jdbcType="VARCHAR" column="parent_icon"/>
-        </association>
         <collection property="nodes" column="node_id" javaType="ArrayList"
                     ofType="club.peterchenhdu.biz.entity.Resource">
             <result property="id" jdbcType="VARCHAR" column="node_id"/>
@@ -32,8 +22,9 @@
             <result property="icon" jdbcType="VARCHAR" column="node_icon"/>
         </collection>
     </resultMap>
+
     <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.web.vo.ResourceConditionVO"
-            resultType="club.peterchenhdu.biz.dto.ResourcesDto">
+            resultMap="rm">
         SELECT
         com.*,
         f.name parentName
@@ -52,17 +43,7 @@
         com.create_time DESC
     </select>
 
-    <select id="listUrlAndPermission" resultMap="rm">
-        SELECT
-        url,
-        permission
-        FROM
-        resource
-        WHERE
-        url IS NOT NULL
-        ORDER BY
-        sort ASC
-    </select>
+
 
     <select id="listUserResources" parameterType="java.util.HashMap" resultMap="rm">
         SELECT
@@ -95,67 +76,6 @@
         ORDER BY
         re.sort ASC,
         node.sort ASC
-    </select>
-
-    <select id="queryResourcesListWithSelected" parameterType="String" resultType="club.peterchenhdu.biz.dto.SysResourceDto">
-        SELECT
-        re.id,
-        re.name,
-        re.parent_id,
-        re.url,
-        re.type,
-        re.icon,
-        (
-        CASE
-        WHEN EXISTS (
-        SELECT
-        1
-        FROM
-        sys_role_resources rr
-        WHERE
-        rr.resources_id = re.id
-        AND rr.role_id = #{rid}
-        )
-        THEN
-        'true'
-        ELSE
-        'false'
-        END
-        ) AS checked
-        FROM
-        resource re
-        ORDER BY
-        re.sort ASC
-    </select>
-
-    <select id="listAllAvailableMenu" resultMap="rm">
-        SELECT
-        r.id,
-        r.name,
-        node.id AS node_id,
-        node.name AS node_name,
-        node.parent_id
-        FROM
-        resource r
-        LEFT JOIN resource node ON (
-        node.parent_id = r.id
-        AND node.available = true
-        AND node.type = 'menu'
-        )
-        WHERE
-         r.type = 'menu'
-        AND (r.url IS NULL OR r.url = '')
-        AND (r.permission IS NULL OR r.permission = '')
-        ORDER BY
-        r.sort ASC,
-        node.sort ASC
-    </select>
-
-    <select id="listAll" resultMap="rm">
-        SELECT
-        *
-        FROM
-        resource r
     </select>
 
     <select id="listByUserId" parameterType="String" resultMap="rm">

@@ -177,7 +177,7 @@
                 async: false,
                 type: "POST",
                 data: {rid: rolesId},
-                url: '/admin/resources/resourcesWithSelected',
+                url: '/admin/resources/queryResourceTree',
                 dataType: 'json',
                 success: function (json) {
                     var data = json.data;
