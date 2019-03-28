@@ -6,6 +6,7 @@
         <result property="id" jdbcType="VARCHAR" column="id"/>
         <result property="name" jdbcType="VARCHAR" column="name"/>
         <result property="type" jdbcType="VARCHAR" column="type"/>
+        <result property="parentName" jdbcType="VARCHAR" column="parent_name"/>
         <result property="url" jdbcType="VARCHAR" column="url"/>
         <result property="permission" jdbcType="VARCHAR" column="permission"/>
         <result property="parentId" jdbcType="BIGINT" column="parent_id"/>
@@ -27,7 +28,7 @@
             resultMap="rm">
         SELECT
         com.*,
-        f.name parentName
+        f.name parent_name
         FROM
         resource com
         LEFT JOIN resource f ON com.parent_id = f.id
