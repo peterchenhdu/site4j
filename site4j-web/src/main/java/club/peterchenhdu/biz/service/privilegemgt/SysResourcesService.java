@@ -4,9 +4,10 @@
 package club.peterchenhdu.biz.service.privilegemgt;
 
 import club.peterchenhdu.biz.dto.ResourcesDto;
+import club.peterchenhdu.biz.dto.front.ZTreeNodeDto;
 import club.peterchenhdu.biz.entity.Resource;
-import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.biz.web.vo.ResourceConditionVO;
+import club.peterchenhdu.common.util.PageInfo;
 import com.baomidou.mybatisplus.service.IService;
 
 import java.util.List;
@@ -45,7 +46,9 @@ public interface SysResourcesService extends IService<Resource> {
      * @param rid
      * @return
      */
-    List<Map<String, Object>> queryResourceTree(String rid);
+    List<ZTreeNodeDto> queryResourceTree(String rid);
+
+    List<ResourcesDto> querySameLevelResource(String rid);
 
     /**
      * 获取资源的url和permission

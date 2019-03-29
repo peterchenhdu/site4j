@@ -19,25 +19,20 @@ import org.springframework.util.StringUtils;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 角色资源
  *
  * @author chenpi
  * @version 1.0
- *
  * @since 2018/4/16 16:26
  * @since 1.0
  */
 @Service
-public class SysRoleResourcesServiceImpl extends ServiceImpl<SysRoleResourcesMapper,SysRoleResources> implements SysRoleResourcesService {
+public class SysRoleResourcesServiceImpl extends ServiceImpl<SysRoleResourcesMapper, SysRoleResources> implements SysRoleResourcesService {
     @Autowired
-    private SysRoleResourcesMapper resourceMapper;
-
-
-
-
-
+    private SysRoleResourcesMapper roleResourceMapper;
 
     /**
      * 添加角色资源
@@ -80,6 +75,15 @@ public class SysRoleResourcesServiceImpl extends ServiceImpl<SysRoleResourcesMap
         //删除
         Wrapper<SysRoleResources> example = new EntityWrapper<>();
         example.eq("role_id", roleId);
-        resourceMapper.delete(example);
+        roleResourceMapper.delete(example);
+    }
+
+    @Override
+    public List<String> queryResourceByRoleId(String roleId) {
+        Wrapper<SysRoleResources> wrapper = new EntityWrapper<>();
+        wrapper.eq("role_id", roleId);
+        return roleResourceMapper.selectList(wrapper).stream()
+                .map(SysRoleResources::getResourcesId)
+                .collect(Collectors.toList());
     }
 }

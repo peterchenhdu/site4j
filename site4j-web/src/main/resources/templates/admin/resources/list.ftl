@@ -65,6 +65,28 @@
     </div>
 </div>
 
+<div class="modal fade bs-example-modal-sm" style="z-index: 1041" id="setOrderModal" tabindex="-1" role="dialog"
+     aria-labelledby="selectRoleLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="selectRoleLabel">设置排序</h4>
+            </div>
+            <div class="modal-body">
+                <form id="boxRoleForm">
+                    <input type="hidden" id="resourceId">
+                    <div id="sameLevelNodes">
+                        设置资源排序
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!--添加资源弹框-->
 <div class="modal fade" id="addOrUpdateModal" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
     <div class="modal-dialog" role="document">
@@ -110,13 +132,6 @@
                         </div>
                     </div>
 
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sort">资源排序: </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" class="form-control col-md-7 col-xs-12" name="sort" id="sort"
-                                   placeholder="请输入资源排序"/>
-                        </div>
-                    </div>
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="icon">资源图标: </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -205,6 +220,7 @@
                     console.log('code:' + code + 'row:' + row + 'index:' + index);
                     var operateBtn = [];
                     operateBtn.push('<@permissionUpdateBtn permission="resource:update" id="' + row.id +'" />');
+                    operateBtn.push('<@permissionSortBtn permission="resource:sort" id="' + row.id +'" />');
                     operateBtn.push('<@permissionDelBtn permission="resource:delete" id="' + row.id +'" />');
                     return operateBtn.join('');
                 }
@@ -221,6 +237,56 @@
         $.tableUtil.init(options);
         //2.初始化Button的点击事件
         $.buttonUtil.init(options);
+
+
+        $('#table-list').on('click', '.btn-sort', function () {
+            var $this = $(this);
+            var resourcesId = $this.attr("data-id");
+            console.log(resourcesId);
+            // $("#resourcesId").val(resourcesId);
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                data: {rid: resourcesId},
+                url: '/admin/resource/querySameLevelResource',
+                dataType: 'json',
+                success: function (json) {
+                    var data = json.data;
+
+                    var $sameLevelNodes = $("#sameLevelNodes");
+                    $sameLevelNodes.empty();
+                    for (var i = 0; i < data.length; i++) {
+                        var appendElement = '';
+                        if (data[i].id === resourcesId ) {
+                            appendElement +='<div class="green"><span class="glyphicon glyphicon-arrow-up green"></span><span class="glyphicon glyphicon-arrow-down green"></span>';
+                        } else {
+                            appendElement +='<div><span class="glyphicon glyphicon-remove-circle red"></span><span class="glyphicon glyphicon-remove-circle red"></span>';
+                        }
+                        appendElement += data[i].name + '</div>';
+                        $sameLevelNodes.append(appendElement);
+                    }
+
+                    var $setOrderModal = $('#setOrderModal');
+                    $setOrderModal.modal('show');
+                    $setOrderModal.on('click', '.glyphicon-arrow-up', function () {
+                        // alert("向上");
+                        var $this = $(this);
+                        $this.parent().after($this.parent().prev());
+                        // $this.parent().prev().remove();
+                    });
+                    $setOrderModal.on('click', '.glyphicon-arrow-down', function () {
+                        var $this = $(this);
+                        $this.parent().before($this.parent().next());
+                        // $this.parent().next().remove();
+                        // alert("向下");
+                    });
+                }
+            });
+        });
+
+
+
     });
 </script>
 </@footer>

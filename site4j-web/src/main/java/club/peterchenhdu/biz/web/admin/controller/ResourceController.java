@@ -4,6 +4,7 @@
 package club.peterchenhdu.biz.web.admin.controller;
 
 import club.peterchenhdu.biz.dto.ResourcesDto;
+import club.peterchenhdu.biz.dto.front.ZTreeNodeDto;
 import club.peterchenhdu.biz.service.privilegemgt.SysResourcesService;
 import club.peterchenhdu.biz.web.admin.shiro.ShiroService;
 import club.peterchenhdu.biz.web.vo.ResourceConditionVO;
@@ -59,6 +60,13 @@ public class ResourceController {
     }
 
 
+
+    @ApiOperation(value = "查询同一级别的资源列表")
+    @PostMapping("/querySameLevelResource")
+    public Response<List<ResourcesDto>> querySameLevelResource(String rid) {
+        return ResultUtils.success(null, resourcesService.querySameLevelResource(rid));
+    }
+
     @ApiOperation(value = "查询资源")
     @PostMapping("/query")
     public PageResult getAll(ResourceConditionVO vo) {
@@ -68,7 +76,7 @@ public class ResourceController {
 
     @ApiOperation(value = "查询资源树")
     @PostMapping("/queryResourceTree")
-    public Response<List<Map<String, Object>>> queryResourceTree(String rid) {
+    public Response<List<ZTreeNodeDto>> queryResourceTree(String rid) {
         return ResultUtils.success(null, resourcesService.queryResourceTree(rid));
     }
 

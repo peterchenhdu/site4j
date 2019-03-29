@@ -64,3 +64,4 @@
 
 <#macro permissionDelBtn permission id><@shiro.hasPermission name="${permission}"><a class="btn btn-xs btn-danger btn-remove" data-id="${id}"><span class="glyphicon glyphicon glyphicon-remove"></span></a></@shiro.hasPermission></#macro>
 <#macro permissionUpdateBtn permission id><@shiro.hasPermission name="${permission}"><a class="btn btn-xs btn-primary btn-update" data-id="${id}"><span class="glyphicon glyphicon-pencil"></span></a></@shiro.hasPermission></#macro>
+<#macro permissionSortBtn permission id><@shiro.hasPermission name="${permission}"><a class="btn btn-xs btn-primary btn-sort" data-id="${id}"><span class="glyphicon glyphicon-sort"></span></a></@shiro.hasPermission></#macro>

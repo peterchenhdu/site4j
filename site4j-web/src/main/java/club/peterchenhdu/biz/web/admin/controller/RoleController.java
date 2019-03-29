@@ -5,7 +5,6 @@ package club.peterchenhdu.biz.web.admin.controller;
 
 import club.peterchenhdu.biz.dto.RoleDto;
 import club.peterchenhdu.biz.entity.SysRole;
-import club.peterchenhdu.biz.service.privilegemgt.SysResourcesService;
 import club.peterchenhdu.biz.service.privilegemgt.SysRoleResourcesService;
 import club.peterchenhdu.biz.service.privilegemgt.SysRoleService;
 import club.peterchenhdu.biz.web.admin.shiro.ShiroService;
@@ -42,8 +41,6 @@ public class RoleController {
     private SysRoleResourcesService roleResourcesService;
     @Autowired
     private ShiroService shiroService;
-    @Autowired
-    private SysResourcesService resourcesService;
 
     @ApiOperation(value="路由到角色管理页面")
     @BusinessLog("进入角色列表页")
@@ -58,12 +55,6 @@ public class RoleController {
         PageInfo<SysRole> pageInfo = roleService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
-
-//    @RequiresPermissions("role:allotResource")
-//    @PostMapping("/queryResourceTree")
-//    public Response<List<Map<String, Object>>> queryResourceTree(String rid) {
-//        return ResultUtils.success(null, resourcesService.queryResourceTree(rid));
-//    }
 
     @ApiOperation(value="分配角色资源")
     @PostMapping("/allotResource")

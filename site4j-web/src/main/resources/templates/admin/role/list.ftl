@@ -177,7 +177,7 @@
                 async: false,
                 type: "POST",
                 data: {rid: rolesId},
-                url: '/admin/resources/queryResourceTree',
+                url: '/admin/resource/queryResourceTree',
                 dataType: 'json',
                 success: function (json) {
                     var data = json.data;
@@ -201,7 +201,15 @@
                         }
                     };
                     var tree = $.fn.zTree.init($("#treeDemo"), setting, data);
-                    tree.expandAll(true);//全部展开
+                    //tree.expandAll(true);//全部展开
+                    var nodes = tree.getCheckedNodes(true);
+
+                    for(var i=0;i<nodes.length;i++) {
+                        if(nodes[i].getParentNode() && !nodes[i].getParentNode().open){
+                            tree.expandNode(nodes[i].getParentNode(),true,false);
+                        }
+                    }
+
 
                     $('#selectRole').modal('show');
                 }

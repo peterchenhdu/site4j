@@ -4,13 +4,16 @@
 package club.peterchenhdu.biz.service.privilegemgt.impl;
 
 import club.peterchenhdu.biz.dto.ResourcesDto;
+import club.peterchenhdu.biz.dto.front.ZTreeNodeDto;
 import club.peterchenhdu.biz.entity.Resource;
 import club.peterchenhdu.biz.mapper.ResourceMapper;
 import club.peterchenhdu.biz.service.privilegemgt.SysResourcesService;
+import club.peterchenhdu.biz.service.privilegemgt.SysRoleResourcesService;
 import club.peterchenhdu.biz.web.vo.ResourceConditionVO;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.PageUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
@@ -35,6 +38,8 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
 
     @Autowired
     private ResourceMapper resourceMapper;
+    @Autowired
+    private SysRoleResourcesService sysRoleResourcesService;
 
     /**
      * 分页查询
@@ -71,18 +76,36 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
      * @return
      */
     @Override
-    public List<Map<String, Object>> queryResourceTree(String rid) {
-        List<Resource> resourceList = resourceMapper.selectList(new EntityWrapper<>());
-        List<Map<String, Object>> mapList = new ArrayList<>();
-        resourceList.forEach(r -> {
-            Map<String, Object> map = new HashMap<>(3);
-            map.put("id", r.getId());
-            map.put("pId", r.getParentId());
-            map.put("checked", "false");
-            map.put("name", r.getName());
-            mapList.add(map);
+    public List<ZTreeNodeDto> queryResourceTree(String rid) {
+        //查询所有资源
+        List<Resource> allResourceList = resourceMapper.selectList(new EntityWrapper<>());
+        //查询角色关联的所有资源ID
+        List<String> resourceIdList = sysRoleResourcesService.queryResourceByRoleId(rid);
+
+
+        List<ZTreeNodeDto> mapList = new ArrayList<>();
+        allResourceList.forEach(r -> {
+            ZTreeNodeDto zTreeNodeDto = new ZTreeNodeDto();
+            zTreeNodeDto.setId(r.getId());
+            zTreeNodeDto.setChecked(resourceIdList.contains(r.getId()));
+            zTreeNodeDto.setName(r.getName());
+            zTreeNodeDto.setpId(r.getParentId());
+            mapList.add(zTreeNodeDto);
         });
         return mapList;
+    }
+
+    @Override
+    public List<ResourcesDto> querySameLevelResource(String rid) {
+        Resource resource = resourceMapper.selectById(rid);
+        String pId = resource.getParentId();
+        Wrapper<Resource> wrapper = new EntityWrapper<>();
+        wrapper.eq("parent_id", pId);
+        wrapper.orderBy("sort");
+
+        return resourceMapper.selectList(wrapper).stream()
+                .map(ResourcesDto::new)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -92,10 +115,10 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
      */
     @Override
     public List<ResourcesDto> listUrlAndPermission() {
-        List<Resource> sysResources = resourceMapper.selectList(new EntityWrapper<>());;
+        List<Resource> sysResources = resourceMapper.selectList(new EntityWrapper<>());
+        ;
         return sysResources.stream().map(ResourcesDto::new).collect(Collectors.toList());
     }
-
 
 
     /**

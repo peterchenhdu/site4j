@@ -6,8 +6,8 @@ package club.peterchenhdu.biz.service.privilegemgt;
 
 import club.peterchenhdu.biz.dto.RoleDto;
 import club.peterchenhdu.biz.entity.SysRole;
-import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.biz.web.vo.RoleConditionVO;
+import club.peterchenhdu.common.util.PageInfo;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -30,8 +30,6 @@ public interface SysRoleService extends IService<SysRole> {
      * @return
      */
     PageInfo<SysRole> findPageBreakByCondition(RoleConditionVO vo);
-
-
 
     RoleDto getByPrimaryKey(String primaryKey);
     boolean updateSelective(RoleDto entity);

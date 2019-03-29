@@ -7,6 +7,8 @@ package club.peterchenhdu.biz.service.privilegemgt;
 import club.peterchenhdu.biz.entity.SysRoleResources;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.util.List;
+
 /**
  * 角色资源
  *
@@ -32,5 +34,7 @@ public interface SysRoleResourcesService extends IService<SysRoleResources> {
      * @param roleId
      */
     void removeByRoleId(String roleId);
+
+    List<String> queryResourceByRoleId(String roleId);
 
 }
