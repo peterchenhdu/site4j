@@ -72,12 +72,14 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="selectRoleLabel">设置排序</h4>
+                <div class="alert alert-info">
+                    提示：点击绿色箭头设置排序！！！
+                </div>
             </div>
             <div class="modal-body">
                 <form id="boxRoleForm">
                     <input type="hidden" id="resourceId">
-                    <div id="sameLevelNodes">
+                    <div id="sameLevelNodes" style="font-size: 16px;">
                         设置资源排序
                     </div>
                 </form>
@@ -259,9 +261,9 @@
                     for (var i = 0; i < data.length; i++) {
                         var appendElement = '';
                         if (data[i].id === resourcesId ) {
-                            appendElement +='<div class="green"><span class="glyphicon glyphicon-arrow-up green"></span><span class="glyphicon glyphicon-arrow-down green"></span>';
+                            appendElement +='<div class="green hljs-strong just-mark"><span class="glyphicon glyphicon-upload green"></span><span class="glyphicon glyphicon glyphicon-download green"></span> - ';
                         } else {
-                            appendElement +='<div><span class="glyphicon glyphicon-remove-circle red"></span><span class="glyphicon glyphicon-remove-circle red"></span>';
+                            appendElement +='<div class="just-mark"><span class="glyphicon glyphicon-ban-circle red "></span><span class="glyphicon glyphicon-ban-circle red"></span> - ';
                         }
                         appendElement += data[i].name + '</div>';
                         $sameLevelNodes.append(appendElement);
@@ -269,14 +271,22 @@
 
                     var $setOrderModal = $('#setOrderModal');
                     $setOrderModal.modal('show');
-                    $setOrderModal.on('click', '.glyphicon-arrow-up', function () {
-                        // alert("向上");
+                    $setOrderModal.on('click', '.glyphicon-upload', function () {
                         var $this = $(this);
+                        if(!$this.parent().prev().hasClass("just-mark")) {
+                            console.log("到达顶端");
+                            return;
+                        }
+
                         $this.parent().after($this.parent().prev());
                         // $this.parent().prev().remove();
                     });
-                    $setOrderModal.on('click', '.glyphicon-arrow-down', function () {
+                    $setOrderModal.on('click', '.glyphicon-download', function () {
                         var $this = $(this);
+                        if(!$this.parent().next().hasClass("just-mark")) {
+                            console.log("到达底端");
+                            return;
+                        }
                         $this.parent().before($this.parent().next());
                         // $this.parent().next().remove();
                         // alert("向下");
