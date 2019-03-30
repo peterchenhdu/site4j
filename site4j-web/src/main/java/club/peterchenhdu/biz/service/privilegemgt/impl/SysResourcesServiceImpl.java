@@ -19,10 +19,14 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -148,6 +152,36 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
 
         resourceMapper.insert(entity);
         return new ResourcesDto(entity);
+    }
+
+
+    //todo 考虑下并发操作
+    @Override
+    @Transactional
+    public void updateSort(String rId, boolean isUp) {
+        Resource resource = resourceMapper.selectById(rId);
+        String pId = resource.getParentId();
+        Wrapper<Resource> wrapper = new EntityWrapper<>();
+        wrapper.eq("parent_id", pId);
+        wrapper.in("sort", new Integer[]{resource.getSort() - 1, resource.getSort(), resource.getSort() + 1});
+        wrapper.orderBy("sort");
+        List<Resource> rList= resourceMapper.selectList(wrapper);
+
+        Resource otherResource;
+        if(isUp) {
+
+            otherResource = rList.size() == 2 ? rList.get(1):rList.get(2);
+            resource.setSort(resource.getSort() + 1);
+            otherResource.setSort(resource.getSort());
+
+        } else {
+            otherResource = rList.size() == 2 ? rList.get(1):rList.get(0);
+            resource.setSort(resource.getSort() - 1);
+            otherResource.setSort(resource.getSort());
+        }
+
+        resourceMapper.updateById(otherResource);
+        resourceMapper.updateById(resource);
     }
 
 

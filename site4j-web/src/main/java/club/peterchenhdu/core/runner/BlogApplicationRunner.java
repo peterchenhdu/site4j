@@ -87,7 +87,10 @@ public class BlogApplicationRunner implements ApplicationRunner {
         Map<String, Resource> resourceMap = oldDbResourceList.stream().collect(Collectors.toMap(Resource::getUrl, dto -> dto));
         Set<Resource> newCodeResourceList = new HashSet<>();
 
-        for (Class<?> beanType : controllerClazzList) {
+        int k = 0;
+        for (int i = 0; i< controllerClazzList.size();i++) {
+
+            Class<?> beanType = controllerClazzList.get(i);
 
             if (ObjectUtils.isEmpty(beanType)) {
                 continue;
@@ -128,6 +131,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
                     menuResource.setPermission(ToPinyin(tags[0]));
                     menuResource.setType(ResourceTypeEnum.MENU.getKey());
                     menuResource.setUrl("/admin/" + ToPinyin(tags[0]));
+                    menuResource.setSort(++k);
                     newCodeResourceList.add(menuResource);
                 }
             }
@@ -151,13 +155,15 @@ public class BlogApplicationRunner implements ApplicationRunner {
                 parentResource.setPermission(urlArr[urlArr.length - 1]);
                 parentResource.setType(ResourceTypeEnum.MENU.getKey());
                 parentResource.setUrl(requestMapping.value()[0]);
+                parentResource.setSort(i + 1);
             }
 
             newCodeResourceList.add(parentResource);
 
 
             Method[] methods = beanType.getDeclaredMethods();
-            for (Method m : methods) {
+            for (int j = 0; j<methods.length;j++) {
+                Method m = methods[j];
                 ApiOperation apiOperation = m.getAnnotation(ApiOperation.class);
                 if (ObjectUtils.isEmpty(apiOperation)) {
                     continue;
@@ -187,6 +193,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
                 resource.setPermission(parentResource.getPermission() + ":" + (urlArr2.length < 2 ? "" : urlArr2[1]));
                 resource.setType(ResourceTypeEnum.BUTTON.getKey());
                 resource.setUrl(parentResource.getUrl() + url);
+                resource.setSort(j+1);
                 newCodeResourceList.add(resource);
             }
 

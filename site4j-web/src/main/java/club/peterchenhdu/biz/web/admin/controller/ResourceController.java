@@ -64,7 +64,7 @@ public class ResourceController {
     @ApiOperation(value = "查询同一级别的资源列表")
     @PostMapping("/querySameLevelResource")
     public Response<List<ResourcesDto>> querySameLevelResource(String rid) {
-        return ResultUtils.success(null, resourcesService.querySameLevelResource(rid));
+        return ResultUtils.success(resourcesService.querySameLevelResource(rid));
     }
 
     @ApiOperation(value = "查询资源")
@@ -77,7 +77,7 @@ public class ResourceController {
     @ApiOperation(value = "查询资源树")
     @PostMapping("/queryResourceTree")
     public Response<List<ZTreeNodeDto>> queryResourceTree(String rid) {
-        return ResultUtils.success(null, resourcesService.queryResourceTree(rid));
+        return ResultUtils.success(resourcesService.queryResourceTree(rid));
     }
 
     @ApiOperation(value = "新增资源")
@@ -86,6 +86,13 @@ public class ResourceController {
         resourcesService.insert(resources);
         //更新权限
         updatePermission();
+        return ResultUtils.success("成功");
+    }
+
+    @ApiOperation(value = "修改资源排序")
+    @PostMapping(value = "/updateSort")
+    public Response updateSort(String rId, Boolean isUp) {
+        resourcesService.updateSort(rId, isUp);
         return ResultUtils.success("成功");
     }
 
@@ -112,7 +119,7 @@ public class ResourceController {
     @ApiOperation(value = "查看单个资源")
     @PostMapping("/get/{id}")
     public Response get(@PathVariable String id) {
-        return ResultUtils.success(null, this.resourcesService.getByPrimaryKey(id));
+        return ResultUtils.success(this.resourcesService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value = "修改资源")

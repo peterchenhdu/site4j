@@ -53,6 +53,9 @@ public class ResultUtils {
     public static <T> Response<T> success(String message, T data) {
         return vo(CommonConst.DEFAULT_SUCCESS_CODE, message, data);
     }
+    public static <T> Response<T> success( T data) {
+        return vo(CommonConst.DEFAULT_SUCCESS_CODE, "操作成功", data);
+    }
 
     public static Response success(String message) {
         return success(message, null);

@@ -72,4 +72,7 @@ public interface SysResourcesService extends IService<Resource> {
     boolean updateSelective(ResourcesDto entity);
     boolean removeByPrimaryKey(String primaryKey);
     ResourcesDto insert(ResourcesDto entity);
+
+
+    void updateSort(String rId, boolean isUp);
 }

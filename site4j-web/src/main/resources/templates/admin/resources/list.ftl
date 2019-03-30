@@ -279,7 +279,17 @@
                         }
 
                         $this.parent().after($this.parent().prev());
-                        // $this.parent().prev().remove();
+
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            data: {rId: resourcesId,isUp:true},
+                            url: '/admin/resource/updateSort',
+                            dataType: 'json',
+                            success: function (json) {
+
+                            }
+                        });
                     });
                     $setOrderModal.on('click', '.glyphicon-download', function () {
                         var $this = $(this);
@@ -288,8 +298,18 @@
                             return;
                         }
                         $this.parent().before($this.parent().next());
-                        // $this.parent().next().remove();
-                        // alert("向下");
+
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            data: {rId: resourcesId,isUp:false},
+                            url: '/admin/resource/updateSort',
+                            dataType: 'json',
+                            success: function (json) {
+
+                            }
+                        });
+
                     });
                 }
             });
