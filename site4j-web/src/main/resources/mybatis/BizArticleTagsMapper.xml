@@ -17,7 +17,7 @@
         update_time
     </sql>
 
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.web.vo.ArticleTagsConditionVO"
+    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.dto.req.ArticleTagsConditionVO"
             resultMap="rm">
         SELECT
         t.*

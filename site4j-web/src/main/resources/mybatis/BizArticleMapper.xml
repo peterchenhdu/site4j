@@ -44,7 +44,7 @@
         </collection>
     </resultMap>
 
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.web.vo.ArticleConditionVO" resultMap="rm">
+    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.dto.req.ArticleConditionVO" resultMap="rm">
         SELECT
         a.*,
         btype.id AS btype_id,

@@ -6,7 +6,7 @@ package club.peterchenhdu.biz.service.articlemgt;
 
 import club.peterchenhdu.biz.dto.TypeDto;
 import club.peterchenhdu.biz.entity.BizType;
-import club.peterchenhdu.biz.web.vo.TypeConditionVO;
+import club.peterchenhdu.biz.dto.req.TypeConditionVO;
 import com.baomidou.mybatisplus.service.IService;
 import club.peterchenhdu.common.util.PageInfo;
 

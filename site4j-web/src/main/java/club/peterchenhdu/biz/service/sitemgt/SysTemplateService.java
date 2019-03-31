@@ -7,7 +7,7 @@ package club.peterchenhdu.biz.service.sitemgt;
 import club.peterchenhdu.biz.dto.TemplateDto;
 import club.peterchenhdu.biz.entity.SysTemplate;
 import club.peterchenhdu.common.enums.TemplateKeyEnum;
-import club.peterchenhdu.biz.web.vo.TemplateConditionVO;
+import club.peterchenhdu.biz.dto.req.TemplateConditionVO;
 import com.baomidou.mybatisplus.service.IService;
 import club.peterchenhdu.common.util.PageInfo;
 

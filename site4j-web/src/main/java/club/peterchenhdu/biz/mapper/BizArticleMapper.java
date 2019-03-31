@@ -5,7 +5,7 @@ package club.peterchenhdu.biz.mapper;
 
 import club.peterchenhdu.biz.entity.BizArticle;
 import club.peterchenhdu.biz.entity.BizArticleArchives;
-import club.peterchenhdu.biz.web.vo.ArticleConditionVO;
+import club.peterchenhdu.biz.dto.req.ArticleConditionVO;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

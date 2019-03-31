@@ -4,9 +4,9 @@
 package club.peterchenhdu.biz.service.privilegemgt;
 
 import club.peterchenhdu.biz.dto.ResourcesDto;
-import club.peterchenhdu.biz.dto.front.ZTreeNodeDto;
+import club.peterchenhdu.biz.dto.view.ZTreeNodeDto;
 import club.peterchenhdu.biz.entity.Resource;
-import club.peterchenhdu.biz.web.vo.ResourceConditionVO;
+import club.peterchenhdu.biz.dto.req.ResourceConditionVO;
 import club.peterchenhdu.common.util.PageInfo;
 import com.baomidou.mybatisplus.service.IService;
 

@@ -10,7 +10,7 @@ import club.peterchenhdu.biz.service.articlemgt.BizArticleLookService;
 import club.peterchenhdu.common.util.EntityUtils;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.PageUtils;
-import club.peterchenhdu.biz.web.vo.BizArticleLookConditionVo;
+import club.peterchenhdu.biz.dto.req.BizArticleLookConditionVo;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;

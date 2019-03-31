@@ -12,7 +12,7 @@ import club.peterchenhdu.biz.mapper.BizCommentMapper;
 import club.peterchenhdu.biz.service.common.MailService;
 import club.peterchenhdu.biz.service.sitemgt.BizCommentService;
 import club.peterchenhdu.biz.service.sitemgt.SysConfigService;
-import club.peterchenhdu.biz.web.vo.CommentConditionVO;
+import club.peterchenhdu.biz.dto.req.CommentConditionVO;
 import club.peterchenhdu.common.annotation.RedisCache;
 import club.peterchenhdu.common.enums.CommentStatusEnum;
 import club.peterchenhdu.common.enums.TemplateKeyEnum;

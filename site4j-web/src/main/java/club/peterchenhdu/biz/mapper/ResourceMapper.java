@@ -5,7 +5,7 @@ package club.peterchenhdu.biz.mapper;
 
 import club.peterchenhdu.biz.dto.ResourcesDto;
 import club.peterchenhdu.biz.entity.Resource;
-import club.peterchenhdu.biz.web.vo.ResourceConditionVO;
+import club.peterchenhdu.biz.dto.req.ResourceConditionVO;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.stereotype.Repository;

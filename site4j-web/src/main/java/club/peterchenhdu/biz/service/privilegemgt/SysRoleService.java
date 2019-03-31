@@ -6,7 +6,7 @@ package club.peterchenhdu.biz.service.privilegemgt;
 
 import club.peterchenhdu.biz.dto.RoleDto;
 import club.peterchenhdu.biz.entity.SysRole;
-import club.peterchenhdu.biz.web.vo.RoleConditionVO;
+import club.peterchenhdu.biz.dto.req.RoleConditionVO;
 import club.peterchenhdu.common.util.PageInfo;
 import com.baomidou.mybatisplus.service.IService;
 

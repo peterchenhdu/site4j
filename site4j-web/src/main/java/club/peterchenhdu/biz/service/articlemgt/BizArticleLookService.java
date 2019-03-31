@@ -7,7 +7,7 @@ package club.peterchenhdu.biz.service.articlemgt;
 import club.peterchenhdu.biz.dto.ArticleLookDto;
 import club.peterchenhdu.biz.entity.BizArticleLook;
 import club.peterchenhdu.common.util.PageInfo;
-import club.peterchenhdu.biz.web.vo.BizArticleLookConditionVo;
+import club.peterchenhdu.biz.dto.req.BizArticleLookConditionVo;
 import com.baomidou.mybatisplus.service.IService;
 
 /**

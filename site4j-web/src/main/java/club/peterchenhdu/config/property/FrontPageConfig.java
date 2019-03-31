@@ -4,8 +4,8 @@
 
 package club.peterchenhdu.config.property;
 
-import club.peterchenhdu.biz.dto.front.FrontConfigDto;
-import club.peterchenhdu.biz.dto.front.FrontModule;
+import club.peterchenhdu.biz.dto.view.FrontConfigDto;
+import club.peterchenhdu.biz.dto.view.FrontModule;
 import club.peterchenhdu.common.util.JacksonUtils;
 import club.peterchenhdu.common.util.LogUtils;
 import org.apache.commons.io.IOUtils;

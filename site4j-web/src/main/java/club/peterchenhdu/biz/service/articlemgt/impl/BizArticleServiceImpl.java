@@ -16,7 +16,7 @@ import club.peterchenhdu.biz.service.articlemgt.BizArticleService;
 import club.peterchenhdu.biz.service.articlemgt.BizArticleTagsService;
 import club.peterchenhdu.biz.service.articlemgt.ISearchHistoryService;
 import club.peterchenhdu.biz.service.common.IImageService;
-import club.peterchenhdu.biz.web.vo.ArticleConditionVO;
+import club.peterchenhdu.biz.dto.req.ArticleConditionVO;
 import club.peterchenhdu.common.annotation.RedisCache;
 import club.peterchenhdu.common.base.BaseEntity;
 import club.peterchenhdu.common.enums.ArticleStatusEnum;

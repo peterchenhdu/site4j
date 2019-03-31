@@ -8,7 +8,7 @@ import club.peterchenhdu.biz.dto.UserDto;
 import club.peterchenhdu.biz.dto.UserPwdDto;
 import club.peterchenhdu.biz.entity.SysUser;
 import club.peterchenhdu.common.util.PageInfo;
-import club.peterchenhdu.biz.web.vo.UserConditionVO;
+import club.peterchenhdu.biz.dto.req.UserConditionVO;
 import com.baomidou.mybatisplus.service.IService;
 
 import java.util.List;

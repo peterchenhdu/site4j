@@ -4,7 +4,7 @@
 package club.peterchenhdu.biz.mapper;
 
 import club.peterchenhdu.biz.entity.BizComment;
-import club.peterchenhdu.biz.web.vo.CommentConditionVO;
+import club.peterchenhdu.biz.dto.req.CommentConditionVO;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 

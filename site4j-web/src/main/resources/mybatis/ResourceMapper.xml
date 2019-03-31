@@ -24,7 +24,7 @@
         </collection>
     </resultMap>
 
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.web.vo.ResourceConditionVO"
+    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.dto.req.ResourceConditionVO"
             resultMap="rm">
         SELECT
         com.*,

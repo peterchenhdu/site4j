@@ -9,7 +9,7 @@ import club.peterchenhdu.biz.mapper.BizArticleTagsMapper;
 import club.peterchenhdu.biz.service.articlemgt.BizArticleTagsService;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.UuidUtils;
-import club.peterchenhdu.biz.web.vo.ArticleTagsConditionVO;
+import club.peterchenhdu.biz.dto.req.ArticleTagsConditionVO;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.pagination.PageHelper;

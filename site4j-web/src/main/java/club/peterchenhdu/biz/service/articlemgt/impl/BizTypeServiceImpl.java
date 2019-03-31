@@ -7,7 +7,7 @@ import club.peterchenhdu.biz.dto.TypeDto;
 import club.peterchenhdu.biz.entity.BizType;
 import club.peterchenhdu.biz.mapper.BizTypeMapper;
 import club.peterchenhdu.biz.service.articlemgt.BizTypeService;
-import club.peterchenhdu.biz.web.vo.TypeConditionVO;
+import club.peterchenhdu.biz.dto.req.TypeConditionVO;
 import club.peterchenhdu.common.exception.BaseRuntimeException;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.UuidUtils;

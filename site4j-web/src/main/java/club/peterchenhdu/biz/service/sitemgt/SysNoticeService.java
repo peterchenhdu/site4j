@@ -7,7 +7,7 @@ package club.peterchenhdu.biz.service.sitemgt;
 import club.peterchenhdu.biz.dto.NoticeDto;
 import club.peterchenhdu.biz.dto.SysNoticeDto;
 import club.peterchenhdu.biz.entity.SysNotice;
-import club.peterchenhdu.biz.web.vo.NoticeConditionVO;
+import club.peterchenhdu.biz.dto.req.NoticeConditionVO;
 import com.baomidou.mybatisplus.service.IService;
 import club.peterchenhdu.common.util.PageInfo;
 

@@ -4,7 +4,7 @@
 package club.peterchenhdu.biz.mapper;
 
 import club.peterchenhdu.biz.entity.SysNotice;
-import club.peterchenhdu.biz.web.vo.NoticeConditionVO;
+import club.peterchenhdu.biz.dto.req.NoticeConditionVO;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 

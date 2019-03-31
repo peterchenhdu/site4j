@@ -40,7 +40,7 @@
         update_time
     </sql>
 
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.web.vo.TypeConditionVO" resultMap="rm">
+    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.dto.req.TypeConditionVO" resultMap="rm">
         SELECT
         t.*,
         parent.id parent_id,

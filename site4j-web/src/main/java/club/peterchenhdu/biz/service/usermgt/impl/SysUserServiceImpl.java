@@ -16,7 +16,7 @@ import club.peterchenhdu.biz.mapper.SysUserMapper;
 import club.peterchenhdu.biz.service.privilegemgt.SysRoleService;
 import club.peterchenhdu.biz.service.usermgt.SysUserService;
 import club.peterchenhdu.util.*;
-import club.peterchenhdu.biz.web.vo.UserConditionVO;
+import club.peterchenhdu.biz.dto.req.UserConditionVO;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;

@@ -64,7 +64,7 @@
         update_time
     </sql>
 
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.web.vo.CommentConditionVO" resultMap="rm">
+    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.dto.req.CommentConditionVO" resultMap="rm">
         SELECT
         t.*,
         f.id AS parent_id,

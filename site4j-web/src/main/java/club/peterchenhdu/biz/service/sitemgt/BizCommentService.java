@@ -4,7 +4,7 @@
 package club.peterchenhdu.biz.service.sitemgt;
 
 
-import club.peterchenhdu.biz.web.vo.CommentConditionVO;
+import club.peterchenhdu.biz.dto.req.CommentConditionVO;
 import club.peterchenhdu.common.exception.CommentException;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.biz.dto.CommentDto;

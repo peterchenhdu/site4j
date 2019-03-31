@@ -6,7 +6,7 @@ package club.peterchenhdu.biz.service.sitemgt;
 
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.biz.dto.LinkDto;
-import club.peterchenhdu.biz.web.vo.LinkConditionVO;
+import club.peterchenhdu.biz.dto.req.LinkConditionVO;
 import club.peterchenhdu.common.exception.LinkException;
 
 import java.util.List;

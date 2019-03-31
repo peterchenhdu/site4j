@@ -10,7 +10,7 @@ import club.peterchenhdu.biz.mapper.SysTemplateMapper;
 import club.peterchenhdu.biz.service.sitemgt.SysTemplateService;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.UuidUtils;
-import club.peterchenhdu.biz.web.vo.TemplateConditionVO;
+import club.peterchenhdu.biz.dto.req.TemplateConditionVO;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

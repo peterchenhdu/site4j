@@ -14,7 +14,7 @@ import club.peterchenhdu.common.exception.LinkException;
 import club.peterchenhdu.common.util.ObjectUtils;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.UuidUtils;
-import club.peterchenhdu.biz.web.vo.LinkConditionVO;
+import club.peterchenhdu.biz.dto.req.LinkConditionVO;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.pagination.PageHelper;

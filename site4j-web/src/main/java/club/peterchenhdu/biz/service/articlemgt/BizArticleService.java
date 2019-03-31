@@ -6,7 +6,7 @@ package club.peterchenhdu.biz.service.articlemgt;
 
 import club.peterchenhdu.biz.dto.ArticleDto;
 import club.peterchenhdu.biz.entity.BizArticle;
-import club.peterchenhdu.biz.web.vo.ArticleConditionVO;
+import club.peterchenhdu.biz.dto.req.ArticleConditionVO;
 import com.baomidou.mybatisplus.service.IService;
 import club.peterchenhdu.common.util.PageInfo;
 import org.springframework.web.multipart.MultipartFile;

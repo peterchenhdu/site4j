@@ -7,7 +7,7 @@ import club.peterchenhdu.biz.dto.TagsDto;
 import club.peterchenhdu.biz.entity.BizTags;
 import club.peterchenhdu.biz.mapper.BizTagsMapper;
 import club.peterchenhdu.biz.service.articlemgt.BizTagsService;
-import club.peterchenhdu.biz.web.vo.TagsConditionVO;
+import club.peterchenhdu.biz.dto.req.TagsConditionVO;
 import club.peterchenhdu.common.annotation.RedisCache;
 import club.peterchenhdu.common.exception.BaseRuntimeException;
 import club.peterchenhdu.common.util.PageInfo;

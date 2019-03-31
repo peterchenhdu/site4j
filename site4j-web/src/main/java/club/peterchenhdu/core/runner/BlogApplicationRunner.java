@@ -6,7 +6,6 @@ package club.peterchenhdu.core.runner;
 import club.peterchenhdu.BlogWebApplication;
 import club.peterchenhdu.biz.entity.Resource;
 import club.peterchenhdu.biz.service.privilegemgt.SysResourcesService;
-import club.peterchenhdu.biz.web.SpringInit;
 import club.peterchenhdu.common.annotation.PublicService;
 import club.peterchenhdu.common.enums.ResourceTypeEnum;
 import club.peterchenhdu.common.util.DateUtils;
@@ -14,6 +13,7 @@ import club.peterchenhdu.common.util.LogUtils;
 import club.peterchenhdu.common.util.ObjectUtils;
 import club.peterchenhdu.common.util.UuidUtils;
 import club.peterchenhdu.core.job.base.AbstractBaseCronJob;
+import club.peterchenhdu.util.SpringContextHolder;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import io.swagger.annotations.Api;
@@ -67,7 +67,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments applicationArguments) {
         //程序启动完成，执行一些初始化操作
-        ApplicationContext appContext = SpringInit.getApplicationContext();
+        ApplicationContext appContext = SpringContextHolder.getApplicationContext();
 
         //启动所有任务
         Map<String, AbstractBaseCronJob> map = appContext.getBeansOfType(AbstractBaseCronJob.class);

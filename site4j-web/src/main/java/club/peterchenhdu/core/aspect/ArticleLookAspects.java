@@ -45,7 +45,7 @@ public class ArticleLookAspects {
     /**
      * 切面切入点
      */
-    @Pointcut("execution(* club.peterchenhdu.biz.web.front.controller.RenderController.article(..))")
+    @Pointcut("execution(* club.peterchenhdu.biz.controller.front.RenderController.article(..))")
     public void pointcut() {
 
     }

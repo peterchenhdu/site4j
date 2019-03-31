@@ -6,7 +6,7 @@ package club.peterchenhdu.biz.service.articlemgt;
 
 import club.peterchenhdu.biz.dto.TagsDto;
 import club.peterchenhdu.common.util.PageInfo;
-import club.peterchenhdu.biz.web.vo.TagsConditionVO;
+import club.peterchenhdu.biz.dto.req.TagsConditionVO;
 
 import java.util.List;
 

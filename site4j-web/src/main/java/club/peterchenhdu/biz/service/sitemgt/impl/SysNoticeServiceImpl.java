@@ -8,7 +8,7 @@ import club.peterchenhdu.biz.dto.SysNoticeDto;
 import club.peterchenhdu.biz.entity.SysNotice;
 import club.peterchenhdu.biz.mapper.SysNoticeMapper;
 import club.peterchenhdu.biz.service.sitemgt.SysNoticeService;
-import club.peterchenhdu.biz.web.vo.NoticeConditionVO;
+import club.peterchenhdu.biz.dto.req.NoticeConditionVO;
 import club.peterchenhdu.common.enums.NoticeStatusEnum;
 import club.peterchenhdu.common.util.ObjectUtils;
 import club.peterchenhdu.common.util.PageInfo;

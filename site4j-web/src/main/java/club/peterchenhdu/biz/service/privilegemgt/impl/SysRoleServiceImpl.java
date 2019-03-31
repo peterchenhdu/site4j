@@ -11,7 +11,7 @@ import club.peterchenhdu.common.util.ObjectUtils;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.PageUtils;
 import club.peterchenhdu.common.util.UuidUtils;
-import club.peterchenhdu.biz.web.vo.RoleConditionVO;
+import club.peterchenhdu.biz.dto.req.RoleConditionVO;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
