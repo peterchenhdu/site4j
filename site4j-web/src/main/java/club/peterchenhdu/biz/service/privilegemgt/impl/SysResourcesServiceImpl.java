@@ -12,6 +12,7 @@ import club.peterchenhdu.biz.service.privilegemgt.SysRoleResourcesService;
 import club.peterchenhdu.biz.dto.req.ResourceConditionVO;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.PageUtils;
+import club.peterchenhdu.util.BeanConvertUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -146,10 +147,7 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
     @Override
     public ResourcesDto insert(ResourcesDto dto) {
         Assert.notNull(dto, "Resources不可为空！");
-
-        Resource entity = new Resource();
-        BeanUtils.copyProperties(dto, entity);
-
+        Resource entity = BeanConvertUtils.doConvert(dto, Resource.class);
         resourceMapper.insert(entity);
         return new ResourcesDto(entity);
     }
@@ -206,8 +204,7 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
     @Override
     public boolean updateSelective(ResourcesDto dto) {
         Assert.notNull(dto, "Resources不可为空！");
-        Resource entity = new Resource();
-        BeanUtils.copyProperties(dto, entity);
+        Resource entity = BeanConvertUtils.doConvert(dto, Resource.class);
         return resourceMapper.updateById(entity) > 0;
     }
 

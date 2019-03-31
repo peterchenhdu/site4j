@@ -113,8 +113,8 @@ public class BizCommentServiceImpl implements BizCommentService {
         }
         List<BizCommentDto> dtoList = new LinkedList<>();
         for (CommentDto comment : list) {
-            BizCommentDto dto = BeanConvertUtil.doConvert(comment, BizCommentDto.class);
-            dto.setParentDTO(BeanConvertUtil.doConvert(comment.getParent(), BizCommentDto.class));
+            BizCommentDto dto = BeanConvertUtils.doConvert(comment, BizCommentDto.class);
+            dto.setParentDTO(BeanConvertUtils.doConvert(comment.getParent(), BizCommentDto.class));
             dtoList.add(dto);
         }
         return dtoList;

@@ -14,7 +14,7 @@ import club.peterchenhdu.common.util.ObjectUtils;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.PageUtils;
 import club.peterchenhdu.common.util.UuidUtils;
-import club.peterchenhdu.util.BeanConvertUtil;
+import club.peterchenhdu.util.BeanConvertUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -89,7 +89,7 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper,SysNotice>
         }
         List<SysNoticeDto> boList = new ArrayList<>();
         for (SysNotice sysNotice : list) {
-            boList.add(BeanConvertUtil.doConvert(sysNotice, SysNoticeDto.class));
+            boList.add(BeanConvertUtils.doConvert(sysNotice, SysNoticeDto.class));
         }
         return boList;
     }

@@ -4,19 +4,15 @@
 package club.peterchenhdu.biz.controller.backend;
 
 import club.peterchenhdu.biz.dto.ArticleDto;
-import club.peterchenhdu.biz.dto.ConfigDto;
+import club.peterchenhdu.biz.dto.req.ArticleConditionVO;
 import club.peterchenhdu.biz.service.articlemgt.BizArticleService;
 import club.peterchenhdu.biz.service.sitemgt.SysConfigService;
-import club.peterchenhdu.biz.dto.req.ArticleConditionVO;
 import club.peterchenhdu.common.annotation.BusinessLog;
 import club.peterchenhdu.common.base.PageResult;
 import club.peterchenhdu.common.base.Response;
-import club.peterchenhdu.common.enums.BaiduPushTypeEnum;
 import club.peterchenhdu.common.enums.ResponseStatus;
 import club.peterchenhdu.common.util.PageInfo;
-import club.peterchenhdu.util.BaiduPushUtil;
 import club.peterchenhdu.util.ResultUtils;
-import club.peterchenhdu.util.UrlBuildUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -117,39 +113,6 @@ public class RestArticleController {
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }
 
-    @ApiOperation(value="推送到百度")
-    @PostMapping(value = "/pushToBaidu/{type}")
-    public Response pushToBaidu(@PathVariable("type") BaiduPushTypeEnum type, String[] ids) {
-        if (null == ids) {
-            return ResultUtils.error(500, "请至少选择一条记录");
-        }
-        ConfigDto config = configService.get();
-        String siteUrl = config.getSiteUrl();
-        StringBuilder params = new StringBuilder();
-        for (String id : ids) {
-            params.append(siteUrl).append("/article/").append(id).append("\n");
-        }
-        // urls: 推送, update: 更新, del: 删除
-        String url = UrlBuildUtil.getBaiduPushUrl(type.toString(), config.getSiteUrl(), config.getBaiduPushToken());
-        /**
-         * success	       	int	    成功推送的url条数
-         * remain	       	int	    当天剩余的可推送url条数
-         * not_same_site	array	由于不是本站url而未处理的url列表
-         * not_valid	   	array	不合法的url列表
-         */
-        // {"remain":4999997,"success":1,"not_same_site":[],"not_valid":[]}
-        /**
-         * error	是	int	      错误码，与状态码相同
-         * message	是	string	  错误描述
-         */
-        //{error":401,"message":"token is not valid"}
-        String result = BaiduPushUtil.doPush(url, params.toString());
-        log.info(result);
-        if (result.contains("error")) {
-            return ResultUtils.error(result);
-        }
-        return ResultUtils.success(null, result);
-    }
 
     @ApiOperation(value="发布文章")
     @PostMapping(value = "/batchPublish")

@@ -13,26 +13,7 @@ import org.springframework.beans.BeanUtils;
  * @since 2018/4/18 11:48
  * @since 1.0
  */
-public class BeanConvertUtil {
-
-    /**
-     * source --> target 的转换
-     *
-     * @param source 被转换的对象
-     * @param target 转换成的对象
-     * @param <T>
-     * @return
-     */
-    public static <T> T doConvert(Object source, Object target, Class<T> clazz) {
-        if (null == source || null == target) {
-            return null;
-        }
-        BeanUtils.copyProperties(source, target);
-        if (clazz.equals(target.getClass())) {
-            return (T) target;
-        }
-        throw new ClassCastException(target.getClass() + " cannot be cast to " + clazz);
-    }
+public class BeanConvertUtils {
 
     /**
      * source --> target 的转换

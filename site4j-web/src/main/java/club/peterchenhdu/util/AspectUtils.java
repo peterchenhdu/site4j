@@ -3,10 +3,10 @@
  */
 package club.peterchenhdu.util;
 
+import club.peterchenhdu.common.util.ObjectUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 
@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
  * @since 2018/6/29 11:59
  * @since 1.0
  */
-public class AspectUtil {
+public class AspectUtils {
 
     /**
      * 获取以类路径为前缀的键
@@ -28,7 +28,7 @@ public class AspectUtil {
      */
     public static String getKeyOfClassPrefix(ProceedingJoinPoint point, String prefix) {
         String keyPrefix = "";
-        if (!StringUtils.isEmpty(prefix)) {
+        if (ObjectUtils.isNotEmpty(prefix)) {
             keyPrefix += prefix;
         }
         keyPrefix += getClassName(point);
@@ -66,14 +66,9 @@ public class AspectUtil {
      * @throws NoSuchMethodException
      */
     public static String getKey(ProceedingJoinPoint point, String extra, String prefix) throws NoSuchMethodException {
-        Method currentMethod = AspectUtil.getMethod(point);
+        Method currentMethod = AspectUtils.getMethod(point);
         String methodName = currentMethod.getName();
-        StringBuilder key = new StringBuilder();
-        key.append(getKeyOfClassPrefix(point, prefix));
-        key.append("_");
-        key.append(methodName);
-        key.append(CacheKeyUtil.getMethodParamsKey(point.getArgs()));
-        key.append(null == extra ? "" : extra);
-        return key.toString();
+        return getKeyOfClassPrefix(point, prefix) + "_" + methodName +
+                CacheKeyUtil.getMethodParamsKey(point.getArgs()) + (null == extra ? "" : extra);
     }
 }

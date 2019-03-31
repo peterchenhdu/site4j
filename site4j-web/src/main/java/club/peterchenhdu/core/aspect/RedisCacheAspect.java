@@ -5,7 +5,7 @@ package club.peterchenhdu.core.aspect;
 
 import club.peterchenhdu.biz.service.common.RedisService;
 import club.peterchenhdu.common.annotation.RedisCache;
-import club.peterchenhdu.util.AspectUtil;
+import club.peterchenhdu.util.AspectUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -41,17 +41,17 @@ public class RedisCacheAspect {
 
     @Around("pointcut()")
     public Object handle(ProceedingJoinPoint point) throws Throwable {
-        Method currentMethod = AspectUtil.getMethod(point);
+        Method currentMethod = AspectUtils.getMethod(point);
         //获取操作名称
         RedisCache cache = currentMethod.getAnnotation(RedisCache.class);
         boolean flush = cache.flush();
         if (flush) {
-            String classPrefix = AspectUtil.getKeyOfClassPrefix(point, BIZ_CACHE_PREFIX);
+            String classPrefix = AspectUtils.getKeyOfClassPrefix(point, BIZ_CACHE_PREFIX);
             log.info("清空缓存 - {}*", classPrefix);
             redisService.delBatch(classPrefix);
             return point.proceed();
         }
-        String key = AspectUtil.getKey(point, cache.key(), BIZ_CACHE_PREFIX);
+        String key = AspectUtils.getKey(point, cache.key(), BIZ_CACHE_PREFIX);
         boolean hasKey = redisService.hasKey(key);
         if (hasKey) {
             try {

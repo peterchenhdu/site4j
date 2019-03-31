@@ -5,7 +5,7 @@ package club.peterchenhdu.core.aspect;
 
 import club.peterchenhdu.common.annotation.BusinessLog;
 import club.peterchenhdu.common.util.RegexUtils;
-import club.peterchenhdu.util.AspectUtil;
+import club.peterchenhdu.util.AspectUtils;
 import club.peterchenhdu.util.RequestUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -60,8 +60,8 @@ public class BusinessLogAspect {
      */
     private void handle(ProceedingJoinPoint point) throws Exception {
         //获取拦截方法的参数
-        String className = AspectUtil.getClassName(point);
-        Method currentMethod = AspectUtil.getMethod(point);
+        String className = AspectUtils.getClassName(point);
+        Method currentMethod = AspectUtils.getMethod(point);
         //获取操作名称
         BusinessLog annotation = currentMethod.getAnnotation(BusinessLog.class);
         String businessName = parseContent(point.getArgs(), annotation.value());
