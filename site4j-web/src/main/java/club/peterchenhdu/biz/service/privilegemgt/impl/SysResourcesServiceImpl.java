@@ -4,12 +4,12 @@
 package club.peterchenhdu.biz.service.privilegemgt.impl;
 
 import club.peterchenhdu.biz.dto.ResourcesDto;
+import club.peterchenhdu.biz.dto.req.ResourceConditionVO;
 import club.peterchenhdu.biz.dto.view.ZTreeNodeDto;
 import club.peterchenhdu.biz.entity.Resource;
 import club.peterchenhdu.biz.mapper.ResourceMapper;
 import club.peterchenhdu.biz.service.privilegemgt.SysResourcesService;
 import club.peterchenhdu.biz.service.privilegemgt.SysRoleResourcesService;
-import club.peterchenhdu.biz.dto.req.ResourceConditionVO;
 import club.peterchenhdu.common.util.PageInfo;
 import club.peterchenhdu.common.util.PageUtils;
 import club.peterchenhdu.util.BeanConvertUtils;
@@ -17,7 +17,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,7 +104,12 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
         Resource resource = resourceMapper.selectById(rid);
         String pId = resource.getParentId();
         Wrapper<Resource> wrapper = new EntityWrapper<>();
-        wrapper.eq("parent_id", pId);
+        if(pId == null) {
+            wrapper.isNull("parent_id");
+        } else {
+            wrapper.eq("parent_id", pId);
+        }
+
         wrapper.orderBy("sort");
 
         return resourceMapper.selectList(wrapper).stream()

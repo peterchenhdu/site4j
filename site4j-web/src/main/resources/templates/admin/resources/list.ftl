@@ -16,7 +16,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">查询条件</div>
                         <div class="panel-body">
-                            <form id="formSearch" class="form-horizontal">
+                            <form id="formSearch" class="form-horizontal" onkeydown="if(event.keyCode===13) return false;">
                                 <div class="form-group" style="margin-top:15px">
                                     <label class="control-label col-sm-1" for="search-type">资源类别</label>
                                     <div class="col-sm-3">
