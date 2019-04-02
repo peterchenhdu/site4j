@@ -4,12 +4,13 @@
 
 package club.peterchenhdu.common.util;
 
-import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Array;
-import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,35 +59,25 @@ public class ObjectUtils {
         return !isEmpty(obj);
     }
 
-
     public static Map<String, Object> bean2Map(Object obj) {
-        Map<String, Object> map = new HashMap<>();
-
-        if(obj == null){
-            return map;
+        if (ObjectUtils.isEmpty(obj)) {
+            return Collections.emptyMap();
         }
 
         try {
-            BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
-            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-            for (PropertyDescriptor property : propertyDescriptors) {
-                String key = property.getName();
-
-                // 过滤class属性
-                if (!key.equals("class")) {
-                    // 得到property对应的getter方法
-                    Method getter = property.getReadMethod();
-                    Object value = getter.invoke(obj);
-
-                    map.put(key, value);
+            PropertyDescriptor[] propertyDescriptors = Introspector.getBeanInfo(obj.getClass()).getPropertyDescriptors();
+            Map<String, Object> map = new HashMap<>();
+            for (PropertyDescriptor p : propertyDescriptors) {
+                if ("class".equals(p.getName())) {
+                    continue;
                 }
-
+                map.put(p.getName(), p.getReadMethod().invoke(obj));
             }
-        } catch (Exception e) {
-            System.out.println("transBean2Map Error " + e);
+            return map;
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
+            LogUtils.exception(e);
+            throw new RuntimeException("对象转map失败");
         }
-
-        return map;
 
     }
 

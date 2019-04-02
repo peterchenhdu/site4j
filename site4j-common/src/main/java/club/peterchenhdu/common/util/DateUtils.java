@@ -5,12 +5,9 @@ package club.peterchenhdu.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * DateUtils
@@ -31,25 +28,7 @@ public class DateUtils {
      */
     public static final String YYYY_MM_DD_HH_MM_SS_SSS = "yyyyMMddHHmmssSSS";
 
-    /**
-     * 字符串日期转换为Date日期
-     *
-     * @param dateStr 字符串日期
-     * @param pattern 参考DateConst.java
-     * @return Date类型的日期
-     */
-    public static Date str2Date(String dateStr, String pattern) {
-        Date resultDate = null;
-        if (dateStr != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-            try {
-                resultDate = sdf.parse(dateStr);
-            } catch (ParseException e) {
-                log.error("日期转换异常", e);
-            }
-        }
-        return resultDate;
-    }
+
 
     /**
      * Date日期转换为字符串日期

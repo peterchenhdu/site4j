@@ -3,9 +3,6 @@
  */
 package club.peterchenhdu.common.util;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -16,37 +13,34 @@ import java.net.URLEncoder;
  * @author PiChen
  * @since 2018/10/21
  */
-@Slf4j
 public class UrlCodeUtils {
 
     private static final String URL_ENCODE = "UTF-8";
 
-    private UrlCodeUtils() {
-    }
-
 
     public static String encode(String param) {
-        String result = null;
-        if (!StringUtils.isEmpty(param)) {
-            try {
-                result = URLEncoder.encode(param, URL_ENCODE);
-            } catch (UnsupportedEncodingException e) {
-                log.error("url编码发生异常", e);
-            }
+        if (ObjectUtils.isEmpty(param)) {
+            return param;
         }
-        return result;
+
+        try {
+            return URLEncoder.encode(param, URL_ENCODE);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("URL编码发生异常");
+        }
     }
 
 
     public static String decode(String param) {
-        String result = null;
-        if (!StringUtils.isEmpty(param)) {
-            try {
-                result = URLDecoder.decode(param, URL_ENCODE);
-            } catch (UnsupportedEncodingException e) {
-                log.error("url编码发生异常", e);
-            }
+        if (ObjectUtils.isEmpty(param)) {
+            return param;
         }
-        return result;
+
+        try {
+            return URLDecoder.decode(param, URL_ENCODE);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("URL解码发生异常");
+        }
     }
 }
+

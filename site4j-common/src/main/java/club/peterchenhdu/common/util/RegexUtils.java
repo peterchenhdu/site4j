@@ -3,6 +3,7 @@
  */
 package club.peterchenhdu.common.util;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -22,11 +23,10 @@ public class RegexUtils {
      * @return List;
      */
     public static List<String> getMatchList(String str, String regex) {
-        if (null == str) {
-            return null;
+        if (ObjectUtils.isEmpty(str)) {
+            return Collections.emptyList();
         }
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(str);
+        Matcher matcher = Pattern.compile(regex).matcher(str);
         List<String> list = new LinkedList<>();
         while (matcher.find()) {
             list.add(matcher.group());
@@ -35,12 +35,11 @@ public class RegexUtils {
     }
 
     public static boolean match(String str, String regex) {
-        if (null == str) {
+        if (ObjectUtils.isEmpty(str)) {
             return false;
         }
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(str);
-        return matcher.find();
+        return Pattern.compile(regex).matcher(str).find();
     }
+
 }  
 

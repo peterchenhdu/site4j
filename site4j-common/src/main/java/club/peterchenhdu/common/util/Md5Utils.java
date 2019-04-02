@@ -6,6 +6,7 @@ package club.peterchenhdu.common.util;
 import lombok.extern.slf4j.Slf4j;
 
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Md5Utils
@@ -15,6 +16,8 @@ import java.security.MessageDigest;
  */
 @Slf4j
 public class Md5Utils {
+    private static final char[] hexDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
     /**
      * md5加密，带盐值（32位 大写）
      *
@@ -33,7 +36,6 @@ public class Md5Utils {
      * @return String
      */
     public static String md5(String s) {
-        char[] hexDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
         try {
             byte[] btInput = s.getBytes();
             MessageDigest mdInst = MessageDigest.getInstance("md5");
@@ -47,9 +49,9 @@ public class Md5Utils {
                 str[k++] = hexDigits[byte0 & 0xf];
             }
             return new String(str);
-        } catch (Exception e) {
-            log.error("MD5生成失败", e);
-            return null;
+        } catch (NoSuchAlgorithmException e) {
+            LogUtils.exception(e);
+            throw new RuntimeException("MD5失败");
         }
     }
 }

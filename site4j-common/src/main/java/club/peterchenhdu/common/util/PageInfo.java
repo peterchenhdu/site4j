@@ -1,12 +1,6 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package club.peterchenhdu.common.util;
 
 import java.util.List;

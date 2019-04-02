@@ -3,8 +3,6 @@
  */
 package club.peterchenhdu.common.util;
 
-import org.springframework.util.StringUtils;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -19,33 +17,30 @@ public class IpUtils {
 
     public static String getRealIp(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
-        if (isValidIp(ip)) {
+        if (isIpValid(ip)) {
             return ip;
-        } else {
-            ip = request.getHeader("Proxy-Client-IP");
         }
 
-        if (isValidIp(ip)) {
+        ip = request.getHeader("Proxy-Client-IP");
+        if (isIpValid(ip)) {
             return ip;
-        } else {
-            ip = request.getHeader("WL-Proxy-Client-IP");
         }
 
-        if (isValidIp(ip)) {
+        ip = request.getHeader("WL-Proxy-Client-IP");
+        if (isIpValid(ip)) {
             return ip;
-        } else {
-            ip = request.getRemoteAddr();
         }
 
-        if (isValidIp(ip)) {
+        ip = request.getRemoteAddr();
+        if (isIpValid(ip)) {
             return ip;
-        } else {
-            return UNKNOWN_IP;
         }
+
+        return UNKNOWN_IP;
     }
 
 
-    private static boolean isValidIp(String ip) {
-        return !StringUtils.isEmpty(ip) && !UNKNOWN_IP.equalsIgnoreCase(ip);
+    private static boolean isIpValid(String ip) {
+        return ObjectUtils.isNotEmpty(ip) && !UNKNOWN_IP.equalsIgnoreCase(ip);
     }
 }

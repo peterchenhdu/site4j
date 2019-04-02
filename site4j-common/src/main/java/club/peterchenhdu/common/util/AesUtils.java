@@ -3,7 +3,7 @@
  */
 package club.peterchenhdu.common.util;
 
-import club.peterchenhdu.common.exception.CommentException;
+import club.peterchenhdu.common.exception.BaseRuntimeException;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
@@ -13,11 +13,11 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
+
 /**
- * AesUtils（对称加密）
- *
- * @author PiChen
- * @since 2018/10/21
+ * Aes对称加密
+ * <p>
+ * Created by chenpi on 2018/10/21.
  */
 public class AesUtils {
     private static final String KEY_ALGORITHM = "AES";
@@ -47,7 +47,7 @@ public class AesUtils {
             return Base64.encodeBase64String(result);
         } catch (Exception e) {
             LogUtils.exception(e);
-            throw new CommentException("AES加密失败");
+            throw new BaseRuntimeException("AES加密失败");
         }
     }
 
@@ -72,7 +72,7 @@ public class AesUtils {
             return new String(result, "utf-8");
         } catch (Exception e) {
             LogUtils.exception(e);
-            throw new CommentException("AES解密失败");
+            throw new BaseRuntimeException("AES解密失败");
         }
     }
 
