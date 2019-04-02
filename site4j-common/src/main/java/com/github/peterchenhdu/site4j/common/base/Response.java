@@ -5,21 +5,14 @@ package com.github.peterchenhdu.site4j.common.base;
 
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.util.JacksonUtils;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 
 /**
- * controller返回json
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/16 16:26
- * @since 1.0
+ * 基类 - 响应封装
+ * <p>
+ * <p>
+ * Created by chenpi on 2018/04/16.
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class Response<T> {
     private Integer status;
     private String message;
@@ -39,5 +32,29 @@ public class Response<T> {
         T t = this.getData();
         return JacksonUtils.obj2json(t);
 
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

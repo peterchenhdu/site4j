@@ -11,9 +11,8 @@ import java.lang.annotation.Target;
 
 /**
  * 公共服务，不会被拦截进行权限校验的服务
- *
- * @author PiChen
- * @since 2019/3/22
+ * <p>
+ * Created by chenpi on 2019/3/22.
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

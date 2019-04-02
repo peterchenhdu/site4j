@@ -3,7 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.biz.dto.req;
 
-import com.github.peterchenhdu.site4j.common.base.BaseCondition;
+import com.github.peterchenhdu.site4j.common.base.BasePagingQueryDto;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ArticleConditionVO extends BaseCondition {
+public class ArticleConditionVO extends BasePagingQueryDto {
     private ArticleDto article;
     private String typeId;
     private String tagId;
@@ -29,5 +29,6 @@ public class ArticleConditionVO extends BaseCondition {
     private Boolean original;
     private Boolean random;
     private List<String> tagIds;
+    private String keywords;
 }
 

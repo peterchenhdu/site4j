@@ -10,17 +10,17 @@ package com.github.peterchenhdu.site4j.common.dto;
  * @since 2018/4/16 16:26
  * @since 1.0
  */
-public class ImageFileInfoDto {
+public class ImageInfoDto {
     private long size;
     private String type;
     private int width;
     private int height;
     private String filename;
 
-    public ImageFileInfoDto() {
+    public ImageInfoDto() {
     }
 
-    public ImageFileInfoDto(int width, int height) {
+    public ImageInfoDto(int width, int height) {
         this.width = width;
         this.height = height;
     }

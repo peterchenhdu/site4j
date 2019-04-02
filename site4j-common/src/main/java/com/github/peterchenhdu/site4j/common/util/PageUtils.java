@@ -4,7 +4,7 @@
 
 package com.github.peterchenhdu.site4j.common.util;
 
-import com.github.peterchenhdu.site4j.common.base.BaseCondition;
+import com.github.peterchenhdu.site4j.common.base.BasePagingQueryDto;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class PageUtils {
 
-    public static <T> Page<T> getPage(BaseCondition baseCondition) {
+    public static <T> Page<T> getPage(BasePagingQueryDto baseCondition) {
 
         return new Page<>(baseCondition.getPageNumber(), baseCondition.getPageSize());
 

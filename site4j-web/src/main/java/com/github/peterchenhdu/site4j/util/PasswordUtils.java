@@ -3,7 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.util;
 
-import com.github.peterchenhdu.site4j.common.constant.CommonConst;
+import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
 import com.github.peterchenhdu.site4j.common.util.AesUtils;
 import com.github.peterchenhdu.site4j.common.util.Md5Utils;
 
@@ -24,7 +24,7 @@ public class PasswordUtils {
      */
     public static String encrypt(String password, String salt) {
 
-        return AesUtils.encrypt(Md5Utils.md5(salt + CommonConst.SECURITY_KEY), password);
+        return AesUtils.encrypt(Md5Utils.md5(salt + CommonConstants.SECURITY_KEY), password);
 
 
     }
@@ -37,6 +37,6 @@ public class PasswordUtils {
      * @return 解密后的内容
      */
     public static String decrypt(String encryptPassword, String salt) {
-        return AesUtils.decrypt(Md5Utils.md5(salt + CommonConst.SECURITY_KEY), encryptPassword);
+        return AesUtils.decrypt(Md5Utils.md5(salt + CommonConstants.SECURITY_KEY), encryptPassword);
     }
 }

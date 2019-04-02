@@ -3,7 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.biz.dto.req;
 
-import com.github.peterchenhdu.site4j.common.base.BaseCondition;
+import com.github.peterchenhdu.site4j.common.base.BasePagingQueryDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class NoticeConditionVO extends BaseCondition {
+public class NoticeConditionVO extends BasePagingQueryDto {
     private String status;
 }
 

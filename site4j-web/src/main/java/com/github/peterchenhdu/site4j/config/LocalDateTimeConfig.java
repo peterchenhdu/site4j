@@ -4,7 +4,7 @@
 
 package com.github.peterchenhdu.site4j.config;
 
-import com.github.peterchenhdu.site4j.common.constant.CommonConst;
+import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -39,21 +39,21 @@ public class LocalDateTimeConfig {
         objectMapper.disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
         JavaTimeModule javaTimeModule = new JavaTimeModule();
         javaTimeModule.addSerializer(LocalDateTime.class,new LocalDateTimeSerializer(DateTimeFormatter.ofPattern
-                (CommonConst.DEFAULT_DATE_TIME_FORMAT)));
-        javaTimeModule.addSerializer(LocalDate.class,new LocalDateSerializer(DateTimeFormatter.ofPattern(CommonConst
+                (CommonConstants.DEFAULT_DATE_TIME_FORMAT)));
+        javaTimeModule.addSerializer(LocalDate.class,new LocalDateSerializer(DateTimeFormatter.ofPattern(CommonConstants
                 .DEFAULT_DATE_FORMAT)));
-        javaTimeModule.addSerializer(LocalTime.class,new LocalTimeSerializer(DateTimeFormatter.ofPattern(CommonConst
+        javaTimeModule.addSerializer(LocalTime.class,new LocalTimeSerializer(DateTimeFormatter.ofPattern(CommonConstants
                 .DEFAULT_TIME_FORMAT)));
-        javaTimeModule.addDeserializer(LocalDateTime.class,new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(CommonConst.DEFAULT_DATE_TIME_FORMAT)));
-        javaTimeModule.addDeserializer(LocalDate.class,new LocalDateDeserializer(DateTimeFormatter.ofPattern(CommonConst.DEFAULT_DATE_FORMAT)));
-        javaTimeModule.addDeserializer(LocalTime.class,new LocalTimeDeserializer(DateTimeFormatter.ofPattern(CommonConst.DEFAULT_TIME_FORMAT)));
+        javaTimeModule.addDeserializer(LocalDateTime.class,new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(CommonConstants.DEFAULT_DATE_TIME_FORMAT)));
+        javaTimeModule.addDeserializer(LocalDate.class,new LocalDateDeserializer(DateTimeFormatter.ofPattern(CommonConstants.DEFAULT_DATE_FORMAT)));
+        javaTimeModule.addDeserializer(LocalTime.class,new LocalTimeDeserializer(DateTimeFormatter.ofPattern(CommonConstants.DEFAULT_TIME_FORMAT)));
         objectMapper.registerModule(javaTimeModule).registerModule(new ParameterNamesModule());
         return objectMapper;
     }
 
     @Bean
     public LocalDateTimeSerializer localDateTimeDeserializer() {
-        return new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(CommonConst.DEFAULT_DATE_TIME_FORMAT));
+        return new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(CommonConstants.DEFAULT_DATE_TIME_FORMAT));
     }
 
     @Bean

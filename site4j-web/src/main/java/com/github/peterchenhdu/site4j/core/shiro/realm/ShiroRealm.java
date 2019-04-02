@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesService;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
 import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
-import com.github.peterchenhdu.site4j.common.constant.CommonConst;
+import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
 import com.github.peterchenhdu.site4j.common.enums.UserStatusEnum;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -92,7 +92,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
         // 赋予权限
         // ROOT用户默认拥有所有权限
-        if (CommonConst.ROOT_ROLE_ID.equals(user.getRoleId())) {
+        if (CommonConstants.ROOT_ROLE_ID.equals(user.getRoleId())) {
             resourcesList = resourcesService.listAll();
         } else {
             resourcesList = resourcesService.listByUserId(userId);

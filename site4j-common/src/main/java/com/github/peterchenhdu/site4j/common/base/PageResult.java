@@ -4,22 +4,14 @@
 package com.github.peterchenhdu.site4j.common.base;
 
 import com.github.peterchenhdu.site4j.common.util.PageInfo;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
 /**
  * bootstrap table用到的返回json格式
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/16 16:26
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2018/04/16.
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class PageResult {
     private Long total;
     private List rows;
@@ -35,5 +27,21 @@ public class PageResult {
     }
 
     public PageResult() {
+    }
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
+    }
+
+    public List getRows() {
+        return rows;
+    }
+
+    public void setRows(List rows) {
+        this.rows = rows;
     }
 }

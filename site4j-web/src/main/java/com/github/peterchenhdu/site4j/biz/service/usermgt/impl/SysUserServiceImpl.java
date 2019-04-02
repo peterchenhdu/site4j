@@ -97,7 +97,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 
         Wrapper<SysUser> wrapper = new EntityWrapper<>();
-        wrapper.like("nickname", vo.getKeywords());
+//        wrapper.like("nickname", vo.getKeywords());
         wrapper.orderBy("create_time", false);
 
         List<SysUser> userList = baseMapper.selectPage(page, wrapper);

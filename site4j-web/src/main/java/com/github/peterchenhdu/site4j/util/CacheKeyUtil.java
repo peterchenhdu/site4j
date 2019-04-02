@@ -3,7 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.util;
 
-import com.github.peterchenhdu.site4j.common.dto.ImageFileInfoDto;
+import com.github.peterchenhdu.site4j.common.dto.ImageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.JacksonUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.support.BindingAwareModelMap;
@@ -41,7 +41,7 @@ public class CacheKeyUtil {
 
 
     public static void main(String[] args) {
-        System.out.println(getMethodParamsKey("123", new ImageFileInfoDto(5,6)));
+        System.out.println(getMethodParamsKey("123", new ImageInfoDto(5,6)));
     }
 
 }

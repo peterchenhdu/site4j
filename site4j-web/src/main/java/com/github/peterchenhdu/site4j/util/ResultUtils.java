@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.util;
 
 import com.github.peterchenhdu.site4j.common.base.PageResult;
 import com.github.peterchenhdu.site4j.common.base.Response;
-import com.github.peterchenhdu.site4j.common.constant.CommonConst;
+import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.util.PageInfo;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,14 +47,14 @@ public class ResultUtils {
     }
 
     public static Response error(String message) {
-        return vo(CommonConst.DEFAULT_ERROR_CODE, message, null);
+        return vo(CommonConstants.DEFAULT_ERROR_CODE, message, null);
     }
 
     public static <T> Response<T> success(String message, T data) {
-        return vo(CommonConst.DEFAULT_SUCCESS_CODE, message, data);
+        return vo(CommonConstants.DEFAULT_SUCCESS_CODE, message, data);
     }
     public static <T> Response<T> success( T data) {
-        return vo(CommonConst.DEFAULT_SUCCESS_CODE, "操作成功", data);
+        return vo(CommonConstants.DEFAULT_SUCCESS_CODE, "操作成功", data);
     }
 
     public static Response success(String message) {

@@ -11,20 +11,13 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/16 16:26
- * @since 1.0
+ * 基类 - 实体类
+ * <p>
+ * Created by chenpi on 2018/04/16.
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 public abstract class BaseEntity implements Serializable {
-    /**
-     * @fieldName: serialVersionUID
-     * @fieldType: long
-     */
-    private static final long serialVersionUID = 5088697673359856350L;
 
 
     @TableId

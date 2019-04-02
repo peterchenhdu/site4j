@@ -3,26 +3,26 @@
  */
 package com.github.peterchenhdu.site4j.biz.service.privilegemgt.impl;
 
-import com.github.peterchenhdu.site4j.biz.dto.RoleDto;
-import com.github.peterchenhdu.site4j.biz.entity.SysRole;
-import com.github.peterchenhdu.site4j.biz.mapper.SysRoleMapper;
-import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
-import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
-import com.github.peterchenhdu.site4j.common.util.PageUtils;
-import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.github.peterchenhdu.site4j.biz.dto.req.RoleConditionVO;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.github.peterchenhdu.site4j.biz.dto.RoleDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.RoleConditionVO;
+import com.github.peterchenhdu.site4j.biz.entity.SysRole;
+import com.github.peterchenhdu.site4j.biz.mapper.SysRoleMapper;
+import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
+import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.util.PageUtils;
+import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 角色
@@ -45,9 +45,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper,SysRole> imple
     @Override
     public PageInfo<SysRole> findPageBreakByCondition(RoleConditionVO vo) {
         Wrapper<SysRole> example = new EntityWrapper<>();
-        if(ObjectUtils.isNotEmpty(vo.getKeywords())) {
-            example.like("description", vo.getKeywords());
-        }
+//        if(ObjectUtils.isNotEmpty(vo.getKeywords())) {
+//            example.like("description", vo.getKeywords());
+//        }
         example.orderBy("create_time DESC");
 
         Page<SysRole> page = PageUtils.getPage(vo);

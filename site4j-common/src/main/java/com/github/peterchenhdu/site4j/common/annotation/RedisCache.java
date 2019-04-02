@@ -7,10 +7,9 @@ import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * RedisCache
- *
- * @author PiChen
- * @since 2018/10/21
+ * Redis缓存注解
+ * <p>
+ * Created by chenpi on 2018/10/21.
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

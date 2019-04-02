@@ -3,7 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.biz.dto.req;
 
-import com.github.peterchenhdu.site4j.common.base.BaseCondition;
+import com.github.peterchenhdu.site4j.common.base.BasePagingQueryDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ResourceConditionVO extends BaseCondition {
+public class ResourceConditionVO extends BasePagingQueryDto {
 
     private String name;
     private String type;

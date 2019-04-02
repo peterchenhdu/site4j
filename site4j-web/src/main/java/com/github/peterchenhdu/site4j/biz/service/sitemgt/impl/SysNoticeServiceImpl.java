@@ -3,22 +3,21 @@
  */
 package com.github.peterchenhdu.site4j.biz.service.sitemgt.impl;
 
-import com.github.peterchenhdu.site4j.biz.dto.NoticeDto;
-import com.github.peterchenhdu.site4j.biz.dto.SysNoticeDto;
-import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
-import com.github.peterchenhdu.site4j.biz.mapper.SysNoticeMapper;
-import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
-import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
-import com.github.peterchenhdu.site4j.common.enums.NoticeStatusEnum;
-import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
-import com.github.peterchenhdu.site4j.common.util.PageUtils;
-import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.github.peterchenhdu.site4j.biz.dto.NoticeDto;
+import com.github.peterchenhdu.site4j.biz.dto.SysNoticeDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
+import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
+import com.github.peterchenhdu.site4j.biz.mapper.SysNoticeMapper;
+import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
+import com.github.peterchenhdu.site4j.common.enums.NoticeStatusEnum;
+import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.util.PageUtils;
+import com.github.peterchenhdu.site4j.common.util.UuidUtils;
+import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,9 +52,9 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper,SysNotice>
     @Override
     public PageInfo<NoticeDto> findPageBreakByCondition(NoticeConditionVO vo) {
         Wrapper<SysNotice> example = new EntityWrapper<>();
-        if(ObjectUtils.isNotEmpty(vo.getKeywords())) {
-            example.like("title", vo.getKeywords());
-        }
+//        if(ObjectUtils.isNotEmpty(vo.getKeywords())) {
+//            example.like("title", vo.getKeywords());
+//        }
         example.orderBy("create_time DESC");
 
         Page<SysNotice> page = PageUtils.getPage(vo);
