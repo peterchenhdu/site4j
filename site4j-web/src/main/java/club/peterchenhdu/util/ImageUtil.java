@@ -4,12 +4,12 @@
 package club.peterchenhdu.util;
 
 import club.peterchenhdu.common.dto.ImageFileInfoDto;
-import club.peterchenhdu.common.exception.FileException;
-import lombok.extern.slf4j.Slf4j;
+import club.peterchenhdu.common.util.LogUtils;
+import club.peterchenhdu.common.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 /**
@@ -17,70 +17,68 @@ import java.io.*;
  *
  * @author chenpi
  * @version 1.0
- *
  * @since 2018/4/18 11:48
  * @since 1.0
  */
-@Slf4j
 public class ImageUtil {
 
     /**
      * 获取图片信息
-     *
-     * @param file
-     * @throws IOException
      */
     public static ImageFileInfoDto getInfo(File file) {
-        if (null == file) {
+        if (ObjectUtils.isEmpty(file)) {
             return null;
         }
+
         try {
-            return getInfo(new FileInputStream(file))
-                    .withSize(file.length())
-                    .withFilename(file.getName())
-                    .withType(FileUtil.getSuffix(file.getName()));
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new FileException("获取图片信息发生异常！", e);
+            ImageFileInfoDto imageFileInfoDto = getInfo(new FileInputStream(file));
+            imageFileInfoDto.setType(FileUtil.getSuffix(file.getName()));
+            imageFileInfoDto.setFilename(file.getName());
+            imageFileInfoDto.setSize(file.length());
+            return imageFileInfoDto;
+        } catch (FileNotFoundException e) {
+            LogUtils.exception(e);
+            throw new RuntimeException("获取图片信息失败");
         }
     }
 
     /**
      * 获取图片信息
-     *
-     * @param multipartFile
-     * @throws IOException
      */
     public static ImageFileInfoDto getInfo(MultipartFile multipartFile) {
-        if (null == multipartFile) {
+        if (ObjectUtils.isEmpty(multipartFile)) {
             return null;
         }
+
         try {
-            return getInfo(multipartFile.getInputStream())
-                    .withSize(multipartFile.getSize())
-                    .withFilename(multipartFile.getOriginalFilename())
-                    .withType(FileUtil.getSuffix(multipartFile.getOriginalFilename()));
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new FileException("获取图片信息发生异常！", e);
+            ImageFileInfoDto imageFileInfoDto = getInfo(multipartFile.getInputStream());
+            imageFileInfoDto.setType(FileUtil.getSuffix(multipartFile.getOriginalFilename()));
+            imageFileInfoDto.setFilename(multipartFile.getOriginalFilename());
+            imageFileInfoDto.setSize(multipartFile.getSize());
+            return imageFileInfoDto;
+        } catch (IOException e) {
+            LogUtils.exception(e);
+            throw new RuntimeException("获取图片信息失败");
         }
     }
 
     /**
      * 获取图片信息
-     *
-     * @param inputStream
-     * @throws IOException
      */
     public static ImageFileInfoDto getInfo(InputStream inputStream) {
         try (BufferedInputStream in = new BufferedInputStream(inputStream)) {
-            //字节流转图片对象
-            Image bi = ImageIO.read(in);
-            //获取默认图像的高度，宽度
-            return new ImageFileInfoDto(bi.getWidth(null), bi.getHeight(null));
-        } catch (Exception e) {
-            log.error("获取图片信息失败", e);
+            BufferedImage bi = ImageIO.read(in);
+            return new ImageFileInfoDto(bi.getWidth(), bi.getHeight());
+        } catch (IOException e) {
+            LogUtils.exception(e);
+            throw new RuntimeException("获取图片信息失败");
         }
-        return new ImageFileInfoDto();
+    }
+
+    public static void main(String[] args) {
+        File file = new File("C:\\Users\\chenpi5\\Pictures\\timg.png");
+
+
+        System.out.println(getInfo(file));
     }
 }

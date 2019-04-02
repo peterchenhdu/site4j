@@ -3,6 +3,7 @@
  */
 package club.peterchenhdu.util;
 
+import club.peterchenhdu.common.dto.ImageFileInfoDto;
 import club.peterchenhdu.common.util.JacksonUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.support.BindingAwareModelMap;
@@ -36,6 +37,11 @@ public class CacheKeyUtil {
         }
         key.append(")");
         return key.toString();
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(getMethodParamsKey("123", new ImageFileInfoDto(5,6)));
     }
 
 }

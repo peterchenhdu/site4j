@@ -3,9 +3,6 @@
  */
 package club.peterchenhdu.common.dto;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 /**
  * @author chenpi
  * @version 1.0
@@ -13,14 +10,12 @@ import lombok.EqualsAndHashCode;
  * @since 2018/4/16 16:26
  * @since 1.0
  */
-@Data
-@EqualsAndHashCode
 public class ImageFileInfoDto {
-    public long size;
-    public String type;
-    public int width;
-    public int height;
-    public String filename;
+    private long size;
+    private String type;
+    private int width;
+    private int height;
+    private String filename;
 
     public ImageFileInfoDto() {
     }
@@ -30,28 +25,54 @@ public class ImageFileInfoDto {
         this.height = height;
     }
 
-    public ImageFileInfoDto withSize(long size) {
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
         this.size = size;
-        return this;
     }
 
-    public ImageFileInfoDto withType(String type) {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
         this.type = type;
-        return this;
     }
 
-    public ImageFileInfoDto withWidth(int width) {
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
         this.width = width;
-        return this;
     }
 
-    public ImageFileInfoDto withHeight(int height) {
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
         this.height = height;
-        return this;
     }
 
-    public ImageFileInfoDto withFilename(String filename) {
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
         this.filename = filename;
-        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageFileInfoDto{" +
+                "size=" + size +
+                ", type='" + type + '\'' +
+                ", width=" + width +
+                ", height=" + height +
+                ", filename='" + filename + '\'' +
+                '}';
     }
 }

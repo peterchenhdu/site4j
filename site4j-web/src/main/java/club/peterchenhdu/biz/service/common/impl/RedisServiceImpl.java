@@ -81,7 +81,7 @@ public class RedisServiceImpl implements RedisService {
     public <T> List<T> getList(String key, Class<T> clz) {
         String json = get(key);
         if (json != null) {
-            return JacksonUtils.json2list(json,clz);
+            return JacksonUtils.jsonToList(json,clz);
         }
         return null;
     }
