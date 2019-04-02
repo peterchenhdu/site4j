@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="club.peterchenhdu.biz.mapper.SysNoticeMapper">
-    <resultMap id="rm" type="club.peterchenhdu.biz.entity.SysNotice">
+<mapper namespace="com.github.peterchenhdu.site4j.biz.mapper.SysNoticeMapper">
+    <resultMap id="rm" type="com.github.peterchenhdu.site4j.biz.entity.SysNotice">
         <result property="id" jdbcType="BIGINT" column="id"/>
         <result property="userId" jdbcType="BIGINT" column="user_id"/>
         <result property="status" jdbcType="VARCHAR" column="status"/>

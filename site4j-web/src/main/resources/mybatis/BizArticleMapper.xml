@@ -5,8 +5,8 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="club.peterchenhdu.biz.mapper.BizArticleMapper">
-    <resultMap id="rm" type="club.peterchenhdu.biz.entity.BizArticle">
+<mapper namespace="com.github.peterchenhdu.site4j.biz.mapper.BizArticleMapper">
+    <resultMap id="rm" type="com.github.peterchenhdu.site4j.biz.entity.BizArticle">
         <result property="id" jdbcType="BIGINT" column="id"/>
         <result property="title" jdbcType="VARCHAR" column="title"/>
         <result property="originalLink" jdbcType="VARCHAR" column="original_link"/>
@@ -31,20 +31,20 @@
         <result property="lookCount" jdbcType="INTEGER" column="look_count"/>
         <result property="commentCount" jdbcType="INTEGER" column="comment_count"/>
         <result property="loveCount" jdbcType="INTEGER" column="love_count"/>
-        <association property="bizType" javaType="club.peterchenhdu.biz.entity.BizType">
+        <association property="bizType" javaType="com.github.peterchenhdu.site4j.biz.entity.BizType">
             <result property="id" jdbcType="BIGINT" column="btype_id"/>
             <result property="name" jdbcType="VARCHAR" column="btype_name"/>
             <result property="description" jdbcType="VARCHAR" column="btype_description"/>
         </association>
         <collection property="tags" column="tag_id" javaType="ArrayList"
-                    ofType="club.peterchenhdu.biz.entity.BizTags">
+                    ofType="com.github.peterchenhdu.site4j.biz.entity.BizTags">
             <result property="id" jdbcType="BIGINT" column="tag_id"/>
             <result property="name" jdbcType="VARCHAR" column="tag_name"/>
             <result property="description" jdbcType="VARCHAR" column="tag_description"/>
         </collection>
     </resultMap>
 
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.dto.req.ArticleConditionVO" resultMap="rm">
+    <select id="findPageBreakByCondition" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO" resultMap="rm">
         SELECT
         a.*,
         btype.id AS btype_id,
@@ -279,7 +279,7 @@
 
 
 
-    <resultMap id="archives" type="club.peterchenhdu.biz.entity.BizArticleArchives">
+    <resultMap id="archives" type="com.github.peterchenhdu.site4j.biz.entity.BizArticleArchives">
         <result property="id" jdbcType="BIGINT" column="id"/>
         <result property="title" jdbcType="VARCHAR" column="title"/>
         <result property="original" jdbcType="BIT" column="original"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="club.peterchenhdu.biz.mapper.ResourceMapper">
-    <resultMap id="rm" type="club.peterchenhdu.biz.dto.ResourcesDto">
+<mapper namespace="com.github.peterchenhdu.site4j.biz.mapper.ResourceMapper">
+    <resultMap id="rm" type="com.github.peterchenhdu.site4j.biz.dto.ResourcesDto">
         <result property="id" jdbcType="VARCHAR" column="id"/>
         <result property="name" jdbcType="VARCHAR" column="name"/>
         <result property="type" jdbcType="VARCHAR" column="type"/>
@@ -13,7 +13,7 @@
         <result column="sort" jdbcType="INTEGER" property="sort"/>
         <result property="icon" jdbcType="VARCHAR" column="icon"/>
         <collection property="nodes" column="node_id" javaType="ArrayList"
-                    ofType="club.peterchenhdu.biz.entity.Resource">
+                    ofType="com.github.peterchenhdu.site4j.biz.entity.Resource">
             <result property="id" jdbcType="VARCHAR" column="node_id"/>
             <result property="name" jdbcType="VARCHAR" column="node_name"/>
             <result property="type" jdbcType="VARCHAR" column="node_type"/>
@@ -24,7 +24,7 @@
         </collection>
     </resultMap>
 
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.dto.req.ResourceConditionVO"
+    <select id="findPageBreakByCondition" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.ResourceConditionVO"
             resultMap="rm">
         SELECT
         com.*,

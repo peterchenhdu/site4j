@@ -4,8 +4,8 @@
   -->
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="club.peterchenhdu.biz.mapper.ImageMapper">
-  <resultMap id="BaseResultMap" type="club.peterchenhdu.biz.entity.Image">
+<mapper namespace="com.github.peterchenhdu.site4j.biz.mapper.ImageMapper">
+  <resultMap id="BaseResultMap" type="com.github.peterchenhdu.site4j.biz.entity.Image">
     <!--
       WARNING - @mbg.generated
     -->

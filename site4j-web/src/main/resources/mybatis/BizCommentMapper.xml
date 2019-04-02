@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="club.peterchenhdu.biz.mapper.BizCommentMapper">
-    <resultMap id="rm" type="club.peterchenhdu.biz.entity.BizComment">
+<mapper namespace="com.github.peterchenhdu.site4j.biz.mapper.BizCommentMapper">
+    <resultMap id="rm" type="com.github.peterchenhdu.site4j.biz.entity.BizComment">
         <result property="id" jdbcType="BIGINT" column="id"/>
         <result property="sid" jdbcType="BIGINT" column="sid"/>
         <result property="userId" jdbcType="BIGINT" column="user_id"/>
@@ -27,12 +27,12 @@
         <result property="oppose" jdbcType="INTEGER" column="oppose"/>
         <result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
         <result property="updateTime" jdbcType="TIMESTAMP" column="update_time"/>
-        <association property="parent" javaType="club.peterchenhdu.biz.entity.BizComment">
+        <association property="parent" javaType="com.github.peterchenhdu.site4j.biz.entity.BizComment">
             <result property="id" jdbcType="BIGINT" column="parent_id"/>
             <result property="nickname" jdbcType="VARCHAR" column="parent_nickname"/>
             <result property="content" jdbcType="VARCHAR" column="parent_content"/>
         </association>
-        <association property="article" javaType="club.peterchenhdu.biz.entity.BizArticle">
+        <association property="article" javaType="com.github.peterchenhdu.site4j.biz.entity.BizArticle">
             <result property="id" jdbcType="BIGINT" column="article_id"/>
             <result property="title" jdbcType="VARCHAR" column="article_title"/>
         </association>
@@ -64,7 +64,7 @@
         update_time
     </sql>
 
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.dto.req.CommentConditionVO" resultMap="rm">
+    <select id="findPageBreakByCondition" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO" resultMap="rm">
         SELECT
         t.*,
         f.id AS parent_id,

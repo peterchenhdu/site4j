@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="club.peterchenhdu.biz.mapper.BizArticleTagsMapper">
-    <resultMap id="rm" type="club.peterchenhdu.biz.entity.BizArticleTags">
+<mapper namespace="com.github.peterchenhdu.site4j.biz.mapper.BizArticleTagsMapper">
+    <resultMap id="rm" type="com.github.peterchenhdu.site4j.biz.entity.BizArticleTags">
         <result property="id" jdbcType="BIGINT" column="id"/>
         <result property="tagId" jdbcType="BIGINT" column="tag_id"/>
         <result property="articleId" jdbcType="BIGINT" column="article_id"/>
@@ -17,7 +17,7 @@
         update_time
     </sql>
 
-    <select id="findPageBreakByCondition" parameterType="club.peterchenhdu.biz.dto.req.ArticleTagsConditionVO"
+    <select id="findPageBreakByCondition" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.ArticleTagsConditionVO"
             resultMap="rm">
         SELECT
         t.*
