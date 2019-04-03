@@ -42,7 +42,7 @@
         <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
         <tk-mapper-spring-boot-starter.version>2.0.4</tk-mapper-spring-boot-starter.version>
         <mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
-
+        <lucene.version>7.2.0</lucene.version>
     </properties>
 
     <!--依赖声明-->
@@ -126,6 +126,27 @@
                 <version>${UserAgentUtils.version}</version>
             </dependency>
 
+
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-core</artifactId>
+                <version>${lucene.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-queryparser</artifactId>
+                <version>${lucene.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-highlighter</artifactId>
+                <version>${lucene.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hankcs.nlp</groupId>
+                <artifactId>hanlp-lucene-plugin</artifactId>
+                <version>1.1.6</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
