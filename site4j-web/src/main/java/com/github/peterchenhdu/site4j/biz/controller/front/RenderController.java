@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.common.enums.ArticleStatusEnum;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,7 +53,7 @@ public class RenderController {
      */
     private void loadIndexPage(ArticleConditionVO vo, Model model) {
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
-        PageInfo<ArticleDto> pageInfo = bizArticleService.findPageBreakByCondition(vo);
+        PageInfoDto<ArticleDto> pageInfo = bizArticleService.findPageBreakByCondition(vo);
         model.addAttribute("page", pageInfo);
         model.addAttribute("model", vo);
     }

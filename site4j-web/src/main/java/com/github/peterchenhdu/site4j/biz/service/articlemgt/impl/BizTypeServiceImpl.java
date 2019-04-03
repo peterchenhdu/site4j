@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.mapper.BizTypeMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
 import com.github.peterchenhdu.site4j.biz.dto.req.TypeConditionVO;
 import com.github.peterchenhdu.site4j.common.exception.BaseRuntimeException;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
@@ -47,12 +47,12 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
      * @return
      */
     @Override
-    public PageInfo<TypeDto> findPageBreakByCondition(TypeConditionVO vo) {
+    public PageInfoDto<TypeDto> findPageBreakByCondition(TypeConditionVO vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
         List<BizType> list = bizTypeMapper.findPageBreakByCondition(vo);
         List<TypeDto> boList = getTypes(list);
         if (boList == null) return null;
-        return new PageInfo<>(PageHelper.getTotal(), boList);
+        return new PageInfoDto<>(PageHelper.getTotal(), boList);
     }
 
     @Override

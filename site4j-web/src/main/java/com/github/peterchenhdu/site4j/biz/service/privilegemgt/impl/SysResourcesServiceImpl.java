@@ -10,7 +10,7 @@ import com.github.peterchenhdu.site4j.biz.entity.Resource;
 import com.github.peterchenhdu.site4j.biz.mapper.ResourceMapper;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesService;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleResourcesService;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -52,10 +52,10 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
      * @return
      */
     @Override
-    public PageInfo<ResourcesDto> findPageBreakByCondition(ResourceConditionVO vo) {
+    public PageInfoDto<ResourcesDto> findPageBreakByCondition(ResourceConditionVO vo) {
         Page<ResourcesDto> page = PageUtils.getPage(vo);
         List<ResourcesDto> resourcesDtoList = resourceMapper.findPageBreakByCondition(page, vo);
-        return new PageInfo<>(page.getTotal(), resourcesDtoList);
+        return new PageInfoDto<>(page.getTotal(), resourcesDtoList);
     }
 
     /**

@@ -8,12 +8,12 @@ import com.github.peterchenhdu.site4j.biz.service.common.MailService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
 import com.github.peterchenhdu.site4j.biz.dto.req.LinkConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.LinkSourceEnum;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,14 +48,14 @@ public class RestLinkController {
 
     @ApiOperation(value="查看友情链接")
     @PostMapping("/list")
-    public PageResult list(LinkConditionVO vo) {
-        PageInfo<LinkDto> pageInfo = linkService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(LinkConditionVO vo) {
+        PageInfoDto<LinkDto> pageInfo = linkService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value="新增友情链接")
     @PostMapping(value = "/add")
-    public Response add(LinkDto link) {
+    public BaseResponse add(LinkDto link) {
         link.setSource(LinkSourceEnum.ADMIN);
         linkService.insert(link);
         mailService.send(link, TemplateKeyEnum.TM_LINKS);
@@ -64,7 +64,7 @@ public class RestLinkController {
 
     @ApiOperation(value="删除友情链接")
     @PostMapping(value = "/remove")
-    public Response remove(String[] ids) {
+    public BaseResponse remove(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -76,13 +76,13 @@ public class RestLinkController {
 
     @ApiOperation(value="查看单个友情链接")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(null, this.linkService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value="编辑友情链接")
     @PostMapping("/edit")
-    public Response edit(LinkDto link) {
+    public BaseResponse edit(LinkDto link) {
         try {
             linkService.updateSelective(link);
         } catch (Exception e) {

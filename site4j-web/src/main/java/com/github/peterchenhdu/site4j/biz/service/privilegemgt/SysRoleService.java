@@ -7,7 +7,7 @@ package com.github.peterchenhdu.site4j.biz.service.privilegemgt;
 import com.github.peterchenhdu.site4j.biz.dto.RoleDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysRole;
 import com.github.peterchenhdu.site4j.biz.dto.req.RoleConditionVO;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -29,7 +29,7 @@ public interface SysRoleService extends IService<SysRole> {
      * @param vo
      * @return
      */
-    PageInfo<SysRole> findPageBreakByCondition(RoleConditionVO vo);
+    PageInfoDto<SysRole> findPageBreakByCondition(RoleConditionVO vo);
 
     RoleDto getByPrimaryKey(String primaryKey);
     boolean updateSelective(RoleDto entity);

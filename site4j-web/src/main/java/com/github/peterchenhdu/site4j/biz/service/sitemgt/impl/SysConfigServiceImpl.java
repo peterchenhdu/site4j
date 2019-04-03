@@ -11,7 +11,7 @@ import com.github.peterchenhdu.site4j.biz.entity.SysConfig;
 import com.github.peterchenhdu.site4j.common.enums.DictTypeEnum;
 import com.github.peterchenhdu.site4j.biz.mapper.SysConfigMapper;
 import com.github.peterchenhdu.site4j.biz.service.common.DictService;
-import com.github.peterchenhdu.site4j.common.util.DateUtils;
+import com.github.peterchenhdu.site4j.common.util.DateTimeUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +104,7 @@ public class SysConfigServiceImpl implements SysConfigService {
 
 
         ConfigDto sysConfig = get();
-        map.put("buildSiteDate", DateUtils.getGapDay(sysConfig.getCreateTime(), LocalDateTime.now()));
+        map.put("buildSiteDate", DateTimeUtils.getGapDay(sysConfig.getCreateTime(), LocalDateTime.now()));
         return map;
     }
 }

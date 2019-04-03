@@ -15,8 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author chenpi
- * @since 2018/7/30 23:06
+ * 对象工具类
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class ObjectUtils {
     private ObjectUtils() {

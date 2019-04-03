@@ -7,11 +7,11 @@ import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
 import com.github.peterchenhdu.site4j.biz.dto.req.UserConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.enums.UserStatusEnum;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.PasswordUtils;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
@@ -47,15 +47,15 @@ public class UserController {
 
     @ApiOperation(value="查询用户列表.")
     @PostMapping("/query")
-    public PageResult list(UserConditionVO vo) {
-        PageInfo<UserDto> pageInfo = userService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(UserConditionVO vo) {
+        PageInfoDto<UserDto> pageInfo = userService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
 
     @ApiOperation(value="新增用户")
     @PostMapping(value = "/add")
-    public Response add(UserDto user) {
+    public BaseResponse add(UserDto user) {
         UserDto u = userService.getByUserName(user.getUsername());
         if (u != null) {
             return ResultUtils.error("该用户名[" + user.getUsername() + "]已存在！请更改用户名");
@@ -77,7 +77,7 @@ public class UserController {
 
     @ApiOperation(value="批量删除用户")
     @PostMapping(value = "/batchDelete")
-    public Response batchDelete(String[] ids) {
+    public BaseResponse batchDelete(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -89,20 +89,20 @@ public class UserController {
 
     @ApiOperation(value="单个删除用户")
     @PostMapping(value = "/delete")
-    public Response delete(String id) {
+    public BaseResponse delete(String id) {
         userService.deleteById(id);
         return ResultUtils.success("成功删除");
     }
 
     @ApiOperation(value="查看单个用户信息")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(null, this.userService.selectById(id));
     }
 
     @ApiOperation(value="修改用户")
     @PostMapping("/update")
-    public Response update(UserDto user) {
+    public BaseResponse update(UserDto user) {
         try {
             userService.updateById(user);
         } catch (Exception e) {

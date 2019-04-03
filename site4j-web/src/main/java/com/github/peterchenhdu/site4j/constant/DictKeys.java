@@ -2,7 +2,7 @@
  * Copyright (c) 2011-2025 PiChen
  */
 
-package com.github.peterchenhdu.site4j.common.constant;
+package com.github.peterchenhdu.site4j.constant;
 
 /**
  * @author PiChen

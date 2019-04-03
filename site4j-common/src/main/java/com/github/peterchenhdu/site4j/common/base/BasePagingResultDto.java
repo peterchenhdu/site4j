@@ -3,7 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.common.base;
 
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 
 import java.util.List;
 
@@ -12,21 +12,21 @@ import java.util.List;
  * <p>
  * Created by chenpi on 2018/04/16.
  */
-public class PageResult {
+public class BasePagingResultDto {
     private Long total;
     private List rows;
 
-    public PageResult(Long total, List rows) {
+    public BasePagingResultDto(Long total, List rows) {
         this.total = total;
         this.rows = rows;
     }
 
-    public PageResult(PageInfo pageInfo) {
+    public BasePagingResultDto(PageInfoDto pageInfo) {
         this.total = pageInfo.getTotal();
         this.rows = pageInfo.getList();
     }
 
-    public PageResult() {
+    public BasePagingResultDto() {
     }
 
     public Long getTotal() {

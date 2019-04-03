@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.core.interceptor;
 
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
-import com.github.peterchenhdu.site4j.common.constant.SessionConst;
+import com.github.peterchenhdu.site4j.constant.SessionConst;
 import com.github.peterchenhdu.site4j.util.PasswordUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;

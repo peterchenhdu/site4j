@@ -10,10 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * RegexUtils
- *
- * @author PiChen
- * @since 2018/10/21
+ * 正则表达式处理工具类
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class RegexUtils {
 

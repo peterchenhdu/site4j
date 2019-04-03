@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.service.common.impl;
 
 import com.github.peterchenhdu.site4j.biz.service.common.RedisService;
-import com.github.peterchenhdu.site4j.common.util.JacksonUtils;
+import com.github.peterchenhdu.site4j.common.util.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -67,13 +67,13 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public <T> void setList(String key, List<T> list) {
-        String value = JacksonUtils.obj2json(list);
+        String value = JsonUtils.obj2json(list);
         set(key, value);
     }
 
     @Override
     public <T> void setList(String key, List<T> list, long expire, TimeUnit timeUnit) {
-        String value = JacksonUtils.obj2json(list);
+        String value = JsonUtils.obj2json(list);
         set(key, value, expire, timeUnit);
     }
 
@@ -81,7 +81,7 @@ public class RedisServiceImpl implements RedisService {
     public <T> List<T> getList(String key, Class<T> clz) {
         String json = get(key);
         if (json != null) {
-            return JacksonUtils.jsonToList(json,clz);
+            return JsonUtils.jsonToList(json,clz);
         }
         return null;
     }

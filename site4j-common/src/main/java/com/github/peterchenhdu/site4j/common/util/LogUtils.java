@@ -11,6 +11,11 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 日志记录工具类
+ * <p>
+ * Created by chenpi on 2019/02/05.
+ */
 public class LogUtils {
 
     private static Map<String, Logger> loggerMap = new HashMap<>();

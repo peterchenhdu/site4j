@@ -10,8 +10,9 @@ import com.github.peterchenhdu.site4j.common.base.BaseEntity;
 import java.time.LocalDateTime;
 
 /**
- * @author PiChen
- * @since 2019/3/10
+ * 实体类公共处理方法
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class EntityUtils {
 

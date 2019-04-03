@@ -10,10 +10,10 @@ import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
 import com.github.peterchenhdu.site4j.core.shiro.ShiroService;
 import com.github.peterchenhdu.site4j.biz.dto.req.RoleConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -51,14 +51,14 @@ public class RoleController {
 
     @ApiOperation(value="查看所有角色")
     @PostMapping("/query")
-    public PageResult getAll(RoleConditionVO vo) {
-        PageInfo<SysRole> pageInfo = roleService.findPageBreakByCondition(vo);
+    public BasePagingResultDto getAll(RoleConditionVO vo) {
+        PageInfoDto<SysRole> pageInfo = roleService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value="分配角色资源")
     @PostMapping("/allotResource")
-    public Response saveRoleResources(String roleId, String resourcesId) {
+    public BaseResponse saveRoleResources(String roleId, String resourcesId) {
         if (StringUtils.isEmpty(roleId)) {
             return ResultUtils.error("error");
         }
@@ -70,14 +70,14 @@ public class RoleController {
 
     @ApiOperation(value="新增角色")
     @PostMapping(value = "/add")
-    public Response add(RoleDto role) {
+    public BaseResponse add(RoleDto role) {
         roleService.insert(role);
         return ResultUtils.success("成功");
     }
 
     @ApiOperation(value="批量删除角色")
     @PostMapping(value = "/batchDelete")
-    public Response remove(String[] ids) {
+    public BaseResponse remove(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -90,7 +90,7 @@ public class RoleController {
 
     @ApiOperation(value="删除单个角色")
     @PostMapping(value = "/delete")
-    public Response delete(String id) {
+    public BaseResponse delete(String id) {
         roleService.removeByPrimaryKey(id);
         roleResourcesService.removeByRoleId(id);
         return ResultUtils.success("成功删除");
@@ -98,13 +98,13 @@ public class RoleController {
 
     @ApiOperation(value="查看单个角色")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(null, this.roleService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value="更新角色")
     @PostMapping("/update")
-    public Response edit(RoleDto role) {
+    public BaseResponse edit(RoleDto role) {
         try {
             roleService.updateSelective(role);
         } catch (Exception e) {

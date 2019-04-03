@@ -4,10 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.dto;
 
 import com.github.peterchenhdu.site4j.biz.entity.SysConfig;
-import com.github.peterchenhdu.site4j.common.util.DateUtils;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -172,12 +169,10 @@ public class ConfigDto implements Serializable{
         this.sysConfig.setMaintenance(maintenance);
     }
 
-    @JsonFormat(timezone = "GMT+8", pattern = DateUtils.YYYY_MM_DD_HH_MM_SS)
     public LocalDateTime getMaintenanceData() {
         return this.sysConfig.getMaintenanceData();
     }
 
-    @DateTimeFormat(pattern = DateUtils.YYYY_MM_DD_HH_MM_SS)
     public void setMaintenanceData(LocalDateTime maintenanceData) {
         this.sysConfig.setMaintenanceData(maintenanceData);
     }

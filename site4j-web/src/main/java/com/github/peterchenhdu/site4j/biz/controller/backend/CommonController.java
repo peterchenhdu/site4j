@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.biz.controller.backend;
 
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesService;
 import com.github.peterchenhdu.site4j.core.shiro.ShiroService;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ModuleEnum;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
@@ -42,7 +42,7 @@ public class CommonController {
 
     @ApiOperation(value="查看所有模块")
     @GetMapping("/allModules")
-    public Response<List<Map<String, String>>> get( ) {
+    public BaseResponse<List<Map<String, String>>> get( ) {
         return ResultUtils.success(null, ModuleEnum.toList());
     }
 

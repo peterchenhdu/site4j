@@ -14,7 +14,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public class JacksonUtils {
+/**
+ * Json处理工具类
+ * <p>
+ * Created by chenpi on 2019/02/05.
+ */
+public class JsonUtils {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
 

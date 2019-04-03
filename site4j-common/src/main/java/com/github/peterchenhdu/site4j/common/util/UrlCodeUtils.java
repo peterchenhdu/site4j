@@ -8,10 +8,9 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
- * UrlCodeUtils
- *
- * @author PiChen
- * @since 2018/10/21
+ * URL编码工具类
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class UrlCodeUtils {
 

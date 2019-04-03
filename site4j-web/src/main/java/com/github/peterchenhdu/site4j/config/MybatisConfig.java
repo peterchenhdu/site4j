@@ -3,9 +3,9 @@
  */
 package com.github.peterchenhdu.site4j.config;
 
-import com.github.peterchenhdu.site4j.common.constant.ProfileConstants;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
+import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +31,7 @@ public class MybatisConfig {
         return paginationInterceptor;
     }
 
-    @Profile(ProfileConstants.DEV)
+    @Profile(CommonConstants.PROFILE_DEV)
     @Bean
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();

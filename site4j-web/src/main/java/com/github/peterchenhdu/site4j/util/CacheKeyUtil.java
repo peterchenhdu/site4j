@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.util;
 
 import com.github.peterchenhdu.site4j.common.dto.ImageInfoDto;
-import com.github.peterchenhdu.site4j.common.util.JacksonUtils;
+import com.github.peterchenhdu.site4j.common.util.JsonUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.support.BindingAwareModelMap;
 
@@ -33,7 +33,7 @@ public class CacheKeyUtil {
             if (obj.getClass().equals(BindingAwareModelMap.class)) {
                 continue;
             }
-            key.append(JacksonUtils.obj2json(obj).replaceAll("\"", "'"));
+            key.append(JsonUtils.obj2json(obj).replaceAll("\"", "'"));
         }
         key.append(")");
         return key.toString();

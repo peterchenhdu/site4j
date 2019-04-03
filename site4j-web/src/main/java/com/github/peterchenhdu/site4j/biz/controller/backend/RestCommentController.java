@@ -8,12 +8,12 @@ import com.github.peterchenhdu.site4j.biz.service.common.MailService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.BizCommentService;
 import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.common.exception.CommentException;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -49,14 +49,14 @@ public class RestCommentController {
 
     @ApiOperation(value="查询评论")
     @PostMapping("/list")
-    public PageResult list(CommentConditionVO vo) {
-        PageInfo<CommentDto> pageInfo = commentService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(CommentConditionVO vo) {
+        PageInfoDto<CommentDto> pageInfo = commentService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value="回复评论")
     @PostMapping(value = "/reply")
-    public Response reply(CommentDto comment) {
+    public BaseResponse reply(CommentDto comment) {
         try {
             commentService.commentForAdmin(comment);
         } catch (CommentException e) {
@@ -67,7 +67,7 @@ public class RestCommentController {
 
     @ApiOperation(value="删除批量")
     @PostMapping(value = "/remove")
-    public Response remove(String[] ids) {
+    public BaseResponse remove(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -79,13 +79,13 @@ public class RestCommentController {
 
     @ApiOperation(value="查看评论")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(null, this.commentService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value="编辑评论")
     @PostMapping("/edit")
-    public Response edit(CommentDto comment) {
+    public BaseResponse edit(CommentDto comment) {
         try {
             commentService.updateSelective(comment);
         } catch (Exception e) {
@@ -103,7 +103,7 @@ public class RestCommentController {
      */
     @ApiOperation(value="修改评论")
     @PostMapping("/audit")
-    public Response audit(CommentDto comment, String contentText, Boolean sendEmail) {
+    public BaseResponse audit(CommentDto comment, String contentText, Boolean sendEmail) {
         try {
             commentService.updateSelective(comment);
             if (!StringUtils.isEmpty(contentText)) {
@@ -129,7 +129,7 @@ public class RestCommentController {
      */
     @ApiOperation(value="查看未处理的评论")
     @PostMapping("/listVerifying")
-    public Response listVerifying(CommentDto comment) {
+    public BaseResponse listVerifying(CommentDto comment) {
         return ResultUtils.success(null, commentService.listVerifying(10));
     }
 

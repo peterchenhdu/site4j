@@ -10,7 +10,7 @@ import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTagsService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.BizCommentService;
-import com.github.peterchenhdu.site4j.common.constant.DictKeys;
+import com.github.peterchenhdu.site4j.constant.DictKeys;
 import com.github.peterchenhdu.site4j.common.enums.DictTypeEnum;
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;

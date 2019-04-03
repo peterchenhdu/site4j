@@ -7,10 +7,10 @@ import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
 import com.github.peterchenhdu.site4j.biz.dto.req.TypeConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.config.property.FrontPageConfig;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
@@ -47,21 +47,21 @@ public class RestTypeController {
 
     @ApiOperation(value="查询类别")
     @PostMapping("/list")
-    public PageResult list(TypeConditionVO vo) {
-        PageInfo<TypeDto> pageInfo = typeService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(TypeConditionVO vo) {
+        PageInfoDto<TypeDto> pageInfo = typeService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value="新增类别")
     @PostMapping(value = "/add")
-    public Response add(TypeDto type) {
+    public BaseResponse add(TypeDto type) {
         typeService.insert(type);
         return ResultUtils.success("文章类型添加成功！新类型 - " + type.getName());
     }
 
     @ApiOperation(value="删除类别")
     @PostMapping(value = "/remove")
-    public Response remove(String[] ids) {
+    public BaseResponse remove(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -73,13 +73,13 @@ public class RestTypeController {
 
     @ApiOperation(value="查看单个类别")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(null, this.typeService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value="编辑类别")
     @PostMapping("/edit")
-    public Response edit(TypeDto type) {
+    public BaseResponse edit(TypeDto type) {
             typeService.updateSelective(type);
 
         return ResultUtils.success(ResponseStatus.SUCCESS);
@@ -87,13 +87,13 @@ public class RestTypeController {
 
     @ApiOperation(value="查看所有类别")
     @PostMapping("/listAll")
-    public Response listType() {
+    public BaseResponse listType() {
         return ResultUtils.success(null, typeService.listTypeForMenu());
     }
 
     @ApiOperation(value="查看父类别")
     @PostMapping("/listParent")
-    public Response listParent() {
+    public BaseResponse listParent() {
         return ResultUtils.success(null, typeService.listParent());
     }
 

@@ -21,7 +21,7 @@ import com.github.peterchenhdu.site4j.common.enums.CommentStatusEnum;
 import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.common.exception.CommentException;
 import com.github.peterchenhdu.site4j.common.util.IpUtils;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.*;
 import eu.bitwalker.useragentutils.Browser;
@@ -75,7 +75,7 @@ public class BizCommentServiceImpl implements BizCommentService {
      * @return
      */
     @Override
-    public PageInfo<CommentDto> findPageBreakByCondition(CommentConditionVO vo) {
+    public PageInfoDto<CommentDto> findPageBreakByCondition(CommentConditionVO vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
         List<BizComment> list = bizCommentMapper.findPageBreakByCondition(vo);
         if (CollectionUtils.isEmpty(list)) {
@@ -86,7 +86,7 @@ public class BizCommentServiceImpl implements BizCommentService {
             boList.add(new CommentDto(bizComment));
         }
 
-        return new PageInfo<>(PageHelper.getTotal(), boList);
+        return new PageInfoDto<>(PageHelper.getTotal(), boList);
     }
 
     /**
@@ -96,12 +96,11 @@ public class BizCommentServiceImpl implements BizCommentService {
     @Override
 //    @RedisCache
     public Map<String, Object> list(CommentConditionVO vo) {
-        PageInfo pageInfo = findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = findPageBreakByCondition(vo);
         Map<String, Object> map = new HashMap<>();
         if (pageInfo != null) {
             map.put("commentList", convert2DTO(pageInfo.getList()));
             map.put("total", pageInfo.getTotal());
-            map.put("hasNextPage", pageInfo.isHasNextPage());
             map.put("nextPage", pageInfo.getNextPage());
         }
         return map;
@@ -288,7 +287,7 @@ public class BizCommentServiceImpl implements BizCommentService {
         CommentConditionVO vo = new CommentConditionVO();
         vo.setPageSize(pageSize);
         vo.setStatus(CommentStatusEnum.VERIFYING.toString());
-        PageInfo pageInfo = findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = findPageBreakByCondition(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 

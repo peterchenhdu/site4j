@@ -6,10 +6,9 @@ package com.github.peterchenhdu.site4j.common.util;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * IpUtils
- *
- * @author PiChen
- * @since 2018/10/21
+ * IP相关工具类
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class IpUtils {
 

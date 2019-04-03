@@ -4,33 +4,32 @@
 package com.github.peterchenhdu.site4j.common.base;
 
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
-import com.github.peterchenhdu.site4j.common.util.JacksonUtils;
+import com.github.peterchenhdu.site4j.common.util.JsonUtils;
 
 
 /**
  * 基类 - 响应封装
  * <p>
- * <p>
  * Created by chenpi on 2018/04/16.
  */
-public class Response<T> {
+public class BaseResponse<T> {
     private Integer status;
     private String message;
     private T data;
 
-    public Response(Integer status, String message, T data) {
+    public BaseResponse(Integer status, String message, T data) {
         this.status = status;
         this.message = message;
         this.data = data;
     }
 
-    public Response(ResponseStatus status, T data) {
+    public BaseResponse(ResponseStatus status, T data) {
         this(status.getCode(), status.getMessage(), data);
     }
 
     public String toJson() {
         T t = this.getData();
-        return JacksonUtils.obj2json(t);
+        return JsonUtils.obj2json(t);
 
     }
 

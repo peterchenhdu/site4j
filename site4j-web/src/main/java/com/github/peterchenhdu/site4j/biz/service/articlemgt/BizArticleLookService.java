@@ -7,7 +7,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleLookDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticleLook;
 import com.github.peterchenhdu.site4j.biz.dto.req.BizArticleLookConditionVo;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -22,5 +22,5 @@ public interface BizArticleLookService extends IService<BizArticleLook> {
 
     ArticleLookDto insert(ArticleLookDto entity);
 
-    PageInfo<BizArticleLook> findPageBreakByCondition(BizArticleLookConditionVo vo);
+    PageInfoDto<BizArticleLook> findPageBreakByCondition(BizArticleLookConditionVo vo);
 }

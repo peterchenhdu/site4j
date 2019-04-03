@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.dto.req.TemplateConditionVO;
 import com.github.peterchenhdu.site4j.biz.mapper.SysTemplateMapper;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysTemplateService;
 import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
@@ -46,7 +46,7 @@ public class SysTemplateServiceImpl extends ServiceImpl<SysTemplateMapper,SysTem
      * @return
      */
     @Override
-    public PageInfo<TemplateDto> findPageBreakByCondition(TemplateConditionVO vo) {
+    public PageInfoDto<TemplateDto> findPageBreakByCondition(TemplateConditionVO vo) {
 
 
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
@@ -59,7 +59,7 @@ public class SysTemplateServiceImpl extends ServiceImpl<SysTemplateMapper,SysTem
             boList.add(new TemplateDto(sysTemplate));
         }
 
-        return new PageInfo<>(PageHelper.getTotal(), boList);
+        return new PageInfoDto<>(PageHelper.getTotal(), boList);
     }
 
     /**

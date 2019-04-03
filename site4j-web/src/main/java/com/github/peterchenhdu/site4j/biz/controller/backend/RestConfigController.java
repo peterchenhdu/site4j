@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.ConfigDto;
 import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ImageType;
 import com.github.peterchenhdu.site4j.util.FileUtil;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
@@ -46,15 +46,15 @@ public class RestConfigController {
 
     @ApiOperation(value="查看系统配置")
     @PostMapping("/get")
-    public Response get() {
+    public BaseResponse get() {
         return ResultUtils.success(null, sysConfigService.get());
     }
 
     @ApiOperation(value="修改系统配置")
     @PostMapping("/edit")
-    public Response edit(ConfigDto config,
-                         @RequestParam(required = false) MultipartFile wxPraiseCodeFile,
-                         @RequestParam(required = false) MultipartFile zfbPraiseCodeFile) {
+    public BaseResponse edit(ConfigDto config,
+                             @RequestParam(required = false) MultipartFile wxPraiseCodeFile,
+                             @RequestParam(required = false) MultipartFile zfbPraiseCodeFile) {
         config.setWxPraiseCode(imageService.uploadToTencentCos(wxPraiseCodeFile, ImageType.QR_CODE_IMAGE, true));
         config.setZfbPraiseCode(imageService.uploadToTencentCos(zfbPraiseCodeFile, ImageType.QR_CODE_IMAGE, true));
         if (null != wxPraiseCodeFile || null != zfbPraiseCodeFile) {

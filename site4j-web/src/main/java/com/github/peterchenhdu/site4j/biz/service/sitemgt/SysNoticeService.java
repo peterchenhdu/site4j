@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.biz.dto.NoticeDto;
 import com.github.peterchenhdu.site4j.biz.dto.SysNoticeDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
 import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public interface SysNoticeService extends IService<SysNotice> {
      * @param vo
      * @return
      */
-    PageInfo<NoticeDto> findPageBreakByCondition(NoticeConditionVO vo);
+    PageInfoDto<NoticeDto> findPageBreakByCondition(NoticeConditionVO vo);
 
     /**
      * 获取已发布的通知列表

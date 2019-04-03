@@ -13,7 +13,7 @@ import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
 import com.github.peterchenhdu.site4j.common.exception.LinkException;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
@@ -58,7 +58,7 @@ public class SysLinkServiceImpl implements SysLinkService {
      * @return
      */
     @Override
-    public PageInfo<LinkDto> findPageBreakByCondition(LinkConditionVO vo) {
+    public PageInfoDto<LinkDto> findPageBreakByCondition(LinkConditionVO vo) {
 
         Wrapper<SysLink> example = new EntityWrapper<>();
 
@@ -80,7 +80,7 @@ public class SysLinkServiceImpl implements SysLinkService {
         for (SysLink sysLink : list) {
             boList.add(new LinkDto(sysLink));
         }
-        return new PageInfo<>(PageHelper.getTotal(), boList);
+        return new PageInfoDto<>(PageHelper.getTotal(), boList);
     }
 
     /**
@@ -93,7 +93,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     public List<LinkDto> listOfIndex() {
         LinkConditionVO vo = new LinkConditionVO(true, true);
         vo.setPageSize(100);
-        PageInfo<LinkDto> pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto<LinkDto> pageInfo = this.findPageBreakByCondition(vo);
         return pageInfo == null ? null : pageInfo.getList();
     }
 
@@ -107,7 +107,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     public List<LinkDto> listOfInside() {
         LinkConditionVO vo = new LinkConditionVO(true, false);
         vo.setPageSize(100);
-        PageInfo<LinkDto> pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto<LinkDto> pageInfo = this.findPageBreakByCondition(vo);
         return pageInfo == null ? null : pageInfo.getList();
     }
 
@@ -121,7 +121,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     public List<LinkDto> listOfDisable() {
         LinkConditionVO vo = new LinkConditionVO(true, null);
         vo.setPageSize(100);
-        PageInfo<LinkDto> pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto<LinkDto> pageInfo = this.findPageBreakByCondition(vo);
         return pageInfo == null ? null : pageInfo.getList();
     }
 

@@ -7,7 +7,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt;
 import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizType;
 import com.github.peterchenhdu.site4j.biz.dto.req.TypeConditionVO;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public interface BizTypeService extends IService<BizType> {
      * @param vo
      * @return
      */
-    PageInfo<TypeDto> findPageBreakByCondition(TypeConditionVO vo);
+    PageInfoDto<TypeDto> findPageBreakByCondition(TypeConditionVO vo);
 
     List<TypeDto> listParent();
 

@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.biz.entity.Image;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ImageType;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.ApiOperation;
@@ -47,7 +47,7 @@ public class AdminCommonController {
      */
     @ApiOperation(value="上传文件")
     @PostMapping("/upload2TencentCos")
-    public Response<String> upload2TencentCos(@RequestParam("file") MultipartFile file) {
+    public BaseResponse<String> upload2TencentCos(@RequestParam("file") MultipartFile file) {
         String filePath = imageService.uploadToTencentCos(file, ImageType.ARTICLE_IMAGE, false);
         return ResultUtils.success("图片上传成功", filePath);
     }
@@ -72,13 +72,13 @@ public class AdminCommonController {
      */
     @ApiOperation(value="查询素材库")
     @PostMapping("/material")
-    public Response<List<String>> material() {
+    public BaseResponse<List<String>> material() {
         return ResultUtils.success("查询成功", articleService.listMaterial());
     }
 
     @ApiOperation(value="查询图片")
     @GetMapping("/queryImage")
-    public Response<List<Image>> queryImage() {
+    public BaseResponse<List<Image>> queryImage() {
         return ResultUtils.success("查询成功", imageService.query());
     }
 

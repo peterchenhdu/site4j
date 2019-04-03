@@ -8,7 +8,7 @@ package com.github.peterchenhdu.site4j.biz.controller.backend;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleLookService;
 import com.github.peterchenhdu.site4j.biz.dto.req.BizArticleLookConditionVo;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.config.property.FrontPageConfig;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
@@ -49,7 +49,7 @@ public class BizArticleLookController {
 
     @ApiOperation(value="文章历史记录查询")
     @PostMapping("/list")
-    public PageResult list(BizArticleLookConditionVo vo) {
-        return new PageResult(bizArticleLookService.findPageBreakByCondition(vo));
+    public BasePagingResultDto list(BizArticleLookConditionVo vo) {
+        return new BasePagingResultDto(bizArticleLookService.findPageBreakByCondition(vo));
     }
 }

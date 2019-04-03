@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.UserPwdDto;
 import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.annotation.PublicService;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.config.property.AppProperties;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
@@ -67,7 +67,7 @@ public class PassportController {
      */
     @PostMapping("/signin")
     @ResponseBody
-    public Response submitLogin(String username, String password, boolean rememberMe, String vCode) {
+    public BaseResponse submitLogin(String username, String password, boolean rememberMe, String vCode) {
         if (config.getEnableVCode()) {
             if (StringUtils.isEmpty(vCode) || !vCode.equalsIgnoreCase(SessionUtil.getVCode())) {
                 return ResultUtils.error("验证码错误！");
@@ -100,7 +100,7 @@ public class PassportController {
      */
     @PostMapping("/updatePwd")
     @ResponseBody
-    public Response updatePwd(@Validated UserPwdDto userPwd, BindingResult bindingResult) throws Exception {
+    public BaseResponse updatePwd(@Validated UserPwdDto userPwd, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors() && ObjectUtils.isNotEmpty(bindingResult.getFieldError())) {
             return ResultUtils.error(bindingResult.getFieldError().getDefaultMessage());
         }

@@ -9,11 +9,11 @@ import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesServi
 import com.github.peterchenhdu.site4j.core.shiro.ShiroService;
 import com.github.peterchenhdu.site4j.biz.dto.req.ResourceConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -63,26 +63,26 @@ public class ResourceController {
 
     @ApiOperation(value = "查询同一级别的资源列表")
     @PostMapping("/querySameLevelResource")
-    public Response<List<ResourcesDto>> querySameLevelResource(String rid) {
+    public BaseResponse<List<ResourcesDto>> querySameLevelResource(String rid) {
         return ResultUtils.success(resourcesService.querySameLevelResource(rid));
     }
 
     @ApiOperation(value = "查询资源")
     @PostMapping("/query")
-    public PageResult getAll(ResourceConditionVO vo) {
-        PageInfo<ResourcesDto> pageInfo = resourcesService.findPageBreakByCondition(vo);
+    public BasePagingResultDto getAll(ResourceConditionVO vo) {
+        PageInfoDto<ResourcesDto> pageInfo = resourcesService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value = "查询资源树")
     @PostMapping("/queryResourceTree")
-    public Response<List<ZTreeNodeDto>> queryResourceTree(String rid) {
+    public BaseResponse<List<ZTreeNodeDto>> queryResourceTree(String rid) {
         return ResultUtils.success(resourcesService.queryResourceTree(rid));
     }
 
     @ApiOperation(value = "新增资源")
     @PostMapping(value = "/add")
-    public Response add(@Valid ResourcesDto resources) {
+    public BaseResponse add(@Valid ResourcesDto resources) {
         resourcesService.insert(resources);
         //更新权限
         updatePermission();
@@ -91,7 +91,7 @@ public class ResourceController {
 
     @ApiOperation(value = "修改资源排序")
     @PostMapping(value = "/updateSort")
-    public Response updateSort(String rId, Boolean isUp) {
+    public BaseResponse updateSort(String rId, Boolean isUp) {
         resourcesService.updateSort(rId, isUp);
         return ResultUtils.success("成功");
     }
@@ -99,7 +99,7 @@ public class ResourceController {
 
     @ApiOperation(value = "批量删除资源")
     @PostMapping(value = "/batchDelete")
-    public Response batchDelete(@NotNull String[] ids) {
+    public BaseResponse batchDelete(@NotNull String[] ids) {
         resourcesService.deleteBatchIds(Arrays.asList(ids));
         //更新权限
         updatePermission();
@@ -109,7 +109,7 @@ public class ResourceController {
 
     @ApiOperation(value = "单个删除资源")
     @PostMapping(value = "/delete")
-    public Response delete(String id) {
+    public BaseResponse delete(String id) {
         resourcesService.removeByPrimaryKey(id);
         //更新权限
         updatePermission();
@@ -118,13 +118,13 @@ public class ResourceController {
 
     @ApiOperation(value = "查看单个资源")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(this.resourcesService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value = "修改资源")
     @PostMapping("/update")
-    public Response update(ResourcesDto resources) {
+    public BaseResponse update(ResourcesDto resources) {
         resourcesService.updateSelective(resources);
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }

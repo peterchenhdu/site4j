@@ -11,7 +11,7 @@ import com.github.peterchenhdu.site4j.biz.dto.req.UserConditionVO;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
 import com.github.peterchenhdu.site4j.common.util.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.exception.BaseRuntimeException;
 import com.github.peterchenhdu.site4j.biz.mapper.SysUserMapper;
@@ -92,7 +92,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return PageInfo
      */
     @Override
-    public PageInfo<UserDto> findPageBreakByCondition(UserConditionVO vo) {
+    public PageInfoDto<UserDto> findPageBreakByCondition(UserConditionVO vo) {
         Page<SysUser> page = PageUtils.getPage(vo);
 
 
@@ -102,7 +102,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         List<SysUser> userList = baseMapper.selectPage(page, wrapper);
         if (ObjectUtils.isEmpty(userList)) {
-            return new PageInfo<>(0, Collections.emptyList());
+            return new PageInfoDto<>(0, Collections.emptyList());
         }
 
 
@@ -115,7 +115,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             return userDto;
         }).collect(Collectors.toList());
 
-        return new PageInfo<>(page.getTotal(), userDtoList);
+        return new PageInfoDto<>(page.getTotal(), userDtoList);
     }
 
     /**

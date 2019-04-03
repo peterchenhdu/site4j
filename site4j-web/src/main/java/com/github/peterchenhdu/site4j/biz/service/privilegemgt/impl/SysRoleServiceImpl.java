@@ -12,7 +12,7 @@ import com.github.peterchenhdu.site4j.biz.dto.req.RoleConditionVO;
 import com.github.peterchenhdu.site4j.biz.entity.SysRole;
 import com.github.peterchenhdu.site4j.biz.mapper.SysRoleMapper;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper,SysRole> imple
 
 
     @Override
-    public PageInfo<SysRole> findPageBreakByCondition(RoleConditionVO vo) {
+    public PageInfoDto<SysRole> findPageBreakByCondition(RoleConditionVO vo) {
         Wrapper<SysRole> example = new EntityWrapper<>();
 //        if(ObjectUtils.isNotEmpty(vo.getKeywords())) {
 //            example.like("description", vo.getKeywords());

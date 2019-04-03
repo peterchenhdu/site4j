@@ -10,9 +10,9 @@ package com.github.peterchenhdu.site4j.util.qcloud;
 import com.github.peterchenhdu.site4j.biz.dto.ConfigDto;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.enums.ImageType;
-import com.github.peterchenhdu.site4j.common.util.DateUtils;
-import com.github.peterchenhdu.site4j.util.SpringContextHolder;
+import com.github.peterchenhdu.site4j.common.util.DateTimeUtils;
 import com.github.peterchenhdu.site4j.util.FileUtil;
+import com.github.peterchenhdu.site4j.util.SpringContextHolder;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;
@@ -60,7 +60,7 @@ public class TencentCosApi {
     public TencentCosApi withFileName(String key, String path) {
         String suffix = FileUtil.getSuffix(key);
         // 不用时间戳命名文件，改为具体的直观的日期命名文件
-        String fileName = DateUtils.date2Str(LocalDateTime.now(), DateUtils.YYYY_MM_DD_HH_MM_SS_SSS);
+        String fileName = DateTimeUtils.date2Str(LocalDateTime.now(), DateTimeUtils.YYYY_MM_DD_HH_MM_SS_SSS);
         this.key = path + (fileName + suffix);
         return this;
     }
@@ -68,7 +68,7 @@ public class TencentCosApi {
 
     public String upload(InputStream fileByte, long size, String key, ImageType type) throws IOException {
         String bucketName = config.getQiniuBucketName();
-        this.key = type.getPath() + (DateUtils.date2Str(LocalDateTime.now(), DateUtils.YYYY_MM_DD_HH_MM_SS_SSS) + FileUtil.getSuffix(key));
+        this.key = type.getPath() + (DateTimeUtils.date2Str(LocalDateTime.now(), DateTimeUtils.YYYY_MM_DD_HH_MM_SS_SSS) + FileUtil.getSuffix(key));
 
         // 简单文件上传, 最大支持 5 GB, 适用于小文件上传, 建议 20 M 以下的文件使用该接口
         // 大文件上传请参照 API 文档高级 API 上传

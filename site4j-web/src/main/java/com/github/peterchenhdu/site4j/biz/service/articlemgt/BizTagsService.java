@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt;
 
 
 import com.github.peterchenhdu.site4j.biz.dto.TagsDto;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.TagsConditionVO;
 
 import java.util.List;
@@ -97,7 +97,7 @@ public interface BizTagsService {
      * @param vo
      * @return
      */
-    PageInfo<TagsDto> findPageBreakByCondition(TagsConditionVO vo);
+    PageInfoDto<TagsDto> findPageBreakByCondition(TagsConditionVO vo);
 
     int queryCount();
 }

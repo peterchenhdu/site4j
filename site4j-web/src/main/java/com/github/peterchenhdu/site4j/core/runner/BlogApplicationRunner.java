@@ -3,19 +3,20 @@
  */
 package com.github.peterchenhdu.site4j.core.runner;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.github.peterchenhdu.site4j.BlogWebApplication;
 import com.github.peterchenhdu.site4j.biz.entity.Resource;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesService;
 import com.github.peterchenhdu.site4j.common.annotation.PublicService;
+import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
 import com.github.peterchenhdu.site4j.common.enums.ResourceTypeEnum;
-import com.github.peterchenhdu.site4j.common.util.DateUtils;
+import com.github.peterchenhdu.site4j.common.util.DateTimeUtils;
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.core.job.base.AbstractBaseCronJob;
 import com.github.peterchenhdu.site4j.util.SpringContextHolder;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -242,7 +243,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
             sysResourcesService.deleteBatchIds(delResourceList);
         }
 
-        log.info("博客部署完成，当前时间：" + DateUtils.date2Str(LocalDateTime.now(), DateUtils.YYYY_MM_DD_HH_MM_SS));
+        log.info("博客部署完成，当前时间：" + DateTimeUtils.date2Str(LocalDateTime.now(), CommonConstants.DEFAULT_DATE_TIME_FORMAT));
     }
 
 

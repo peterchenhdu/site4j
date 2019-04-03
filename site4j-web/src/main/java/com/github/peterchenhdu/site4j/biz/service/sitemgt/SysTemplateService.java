@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.biz.dto.TemplateDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysTemplate;
 import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.biz.dto.req.TemplateConditionVO;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -28,7 +28,7 @@ public interface SysTemplateService extends IService<SysTemplate> {
      * @param vo
      * @return
      */
-    PageInfo<TemplateDto> findPageBreakByCondition(TemplateConditionVO vo);
+    PageInfoDto<TemplateDto> findPageBreakByCondition(TemplateConditionVO vo);
 
     /**
      * 通过key获取模板信息

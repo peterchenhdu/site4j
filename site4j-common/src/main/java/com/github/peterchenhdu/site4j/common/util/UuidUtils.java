@@ -7,8 +7,9 @@ package com.github.peterchenhdu.site4j.common.util;
 import java.util.UUID;
 
 /**
- * @author PiChen
- * @since 2019/2/4
+ * UUID处理工具类
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class UuidUtils {
 

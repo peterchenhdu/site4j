@@ -4,11 +4,9 @@
 package com.github.peterchenhdu.site4j.common.dto;
 
 /**
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/16 16:26
- * @since 1.0
+ * 图像信息DTO
+ * <p>
+ * Created by chenpi on 2018/04/16.
  */
 public class ImageInfoDto {
     private long size;

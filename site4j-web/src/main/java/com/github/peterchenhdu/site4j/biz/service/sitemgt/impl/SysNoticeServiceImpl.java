@@ -14,7 +14,7 @@ import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
 import com.github.peterchenhdu.site4j.biz.mapper.SysNoticeMapper;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
 import com.github.peterchenhdu.site4j.common.enums.NoticeStatusEnum;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
@@ -50,7 +50,7 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper,SysNotice>
      * @return
      */
     @Override
-    public PageInfo<NoticeDto> findPageBreakByCondition(NoticeConditionVO vo) {
+    public PageInfoDto<NoticeDto> findPageBreakByCondition(NoticeConditionVO vo) {
         Wrapper<SysNotice> example = new EntityWrapper<>();
 //        if(ObjectUtils.isNotEmpty(vo.getKeywords())) {
 //            example.like("title", vo.getKeywords());
@@ -68,7 +68,7 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper,SysNotice>
             boList.add(new NoticeDto(sysNotice));
         }
 
-        return new PageInfo<>(page.getTotal(), boList);
+        return new PageInfoDto<>(page.getTotal(), boList);
     }
 
     /**

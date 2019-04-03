@@ -4,11 +4,11 @@
 package com.github.peterchenhdu.site4j.util;
 
 
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
-import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -38,44 +38,44 @@ public class ResultUtils {
         return new ModelAndView("redirect:" + view);
     }
 
-    public static Response error(int code, String message) {
+    public static BaseResponse error(int code, String message) {
         return vo(code, message, null);
     }
 
-    public static Response error(ResponseStatus status) {
+    public static BaseResponse error(ResponseStatus status) {
         return vo(status.getCode(), status.getMessage(), null);
     }
 
-    public static Response error(String message) {
-        return vo(CommonConstants.DEFAULT_ERROR_CODE, message, null);
+    public static BaseResponse error(String message) {
+        return vo(HttpStatus.INTERNAL_SERVER_ERROR.value(), message, null);
     }
 
-    public static <T> Response<T> success(String message, T data) {
-        return vo(CommonConstants.DEFAULT_SUCCESS_CODE, message, data);
+    public static <T> BaseResponse<T> success(String message, T data) {
+        return vo(HttpStatus.OK.value(), message, data);
     }
-    public static <T> Response<T> success( T data) {
-        return vo(CommonConstants.DEFAULT_SUCCESS_CODE, "操作成功", data);
+    public static <T> BaseResponse<T> success(T data) {
+        return vo(HttpStatus.OK.value(), "操作成功", data);
     }
 
-    public static Response success(String message) {
+    public static BaseResponse success(String message) {
         return success(message, null);
     }
 
-    public static Response success(ResponseStatus status) {
+    public static BaseResponse success(ResponseStatus status) {
         return vo(status.getCode(), status.getMessage(), null);
     }
 
-    public static <T> Response<T> vo(int code, String message, T data) {
-        return new Response<>(code, message, data);
+    public static <T> BaseResponse<T> vo(int code, String message, T data) {
+        return new BaseResponse<>(code, message, data);
     }
 
-    public static PageResult tablePage(Long total, List<?> list) {
-        return new PageResult(total, list);
+    public static BasePagingResultDto tablePage(Long total, List<?> list) {
+        return new BasePagingResultDto(total, list);
     }
 
-    public static PageResult tablePage(PageInfo info) {
+    public static BasePagingResultDto tablePage(PageInfoDto info) {
         if (info == null) {
-            return new PageResult(0L, new ArrayList());
+            return new BasePagingResultDto(0L, new ArrayList());
         }
         return tablePage(info.getTotal(), info.getList());
     }

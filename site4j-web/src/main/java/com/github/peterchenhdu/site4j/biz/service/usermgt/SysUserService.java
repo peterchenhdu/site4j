@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.dto.UserPwdDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysUser;
 import com.github.peterchenhdu.site4j.biz.dto.req.UserConditionVO;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param vo
      * @return
      */
-    PageInfo<UserDto> findPageBreakByCondition(UserConditionVO vo);
+    PageInfoDto<UserDto> findPageBreakByCondition(UserConditionVO vo);
 
     /**
      * 更新用户最后一次登录的状态信息

@@ -7,10 +7,10 @@ import com.github.peterchenhdu.site4j.biz.dto.TemplateDto;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysTemplateService;
 import com.github.peterchenhdu.site4j.biz.dto.req.TemplateConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -44,21 +44,21 @@ public class RestTemplateController {
 
     @ApiOperation(value="查询模板")
     @PostMapping("/list")
-    public PageResult list(TemplateConditionVO vo) {
-        PageInfo<TemplateDto> pageInfo = templateService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(TemplateConditionVO vo) {
+        PageInfoDto<TemplateDto> pageInfo = templateService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value="新增模板")
     @PostMapping(value = "/add")
-    public Response add(TemplateDto template) {
+    public BaseResponse add(TemplateDto template) {
         templateService.insert(template);
         return ResultUtils.success("成功");
     }
 
     @ApiOperation(value="删除模板")
     @PostMapping(value = "/remove")
-    public Response remove(String[] ids) {
+    public BaseResponse remove(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -70,13 +70,13 @@ public class RestTemplateController {
 
     @ApiOperation(value="查看单个模板")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(null, this.templateService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value="编辑模板")
     @PostMapping("/edit")
-    public Response edit(TemplateDto template) {
+    public BaseResponse edit(TemplateDto template) {
         try {
             templateService.updateSelective(template);
         } catch (Exception e) {

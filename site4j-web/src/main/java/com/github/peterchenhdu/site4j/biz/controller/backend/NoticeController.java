@@ -8,11 +8,11 @@ import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
 import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.NoticeStatusEnum;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
 import io.swagger.annotations.Api;
@@ -46,14 +46,14 @@ public class NoticeController {
 
     @ApiOperation(value="查询公告")
     @PostMapping("/query")
-    public PageResult query(NoticeConditionVO vo) {
-        PageInfo<NoticeDto> pageInfo = noticeService.findPageBreakByCondition(vo);
+    public BasePagingResultDto query(NoticeConditionVO vo) {
+        PageInfoDto<NoticeDto> pageInfo = noticeService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value="新增公告")
     @PostMapping(value = "/add")
-    public Response add(NoticeDto notice) {
+    public BaseResponse add(NoticeDto notice) {
         UserDto user = SessionUtil.getUser();
         if (null != user) {
             notice.setUserId(user.getId());
@@ -64,7 +64,7 @@ public class NoticeController {
 
     @ApiOperation(value="批量删除公告")
     @PostMapping(value = "/batchDelete")
-    public Response batchDelete(String[] ids) {
+    public BaseResponse batchDelete(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -76,20 +76,20 @@ public class NoticeController {
 
     @ApiOperation(value="单个删除公告")
     @PostMapping(value = "/delete")
-    public Response delete(String id) {
+    public BaseResponse delete(String id) {
         noticeService.deleteById(id);
         return ResultUtils.success("成功删除");
     }
 
     @ApiOperation(value="查看单个公告")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(null, this.noticeService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value="修改公告")
     @PostMapping("/update")
-    public Response update(NoticeDto notice) {
+    public BaseResponse update(NoticeDto notice) {
         try {
             noticeService.updateSelective(notice);
         } catch (Exception e) {
@@ -101,7 +101,7 @@ public class NoticeController {
 
     @ApiOperation(value="发布公告")
     @PostMapping("/publish/{id}")
-    public Response release(@PathVariable String id) {
+    public BaseResponse release(@PathVariable String id) {
         try {
             NoticeDto notice = new NoticeDto();
             notice.setId(id);
@@ -116,7 +116,7 @@ public class NoticeController {
 
     @ApiOperation(value="撤回公告")
     @PostMapping("/reCall/{id}")
-    public Response withdraw(@PathVariable String id) {
+    public BaseResponse withdraw(@PathVariable String id) {
         try {
             NoticeDto notice = new NoticeDto();
             notice.setId(id);

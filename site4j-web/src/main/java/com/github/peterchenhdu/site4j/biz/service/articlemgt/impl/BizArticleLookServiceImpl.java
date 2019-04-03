@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.mapper.BizArticleLookMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleLookService;
 import com.github.peterchenhdu.site4j.biz.dto.req.BizArticleLookConditionVo;
 import com.github.peterchenhdu.site4j.common.util.EntityUtils;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
@@ -41,7 +41,7 @@ public class BizArticleLookServiceImpl extends ServiceImpl<BizArticleLookMapper,
 
 
     @Override
-    public PageInfo<BizArticleLook> findPageBreakByCondition(BizArticleLookConditionVo vo) {
+    public PageInfoDto<BizArticleLook> findPageBreakByCondition(BizArticleLookConditionVo vo) {
         Wrapper<BizArticleLook> wrapper = new EntityWrapper<>();
         wrapper.orderBy("create_time", false);
 

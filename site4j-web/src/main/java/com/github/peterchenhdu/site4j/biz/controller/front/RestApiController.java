@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.controller.front;
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.CommentStatusEnum;
 import com.github.peterchenhdu.site4j.common.exception.ArticleException;
 import com.github.peterchenhdu.site4j.common.exception.CommentException;
@@ -14,7 +14,7 @@ import com.github.peterchenhdu.site4j.common.exception.LinkException;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.BizCommentService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
-import com.github.peterchenhdu.site4j.common.util.JacksonUtils;
+import com.github.peterchenhdu.site4j.common.util.JsonUtils;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
 import lombok.extern.slf4j.Slf4j;
@@ -50,9 +50,9 @@ public class RestApiController {
     private SysNoticeService noticeService;
 
     @PostMapping("/autoLink")
-    public Response autoLink(@Validated LinkDto link, BindingResult bindingResult) {
+    public BaseResponse autoLink(@Validated LinkDto link, BindingResult bindingResult) {
         log.info("申请友情链接......");
-        log.info(JacksonUtils.obj2json(link));
+        log.info(JsonUtils.obj2json(link));
         if (bindingResult.hasErrors()) {
             return ResultUtils.error(bindingResult.getFieldError().getDefaultMessage());
         }
@@ -68,13 +68,13 @@ public class RestApiController {
 
 
     @PostMapping("/comments")
-    public Response comments(CommentConditionVO vo) {
+    public BaseResponse comments(CommentConditionVO vo) {
         vo.setStatus(CommentStatusEnum.APPROVED.toString());
         return ResultUtils.success(null, commentService.list(vo));
     }
 
     @PostMapping("/comment")
-    public Response comment(CommentDto comment) {
+    public BaseResponse comment(CommentDto comment) {
         try {
             commentService.comment(comment);
         } catch (CommentException e) {
@@ -85,7 +85,7 @@ public class RestApiController {
     }
 
     @PostMapping("/doSupport/{id}")
-    public Response doSupport(@PathVariable("id") String id) {
+    public BaseResponse doSupport(@PathVariable("id") String id) {
         try {
             commentService.doSupport(id);
         } catch (CommentException e) {
@@ -96,7 +96,7 @@ public class RestApiController {
     }
 
     @PostMapping("/doOppose/{id}")
-    public Response doOppose(@PathVariable("id") String id) {
+    public BaseResponse doOppose(@PathVariable("id") String id) {
         try {
             commentService.doOppose(id);
         } catch (CommentException e) {
@@ -107,7 +107,7 @@ public class RestApiController {
     }
 
     @PostMapping("/doPraise/{id}")
-    public Response doPraise(@PathVariable("id") String id) {
+    public BaseResponse doPraise(@PathVariable("id") String id) {
         try {
             articleService.doPraise(id);
         } catch (ArticleException e) {
@@ -118,7 +118,7 @@ public class RestApiController {
     }
 
     @PostMapping("/listNotice")
-    public Response listNotice() {
+    public BaseResponse listNotice() {
         return ResultUtils.success("", noticeService.listRelease());
     }
 

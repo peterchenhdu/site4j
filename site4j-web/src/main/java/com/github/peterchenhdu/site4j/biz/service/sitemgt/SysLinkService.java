@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.service.sitemgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.LinkConditionVO;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.exception.LinkException;
 
 import java.util.List;
@@ -102,7 +102,7 @@ public interface SysLinkService {
      * @param vo
      * @return
      */
-    PageInfo<LinkDto> findPageBreakByCondition(LinkConditionVO vo);
+    PageInfoDto<LinkDto> findPageBreakByCondition(LinkConditionVO vo);
 
     /**
      * 查询可在首页显示的友情链接列表

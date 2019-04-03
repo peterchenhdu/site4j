@@ -8,7 +8,6 @@ import com.github.peterchenhdu.site4j.biz.dto.ArticleArchivesDto;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.entity.*;
-import com.github.peterchenhdu.site4j.biz.entity.*;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleLookMapper;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleLoveMapper;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleMapper;
@@ -25,7 +24,7 @@ import com.github.peterchenhdu.site4j.common.enums.ImageType;
 import com.github.peterchenhdu.site4j.common.exception.ArticleException;
 import com.github.peterchenhdu.site4j.common.util.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.RequestHolder;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
@@ -86,7 +85,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      * @return PageInfo
      */
     @Override
-    public PageInfo<ArticleDto> findPageBreakByCondition(ArticleConditionVO vo) {
+    public PageInfoDto<ArticleDto> findPageBreakByCondition(ArticleConditionVO vo) {
         //保存搜索记录
         if(ObjectUtils.isNotEmpty(vo.getKeywords())){
             log.info("开始搜索内容，关键字:{}", vo.getKeywords());
@@ -130,7 +129,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
             boList.add(new ArticleDto(bizArticle));
         }
 
-        return new PageInfo<>(PageHelper.getTotal(), boList);
+        return new PageInfoDto<>(PageHelper.getTotal(), boList);
     }
 
     /**
@@ -145,7 +144,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         vo.setRecommended(true);
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
         vo.setPageSize(pageSize);
-        PageInfo pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = this.findPageBreakByCondition(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 
@@ -160,7 +159,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         ArticleConditionVO vo = new ArticleConditionVO();
         vo.setPageSize(pageSize);
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
-        PageInfo pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = this.findPageBreakByCondition(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 
@@ -176,7 +175,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         vo.setRandom(true);
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
         vo.setPageSize(pageSize);
-        PageInfo pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = this.findPageBreakByCondition(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 
@@ -205,7 +204,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         }
         vo.setTypeId(article.getTypeId());
         vo.setPageSize(pageSize);
-        PageInfo pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = this.findPageBreakByCondition(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 

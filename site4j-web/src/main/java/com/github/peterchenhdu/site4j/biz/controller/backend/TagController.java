@@ -7,10 +7,10 @@ import com.github.peterchenhdu.site4j.biz.dto.TagsDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTagsService;
 import com.github.peterchenhdu.site4j.biz.dto.req.TagsConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.config.property.FrontPageConfig;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
@@ -47,21 +47,21 @@ public class TagController {
 
     @ApiOperation(value="查询标签列表")
     @PostMapping("/query")
-    public PageResult list(TagsConditionVO vo) {
-        PageInfo<TagsDto> pageInfo = tagsService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(TagsConditionVO vo) {
+        PageInfoDto<TagsDto> pageInfo = tagsService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value="新增标签")
     @PostMapping(value = "/add")
-    public Response add(TagsDto tags) {
+    public BaseResponse add(TagsDto tags) {
         tagsService.insert(tags);
         return ResultUtils.success("标签添加成功！新标签 - " + tags.getName());
     }
 
     @ApiOperation(value="批量删除标签")
     @PostMapping(value = "/batchDelete")
-    public Response batchDelete(String[] ids) {
+    public BaseResponse batchDelete(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -73,20 +73,20 @@ public class TagController {
 
     @ApiOperation(value="删除单个标签")
     @PostMapping(value = "/delete")
-    public Response delete(String id) {
+    public BaseResponse delete(String id) {
         tagsService.removeByPrimaryKey(id);
         return ResultUtils.success("成功删除");
     }
 
     @ApiOperation(value="查看单个标签")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(null, this.tagsService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value="更新标签")
     @PostMapping("/update")
-    public Response edit(TagsDto tags) {
+    public BaseResponse edit(TagsDto tags) {
 
             tagsService.updateSelective(tags);
 

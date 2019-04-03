@@ -7,7 +7,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticle;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +32,7 @@ public interface BizArticleService extends IService<BizArticle> {
      * @param vo
      * @return
      */
-    PageInfo<ArticleDto> findPageBreakByCondition(ArticleConditionVO vo);
+    PageInfoDto<ArticleDto> findPageBreakByCondition(ArticleConditionVO vo);
 
     /**
      * 站长推荐

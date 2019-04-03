@@ -7,7 +7,7 @@ package com.github.peterchenhdu.site4j.biz.service.sitemgt;
 import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
 import com.github.peterchenhdu.site4j.common.exception.CommentException;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 
 import java.util.List;
 import java.util.Map;
@@ -99,7 +99,7 @@ public interface BizCommentService {
      * @param vo
      * @return
      */
-    PageInfo<CommentDto> findPageBreakByCondition(CommentConditionVO vo);
+    PageInfoDto<CommentDto> findPageBreakByCondition(CommentConditionVO vo);
 
     /**
      * @param vo

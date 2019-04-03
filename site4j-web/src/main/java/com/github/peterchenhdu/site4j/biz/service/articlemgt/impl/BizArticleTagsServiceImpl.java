@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.ArticleTagsDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticleTags;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleTagsMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleTagsService;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleTagsConditionVO;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -46,7 +46,7 @@ public class BizArticleTagsServiceImpl extends ServiceImpl<BizArticleTagsMapper,
      * @return
      */
     @Override
-    public PageInfo<ArticleTagsDto> findPageBreakByCondition(ArticleTagsConditionVO vo) {
+    public PageInfoDto<ArticleTagsDto> findPageBreakByCondition(ArticleTagsConditionVO vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
         List<BizArticleTags> list = bizArticleTagsMapper.findPageBreakByCondition(vo);
         if (CollectionUtils.isEmpty(list)) {
@@ -56,7 +56,7 @@ public class BizArticleTagsServiceImpl extends ServiceImpl<BizArticleTagsMapper,
         for (BizArticleTags bizArticleTags : list) {
             boList.add(new ArticleTagsDto(bizArticleTags));
         }
-        return new PageInfo<>(PageHelper.getTotal(), boList);
+        return new PageInfoDto<>(PageHelper.getTotal(), boList);
     }
 
     /**

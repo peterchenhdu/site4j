@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.core.shiro.credentials;
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysUser;
 import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
-import com.github.peterchenhdu.site4j.common.constant.SessionConst;
+import com.github.peterchenhdu.site4j.constant.SessionConst;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationInfo;

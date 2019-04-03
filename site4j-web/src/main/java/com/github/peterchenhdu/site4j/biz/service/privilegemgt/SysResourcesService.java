@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.ResourcesDto;
 import com.github.peterchenhdu.site4j.biz.dto.view.ZTreeNodeDto;
 import com.github.peterchenhdu.site4j.biz.entity.Resource;
 import com.github.peterchenhdu.site4j.biz.dto.req.ResourceConditionVO;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public interface SysResourcesService extends IService<Resource> {
      * @param vo
      * @return
      */
-    PageInfo<ResourcesDto> findPageBreakByCondition(ResourceConditionVO vo);
+    PageInfoDto<ResourcesDto> findPageBreakByCondition(ResourceConditionVO vo);
 
     /**
      * 获取用户的资源列表

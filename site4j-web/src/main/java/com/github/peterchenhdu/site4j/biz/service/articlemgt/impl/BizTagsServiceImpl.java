@@ -10,7 +10,7 @@ import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTagsService;
 import com.github.peterchenhdu.site4j.biz.dto.req.TagsConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
 import com.github.peterchenhdu.site4j.common.exception.BaseRuntimeException;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
@@ -46,7 +46,7 @@ public class BizTagsServiceImpl implements BizTagsService {
      * @return
      */
     @Override
-    public PageInfo<TagsDto> findPageBreakByCondition(TagsConditionVO vo) {
+    public PageInfoDto<TagsDto> findPageBreakByCondition(TagsConditionVO vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
         List<BizTags> list = bizTagsMapper.findPageBreakByCondition(vo);
         if (CollectionUtils.isEmpty(list)) {
@@ -57,7 +57,7 @@ public class BizTagsServiceImpl implements BizTagsService {
             boList.add(new TagsDto(bizTags));
         }
 
-        return new PageInfo<>(PageHelper.getTotal(), boList);
+        return new PageInfoDto<>(PageHelper.getTotal(), boList);
     }
 
     @Override

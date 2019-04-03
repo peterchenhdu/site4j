@@ -8,10 +8,10 @@ import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
-import com.github.peterchenhdu.site4j.common.base.PageResult;
-import com.github.peterchenhdu.site4j.common.base.Response;
+import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
-import com.github.peterchenhdu.site4j.common.util.PageInfo;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -76,14 +76,14 @@ public class RestArticleController {
 
     @ApiOperation(value="查询文章")
     @PostMapping("/list")
-    public PageResult list(ArticleConditionVO vo) {
-        PageInfo<ArticleDto> pageInfo = articleService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(ArticleConditionVO vo) {
+        PageInfoDto<ArticleDto> pageInfo = articleService.findPageBreakByCondition(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value="删除文章")
     @PostMapping(value = "/remove")
-    public Response remove(String[] ids) {
+    public BaseResponse remove(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -95,20 +95,20 @@ public class RestArticleController {
 
     @ApiOperation(value="查看文章")
     @PostMapping("/get/{id}")
-    public Response get(@PathVariable String id) {
+    public BaseResponse get(@PathVariable String id) {
         return ResultUtils.success(null, this.articleService.getByPrimaryKey(id));
     }
 
     @ApiOperation(value="新增文章")
     @PostMapping("/save")
-    public Response edit(ArticleDto article, String[] tags, MultipartFile file) {
+    public BaseResponse edit(ArticleDto article, String[] tags, MultipartFile file) {
         articleService.publish(article, tags, file);
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }
 
     @ApiOperation(value="修改文章")
     @PostMapping("/update/{type}")
-    public Response update(@PathVariable("type") String type, String id) {
+    public BaseResponse update(@PathVariable("type") String type, String id) {
         articleService.updateTopOrRecommendedById(type, id);
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }
@@ -116,7 +116,7 @@ public class RestArticleController {
 
     @ApiOperation(value="发布文章")
     @PostMapping(value = "/batchPublish")
-    public Response batchPublish(String[] ids) {
+    public BaseResponse batchPublish(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }

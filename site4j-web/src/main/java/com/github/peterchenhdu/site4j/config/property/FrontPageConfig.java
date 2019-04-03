@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.config.property;
 
 import com.github.peterchenhdu.site4j.biz.dto.view.FrontConfigDto;
 import com.github.peterchenhdu.site4j.biz.dto.view.FrontModule;
-import com.github.peterchenhdu.site4j.common.util.JacksonUtils;
+import com.github.peterchenhdu.site4j.common.util.JsonUtils;
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.context.ResourceLoaderAware;
@@ -36,7 +36,7 @@ public class FrontPageConfig implements ResourceLoaderAware {
         try {
             String json = IOUtils.toString(resourceLoader.getResource("classpath:front.page.config.json")
                     .getInputStream(), "utf-8");
-            FrontConfigDto frontConfigDto = JacksonUtils.json2pojo(json, FrontConfigDto.class);
+            FrontConfigDto frontConfigDto = JsonUtils.json2pojo(json, FrontConfigDto.class);
             frontConfigDto.getModules().forEach(dto -> frontModuleMap.put(dto.getKey(), dto));
             System.out.println("success");
         } catch (Exception e) {
