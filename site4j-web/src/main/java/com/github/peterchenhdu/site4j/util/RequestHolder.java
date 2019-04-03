@@ -3,6 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.util;
 
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -15,7 +16,6 @@ import javax.servlet.http.HttpSession;
 /**
  * @author chenpi
  * @version 1.0
- *
  * @since 2018/4/16 16:26
  * @since 1.0
  */
@@ -29,7 +29,12 @@ public class RequestHolder {
      */
     public static HttpServletRequest getRequest() {
         log.debug("getRequest -- Thread id :{}, name : {}", Thread.currentThread().getId(), Thread.currentThread().getName());
-        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+        if (ObjectUtils.isNotEmpty(requestAttributes)) {
+            ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) requestAttributes;
+            return servletRequestAttributes.getRequest();
+        }
+        return null;
     }
 
     /**
@@ -59,7 +64,7 @@ public class RequestHolder {
      * @return Object
      */
     public static Object getSession(String name) {
-        log.info("session id:{}",getSession().getId());
+        log.info("session id:{}", getSession().getId());
         log.info("getSession -- Thread id :{}, name : {}", Thread.currentThread().getId(), Thread.currentThread().getName());
         return RequestContextHolder.getRequestAttributes().getAttribute(name, RequestAttributes.SCOPE_SESSION);
     }
@@ -71,7 +76,7 @@ public class RequestHolder {
      * @param value
      */
     public static void setSession(String name, Object value) {
-        log.info("session id:{}",getSession().getId());
+        log.info("session id:{}", getSession().getId());
         log.info("setSession -- Thread id :{}, name : {}", Thread.currentThread().getId(), Thread.currentThread()
                 .getName());
         RequestContextHolder.getRequestAttributes().setAttribute(name, value, RequestAttributes.SCOPE_SESSION);
