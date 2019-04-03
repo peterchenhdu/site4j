@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.util;
 
 import com.github.peterchenhdu.site4j.common.util.IpUtils;
-import com.github.peterchenhdu.site4j.common.util.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;

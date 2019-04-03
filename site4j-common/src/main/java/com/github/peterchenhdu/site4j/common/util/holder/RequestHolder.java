@@ -1,8 +1,9 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.common.util;
+package com.github.peterchenhdu.site4j.common.util.holder;
 
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;

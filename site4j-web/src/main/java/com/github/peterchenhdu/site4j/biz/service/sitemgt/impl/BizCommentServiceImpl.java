@@ -22,7 +22,7 @@ import com.github.peterchenhdu.site4j.enums.CommentStatusEnum;
 import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.util.IpUtils;
-import com.github.peterchenhdu.site4j.common.util.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.*;
 import eu.bitwalker.useragentutils.Browser;

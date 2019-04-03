@@ -17,7 +17,7 @@ import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.biz.mapper.SysUserMapper;
 import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
 import com.github.peterchenhdu.site4j.util.PasswordUtils;
-import com.github.peterchenhdu.site4j.common.util.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;

@@ -6,6 +6,8 @@
 package com.github.peterchenhdu.site4j.common.util;
 
 import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
+import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.holder.SpringContextHolder;
 
 import java.util.Locale;
 

@@ -30,7 +30,7 @@ import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.util.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.github.peterchenhdu.site4j.common.util.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

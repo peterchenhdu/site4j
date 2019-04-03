@@ -16,7 +16,7 @@ import com.github.peterchenhdu.site4j.common.util.LogUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.core.job.base.AbstractBaseCronJob;
-import com.github.peterchenhdu.site4j.common.util.SpringContextHolder;
+import com.github.peterchenhdu.site4j.common.util.holder.SpringContextHolder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleLookServi
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.common.util.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
