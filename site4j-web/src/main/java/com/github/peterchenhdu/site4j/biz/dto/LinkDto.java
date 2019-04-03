@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.dto;
 
 import com.github.peterchenhdu.site4j.biz.entity.SysLink;
-import com.github.peterchenhdu.site4j.common.enums.LinkSourceEnum;
+import com.github.peterchenhdu.site4j.enums.LinkSourceEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;

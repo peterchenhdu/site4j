@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.biz.dto;
 
 import com.github.peterchenhdu.site4j.biz.entity.BizArticle;
 import com.github.peterchenhdu.site4j.biz.entity.BizComment;
-import com.github.peterchenhdu.site4j.common.enums.CommentStatusEnum;
+import com.github.peterchenhdu.site4j.enums.CommentStatusEnum;
 import com.github.peterchenhdu.site4j.util.HtmlUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;

@@ -10,31 +10,31 @@ package com.github.peterchenhdu.site4j.common.enums;
  * @since 2018/4/16 16:26
  * @since 1.0
  */
-public enum UserGenderEnum {
-    MALE(1, "男"), FEMALE(0, "女"), UNKNOW(-1, "");
+public enum GenderEnum {
+    MALE(1, "男"), FEMALE(0, "女"), UN_KNOW(-1, "");
     private int code;
     private String desc;
 
-    UserGenderEnum(int code, String desc) {
+    GenderEnum(int code, String desc) {
         this.code = code;
         this.desc = desc;
     }
 
-    public static UserGenderEnum getUserSex(Integer code) {
+    public static GenderEnum getUserSex(Integer code) {
         if (code == null) {
-            return UNKNOW;
+            return UN_KNOW;
         }
-        for (UserGenderEnum userSexEnum : UserGenderEnum.values()) {
+        for (GenderEnum userSexEnum : GenderEnum.values()) {
             if (userSexEnum.getCode() == code) {
                 return userSexEnum;
             }
         }
-        return UNKNOW;
+        return UN_KNOW;
     }
 
-    public static UserGenderEnum getUserSex(String code) {
+    public static GenderEnum getUserSex(String code) {
         if (code == null) {
-            return UNKNOW;
+            return UN_KNOW;
         }
         if ("m".equals(code)) {
             return MALE;
@@ -42,7 +42,7 @@ public enum UserGenderEnum {
         if ("f".equals(code)) {
             return FEMALE;
         }
-        return UNKNOW;
+        return UN_KNOW;
     }
 
     public int getCode() {

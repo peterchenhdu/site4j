@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.service.common;
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
 import com.github.peterchenhdu.site4j.biz.dto.MailDetailDto;
-import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
+import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 
 /**
  * 邮件发送

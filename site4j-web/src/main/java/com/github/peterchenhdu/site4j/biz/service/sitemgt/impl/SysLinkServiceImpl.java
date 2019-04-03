@@ -3,21 +3,20 @@
  */
 package com.github.peterchenhdu.site4j.biz.service.sitemgt.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.LinkConditionVO;
-import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
 import com.github.peterchenhdu.site4j.biz.entity.SysLink;
 import com.github.peterchenhdu.site4j.biz.mapper.SysLinkMapper;
 import com.github.peterchenhdu.site4j.biz.service.common.MailService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
-import com.github.peterchenhdu.site4j.common.exception.LinkException;
-import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
+import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
+import javax.naming.LinkException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -155,7 +155,7 @@ public class SysLinkServiceImpl implements SysLinkService {
      */
     @Override
     @RedisCache(flush = true)
-    public boolean autoLink(LinkDto link) throws LinkException {
+    public boolean autoLink(LinkDto link)  {
 //        String url = link.getUrl();
 //        LinkDto bo = getOneByUrl(url);
 //        if (bo != null) {

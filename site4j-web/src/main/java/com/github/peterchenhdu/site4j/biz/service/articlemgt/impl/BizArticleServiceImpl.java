@@ -4,9 +4,14 @@
 package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleArchivesDto;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
 import com.github.peterchenhdu.site4j.biz.entity.*;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleLookMapper;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleLoveMapper;
@@ -16,22 +21,17 @@ import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleTagsService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.ISearchHistoryService;
 import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
 import com.github.peterchenhdu.site4j.common.base.BaseEntity;
-import com.github.peterchenhdu.site4j.common.enums.ArticleStatusEnum;
-import com.github.peterchenhdu.site4j.common.enums.ImageType;
-import com.github.peterchenhdu.site4j.common.exception.ArticleException;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
+import com.github.peterchenhdu.site4j.enums.ImageType;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.util.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.github.peterchenhdu.site4j.util.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.RequestHolder;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -243,7 +243,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         String key = ip + "_doPraise_" + id;
         ValueOperations<String, Object> operations = redisTemplate.opsForValue();
         if (Boolean.TRUE.equals(redisTemplate.hasKey(key))) {
-            throw new ArticleException("一个小时只能点赞一次哈，感谢支持~~");
+            throw new CommonRuntimeException("一个小时只能点赞一次哈，感谢支持~~");
         }
         UserDto user = SessionUtil.getUser();
         BizArticleLove love = new BizArticleLove();
@@ -293,7 +293,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
     @Transactional(rollbackFor = Exception.class)
     public boolean publish(ArticleDto article, String[] tags, MultipartFile file) {
         if (null == tags || tags.length <= 0) {
-            throw new ArticleException("请至少选择一个标签");
+            throw new CommonRuntimeException("请至少选择一个标签");
         }
         if (null != file) {
             String filePath = imageService.uploadToTencentCos(file, ImageType.COVER_IMAGE, true);

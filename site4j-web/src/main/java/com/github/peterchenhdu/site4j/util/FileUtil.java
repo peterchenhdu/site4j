@@ -3,8 +3,8 @@
  */
 package com.github.peterchenhdu.site4j.util;
 
-import com.github.peterchenhdu.site4j.common.enums.ImageType;
-import com.github.peterchenhdu.site4j.common.exception.FileException;
+import com.github.peterchenhdu.site4j.enums.ImageType;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.util.qcloud.TencentCosApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
@@ -37,7 +37,7 @@ public class FileUtil {
     public static String uploadToTencentCos(MultipartFile file, ImageType uploadType, boolean canBeNull) {
         // 不可为空并且file为空，抛出异常
         if (!canBeNull && null == file) {
-            throw new FileException("请选择图片");
+            throw new CommonRuntimeException("请选择图片");
         }
         // 可为空并且file为空，忽略后边的代码，返回null
         if (canBeNull && null == file) {
@@ -52,12 +52,12 @@ public class FileUtil {
                         .upload(file.getInputStream(), file.getSize(), file.getOriginalFilename(), uploadType);
                 return filePath;
             } else {
-                throw new FileException("只支持图片");
+                throw new CommonRuntimeException("只支持图片");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            throw new FileException("上传图片到腾讯云发生异常，请检查腾讯配置是否正常", e);
+            throw new CommonRuntimeException("上传图片到腾讯云发生异常，请检查腾讯配置是否正常", e);
         }
     }
 

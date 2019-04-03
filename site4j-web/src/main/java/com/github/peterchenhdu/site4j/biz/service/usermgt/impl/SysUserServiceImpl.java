@@ -13,11 +13,11 @@ import com.github.peterchenhdu.site4j.common.util.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
-import com.github.peterchenhdu.site4j.common.exception.BaseRuntimeException;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.biz.mapper.SysUserMapper;
 import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
 import com.github.peterchenhdu.site4j.util.PasswordUtils;
-import com.github.peterchenhdu.site4j.util.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.RequestHolder;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -175,15 +175,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public boolean updatePwd(UserPwdDto userPwd) throws Exception {
         if (!userPwd.getNewPassword().equals(userPwd.getNewPasswordRepeat())) {
-            throw new BaseRuntimeException("新密码不一致！");
+            throw new CommonRuntimeException("新密码不一致！");
         }
         UserDto user = this.getByPrimaryKey(userPwd.getId());
         if (null == user) {
-            throw new BaseRuntimeException("用户编号错误！请不要手动操作用户ID！");
+            throw new CommonRuntimeException("用户编号错误！请不要手动操作用户ID！");
         }
 
         if (!user.getPassword().equals(PasswordUtils.encrypt(userPwd.getPassword(), user.getUsername()))) {
-            throw new BaseRuntimeException("原密码不正确！");
+            throw new CommonRuntimeException("原密码不正确！");
         }
         user.setPassword(userPwd.getNewPassword());
 

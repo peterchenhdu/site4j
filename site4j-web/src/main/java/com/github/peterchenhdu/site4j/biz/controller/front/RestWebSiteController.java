@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTagsService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysTemplateService;
-import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
+import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.util.FreeMarkerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

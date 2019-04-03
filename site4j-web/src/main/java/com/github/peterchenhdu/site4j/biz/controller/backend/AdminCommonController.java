@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
-import com.github.peterchenhdu.site4j.common.enums.ImageType;
+import com.github.peterchenhdu.site4j.enums.ImageType;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

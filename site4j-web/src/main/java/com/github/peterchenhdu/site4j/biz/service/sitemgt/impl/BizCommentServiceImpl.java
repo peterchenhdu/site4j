@@ -17,11 +17,12 @@ import com.github.peterchenhdu.site4j.biz.service.common.MailService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.BizCommentService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
-import com.github.peterchenhdu.site4j.common.enums.CommentStatusEnum;
-import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
-import com.github.peterchenhdu.site4j.common.exception.CommentException;
-import com.github.peterchenhdu.site4j.common.util.IpUtils;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.enums.CommentStatusEnum;
+import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
+import com.github.peterchenhdu.site4j.common.util.IpUtils;
+import com.github.peterchenhdu.site4j.common.util.RequestHolder;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.*;
 import eu.bitwalker.useragentutils.Browser;
@@ -127,7 +128,7 @@ public class BizCommentServiceImpl implements BizCommentService {
      */
     @Override
     @RedisCache(flush = true)
-    public void commentForAdmin(CommentDto comment) throws CommentException {
+    public void commentForAdmin(CommentDto comment)  {
         ConfigDto config = configService.get();
         UserDto user = SessionUtil.getUser();
         comment.setEmail(user.getEmail());
@@ -149,17 +150,17 @@ public class BizCommentServiceImpl implements BizCommentService {
      */
     @Override
     @RedisCache(flush = true)
-    public CommentDto comment(CommentDto comment) throws CommentException {
+    public CommentDto comment(CommentDto comment)  {
         if (StringUtils.isEmpty(comment.getNickname())) {
-            throw new CommentException("必须输入昵称哦~~");
+            throw new CommonRuntimeException("必须输入昵称哦~~");
         }
         String content = comment.getContent();
         if (!XssKillerUtil.isValid(content)) {
-            throw new CommentException("内容不合法，请不要使用特殊标签哦~~");
+            throw new CommonRuntimeException("内容不合法，请不要使用特殊标签哦~~");
         }
         content = XssKillerUtil.clean(content.trim()).replaceAll("(<p><br></p>)|(<p></p>)", "");
         if (StringUtils.isEmpty(content) || "\n".equals(content)) {
-            throw new CommentException("不说话可不行，必须说点什么哦~~");
+            throw new CommonRuntimeException("不说话可不行，必须说点什么哦~~");
         }
         // 过滤非法属性和无用的空标签
         comment.setContent(content);
@@ -302,7 +303,7 @@ public class BizCommentServiceImpl implements BizCommentService {
         String key = IpUtils.getRealIp(RequestHolder.getRequest()) + "_doSupport_" + id;
         ValueOperations<String, Object> operations = redisTemplate.opsForValue();
         if (redisTemplate.hasKey(key)) {
-            throw new CommentException("一个小时只能点一次赞哈~");
+            throw new CommonRuntimeException("一个小时只能点一次赞哈~");
         }
         bizCommentMapper.doSupport(id);
         operations.set(key, id, 1, TimeUnit.HOURS);
@@ -319,7 +320,7 @@ public class BizCommentServiceImpl implements BizCommentService {
         String key = IpUtils.getRealIp(RequestHolder.getRequest()) + "_doOppose_" + id;
         ValueOperations<String, Object> operations = redisTemplate.opsForValue();
         if (redisTemplate.hasKey(key)) {
-            throw new CommentException("一个小时只能踩一次哈~又没什么深仇大恨");
+            throw new CommonRuntimeException("一个小时只能踩一次哈~又没什么深仇大恨");
         }
         bizCommentMapper.doOppose(id);
         operations.set(key, id, 1, TimeUnit.HOURS);

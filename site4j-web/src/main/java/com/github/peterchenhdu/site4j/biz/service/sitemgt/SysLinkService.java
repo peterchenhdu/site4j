@@ -7,8 +7,8 @@ package com.github.peterchenhdu.site4j.biz.service.sitemgt;
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.LinkConditionVO;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
-import com.github.peterchenhdu.site4j.common.exception.LinkException;
 
+import javax.naming.LinkException;
 import java.util.List;
 import java.util.Map;
 
@@ -139,5 +139,5 @@ public interface SysLinkService {
      * @param link
      * @return
      */
-    boolean autoLink(LinkDto link) throws LinkException;
+    boolean autoLink(LinkDto link) ;
 }

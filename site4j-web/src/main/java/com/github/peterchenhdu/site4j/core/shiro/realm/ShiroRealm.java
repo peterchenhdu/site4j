@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesService;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
 import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
-import com.github.peterchenhdu.site4j.common.enums.UserStatusEnum;
+import com.github.peterchenhdu.site4j.enums.UserStatusEnum;
 import com.github.peterchenhdu.site4j.constant.SysConstants;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;

@@ -6,7 +6,6 @@ package com.github.peterchenhdu.site4j.biz.service.sitemgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
-import com.github.peterchenhdu.site4j.common.exception.CommentException;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 
 import java.util.List;
@@ -113,7 +112,7 @@ public interface BizCommentService {
      * @param comment
      * @return
      */
-    void commentForAdmin(CommentDto comment) throws CommentException;
+    void commentForAdmin(CommentDto comment) ;
 
     /**
      * 发表评论
@@ -121,7 +120,7 @@ public interface BizCommentService {
      * @param comment
      * @return
      */
-    CommentDto comment(CommentDto comment) throws CommentException;
+    CommentDto comment(CommentDto comment) ;
 
     /**
      * 查询近期评论

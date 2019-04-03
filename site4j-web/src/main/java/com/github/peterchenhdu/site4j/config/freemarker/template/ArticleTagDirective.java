@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.config.freemarker.template;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
-import com.github.peterchenhdu.site4j.common.enums.ArticleStatusEnum;
+import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import freemarker.core.Environment;
 import freemarker.template.*;

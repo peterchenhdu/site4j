@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.controller.front;
 
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
-import com.github.peterchenhdu.site4j.common.enums.ArticleStatusEnum;
+import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;

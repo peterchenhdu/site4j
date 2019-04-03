@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.biz.entity.BizType;
 import com.github.peterchenhdu.site4j.biz.mapper.BizTypeMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
 import com.github.peterchenhdu.site4j.biz.dto.req.TypeConditionVO;
-import com.github.peterchenhdu.site4j.common.exception.BaseRuntimeException;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -101,7 +101,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         Assert.notNull(entity, "Type不可为空！");
         List<BizType> list = bizTypeMapper.findByName(entity.getName());
         if(!list.isEmpty()) {
-            throw new BaseRuntimeException("分类已存在");
+            throw new CommonRuntimeException("分类已存在");
         }
 
         entity.setUpdateTime(LocalDateTime.now());
@@ -135,7 +135,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         Assert.notNull(entity, "Type不可为空！");
         List<BizType> list = bizTypeMapper.findByName(entity.getName());
         if(!list.isEmpty() && !list.get(0).getId().equals(entity.getId())) {
-            throw new BaseRuntimeException("分类已存在");
+            throw new CommonRuntimeException("分类已存在");
         }
 
         entity.setUpdateTime(LocalDateTime.now());

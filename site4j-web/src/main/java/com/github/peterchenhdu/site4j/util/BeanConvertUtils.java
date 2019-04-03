@@ -3,7 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.util;
 
-import com.github.peterchenhdu.site4j.common.exception.BaseRuntimeException;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import org.springframework.beans.BeanUtils;
@@ -35,7 +35,7 @@ public class BeanConvertUtils {
             return targetInstance;
         } catch (InstantiationException | IllegalAccessException e) {
             LogUtils.exception(e);
-            throw new BaseRuntimeException("对象转换失败");
+            throw new CommonRuntimeException("对象转换失败");
         }
     }
 

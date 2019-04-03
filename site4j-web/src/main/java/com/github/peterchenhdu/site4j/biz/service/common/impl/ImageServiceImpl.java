@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.biz.entity.Image;
 import com.github.peterchenhdu.site4j.biz.mapper.ImageMapper;
 import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
-import com.github.peterchenhdu.site4j.common.enums.ImageType;
+import com.github.peterchenhdu.site4j.enums.ImageType;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.FileUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;

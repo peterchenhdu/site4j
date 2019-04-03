@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.config.freemarker.template;
 
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
-import com.github.peterchenhdu.site4j.common.enums.ModuleEnum;
+import com.github.peterchenhdu.site4j.enums.ModuleEnum;
 import com.github.peterchenhdu.site4j.common.enums.OperationEnum;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTagsService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;

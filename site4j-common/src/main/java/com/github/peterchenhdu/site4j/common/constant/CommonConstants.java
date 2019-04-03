@@ -14,6 +14,7 @@ public class CommonConstants {
      * 空字符串
      */
     public static final String EMPTY_STRING = "";
+    public static final Object[] EMPTY_OBJECT_ARRAY = new Object[]{};
     /**
      * 默认日期时间格式
      */

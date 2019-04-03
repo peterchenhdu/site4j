@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.util;
+package com.github.peterchenhdu.site4j.common.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

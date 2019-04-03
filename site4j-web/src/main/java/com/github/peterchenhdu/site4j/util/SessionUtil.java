@@ -4,6 +4,7 @@
 package com.github.peterchenhdu.site4j.util;
 
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
+import com.github.peterchenhdu.site4j.common.util.RequestHolder;
 import com.github.peterchenhdu.site4j.constant.SessionConst;
 import lombok.extern.slf4j.Slf4j;
 

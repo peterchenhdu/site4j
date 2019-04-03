@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.dto;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticle;
 import com.github.peterchenhdu.site4j.biz.entity.BizTags;
 import com.github.peterchenhdu.site4j.biz.entity.BizType;
-import com.github.peterchenhdu.site4j.common.enums.ArticleStatusEnum;
+import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.biz.entity.SysTemplate;
 import com.github.peterchenhdu.site4j.biz.dto.req.TemplateConditionVO;
 import com.github.peterchenhdu.site4j.biz.mapper.SysTemplateMapper;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysTemplateService;
-import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
+import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;

@@ -13,7 +13,7 @@ import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
 import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
 import com.github.peterchenhdu.site4j.biz.mapper.SysNoticeMapper;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
-import com.github.peterchenhdu.site4j.common.enums.NoticeStatusEnum;
+import com.github.peterchenhdu.site4j.enums.NoticeStatusEnum;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;

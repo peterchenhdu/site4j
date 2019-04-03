@@ -4,16 +4,16 @@
 package com.github.peterchenhdu.site4j.biz.controller.backend;
 
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
 import com.github.peterchenhdu.site4j.biz.service.common.MailService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.BizCommentService;
-import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
-import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
-import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
-import com.github.peterchenhdu.site4j.common.exception.CommentException;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
+import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -59,7 +59,7 @@ public class RestCommentController {
     public BaseResponse reply(CommentDto comment) {
         try {
             commentService.commentForAdmin(comment);
-        } catch (CommentException e) {
+        } catch (CommonRuntimeException e) {
             return ResultUtils.error(e.getMessage());
         }
         return ResultUtils.success("成功");

@@ -9,10 +9,10 @@ package com.github.peterchenhdu.site4j.util.qcloud;
 
 import com.github.peterchenhdu.site4j.biz.dto.ConfigDto;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
-import com.github.peterchenhdu.site4j.common.enums.ImageType;
+import com.github.peterchenhdu.site4j.enums.ImageType;
 import com.github.peterchenhdu.site4j.common.util.DateTimeUtils;
 import com.github.peterchenhdu.site4j.util.FileUtil;
-import com.github.peterchenhdu.site4j.util.SpringContextHolder;
+import com.github.peterchenhdu.site4j.common.util.SpringContextHolder;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;

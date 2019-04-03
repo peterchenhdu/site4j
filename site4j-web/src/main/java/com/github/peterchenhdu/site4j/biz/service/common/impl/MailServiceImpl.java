@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.*;
 import com.github.peterchenhdu.site4j.biz.service.common.MailService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysTemplateService;
-import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
+import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.util.FreeMarkerUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

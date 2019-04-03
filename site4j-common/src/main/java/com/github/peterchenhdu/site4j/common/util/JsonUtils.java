@@ -4,7 +4,7 @@
 
 package com.github.peterchenhdu.site4j.common.util;
 
-import com.github.peterchenhdu.site4j.common.exception.BaseRuntimeException;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,7 +41,7 @@ public class JsonUtils {
         try {
             return objectMapper.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
-            throw new BaseRuntimeException("对象转换成Json字符串异常.");
+            throw new CommonRuntimeException("对象转换成Json字符串异常.");
         }
     }
 
@@ -52,7 +52,7 @@ public class JsonUtils {
             objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             return objectMapper.readValue(jsonString, clazz);
         } catch (IOException e) {
-            throw new BaseRuntimeException("Json字符串转换成pojo对象异常.");
+            throw new CommonRuntimeException("Json字符串转换成pojo对象异常.");
         }
     }
 
@@ -62,7 +62,7 @@ public class JsonUtils {
         try {
             return objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructMapType(Map.class, kType, vType));
         } catch (IOException e) {
-            throw new BaseRuntimeException("Json字符串转换成Map对象异常.");
+            throw new CommonRuntimeException("Json字符串转换成Map对象异常.");
         }
 
     }
@@ -72,7 +72,7 @@ public class JsonUtils {
         try {
             return objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructCollectionType(List.class, classType));
         } catch (IOException e) {
-            throw new BaseRuntimeException("Json字符串转换成List对象异常.");
+            throw new CommonRuntimeException("Json字符串转换成List对象异常.");
         }
 
     }

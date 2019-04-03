@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.dto;
 
 import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
-import com.github.peterchenhdu.site4j.common.enums.NoticeStatusEnum;
+import com.github.peterchenhdu.site4j.enums.NoticeStatusEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;

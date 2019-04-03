@@ -5,18 +5,16 @@ package com.github.peterchenhdu.site4j.biz.controller.front;
 
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
-import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
-import com.github.peterchenhdu.site4j.common.base.BaseResponse;
-import com.github.peterchenhdu.site4j.common.enums.CommentStatusEnum;
-import com.github.peterchenhdu.site4j.common.exception.ArticleException;
-import com.github.peterchenhdu.site4j.common.exception.CommentException;
-import com.github.peterchenhdu.site4j.common.exception.LinkException;
+import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.BizCommentService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
+import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
+import com.github.peterchenhdu.site4j.common.base.BaseResponse;
+import com.github.peterchenhdu.site4j.enums.CommentStatusEnum;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.util.JsonUtils;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
-import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -58,9 +56,9 @@ public class RestApiController {
         }
         try {
             sysLinkService.autoLink(link);
-        } catch (LinkException e) {
+        } catch (CommonRuntimeException e) {
             log.error("客户端自助申请友链发生异常", e);
-            return ResultUtils.error(e.getMessage());
+            return ResultUtils.error(e.getMsg());
         }
         return ResultUtils.success("已成功添加友链，祝您生活愉快！");
     }
@@ -77,7 +75,7 @@ public class RestApiController {
     public BaseResponse comment(CommentDto comment) {
         try {
             commentService.comment(comment);
-        } catch (CommentException e) {
+        } catch (CommonRuntimeException e) {
             log.error("评论发生异常", e);
             return ResultUtils.error(e.getMessage());
         }
@@ -88,7 +86,7 @@ public class RestApiController {
     public BaseResponse doSupport(@PathVariable("id") String id) {
         try {
             commentService.doSupport(id);
-        } catch (CommentException e) {
+        } catch (CommonRuntimeException e) {
             log.error("评论点赞发生异常", e);
             return ResultUtils.error(e.getMessage());
         }
@@ -99,7 +97,7 @@ public class RestApiController {
     public BaseResponse doOppose(@PathVariable("id") String id) {
         try {
             commentService.doOppose(id);
-        } catch (CommentException e) {
+        } catch (CommonRuntimeException e) {
             log.error("评论点踩发生异常", e);
             return ResultUtils.error(e.getMessage());
         }
@@ -110,7 +108,7 @@ public class RestApiController {
     public BaseResponse doPraise(@PathVariable("id") String id) {
         try {
             articleService.doPraise(id);
-        } catch (ArticleException e) {
+        } catch (CommonRuntimeException e) {
             log.error("文章点赞发生异常", e);
             return ResultUtils.error(e.getMessage());
         }

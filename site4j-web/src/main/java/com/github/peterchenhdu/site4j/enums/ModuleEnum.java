@@ -2,7 +2,7 @@
  * Copyright (c) 2011-2025 PiChen
  */
 
-package com.github.peterchenhdu.site4j.common.enums;
+package com.github.peterchenhdu.site4j.enums;
 
 import java.util.Arrays;
 import java.util.HashMap;

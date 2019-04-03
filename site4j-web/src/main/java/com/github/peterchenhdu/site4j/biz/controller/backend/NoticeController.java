@@ -10,7 +10,7 @@ import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
-import com.github.peterchenhdu.site4j.common.enums.NoticeStatusEnum;
+import com.github.peterchenhdu.site4j.enums.NoticeStatusEnum;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.util.ResultUtils;

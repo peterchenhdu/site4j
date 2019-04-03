@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
 import com.github.peterchenhdu.site4j.biz.dto.ConfigDto;
 import com.github.peterchenhdu.site4j.biz.entity.Dict;
 import com.github.peterchenhdu.site4j.biz.entity.SysConfig;
-import com.github.peterchenhdu.site4j.common.enums.DictTypeEnum;
+import com.github.peterchenhdu.site4j.enums.DictTypeEnum;
 import com.github.peterchenhdu.site4j.biz.mapper.SysConfigMapper;
 import com.github.peterchenhdu.site4j.biz.service.common.DictService;
 import com.github.peterchenhdu.site4j.common.util.DateTimeUtils;

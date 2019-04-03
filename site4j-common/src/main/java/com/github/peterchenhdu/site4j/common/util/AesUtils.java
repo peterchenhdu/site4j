@@ -3,7 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.common.util;
 
-import com.github.peterchenhdu.site4j.common.exception.BaseRuntimeException;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
@@ -47,7 +47,7 @@ public class AesUtils {
             return Base64.encodeBase64String(result);
         } catch (Exception e) {
             LogUtils.exception(e);
-            throw new BaseRuntimeException("AES加密失败");
+            throw new CommonRuntimeException("AES加密失败");
         }
     }
 
@@ -72,7 +72,7 @@ public class AesUtils {
             return new String(result, "utf-8");
         } catch (Exception e) {
             LogUtils.exception(e);
-            throw new BaseRuntimeException("AES解密失败");
+            throw new CommonRuntimeException("AES解密失败");
         }
     }
 

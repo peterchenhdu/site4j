@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.mapper.BizTagsMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTagsService;
 import com.github.peterchenhdu.site4j.biz.dto.req.TagsConditionVO;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
-import com.github.peterchenhdu.site4j.common.exception.BaseRuntimeException;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -79,7 +79,7 @@ public class BizTagsServiceImpl implements BizTagsService {
 
         List<BizTags> list = bizTagsMapper.findByName(entity.getName());
         if(!list.isEmpty()) {
-            throw new BaseRuntimeException("标签已存在");
+            throw new CommonRuntimeException("标签已存在");
         }
 
         entity.setUpdateTime(LocalDateTime.now());
@@ -146,7 +146,7 @@ public class BizTagsServiceImpl implements BizTagsService {
 
         List<BizTags> list = bizTagsMapper.findByName(entity.getName());
         if(!list.isEmpty() && !list.get(0).getId().equals(entity.getId())) {
-            throw new BaseRuntimeException("标签已存在");
+            throw new CommonRuntimeException("标签已存在");
         }
 
         entity.setUpdateTime(LocalDateTime.now());

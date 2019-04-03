@@ -5,7 +5,7 @@
 package com.github.peterchenhdu.site4j.biz.service.common;
 
 import com.github.peterchenhdu.site4j.biz.entity.Image;
-import com.github.peterchenhdu.site4j.common.enums.ImageType;
+import com.github.peterchenhdu.site4j.enums.ImageType;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.service.sitemgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.TemplateDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysTemplate;
-import com.github.peterchenhdu.site4j.common.enums.TemplateKeyEnum;
+import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.biz.dto.req.TemplateConditionVO;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
