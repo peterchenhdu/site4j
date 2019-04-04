@@ -7,9 +7,10 @@ import com.github.peterchenhdu.site4j.biz.entity.SysLink;
 import com.github.peterchenhdu.site4j.enums.LinkSourceEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
+
 import org.springframework.util.StringUtils;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 

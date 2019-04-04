@@ -57,7 +57,7 @@ public class FileUtil {
 
         } catch (Exception e) {
             e.printStackTrace();
-            throw new CommonRuntimeException("上传图片到腾讯云发生异常，请检查腾讯配置是否正常", e);
+            throw new CommonRuntimeException("上传图片到腾讯云发生异常，请检查腾讯配置是否正常");
         }
     }
 

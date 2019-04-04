@@ -22,12 +22,13 @@ public class ResourcesDto {
     private String name;
     @NotNull
     private String type;
-    @NotNull(message = "当前版本不支持添加外部资源")
+    @NotNull(message = "test.name")
     private String url;
     private String permission;
     private String parentName;
     private String parentId;
     private Integer sort;
+    @NotNull
     private String icon;
 
     public ResourcesDto() {

@@ -6,11 +6,13 @@ package com.github.peterchenhdu.site4j.core;
 
 
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
+import com.github.peterchenhdu.site4j.common.util.I18nUtils;
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
 import com.github.peterchenhdu.site4j.util.ResultUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
-import org.springframework.validation.FieldError;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -20,15 +22,24 @@ import javax.validation.ConstraintViolationException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler
-    public BaseResponse handle(BindException bindException) {
-        //获取第一个诊断错误
-        FieldError error = bindException.getBindingResult().getFieldError();
-        String message = error.getDefaultMessage();
-//        String field = error.getField();
 
 
-        return ResultUtils.error("参数错误:"+message);
+    @ExceptionHandler(value = {BindException.class, MethodArgumentNotValidException.class})
+    public Object validationExceptionHandler(Exception exception) {
+        BindingResult bindResult = null;
+        if (exception instanceof BindException) {
+            bindResult = ((BindException) exception).getBindingResult();
+        } else if (exception instanceof MethodArgumentNotValidException) {
+            bindResult = ((MethodArgumentNotValidException) exception).getBindingResult();
+        }
+        String msg;
+        if (bindResult != null && bindResult.hasErrors()) {
+            msg = bindResult.getAllErrors().get(0).getDefaultMessage();
+            msg = I18nUtils.getMessage(msg, null, null);
+        } else {
+            msg = "系统繁忙，请稍后重试...";
+        }
+        return ResultUtils.error("参数错误:"+msg);
     }
 
     @ExceptionHandler
