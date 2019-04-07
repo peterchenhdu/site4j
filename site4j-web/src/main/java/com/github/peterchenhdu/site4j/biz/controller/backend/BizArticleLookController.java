@@ -48,7 +48,7 @@ public class BizArticleLookController {
     }
 
     @ApiOperation(value="文章历史记录查询")
-    @PostMapping("/list")
+    @PostMapping("/query")
     public BasePagingResultDto list(BizArticleLookConditionVo vo) {
         return new BasePagingResultDto(bizArticleLookService.findPageBreakByCondition(vo));
     }

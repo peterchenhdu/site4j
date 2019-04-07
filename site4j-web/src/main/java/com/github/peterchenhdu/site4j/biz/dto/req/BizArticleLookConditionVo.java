@@ -16,5 +16,4 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class BizArticleLookConditionVo extends BasePagingQueryDto {
-    private BizArticleLook bizArticleLook;
 }

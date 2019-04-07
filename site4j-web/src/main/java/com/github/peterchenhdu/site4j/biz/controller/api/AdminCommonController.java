@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.api;
 
 import com.github.peterchenhdu.site4j.biz.dto.ConfigDto;
 import com.github.peterchenhdu.site4j.biz.entity.Image;
@@ -22,11 +22,8 @@ import java.util.Map;
 
 /**
  * 公共接口
- *
- * @author chenpi
- * @version 1.0
- * @since 2018/4/24 14:37
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @RestController
 @RequestMapping("/admin/api")
