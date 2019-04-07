@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesServi
 import com.github.peterchenhdu.site4j.core.shiro.ShiroService;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.enums.ModuleEnum;
-import com.github.peterchenhdu.site4j.util.ResultUtils;
+import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;

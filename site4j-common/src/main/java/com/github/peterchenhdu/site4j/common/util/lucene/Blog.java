@@ -2,7 +2,7 @@
  * Copyright (c) 2011-2025 PiChen
  */
 
-package com.github.peterchenhdu.site4j.util.lucene;
+package com.github.peterchenhdu.site4j.common.util.lucene;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;

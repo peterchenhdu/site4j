@@ -21,8 +21,8 @@ import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.enums.CommentStatusEnum;
 import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
-import com.github.peterchenhdu.site4j.common.util.IpUtils;
-import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.web.IpUtils;
+import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.*;
 import eu.bitwalker.useragentutils.Browser;
@@ -169,7 +169,7 @@ public class BizCommentServiceImpl implements BizCommentService {
         comment.setAvatar(HtmlUtil.html2Text(comment.getAvatar()));
         comment.setEmail(HtmlUtil.html2Text(comment.getEmail()));
         comment.setUrl(HtmlUtil.html2Text(comment.getUrl()));
-        HttpServletRequest request = RequestHolder.getRequest();
+        HttpServletRequest request = WebUtils.getRequest();
         String ua = request.getHeader("User-Agent");
         UserAgent agent = UserAgent.parseUserAgentString(ua);
         // 浏览器
@@ -300,7 +300,7 @@ public class BizCommentServiceImpl implements BizCommentService {
     @Override
     @RedisCache(flush = true)
     public void doSupport(String id) {
-        String key = IpUtils.getRealIp(RequestHolder.getRequest()) + "_doSupport_" + id;
+        String key = IpUtils.getRealIp(WebUtils.getRequest()) + "_doSupport_" + id;
         ValueOperations<String, Object> operations = redisTemplate.opsForValue();
         if (redisTemplate.hasKey(key)) {
             throw new CommonRuntimeException("一个小时只能点一次赞哈~");
@@ -317,7 +317,7 @@ public class BizCommentServiceImpl implements BizCommentService {
     @Override
     @RedisCache(flush = true)
     public void doOppose(String id) {
-        String key = IpUtils.getRealIp(RequestHolder.getRequest()) + "_doOppose_" + id;
+        String key = IpUtils.getRealIp(WebUtils.getRequest()) + "_doOppose_" + id;
         ValueOperations<String, Object> operations = redisTemplate.opsForValue();
         if (redisTemplate.hasKey(key)) {
             throw new CommonRuntimeException("一个小时只能踩一次哈~又没什么深仇大恨");

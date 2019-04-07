@@ -7,9 +7,9 @@ import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleLookDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleLookService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
-import com.github.peterchenhdu.site4j.common.util.IpUtils;
+import com.github.peterchenhdu.site4j.common.util.web.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -55,7 +55,7 @@ public class ArticleLookAspects {
         Object[] args = joinPoint.getArgs();
         if (args != null && args.length > 0) {
             //获取请求来源的ID
-            String userIp = IpUtils.getRealIp(RequestHolder.getRequest());
+            String userIp = IpUtils.getRealIp(WebUtils.getRequest());
             //文章ID
             String articleId =  args[1].toString();
             ArticleDto bizArticle = bizArticleService.getByPrimaryKey(articleId);

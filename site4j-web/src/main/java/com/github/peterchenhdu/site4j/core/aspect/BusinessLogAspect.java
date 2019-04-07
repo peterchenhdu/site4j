@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.core.aspect;
 
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.util.RegexUtils;
-import com.github.peterchenhdu.site4j.util.RequestUtil;
+import com.github.peterchenhdu.site4j.common.util.web.RequestUtils;
 import com.github.peterchenhdu.site4j.util.AspectUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -65,10 +65,10 @@ public class BusinessLogAspect {
         //获取操作名称
         BusinessLog annotation = currentMethod.getAnnotation(BusinessLog.class);
         String businessName = parseContent(point.getArgs(), annotation.value());
-        String ua = RequestUtil.getUa();
+        String ua = RequestUtils.getUa();
 
         log.info("{}-{}.{}", businessName, className, currentMethod.getName());
-        log.info("IP: {}, Method: {}, Request URL: {}", RequestUtil.getIp(), RequestUtil.getMethod(), RequestUtil.getRequestUrl());
+        log.info("IP: {}, Method: {}, Request URL: {}", RequestUtils.getIp(), RequestUtils.getMethod(), RequestUtils.getRequestUrl());
         log.info("User-Agent: " + ua);
     }
 

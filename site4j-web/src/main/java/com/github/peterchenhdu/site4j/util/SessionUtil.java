@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.util;
 
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
-import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.github.peterchenhdu.site4j.constant.SessionConst;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +28,7 @@ public class SessionUtil {
      * @return User
      */
     public static UserDto getUser() {
-        Object obj = RequestHolder.getSession(SessionConst.USER_SESSION_KEY);
+        Object obj = WebUtils.getSession(SessionConst.USER_SESSION_KEY);
         return (UserDto) obj;
     }
 
@@ -38,14 +38,14 @@ public class SessionUtil {
      * @param user
      */
     public static void setUser(UserDto user) {
-        RequestHolder.setSession(SessionConst.USER_SESSION_KEY, user);
+        WebUtils.setSession(SessionConst.USER_SESSION_KEY, user);
     }
 
     /**
      * 删除session信息
      */
     public static void removeUser() {
-        RequestHolder.removeSession(SessionConst.USER_SESSION_KEY);
+        WebUtils.removeSession(SessionConst.USER_SESSION_KEY);
     }
 
     /**
@@ -54,52 +54,52 @@ public class SessionUtil {
      * @return String
      */
     public static String getToken(String key) {
-        return (String) RequestHolder.getSession(key);
+        return (String) WebUtils.getSession(key);
     }
 
     /**
      * 添加Token
      */
     public static void setToken(String key) {
-        RequestHolder.setSession(key, UUID.randomUUID().toString());
+        WebUtils.setSession(key, UUID.randomUUID().toString());
     }
 
     /**
      * 删除Token信息
      */
     public static void removeToken(String key) {
-        RequestHolder.removeSession(key);
+        WebUtils.removeSession(key);
     }
 
     /**
      * 获取验证码
      */
     public static String getVCode() {
-        return (String) RequestHolder.getSession(SessionConst.V_CODE_SESSION_KEY);
+        return (String) WebUtils.getSession(SessionConst.V_CODE_SESSION_KEY);
     }
 
     /**
      * 保存验证码
      */
     public static void setVCode(String vCode) {
-        RequestHolder.setSession(SessionConst.V_CODE_SESSION_KEY, vCode);
+        WebUtils.setSession(SessionConst.V_CODE_SESSION_KEY, vCode);
     }
 
     /**
      * 保存验证码
      */
     public static void removeVCode() {
-        RequestHolder.removeSession(SessionConst.V_CODE_SESSION_KEY);
+        WebUtils.removeSession(SessionConst.V_CODE_SESSION_KEY);
     }
 
     /**
      * 删除所有的session信息
      */
     public static void removeAllSession() {
-        String[] keys = RequestHolder.getSessionKeys();
+        String[] keys = WebUtils.getSessionKeys();
         if (keys.length > 0) {
             for (String key : keys) {
-                RequestHolder.removeSession(key);
+                WebUtils.removeSession(key);
             }
         }
     }

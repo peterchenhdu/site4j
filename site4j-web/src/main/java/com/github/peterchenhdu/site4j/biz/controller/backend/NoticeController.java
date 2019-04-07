@@ -13,7 +13,7 @@ import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.enums.NoticeStatusEnum;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
-import com.github.peterchenhdu.site4j.util.ResultUtils;
+import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

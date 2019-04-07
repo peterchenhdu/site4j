@@ -17,6 +17,7 @@
 
     <dependencies>
 
+        <!--swagger2-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -27,7 +28,6 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
-
 
 
         <dependency>
@@ -41,12 +41,11 @@
             <version>1.0.2</version>
         </dependency>
 
-        <!-- aop -->
+        <!--spring-boot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -57,7 +56,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -68,6 +66,7 @@
             <artifactId>commons-codec</artifactId>
         </dependency>
 
+        <!--qcloud-->
         <dependency>
             <groupId>com.qcloud</groupId>
             <artifactId>cos_api</artifactId>
@@ -78,8 +77,7 @@
         </dependency>
 
 
-
-
+        <!--quartz-->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
@@ -92,19 +90,35 @@
         </dependency>
 
 
-
-        <!--mysql-->
+        <!--mybatis-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.5</version>
         </dependency>
-
-
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>2.2.0</version>
+        </dependency>
+
+
+        <!--lucene-->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-highlighter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hankcs.nlp</groupId>
+            <artifactId>hanlp-lucene-plugin</artifactId>
         </dependency>
 
     </dependencies>
@@ -113,8 +127,8 @@
         <plugins>
 
             <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
             <!--</plugin>-->
 
         </plugins>

@@ -6,7 +6,7 @@
 package com.github.peterchenhdu.site4j.common.util;
 
 import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
-import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.github.peterchenhdu.site4j.common.util.holder.SpringContextHolder;
 
 import java.util.Locale;
@@ -17,7 +17,7 @@ public class I18nUtils {
     private static Locale DEFAULT_LOCALE = Locale.SIMPLIFIED_CHINESE;
 
     private static Locale getDefaultLocale() {
-        Locale locale = ObjectUtils.isNotEmpty(RequestHolder.getRequest()) ? RequestHolder.getRequest().getLocale() : null;
+        Locale locale = ObjectUtils.isNotEmpty(WebUtils.getRequest()) ? WebUtils.getRequest().getLocale() : null;
         return ObjectUtils.isNotEmpty(locale) ? locale : DEFAULT_LOCALE;
     }
 

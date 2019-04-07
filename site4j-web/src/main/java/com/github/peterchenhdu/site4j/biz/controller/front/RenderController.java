@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
-import com.github.peterchenhdu.site4j.util.ResultUtils;
+import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

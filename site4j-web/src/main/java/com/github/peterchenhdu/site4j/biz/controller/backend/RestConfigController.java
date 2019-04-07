@@ -10,7 +10,7 @@ import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.enums.ImageType;
 import com.github.peterchenhdu.site4j.util.FileUtil;
-import com.github.peterchenhdu.site4j.util.ResultUtils;
+import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,7 +4,7 @@
 
 package com.github.peterchenhdu.site4j.util;
 
-import com.github.peterchenhdu.site4j.common.util.UrlCodeUtils;
+import com.github.peterchenhdu.site4j.common.util.web.UrlCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

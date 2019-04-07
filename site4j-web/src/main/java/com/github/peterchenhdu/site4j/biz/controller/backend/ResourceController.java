@@ -14,7 +14,7 @@ import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
-import com.github.peterchenhdu.site4j.util.ResultUtils;
+import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;

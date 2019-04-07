@@ -27,10 +27,10 @@ import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import com.github.peterchenhdu.site4j.enums.ImageType;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
-import com.github.peterchenhdu.site4j.common.util.IpUtils;
+import com.github.peterchenhdu.site4j.common.util.web.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +89,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         //保存搜索记录
         if(ObjectUtils.isNotEmpty(vo.getKeywords())){
             log.info("开始搜索内容，关键字:{}", vo.getKeywords());
-            String userIp = IpUtils.getRealIp(RequestHolder.getRequest());
+            String userIp = IpUtils.getRealIp(WebUtils.getRequest());
             String keyWord = vo.getKeywords();
             SearchHistory searchHistory = new SearchHistory();
             searchHistory.setKeyWord(keyWord);
@@ -239,7 +239,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
     @Override
     @RedisCache(flush = true)
     public void doPraise(String id) {
-        String ip = IpUtils.getRealIp(RequestHolder.getRequest());
+        String ip = IpUtils.getRealIp(WebUtils.getRequest());
         String key = ip + "_doPraise_" + id;
         ValueOperations<String, Object> operations = redisTemplate.opsForValue();
         if (Boolean.TRUE.equals(redisTemplate.hasKey(key))) {
@@ -251,7 +251,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
             love.setUserId(user.getId());
         }
         love.setArticleId(id);
-        love.setUserIp(IpUtils.getRealIp(RequestHolder.getRequest()));
+        love.setUserIp(IpUtils.getRealIp(WebUtils.getRequest()));
         love.setLoveTime(LocalDateTime.now());
         love.setCreateTime(LocalDateTime.now());
         love.setUpdateTime(LocalDateTime.now());

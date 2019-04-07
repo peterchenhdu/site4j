@@ -10,7 +10,7 @@ import com.github.peterchenhdu.site4j.common.annotation.PublicService;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.config.property.AppProperties;
-import com.github.peterchenhdu.site4j.util.ResultUtils;
+import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;

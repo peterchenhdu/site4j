@@ -9,7 +9,7 @@ import com.github.peterchenhdu.site4j.biz.entity.SysRole;
 import com.github.peterchenhdu.site4j.biz.entity.SysUser;
 import com.github.peterchenhdu.site4j.biz.dto.req.UserConditionVO;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
-import com.github.peterchenhdu.site4j.common.util.IpUtils;
+import com.github.peterchenhdu.site4j.common.util.web.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
@@ -17,7 +17,7 @@ import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.biz.mapper.SysUserMapper;
 import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
 import com.github.peterchenhdu.site4j.util.PasswordUtils;
-import com.github.peterchenhdu.site4j.common.util.holder.RequestHolder;
+import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -129,7 +129,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (ObjectUtils.isNotEmpty(user)) {
             user.setLoginCount(user.getLoginCount() + 1);
             user.setLastLoginTime(LocalDateTime.now());
-            user.setLastLoginIp(IpUtils.getRealIp(RequestHolder.getRequest()));
+            user.setLastLoginIp(IpUtils.getRealIp(WebUtils.getRequest()));
             user.setPassword(null);
             this.updateSelective(user);
         }

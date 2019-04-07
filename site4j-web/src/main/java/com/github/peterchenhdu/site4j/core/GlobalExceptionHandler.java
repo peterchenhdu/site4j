@@ -8,7 +8,7 @@ package com.github.peterchenhdu.site4j.core;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.util.I18nUtils;
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
-import com.github.peterchenhdu.site4j.util.ResultUtils;
+import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;

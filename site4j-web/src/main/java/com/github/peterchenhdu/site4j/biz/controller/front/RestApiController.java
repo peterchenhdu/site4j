@@ -14,7 +14,7 @@ import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.enums.CommentStatusEnum;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.util.JsonUtils;
-import com.github.peterchenhdu.site4j.util.ResultUtils;
+import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

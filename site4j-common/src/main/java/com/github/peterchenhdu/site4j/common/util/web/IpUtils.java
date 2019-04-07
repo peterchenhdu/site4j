@@ -1,7 +1,9 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.common.util;
+package com.github.peterchenhdu.site4j.common.util.web;
+
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
