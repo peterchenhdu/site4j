@@ -19,11 +19,11 @@
                     sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
                     pageNumber: 1,                       //初始化加载第一页，默认第一页
                     pageSize: 10,                       //每页的记录行数（*）
-                    pageList: [20, 40, 50, 100, 150],        //可供选择的每页的行数（*）
+                    pageList: [20, 50, 100],        //可供选择的每页的行数（*）
                     minimumCountColumns: 1,             //最少允许的列数
-                    showColumns: true,                  //是否显示 内容列下拉框
-                    showRefresh: true,                  //是否显示刷新按钮
-                    showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
+                    showColumns: false,                  //是否显示 内容列下拉框
+                    showRefresh: false,                  //是否显示刷新按钮
+                    showToggle: false,                   //是否显示详细视图和列表视图的切换按钮
                     onExpandRow: options.onExpandRow,
                     rowStyle: options.rowStyle || function (row, index) {
                         console.log("row:" + row + ", index:" + index);

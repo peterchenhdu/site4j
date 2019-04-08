@@ -43,8 +43,8 @@ public class BizArticleLookController {
     @BusinessLog("进入文章浏览记录页")
     @GetMapping("")
     public ModelAndView bizArticleLook(Model model) {
-        model.addAttribute("module", frontPageConfig.getFrontModule("bizArticleLook"));
-        return ResultUtils.view("admin/common-mgt");
+//        model.addAttribute("module", frontPageConfig.getFrontModule("bizArticleLook"));
+        return ResultUtils.view("admin/statistic/article-look");
     }
 
     @ApiOperation(value="文章历史记录查询")
