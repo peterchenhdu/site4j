@@ -16,7 +16,7 @@ import com.baomidou.mybatisplus.service.IService;
  * <p>
  * Created by chenpi on 2019/02/05.
  */
-public interface BizArticleLookService extends IService<BizArticleLook> {
+public interface ArticleLookService extends IService<BizArticleLook> {
 
     /**
      * 保存浏览记录

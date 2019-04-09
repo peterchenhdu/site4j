@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.controller.backend;
 
 
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleLookQueryDto;
-import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleLookService;
+import com.github.peterchenhdu.site4j.biz.service.articlemgt.ArticleLookService;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
@@ -30,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ArticleLookController {
 
     @Autowired
-    private BizArticleLookService bizArticleLookService;
+    private ArticleLookService bizArticleLookService;
 
     @ApiOperation(value="路由到文章记录查看页面")
     @BusinessLog("进入文章浏览记录页")

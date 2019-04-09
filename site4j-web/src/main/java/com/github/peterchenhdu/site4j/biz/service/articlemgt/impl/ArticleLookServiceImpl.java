@@ -11,7 +11,7 @@ import com.github.peterchenhdu.site4j.biz.dto.ArticleLookDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleLookQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticleLook;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleLookMapper;
-import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleLookService;
+import com.github.peterchenhdu.site4j.biz.service.articlemgt.ArticleLookService;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
@@ -26,7 +26,7 @@ import java.util.List;
  * Created by chenpi on 2019/02/05.
  */
 @Service
-public class BizArticleLookServiceImpl extends ServiceImpl<BizArticleLookMapper, BizArticleLook> implements BizArticleLookService {
+public class ArticleLookServiceImpl extends ServiceImpl<BizArticleLookMapper, BizArticleLook> implements ArticleLookService {
 
     /**
      * 保存浏览记录

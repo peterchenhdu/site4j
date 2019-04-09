@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.core.aspect;
 
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleLookDto;
-import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleLookService;
+import com.github.peterchenhdu.site4j.biz.service.articlemgt.ArticleLookService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.common.util.web.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
@@ -40,7 +40,7 @@ public class ArticleLookAspects {
     @Autowired
     private BizArticleService bizArticleService;
     @Autowired
-    private BizArticleLookService articleLookService;
+    private ArticleLookService articleLookService;
 
     /**
      * 切面切入点
