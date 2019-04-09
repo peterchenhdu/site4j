@@ -27,7 +27,7 @@
                                         <label class="control-label col-sm-1" for="search-lookTimeTo">结束时间</label>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" name="search-lookTimeTo"
-                                                   id="search-lookTimeTo" 
+                                                   id="search-lookTimeTo"
                                                    placeholder="请选择结束时间...">
                                         </div>
                                         <div class="col-sm-4" style="text-align:left;">
