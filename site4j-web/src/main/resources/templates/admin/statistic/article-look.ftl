@@ -18,16 +18,16 @@
                                 <form id="formSearch" class="form-horizontal"
                                       onkeydown="if(event.keyCode===13) return false;">
                                     <div class="form-group" style="margin-top:15px">
-                                        <label class="control-label col-sm-1" for="txt_search_statu">开始时间</label>
+                                        <label class="control-label col-sm-1" for="search-lookTimeFrom">开始时间</label>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" name="search-lookTimeFrom"
                                                    id="search-lookTimeFrom"
                                                    placeholder="请选择开始时间...">
                                         </div>
-                                        <label class="control-label col-sm-1" for="txt_search_statu">结束时间</label>
+                                        <label class="control-label col-sm-1" for="search-lookTimeTo">结束时间</label>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" name="search-lookTimeTo"
-                                                   id="search-lookTimeTo"
+                                                   id="search-lookTimeTo" 
                                                    placeholder="请选择结束时间...">
                                         </div>
                                         <div class="col-sm-4" style="text-align:left;">

@@ -26,7 +26,7 @@
                                             <option value="button">按钮</option>
                                         </select>
                                     </div>
-                                    <label class="control-label col-sm-1" for="txt_search_statu">资源名称</label>
+                                    <label class="control-label col-sm-1" for="search-name">资源名称</label>
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control" name="search-name" id="search-name"
                                                placeholder="请输入资源名称...">
