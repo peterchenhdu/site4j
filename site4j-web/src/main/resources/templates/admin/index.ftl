@@ -18,7 +18,7 @@
             <div class="x_content">
 
                 <div class="row">
-                <@shiro.hasPermission name="articles">
+                <@shiro.hasPermission name="article">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </@shiro.hasPermission>
-                <@shiro.hasPermission name="comments">
+                <@shiro.hasPermission name="comment">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
