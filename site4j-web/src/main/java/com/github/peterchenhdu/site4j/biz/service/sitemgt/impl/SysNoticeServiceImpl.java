@@ -13,32 +13,28 @@ import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
 import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
 import com.github.peterchenhdu.site4j.biz.mapper.SysNoticeMapper;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
-import com.github.peterchenhdu.site4j.enums.NoticeStatusEnum;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
-import com.github.peterchenhdu.site4j.common.util.UuidUtils;
+import com.github.peterchenhdu.site4j.enums.NoticeStatusEnum;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 系统通知
  *
  * @author chenpi
  * @version 1.0
- *
  * @since 2018/4/16 16:26
  * @since 1.0
  */
 @Service
-public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper,SysNotice> implements SysNoticeService {
+public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper, SysNotice> implements SysNoticeService {
 
     @Autowired
     private SysNoticeMapper sysNoticeMapper;
@@ -46,107 +42,87 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper,SysNotice>
     /**
      * 分页查询
      *
-     * @param vo
-     * @return
+     * @param vo vo
+     * @return PageInfoDto
      */
     @Override
     public PageInfoDto<NoticeDto> findPageBreakByCondition(NoticeConditionVO vo) {
         Wrapper<SysNotice> example = new EntityWrapper<>();
-//        if(ObjectUtils.isNotEmpty(vo.getKeywords())) {
-//            example.like("title", vo.getKeywords());
-//        }
+        if (ObjectUtils.isNotEmpty(vo.getStatus())) {
+            example.eq("status", vo.getStatus());
+        }
+        if (ObjectUtils.isNotEmpty(vo.getTitle())) {
+            example.like("title", vo.getTitle());
+        }
+        if (ObjectUtils.isNotEmpty(vo.getContent())) {
+            example.like("content", vo.getContent());
+        }
         example.orderBy("create_time DESC");
 
         Page<SysNotice> page = PageUtils.getPage(vo);
+        List<NoticeDto> list = sysNoticeMapper.selectPage(page, example).stream()
+                .map(entity -> BeanConvertUtils.doConvert(entity, NoticeDto.class))
+                .collect(Collectors.toList());
 
-        List<SysNotice> list = sysNoticeMapper.selectPage(page, example);
-        if (CollectionUtils.isEmpty(list)) {
-            return null;
-        }
-        List<NoticeDto> boList = new ArrayList<>();
-        for (SysNotice sysNotice : list) {
-            boList.add(new NoticeDto(sysNotice));
-        }
-
-        return new PageInfoDto<>(page.getTotal(), boList);
+        return new PageInfoDto<>(page.getTotal(), list);
     }
 
     /**
      * 获取已发布的通知列表
      *
-     * @return
+     * @return List
      */
     @Override
     public List<SysNoticeDto> listRelease() {
         Wrapper<SysNotice> example = new EntityWrapper<>();
-            example.eq("status", NoticeStatusEnum.RELEASE.toString());
-
-
-        List<SysNotice> list = sysNoticeMapper.selectList(example);
-        if (CollectionUtils.isEmpty(list)) {
-            return null;
-        }
-        List<SysNoticeDto> boList = new ArrayList<>();
-        for (SysNotice sysNotice : list) {
-            boList.add(BeanConvertUtils.doConvert(sysNotice, SysNoticeDto.class));
-        }
-        return boList;
+        example.eq("status", NoticeStatusEnum.RELEASE.toString());
+        return sysNoticeMapper.selectList(example).stream()
+                .map(entity -> BeanConvertUtils.doConvert(entity, SysNoticeDto.class))
+                .collect(Collectors.toList());
     }
 
     /**
-     * 保存一个实体，null的属性不会保存，会使用数据库默认值
+     * 保存通知
      *
-     * @param entity
-     * @return
+     * @param entity entity
+     * @return NoticeDto
      */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public NoticeDto insert(NoticeDto entity) {
         Assert.notNull(entity, "Notice不可为空！");
-        entity.setUpdateTime(LocalDateTime.now());
-        entity.setCreateTime(LocalDateTime.now());
-        entity.setId(UuidUtils.getUuid());
         sysNoticeMapper.insert(entity.getSysNotice());
         return entity;
     }
 
-
-
     /**
-     * 根据主键字段进行删除，方法参数必须包含完整的主键属性
+     * 删除通知
      *
-     * @param primaryKey
-     * @return
+     * @param primaryKey primaryKey
+     * @return boolean
      */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public boolean removeByPrimaryKey(String primaryKey) {
         return sysNoticeMapper.deleteById(primaryKey) > 0;
     }
 
 
-
-
-
     /**
-     * 根据主键更新属性不为null的值
+     * 修改通知
      *
-     * @param entity
-     * @return
+     * @param entity entity
+     * @return boolean
      */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public boolean updateSelective(NoticeDto entity) {
         Assert.notNull(entity, "Notice不可为空！");
-        entity.setUpdateTime(LocalDateTime.now());
         return sysNoticeMapper.updateById(entity.getSysNotice()) > 0;
     }
 
     /**
-     * 根据主键字段进行查询，方法参数必须包含完整的主键属性，查询条件使用等号
+     * 根据ID获取通知
      *
-     * @param primaryKey
-     * @return
+     * @param primaryKey primaryKey
+     * @return NoticeDto
      */
     @Override
     public NoticeDto getByPrimaryKey(String primaryKey) {
@@ -154,10 +130,5 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper,SysNotice>
         SysNotice entity = sysNoticeMapper.selectById(primaryKey);
         return null == entity ? null : new NoticeDto(entity);
     }
-
-
-
-
-
 
 }

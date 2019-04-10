@@ -10,6 +10,46 @@
         <div class="x_panel">
             <div class="x_content">
                 <div class="<#--table-responsive-->">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">查询条件</div>
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal" onkeydown="if(event.keyCode===13) return false;">
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" for="search-status">发布状态</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="search-status" id="search-status">
+                                            <option value="">请选择</option>
+                                            <option value="RELEASE">已发布</option>
+                                            <option value="NOT_RELEASE">未发布</option>
+                                        </select>
+                                    </div>
+                                    <label class="control-label col-sm-1" for="search-title">公告标题</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="search-title" id="search-title"
+                                               placeholder="请输入公告标题...">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" for="search-content">公告内容</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="search-content" id="search-content"
+                                               placeholder="请输入公告内容...">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align:left;">
+                                        <button type="button" style="margin-left:50px" id="btn_query"
+                                                class="btn btn-primary">查询
+                                        </button>
+
+                                        <button type="reset" style="margin-left:20px" id="btn_reset"
+                                                class="btn btn-primary">重置
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="btn-group hidden-xs" id="toolbar">
                     <@shiro.hasPermission name="notice:add">
                         <button id="btn_add" type="button" class="btn btn-default" title="添加公告">
@@ -45,8 +85,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">标题: <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="title" id="title"
-                                   required="required"
-                                   placeholder="请输入标题"/>
+                                   required="required" placeholder="请输入标题"/>
                         </div>
                     </div>
                     <div class="item form-group">
@@ -90,30 +129,6 @@
 <!--/添加弹框-->
 <@footer>
 <script>
-    /**
-     * 操作按钮
-     * @param code
-     * @param row
-     * @param index
-     * @returns {string}
-     */
-    function operateFormatter(code, row, index) {
-        var trId = row.id;
-        var status = row.status;
-        var html = '';
-        if (status && status == 'NOT_RELEASE') {
-            html = '<@shiro.hasPermission name="notice:publish"><a class="btn btn-xs btn-primary btn-release" data-id="' + trId + '"><i class="fa fa-rocket fa-fw"></i>发布</a></@shiro.hasPermission>';
-        } else {
-            html = '<@shiro.hasPermission name="notice:reCall"><a class="btn btn-xs btn-primary btn-withdraw" data-id="' + trId + '"><i class="fa fa-rocket fa-rotate-180 fa-fw"></i>撤回</a></@shiro.hasPermission>';
-        }
-        var operateBtn = [
-            html,
-            '<@shiro.hasPermission name="notice:update"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
-            '<@shiro.hasPermission name="notice:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>'
-        ];
-        return operateBtn.join('');
-    }
-
     $(function () {
         var options = {
             modalName: "网站通知",
@@ -126,11 +141,6 @@
             columns: [
                 {
                     checkbox: true
-                }, {
-                    field: 'id',
-                    title: 'ID',
-                    width: '60px',
-                    editable: false
                 }, {
                     field: 'title',
                     title: '标题',
@@ -147,23 +157,44 @@
                     editable: false,
                     width: '60px',
                     formatter: function (code, row, index) {
-                        return (code && code === 'RELEASE') ? "已发布" : "未发布";
+                        console.log('code:' + code + 'row:' + row + 'index:' + index);
+                        return (code && code === 'RELEASE') ? "<strong class='green'>已发布</strong>" : "<strong class='red'>未发布</strong>";
                     }
                 }, {
                     field: 'operate',
                     title: '操作',
                     width: '200px',
-                    formatter: operateFormatter //自定义方法，添加操作按钮
+                    formatter: function (code, row, index) {
+                        console.log('code:' + code + 'row:' + row + 'index:' + index);
+                        var operateBtn = [];
+                        var status = row.status;
+                        if (status && status === 'NOT_RELEASE') {
+                            operateBtn.push('<@permissionShowBtn permission="notice:publish" id="' + row.id +'" />');
+                        } else {
+                            operateBtn.push('<@permissionHideBtn permission="notice:publish" id="' + row.id +'" />');
+                        }
+                        operateBtn.push('<@permissionUpdateBtn permission="resource:update" id="' + row.id +'" />');
+                        operateBtn.push('<@permissionDelBtn permission="resource:delete" id="' + row.id +'" />');
+                        return operateBtn.join('');
+                    }
                 }
-            ]
+            ],
+            queryParams: function (params) {
+                params = $.extend({}, params);
+                params.title = $("#search-title").val();
+                params.status = $("#search-status").val();
+                params.content = $("#search-content").val();
+                return params;
+            }
         };
         //1.初始化Table
         $.tableUtil.init(options);
         //2.初始化Button的点击事件
         $.buttonUtil.init(options);
 
+        var $tableList = $('#table-list');
         // 发布
-        $('#table-list').on('click', '.btn-release', function () {
+        $tableList.on('click', '.btn-show', function () {
             var $this = $(this);
             var id = $this.data("id");
             $.alert.confirm("确定发布该条通知？发布后将对用户可见！", function () {
@@ -181,7 +212,7 @@
             }, 5000);
         });
         // 撤回
-        $('#table-list').on('click', '.btn-withdraw', function () {
+        $tableList.on('click', '.btn-hide', function () {
             var $this = $(this);
             var id = $this.data("id");
             $.alert.confirm("确定撤回该条通知？撤回后将对用户不可见！", function () {

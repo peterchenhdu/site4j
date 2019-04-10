@@ -22,13 +22,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 系统通知-- 首页菜单下方滚动显示
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/24 14:37
- * @since 1.0
+ * 公告
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Api(value="公告管理", tags="网站管理")
 @RestController
@@ -90,42 +86,27 @@ public class NoticeController {
     @ApiOperation(value="修改公告")
     @PostMapping("/update")
     public BaseResponse update(NoticeDto notice) {
-        try {
-            noticeService.updateSelective(notice);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResultUtils.error("系统通知修改失败！");
-        }
+        noticeService.updateSelective(notice);
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }
 
     @ApiOperation(value="发布公告")
     @PostMapping("/publish/{id}")
     public BaseResponse release(@PathVariable String id) {
-        try {
-            NoticeDto notice = new NoticeDto();
-            notice.setId(id);
-            notice.setStatus(NoticeStatusEnum.RELEASE.toString());
-            noticeService.updateSelective(notice);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResultUtils.error("通知发布失败，状态不变！");
-        }
+        NoticeDto notice = new NoticeDto();
+        notice.setId(id);
+        notice.setStatus(NoticeStatusEnum.RELEASE.toString());
+        noticeService.updateSelective(notice);
         return ResultUtils.success("该通知已发布，可去前台页面查看效果！");
     }
 
     @ApiOperation(value="撤回公告")
     @PostMapping("/reCall/{id}")
     public BaseResponse withdraw(@PathVariable String id) {
-        try {
-            NoticeDto notice = new NoticeDto();
-            notice.setId(id);
-            notice.setStatus(NoticeStatusEnum.NOT_RELEASE.toString());
-            noticeService.updateSelective(notice);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResultUtils.error("通知撤回失败，状态不变！");
-        }
+        NoticeDto notice = new NoticeDto();
+        notice.setId(id);
+        notice.setStatus(NoticeStatusEnum.NOT_RELEASE.toString());
+        noticeService.updateSelective(notice);
         return ResultUtils.success("该通知已撤回，可修改后重新发布！");
     }
 

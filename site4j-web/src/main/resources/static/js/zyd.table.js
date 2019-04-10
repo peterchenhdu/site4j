@@ -38,17 +38,16 @@
                 $("#table-list").bootstrapTable('refresh', {url: $.tableUtil._option.url});
             }
         },
+
         buttonUtil: {
             init: function (options) {
 
-
-
-
+                /* 点击查询按钮操作 */
                 $("#btn_query").bind("click", function () {
                     $("#table-list").bootstrapTable('refresh');
                 });
 
-                /* 添加 */
+                /* 点击添加按钮操作 */
                 $("#btn_add").click(function () {
 
                     if (options.getTreeUrl !== null) {
@@ -101,12 +100,13 @@
                         $username.removeAttr("readonly");
                     }
 
+                    //绑定保存按钮事件
                     bindSaveInfoEvent(options.createUrl);
                 });
 
                 var $tableList = $('#table-list');
 
-                /* 修改 */
+                /* 点击修改按钮操作 */
                 $tableList.on('click', '.btn-update', function () {
                     var $this = $(this);
                     var userId = $this.attr("data-id");
@@ -130,42 +130,36 @@
                                 $username.attr("readonly", "readonly");
                             }
 
+                            //绑定修改按钮事件
                             bindSaveInfoEvent(options.updateUrl);
                         },
                         error: $.alert.ajaxError
                     });
                 });
 
-                /* 删除 */
-                function batchDelete(ids) {
-                    $.alert.confirm("确定删除该" + options.modalName + "信息？", function () {
-                        $.ajax({
-                            type: "post",
-                            url: options.batchDeleteUrl,
-                            traditional: true,
-                            data: {'ids': ids},
-                            success: function (json) {
-                                $.alert.ajaxSuccess(json);
-                                $.tableUtil.refresh();
-                            },
-                            error: $.alert.ajaxError
-                        });
-                    }, function () {
-
-                    }, 5000);
-                }
-
-                /* 批量删除用户 */
+                /* 点击批量删除按钮操作 */
                 $("#btn_delete_ids").click(function () {
                     var selectedId = getSelectedId();
                     if (!selectedId || selectedId === '[]' || selectedId.length === 0) {
                         $.alert.error("请至少选择一条记录");
                         return;
                     }
-                    batchDelete(selectedId);
+                    $.alert.confirm("确定删除该" + options.modalName + "信息？", function () {
+                        $.ajax({
+                            type: "post",
+                            url: options.batchDeleteUrl,
+                            traditional: true,
+                            data: {'ids': selectedId},
+                            success: function (json) {
+                                $.alert.ajaxSuccess(json);
+                                $.tableUtil.refresh();
+                            },
+                            error: $.alert.ajaxError
+                        });
+                    }, function () {}, 5000);
                 });
 
-                /* 删除 */
+                /* 点击单个删除按钮操作 */
                 $tableList.on('click', '.btn-remove', function () {
                     var $this = $(this);
                     var userId = $this.attr("data-id");
@@ -181,11 +175,9 @@
                             },
                             error: $.alert.ajaxError
                         });
-                    }, function () {
-
-                    }, 5000);
-
+                    }, function () {}, 5000);
                 });
+
             }
         }
     });
@@ -230,7 +222,7 @@ function clearText($this, type, info, options) {
         var thisName = $this.attr("name");
         var thisValue = info[thisName];
         if (type === 'radio') {
-            $this.iCheck(((thisValue && 1 === $this.val()) || (!thisValue && 0 === $this.val())) ? 'check' : 'uncheck')
+            $this.iCheck(thisValue && thisValue === $this.val() ? 'check' : 'uncheck')
         } else if (type.startsWith('select')) {
             if (thisValue === 'true' || thisValue === true) {
                 thisValue = 1;

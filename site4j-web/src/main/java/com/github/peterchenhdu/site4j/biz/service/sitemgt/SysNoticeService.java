@@ -18,7 +18,6 @@ import java.util.List;
  *
  * @author chenpi
  * @version 1.0
- *
  * @since 2018/4/16 16:26
  * @since 1.0
  */
@@ -27,20 +26,47 @@ public interface SysNoticeService extends IService<SysNotice> {
     /**
      * 分页查询
      *
-     * @param vo
-     * @return
+     * @param vo vo
+     * @return PageInfoDto
      */
     PageInfoDto<NoticeDto> findPageBreakByCondition(NoticeConditionVO vo);
 
     /**
      * 获取已发布的通知列表
      *
-     * @return
+     * @return List
      */
     List<SysNoticeDto> listRelease();
 
+    /**
+     * 根据ID获取通知
+     *
+     * @param primaryKey primaryKey
+     * @return NoticeDto
+     */
     NoticeDto getByPrimaryKey(String primaryKey);
+
+    /**
+     * 修改通知
+     *
+     * @param entity entity
+     * @return boolean
+     */
     boolean updateSelective(NoticeDto entity);
+
+    /**
+     * 删除通知
+     *
+     * @param primaryKey primaryKey
+     * @return boolean
+     */
     boolean removeByPrimaryKey(String primaryKey);
+
+    /**
+     * 保存通知
+     *
+     * @param entity entity
+     * @return NoticeDto
+     */
     NoticeDto insert(NoticeDto entity);
 }
