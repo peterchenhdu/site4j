@@ -37,7 +37,7 @@ var zhyd = window.zhyd || {
         })
     },
     initDaterangepicker: function () {
-        $('.myDatepicker').datetimepicker({
+        $('.site4JDateTimePicker').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
             ignoreReadonly: true,
             allowInputToggle: true

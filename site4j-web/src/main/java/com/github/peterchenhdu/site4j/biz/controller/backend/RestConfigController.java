@@ -4,18 +4,17 @@
 package com.github.peterchenhdu.site4j.biz.controller.backend;
 
 import com.github.peterchenhdu.site4j.biz.dto.ConfigDto;
-import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
-import com.github.peterchenhdu.site4j.enums.ImageType;
-import com.github.peterchenhdu.site4j.util.FileUtil;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -33,8 +32,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class RestConfigController {
     @Autowired
     private SysConfigService sysConfigService;
-    @Autowired
-    private IImageService imageService;
 
     @ApiOperation(value="路由到系统配置页面")
     @BusinessLog("进入系统配置页")
@@ -52,15 +49,8 @@ public class RestConfigController {
 
     @ApiOperation(value="修改系统配置")
     @PostMapping("/edit")
-    public BaseResponse edit(ConfigDto config,
-                             @RequestParam(required = false) MultipartFile wxPraiseCodeFile,
-                             @RequestParam(required = false) MultipartFile zfbPraiseCodeFile) {
-        config.setWxPraiseCode(imageService.uploadToTencentCos(wxPraiseCodeFile, ImageType.QR_CODE_IMAGE, true));
-        config.setZfbPraiseCode(imageService.uploadToTencentCos(zfbPraiseCodeFile, ImageType.QR_CODE_IMAGE, true));
-        if (null != wxPraiseCodeFile || null != zfbPraiseCodeFile) {
-            ConfigDto configDB = sysConfigService.get();
-            FileUtil.removeQiniu(configDB.getWxPraiseCode(), configDB.getZfbPraiseCode());
-        }
+    public BaseResponse edit(ConfigDto config) {
+
         try {
             sysConfigService.update(config);
         } catch (Exception e) {

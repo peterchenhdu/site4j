@@ -1,4 +1,4 @@
-<#include "admin/include/macros.ftl">
+<#include "/admin/include/macros.ftl">
 <@header></@header>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -132,23 +132,7 @@
                                                       placeholder="请输入首页关键字(半角逗号分隔)" rows="5"></textarea>
                                         </div>
                                     </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="homeKeywords">百度推送Token
-                                            <span
-                                                    class="required">*</span></label>
-                                        <div class="col-md-6 col-sm-7 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12"
-                                                   name="baiduPushToken" id="baiduPushToken"
-                                                   required="required" placeholder="请输入百度推送Token"/>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-                                        <div class="col-md-6 col-sm-7 col-xs-12">
-                                            <small>获取地址：<a href="https://ziyuan.baidu.com/linksubmit/index"
-                                                           target="_blank">点击获取百度推送Token</a></small>
-                                        </div>
-                                    </div>
+
                                     <div class="clearfix"></div>
                                     <div class="item form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comment"></label>
@@ -275,31 +259,37 @@
                             <div role="tabpanel" class="tab-pane fade" id="tab_setting" aria-labelledby="setting-tab">
                                 <form class="form-horizontal form-label-left" novalidate>
                                     <input type="hidden" name="id">
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="authorName">百度Api的AK</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12" name="baiduApiAk"
-                                                   id="baiduApiAk"
-                                                   placeholder="请输入百度Api的AK"/>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-                                        <div class="col-md-6 col-sm-7 col-xs-12">
-                                            <small>获取地址：<a href="http://lbsyun.baidu.com/apiconsole/key"
-                                                           target="_blank">点击获取百度Api AK</a></small>
-                                        </div>
-                                    </div>
                                     <div class="clear"></div>
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                               for="comment">开启评论</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <ul class="list-unstyled list-inline">
+                                                <li><label>
+                                                    <input type="radio" class="square" checked name="comment" value="true">
+                                                </label>
+                                                    开启
+                                                </li>
+                                                <li><label>
+                                                    <input type="radio" class="square" name="comment" value="false">
+                                                </label> 关闭
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                     <div class="item form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                                for="maintenance">维护通知</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <ul class="list-unstyled list-inline">
-                                                <li><input type="radio" class="square" checked name="maintenance"
-                                                           value="1"> 显示
+                                                <li><label>
+                                                    <input type="radio" class="square" checked name="maintenance"
+                                                           value="true">
+                                                </label> 显示
                                                 </li>
-                                                <li><input type="radio" class="square" name="maintenance" value="0"> 关闭
+                                                <li><label>
+                                                    <input type="radio" class="square" name="maintenance" value="false">
+                                                </label> 关闭
                                                 </li>
                                             </ul>
                                         </div>
@@ -307,7 +297,7 @@
                                     <div class="item form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="maintenanceData">维护日期</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class='input-group date myDatepicker'>
+                                            <div class='input-group date site4JDateTimePicker'>
                                                 <input type='text' class="form-control" required="required"
                                                        readonly="readonly" id="maintenanceData" name="maintenanceData"
                                                        placeholder="请输入维护日期"/>
@@ -317,18 +307,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                               for="comment">开启评论</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <ul class="list-unstyled list-inline">
-                                                <li><input type="radio" class="square" checked name="comment" value="1">
-                                                    开启
-                                                </li>
-                                                <li><input type="radio" class="square" name="comment" value="0"> 关闭</li>
-                                            </ul>
-                                        </div>
-                                    </div>
+
                                     <div class="item form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comment"></label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -345,22 +324,25 @@
         </div>
     </div>
 </div>
-</div>
 <@footer>
 <script type="text/javascript">
     $(function () {
-        $.ajax({
-            url: '/admin/config/get',
-            type: 'POST',
-            success: function (json) {
-                var data = json.data;
-                $("#myTabContent").find("input, select, textarea").each(function () {
-                    clearText($(this), this.type, data);
-                });
+        function getConfig() {
+            $.ajax({
+                url: '/admin/config/get',
+                type: 'POST',
+                success: function (json) {
+                    var data = json.data;
+                    $("#myTabContent").find("input, select, textarea").each(function () {
+                        clearText($(this), this.type, data);
+                    });
+                }
+            });
+        }
 
-                data.zfbPraiseCode && $("#zfbPraiseCodeFilePreview").html('<img src="' + data.qiuniuBasePath + data.zfbPraiseCode + '" alt="支付宝赞赏码" class="img-responsive img-rounded auto-shake">');
-                data.wxPraiseCode && $("#wxPraiseCodeFilePreview").html('<img src="' + data.qiuniuBasePath + data.wxPraiseCode + '" alt="微信赞赏码" class="img-responsive img-rounded auto-shake">');
-            }
+        getConfig();
+        $("#myTab").find("li a").click(function () {
+            getConfig();
         });
 
         $(".saveBtn").click(function () {

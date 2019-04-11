@@ -222,7 +222,7 @@ function clearText($this, type, info, options) {
         var thisName = $this.attr("name");
         var thisValue = info[thisName];
         if (type === 'radio') {
-            $this.iCheck(thisValue && thisValue === $this.val() ? 'check' : 'uncheck')
+            $this.iCheck(thisValue && thisValue === $this.val() || thisValue.toString() === $this.val() ? 'check' : 'uncheck')
         } else if (type.startsWith('select')) {
             if (thisValue === 'true' || thisValue === true) {
                 thisValue = 1;

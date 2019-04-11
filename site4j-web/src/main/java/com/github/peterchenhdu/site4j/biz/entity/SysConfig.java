@@ -6,6 +6,7 @@ package com.github.peterchenhdu.site4j.biz.entity;
 import com.github.peterchenhdu.site4j.common.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -19,42 +20,38 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class SysConfig extends BaseEntity {
-    private String homeDesc;
-    private String homeKeywords;
     private String domain;
-    private String cmsUrl;
-    private String siteUrl;
     private String siteName;
+    private String siteUrl;
     private String siteDesc;
     private String siteFavicon;
-
     private String staticWebSite;
-    private String authorName;
-    private String authorEmail;
+    private String cmsUrl;
 
-    private String wxCode;
-    private String qq;
-    private String weibo;
-    private String github;
-    private Boolean maintenance;
-    private LocalDateTime maintenanceData;
-    private Boolean comment;
+    private String homeDesc;
+    private String homeKeywords;
+
 
     private String qiuniuBasePath;
     private String qiniuAccessKey;
     private String qiniuSecretKey;
     private String qiniuBucketName;
 
+    private String authorName;
+    private String authorEmail;
+    private String wxCode;
+    private String qq;
+    private String weibo;
+    private String github;
 
-    private String baiduPushToken;
-    /**
-     * 赞赏码
-     */
-    private String wxPraiseCode;
-    private String zfbPraiseCode;
-    /**
-     * 百度api授权AK(获取地址：http://lbsyun.baidu.com/apiconsole/key)
-     * 调用百度的api时必须
-     */
-    private String baiduApiAk;
+
+    private Boolean comment;
+    private Boolean maintenance;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime maintenanceData;
+
+
+
+
+
 }

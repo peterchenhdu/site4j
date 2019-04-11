@@ -63,7 +63,7 @@ public class SysConfigServiceImpl implements SysConfigService {
     public ConfigDto insert(ConfigDto config) {
         config.setCreateTime(LocalDateTime.now());
         config.setUpdateTime(LocalDateTime.now());
-        sysConfigMapper.insert(config.getSysConfig());
+        sysConfigMapper.insert(config);
         return config;
     }
 
@@ -87,7 +87,7 @@ public class SysConfigServiceImpl implements SysConfigService {
     @RedisCache(flush = true)
     public void update(ConfigDto config) {
         config.setUpdateTime(LocalDateTime.now());
-        sysConfigMapper.updateById(config.getSysConfig());
+        sysConfigMapper.updateById(config);
     }
 
     /**
