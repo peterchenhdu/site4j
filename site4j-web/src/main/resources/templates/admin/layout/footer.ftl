@@ -38,7 +38,7 @@
 <script src="/js/jquery-form.js"></script>
 <script src="/js/zyd.tool.js"></script>
 <script src="/js/zhyd.upload-preview.js"></script>
-<script src="/js/zhyd.core.js"></script>
+<script src="/js/site4j.core.js"></script>
 <script src="/js/zyd.table.js"></script>
 
 <script src="/js/highlight.min.js"></script>
