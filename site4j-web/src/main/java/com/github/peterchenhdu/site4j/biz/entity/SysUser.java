@@ -5,6 +5,7 @@
 package com.github.peterchenhdu.site4j.biz.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -38,6 +39,7 @@ public class SysUser implements Serializable {
     @TableField("last_login_ip")
     private String lastLoginIp;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField("last_login_time")
     private LocalDateTime lastLoginTime;
 
@@ -54,9 +56,11 @@ public class SysUser implements Serializable {
      */
     private Integer status;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField("create_time")
     private LocalDateTime createTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField("update_time")
     private LocalDateTime updateTime;
 

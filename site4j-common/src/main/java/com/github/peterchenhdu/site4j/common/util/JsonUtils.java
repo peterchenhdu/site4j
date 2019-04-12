@@ -4,10 +4,12 @@
 
 package com.github.peterchenhdu.site4j.common.util;
 
-import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
@@ -28,6 +30,8 @@ public class JsonUtils {
         //有时JSON字符串中含有我们并不需要的字段，那么当对应的实体类中不含有该字段时，会抛出一个异常，
         //告诉你有些字段（java 原始类型）没有在实体类中找到, 设置为false即不抛出异常，并设置默认值 int->0 double->0.0
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
     public static ObjectMapper getInstance() {

@@ -40,7 +40,7 @@ public class ImageServiceImpl implements IImageService {
         image.setId(UuidUtils.getUuid());
         image.setCreateTime(LocalDateTime.now());
         image.setUpdateTime(image.getCreateTime());
-        image.setUrl(configService.get().getQiuniuBasePath() + filePath);
+        image.setUrl(configService.get().getTencentCosBasePath() + filePath);
         imageMapper.insert(image);
 
         return filePath;

@@ -40,8 +40,8 @@ public class TencentCosApi {
         SysConfigService configService = SpringContextHolder.getBean(SysConfigService.class);
         this.config = configService.get();
 
-        COSCredentials cred = new BasicCOSCredentials(config.getQiniuAccessKey(),
-                config.getQiniuSecretKey());
+        COSCredentials cred = new BasicCOSCredentials(config.getTencentCosAccessKey(),
+                config.getTencentCosSecretKey());
         // 2 设置bucket的区域, COS地域的简称请参照
         // https://cloud.tencent.com/document/product/436/6224
         ClientConfig clientConfig = new ClientConfig(new Region("ap-chengdu"));//"ap-chengdu"
@@ -67,7 +67,7 @@ public class TencentCosApi {
 
 
     public String upload(InputStream fileByte, long size, String key, ImageType type) throws IOException {
-        String bucketName = config.getQiniuBucketName();
+        String bucketName = config.getTencentCosRegionName();
         this.key = type.getPath() + (DateTimeUtils.date2Str(LocalDateTime.now(), DateTimeUtils.YYYY_MM_DD_HH_MM_SS_SSS) + FileUtil.getSuffix(key));
 
         // 简单文件上传, 最大支持 5 GB, 适用于小文件上传, 建议 20 M 以下的文件使用该接口
@@ -87,7 +87,7 @@ public class TencentCosApi {
 
     public boolean delete(String fileName) {
         try {
-            cosClient.deleteObject(config.getQiniuBucketName(), fileName);
+            cosClient.deleteObject(config.getTencentCosRegionName(), fileName);
             return true;
         } catch (Exception e) {
             log.error(e.toString(), e);

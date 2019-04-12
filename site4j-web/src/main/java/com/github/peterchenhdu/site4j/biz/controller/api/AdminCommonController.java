@@ -58,7 +58,7 @@ public class AdminCommonController {
         Map<String, Object> resultMap = new HashMap<>(3);
         resultMap.put("success", 1);
         resultMap.put("message", "上传成功");
-        resultMap.put("filename", config.getQiuniuBasePath() + filePath);
+        resultMap.put("filename", config.getTencentCosBasePath() + filePath);
         return resultMap;
     }
 

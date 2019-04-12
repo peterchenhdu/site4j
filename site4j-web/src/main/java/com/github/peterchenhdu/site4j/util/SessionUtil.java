@@ -4,6 +4,8 @@
 package com.github.peterchenhdu.site4j.util;
 
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
+import com.github.peterchenhdu.site4j.common.util.JsonUtils;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.github.peterchenhdu.site4j.constant.SessionConst;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +31,9 @@ public class SessionUtil {
      */
     public static UserDto getUser() {
         Object obj = WebUtils.getSession(SessionConst.USER_SESSION_KEY);
-        return (UserDto) obj;
+
+        if(ObjectUtils.isEmpty(obj)) return null;
+        return JsonUtils.json2pojo(JsonUtils.obj2json(obj), UserDto.class);
     }
 
     /**

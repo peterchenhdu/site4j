@@ -10,48 +10,29 @@ import java.util.Map;
 
 /**
  * 系统配置
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/16 16:26
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public interface SysConfigService {
 
     /**
-     * 获取系统配置
+     * 获取系统配置详情
      *
-     * @return
+     * @return ConfigDto
      */
     ConfigDto get();
 
     /**
-     * 添加系统配置
-     *
-     * @param config
-     * @return
-     */
-    ConfigDto insert(ConfigDto config);
-
-    /**
-     * 删除系统配置记录
-     *
-     * @param id
-     */
-    void remove(String id);
-
-    /**
      * 修改系统配置记录
      *
-     * @param config
+     * @param config config
      */
     void update(ConfigDto config);
 
     /**
-     * 获取网站详情
+     * 获取网站统计数据
      *
-     * @return
+     * @return Map
      */
     Map<String, Object> getSiteInfo();
 }

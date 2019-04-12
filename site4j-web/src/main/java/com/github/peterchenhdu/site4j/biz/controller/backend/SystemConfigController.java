@@ -19,17 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 系统配置
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/24 14:37
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Api(value="系统配置", tags="网站管理")
 @RestController
 @RequestMapping("/admin/config")
-public class RestConfigController {
+public class SystemConfigController {
     @Autowired
     private SysConfigService sysConfigService;
 
@@ -44,19 +40,13 @@ public class RestConfigController {
     @ApiOperation(value="查看系统配置")
     @PostMapping("/get")
     public BaseResponse get() {
-        return ResultUtils.success(null, sysConfigService.get());
+        return ResultUtils.success(sysConfigService.get());
     }
 
     @ApiOperation(value="修改系统配置")
-    @PostMapping("/edit")
-    public BaseResponse edit(ConfigDto config) {
-
-        try {
-            sysConfigService.update(config);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResultUtils.error("系统配置修改失败");
-        }
+    @PostMapping("/update")
+    public BaseResponse update(ConfigDto config) {
+        sysConfigService.update(config);
         return ResultUtils.success("系统配置修改成功");
     }
 

@@ -6,6 +6,7 @@ package com.github.peterchenhdu.site4j.common.base;
 import com.baomidou.mybatisplus.annotations.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -23,7 +24,9 @@ public abstract class BaseEntity implements Serializable {
     @TableId
     private String id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 
     public String getId() {

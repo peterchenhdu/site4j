@@ -4,7 +4,6 @@
 package com.github.peterchenhdu.site4j.biz.dto;
 
 import com.github.peterchenhdu.site4j.biz.entity.SysConfig;
-import org.springframework.beans.BeanUtils;
 
 /**
  * @author chenpi
@@ -14,15 +13,7 @@ import org.springframework.beans.BeanUtils;
  * @since 1.0
  */
 public class ConfigDto extends SysConfig{
-
-    public ConfigDto( SysConfig config) {
-        super();
-        BeanUtils.copyProperties(config, this);
-    }
-
     public ConfigDto( ) {
-        super();
     }
-
 }
 

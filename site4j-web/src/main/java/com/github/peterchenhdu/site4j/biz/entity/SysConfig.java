@@ -32,10 +32,10 @@ public class SysConfig extends BaseEntity {
     private String homeKeywords;
 
 
-    private String qiuniuBasePath;
-    private String qiniuAccessKey;
-    private String qiniuSecretKey;
-    private String qiniuBucketName;
+    private String tencentCosBasePath;
+    private String tencentCosAccessKey;
+    private String tencentCosSecretKey;
+    private String tencentCosRegionName;
 
     private String authorName;
     private String authorEmail;

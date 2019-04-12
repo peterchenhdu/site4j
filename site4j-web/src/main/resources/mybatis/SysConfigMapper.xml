@@ -22,14 +22,10 @@
         <result property="maintenance" jdbcType="BIT" column="maintenance"/>
         <result property="maintenanceData" jdbcType="TIMESTAMP" column="maintenance_data"/>
         <result property="comment" jdbcType="BIT" column="comment"/>
-        <result property="qiuniuBasePath" jdbcType="VARCHAR" column="qiuniu_base_path"/>
-        <result property="qiniuAccessKey" jdbcType="VARCHAR" column="qiniu_access_key"/>
-        <result property="qiniuSecretKey" jdbcType="VARCHAR" column="qiniu_secret_key"/>
-        <result property="qiniuBucketName" jdbcType="VARCHAR" column="qiniu_bucket_name"/>
-        <result property="baiduPushToken" jdbcType="VARCHAR" column="baidu_push_token"/>
-        <result property="wxPraiseCode" jdbcType="VARCHAR" column="wx_praise_code"/>
-        <result property="zfbPraiseCode" jdbcType="VARCHAR" column="zfb_praise_code"/>
-        <result property="baiduApiAk" jdbcType="VARCHAR" column="baidu_api_ak"/>
+        <result property="tencentCosBasePath" jdbcType="VARCHAR" column="tencent_cos_base_path"/>
+        <result property="tencentCosAccessKey" jdbcType="VARCHAR" column="tencent_cos_access_key"/>
+        <result property="tencentCosSecretKey" jdbcType="VARCHAR" column="tencent_cos_secret_key"/>
+        <result property="tencentCosRegionName" jdbcType="VARCHAR" column="tencent_cos_region_name"/>
         <result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
         <result property="updateTime" jdbcType="TIMESTAMP" column="update_time"/>
     </resultMap>

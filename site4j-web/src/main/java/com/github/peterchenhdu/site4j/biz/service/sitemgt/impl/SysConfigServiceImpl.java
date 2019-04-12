@@ -14,6 +14,7 @@ import com.github.peterchenhdu.site4j.biz.service.common.DictService;
 import com.github.peterchenhdu.site4j.common.util.DateTimeUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +25,8 @@ import java.util.Map;
 
 /**
  * 系统配置
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/16 16:26
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Service
 public class SysConfigServiceImpl implements SysConfigService {
@@ -41,59 +38,35 @@ public class SysConfigServiceImpl implements SysConfigService {
     private DictService dictService;
 
     /**
-     * 获取系统配置
+     * 获取系统配置详情
      *
-     * @return
+     * @return ConfigDto
      */
     @Override
-//    @RedisCache
+    @RedisCache
     public ConfigDto get() {
         List<SysConfig> configList = sysConfigMapper.selectList(new EntityWrapper<>());
-        return ObjectUtils.isEmpty(configList) ? null : new ConfigDto(configList.get(0));
+        return ObjectUtils.isEmpty(configList) ? null : BeanConvertUtils.doConvert(configList.get(0), ConfigDto.class);
     }
 
-    /**
-     * 添加系统配置
-     *
-     * @param config
-     * @return
-     */
-    @Override
-    @RedisCache(flush = true)
-    public ConfigDto insert(ConfigDto config) {
-        config.setCreateTime(LocalDateTime.now());
-        config.setUpdateTime(LocalDateTime.now());
-        sysConfigMapper.insert(config);
-        return config;
-    }
 
-    /**
-     * 删除系统配置记录
-     *
-     * @param id
-     */
-    @Override
-    @RedisCache(flush = true)
-    public void remove(String id) {
-        sysConfigMapper.deleteById(id);
-    }
+
 
     /**
      * 修改系统配置记录
      *
-     * @param config
+     * @param config config
      */
     @Override
     @RedisCache(flush = true)
     public void update(ConfigDto config) {
-        config.setUpdateTime(LocalDateTime.now());
         sysConfigMapper.updateById(config);
     }
 
     /**
-     * 获取网站详情
+     * 获取网站统计数据
      *
-     * @return
+     * @return Map
      */
     @Override
     public Map<String, Object> getSiteInfo() {
@@ -101,7 +74,6 @@ public class SysConfigServiceImpl implements SysConfigService {
         Map<String, Object> map = new HashMap<>();
         List<Dict> dictList = dictService.queryByType(DictTypeEnum.SYS_STAT.getType());
         dictList.forEach(dto-> map.put(dto.getDictKey(), dto.getDictValue()));
-
 
         ConfigDto sysConfig = get();
         map.put("buildSiteDate", DateTimeUtils.getGapDay(sysConfig.getCreateTime(), LocalDateTime.now()));
