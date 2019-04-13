@@ -244,7 +244,7 @@ public class BizCommentServiceImpl implements BizCommentService {
             if (null != comment.getPid()) {
                 // 给被评论的用户发送通知
                 CommentDto commentDB = this.getByPrimaryKey(comment.getPid());
-                mailService.send(commentDB, TemplateKeyEnum.TM_COMMENT_REPLY, false);
+                mailService.send(commentDB, TemplateKeyEnum.COMMENT_REPLY, false);
             } else {
                 mailService.sendToAdmin(comment);
             }

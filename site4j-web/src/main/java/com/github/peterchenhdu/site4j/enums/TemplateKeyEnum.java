@@ -4,21 +4,24 @@
 package com.github.peterchenhdu.site4j.enums;
 
 /**
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/16 16:26
- * @since 1.0
+ * 模板枚举类，key对应模板文件名
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public enum TemplateKeyEnum {
-    TM_SITEMAP_XML,
-    TM_SITEMAP_TXT,
-    TM_SITEMAP_HTML,
-    TM_ROBOTS,
-    TM_LINKS,
-    TM_LINKS_TO_ADMIN,
-    TM_EMAIL,
-    TM_COMMENT_AUDIT,
-    TM_COMMENT_REPLY,
-    TM_NEW_COMMENT
+    SITE_MAP_XML,
+    SITE_MAP_TXT,
+    SITE_MAP_HTML,
+    ROBOTS,
+    LINKS,
+    LINKS_TO_ADMIN,
+    EMAIL,
+    COMMENT_AUDIT,
+    COMMENT_REPLY,
+    NEW_COMMENT;
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

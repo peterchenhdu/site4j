@@ -2767,7 +2767,7 @@ CREATE TABLE "public"."sys_template" (
 -- ----------------------------
 -- Records of sys_template
 -- ----------------------------
-INSERT INTO "public"."sys_template" VALUES ('1', 'TM_SITEMAP_XML', '<?xml version="1.0" encoding="UTF-8"?>
+INSERT INTO "public"."sys_template" VALUES ('1', 'SITE_MAP_XML', '<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 	<url>
 		<loc>${config.siteUrl}</loc>
@@ -2819,7 +2819,7 @@ INSERT INTO "public"."sys_template" VALUES ('1', 'TM_SITEMAP_XML', '<?xml versio
 		</url>
 	</#list>
 </urlset>', '2018-09-02 00:00:00+08', '2018-09-18 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('2', 'TM_SITEMAP_TXT', '${config.siteUrl}
+INSERT INTO "public"."sys_template" VALUES ('2', 'TM_SITE_MAP_TXT', '${config.siteUrl}
 ${config.siteUrl}/guestbook
 ${config.siteUrl}/updateLog
 ${config.siteUrl}/recommended
@@ -2832,7 +2832,7 @@ ${config.siteUrl}/type/${item.id}
 <#list articleTagsList as item>
 ${config.siteUrl}/tag/${item.id}
 </#list>', '2018-09-02 00:00:00+08', '2018-09-18 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('3', 'TM_SITEMAP_HTML', '<!DOCTYPE html>
+INSERT INTO "public"."sys_template" VALUES ('3', 'TM_SITE_MAP_HTML', '<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>

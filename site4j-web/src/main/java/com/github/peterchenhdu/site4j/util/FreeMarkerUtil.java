@@ -4,14 +4,18 @@
 package com.github.peterchenhdu.site4j.util;
 
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
+import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.commons.io.FileUtils;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
-import org.springframework.util.ObjectUtils;
+import org.springframework.util.ResourceUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -48,14 +52,26 @@ public class FreeMarkerUtil {
     /**
      * Template to String Method Note
      *
-     * @param templateContent template content
+     * @param templateKeyEnum templateKeyEnum
      * @param map             template data map
      * @return String
      */
-    public static String template2String(String templateContent, final Map<String, Object> map, boolean isNeedEscape) {
-        if (ObjectUtils.isEmpty(templateContent)) {
-            return "";
+    public static String template2String(TemplateKeyEnum templateKeyEnum, final Map<String, Object> map, boolean isNeedEscape) {
+
+        String key = templateKeyEnum.toString();
+        String templateContent;
+        try {
+        File file =ResourceUtils.getFile("classpath:templates/sysconfig/"+key+".ftl");
+
+
+
+
+            templateContent = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            LogUtils.exception(e);
+            return null;
         }
+
 
         if (map == null) {
             return templateContent;
@@ -104,4 +120,5 @@ public class FreeMarkerUtil {
         }
         return sb.toString();
     }
+
 }

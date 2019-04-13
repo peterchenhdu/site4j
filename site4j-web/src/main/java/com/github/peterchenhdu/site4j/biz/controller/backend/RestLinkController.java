@@ -58,7 +58,7 @@ public class RestLinkController {
     public BaseResponse add(LinkDto link) {
         link.setSource(LinkSourceEnum.ADMIN);
         linkService.insert(link);
-        mailService.send(link, TemplateKeyEnum.TM_LINKS);
+        mailService.send(link, TemplateKeyEnum.LINKS);
         return ResultUtils.success("成功");
     }
 

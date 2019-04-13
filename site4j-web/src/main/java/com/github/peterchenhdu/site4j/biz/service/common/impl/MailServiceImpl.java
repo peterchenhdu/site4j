@@ -6,7 +6,6 @@ package com.github.peterchenhdu.site4j.biz.service.common.impl;
 import com.github.peterchenhdu.site4j.biz.dto.*;
 import com.github.peterchenhdu.site4j.biz.service.common.MailService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
-import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysTemplateService;
 import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 import com.github.peterchenhdu.site4j.util.FreeMarkerUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -44,8 +43,7 @@ public class MailServiceImpl implements MailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
-    @Autowired
-    private SysTemplateService templateService;
+
     @Autowired
     private SysConfigService configService;
 
@@ -76,12 +74,12 @@ public class MailServiceImpl implements MailService {
     public void send(LinkDto link, TemplateKeyEnum keyEnum) {
         if (!StringUtils.isEmpty(link.getEmail())) {
             ConfigDto config = configService.get();
-            TemplateDto template = templateService.getTemplate(keyEnum);
-            String temXml = template.getRefValue();
+//            TemplateDto template = templateService.getTemplate(keyEnum);
+//            String temXml = template.getRefValue();
             Map<String, Object> map = new HashMap<>(2);
             map.put("link", link);
             map.put("config", config);
-            String mailContext = FreeMarkerUtil.template2String(temXml, map, true);
+            String mailContext = FreeMarkerUtil.template2String(keyEnum, map, true);
 
             MailDetailDto mailDetail = new MailDetailDto("友情链接操作通知", link.getEmail(), link.getName(), mailContext);
             send(mailDetail);
@@ -105,12 +103,12 @@ public class MailServiceImpl implements MailService {
             return;
         }
         ConfigDto config = configService.get();
-        TemplateDto template = templateService.getTemplate(keyEnum);
-        String temXml = template.getRefValue();
+//        TemplateDto template = templateService.getTemplate(keyEnum);
+//        String temXml = template.getRefValue();
         Map<String, Object> map = new HashMap<>(2);
         map.put("comment", comment);
         map.put("config", config);
-        String mailContext = FreeMarkerUtil.template2String(temXml, map, true);
+        String mailContext = FreeMarkerUtil.template2String(keyEnum, map, true);
         String subject = "评论回复通知";
         if (audit) {
             subject = "评论审核结果通知";
@@ -131,11 +129,10 @@ public class MailServiceImpl implements MailService {
     @Async
     public void sendToAdmin(LinkDto link) {
         ConfigDto config = configService.get();
-        TemplateDto template = templateService.getTemplate(TemplateKeyEnum.TM_LINKS_TO_ADMIN);
-        String temXml = template.getRefValue();
+
         Map<String, Object> map = new HashMap<>(1);
         map.put("link", link);
-        String mailContext = FreeMarkerUtil.template2String(temXml, map, true);
+        String mailContext = FreeMarkerUtil.template2String(TemplateKeyEnum.LINKS_TO_ADMIN, map, true);
         String adminEmail = config.getAuthorEmail();
         adminEmail = StringUtils.isEmpty(adminEmail) ? "1052067939@qq.com" : (adminEmail.contains("#") ? adminEmail.replace("#", "@") : adminEmail);
         MailDetailDto mailDetail = new MailDetailDto("有新的友链消息", adminEmail, config.getAuthorName(), mailContext);
@@ -151,12 +148,12 @@ public class MailServiceImpl implements MailService {
     @Async
     public void sendToAdmin(CommentDto comment) {
         ConfigDto config = configService.get();
-        TemplateDto template = templateService.getTemplate(TemplateKeyEnum.TM_NEW_COMMENT);
-        String temXml = template.getRefValue();
+//        TemplateDto template = templateService.getTemplate(TemplateKeyEnum.TM_NEW_COMMENT);
+//        String temXml = template.getRefValue();
         Map<String, Object> map = new HashMap<>(2);
         map.put("comment", comment);
         map.put("config", config);
-        String mailContext = FreeMarkerUtil.template2String(temXml, map, true);
+        String mailContext = FreeMarkerUtil.template2String(TemplateKeyEnum.NEW_COMMENT, map, true);
         String subject = "有新的评论消息";
         String adminEmail = config.getAuthorEmail();
         adminEmail = StringUtils.isEmpty(adminEmail) ? "1052067939@qq.com" : (adminEmail.contains("#") ? adminEmail.replace("#", "@") : adminEmail);
