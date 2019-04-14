@@ -29,10 +29,8 @@ import com.baomidou.mybatisplus.toolkit.StringUtils;
 /**
  * <p>
  * 模板引擎抽象类
- * </p>
- *
- * @author hubin
- * @since 2018-01-10
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public abstract class AbstractTemplateEngine {
 

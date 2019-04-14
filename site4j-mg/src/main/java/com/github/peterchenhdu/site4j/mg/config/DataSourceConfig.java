@@ -21,10 +21,8 @@ import java.sql.SQLException;
 /**
  * <p>
  * 数据库配置
- * </p>
- *
- * @author YangHu
- * @since 2016/8/30
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class DataSourceConfig {
 

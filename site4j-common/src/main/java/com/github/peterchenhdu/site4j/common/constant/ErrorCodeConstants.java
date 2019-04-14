@@ -6,9 +6,8 @@ package com.github.peterchenhdu.site4j.common.constant;
 
 /**
  * 模块编码 - 错误码
- * xxxx - xxxx
- * @author PiChen
- * @since 2019/4/3
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class ErrorCodeConstants {
     /**

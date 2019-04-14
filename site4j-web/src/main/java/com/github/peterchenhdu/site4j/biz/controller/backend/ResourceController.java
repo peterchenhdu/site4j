@@ -36,10 +36,8 @@ import java.util.Map;
 /**
  * 系统资源管理
  *
- * @author chenpi
- * @version 1.0
- * @since 2018/4/24 14:37
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Api(value = "资源管理", tags = "权限管理")
 @RestController

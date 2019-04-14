@@ -1,9 +1,3 @@
-/**
- * @author chenpi
- * @version 1.0
- * @since 2018/6/7 10:48
- * @since 1.0
- */
 var $publishForm = $("#publishForm");
 
 // 加载所有分类

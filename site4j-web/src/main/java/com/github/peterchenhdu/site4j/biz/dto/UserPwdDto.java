@@ -10,11 +10,8 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 /**
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/6/6 16:34
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

@@ -5,8 +5,8 @@
 package com.github.peterchenhdu.site4j.biz.dto.view;
 
 /**
- * @author PiChen
- * @since 2019/3/3
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class FrontField {
     private String key;

@@ -7,8 +7,8 @@ package com.github.peterchenhdu.site4j.biz.dto.view;
 import java.util.List;
 
 /**
- * @author PiChen
- * @since 2019/3/3
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class FrontModule {
     private String name;

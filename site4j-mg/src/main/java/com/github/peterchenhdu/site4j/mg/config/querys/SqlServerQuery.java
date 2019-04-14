@@ -3,18 +3,16 @@
  */
 package com.github.peterchenhdu.site4j.mg.config.querys;
 
+import com.github.peterchenhdu.site4j.mg.config.rules.DbType;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.github.peterchenhdu.site4j.mg.config.rules.DbType;
 
 /**
  * <p>
  * SqlServer 表数据查询
- * </p>
- *
- * @author hubin
- * @since 2018-01-16
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class SqlServerQuery extends AbstractDbQuery {
 

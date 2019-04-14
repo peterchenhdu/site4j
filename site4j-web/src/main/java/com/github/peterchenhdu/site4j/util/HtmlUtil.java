@@ -12,11 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author yadong.zhang email:yadong.zhang0415(a)gmail.com
- * @version 1.0
- *
- * @since 2018/1/19 10:32
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class HtmlUtil {
     /**

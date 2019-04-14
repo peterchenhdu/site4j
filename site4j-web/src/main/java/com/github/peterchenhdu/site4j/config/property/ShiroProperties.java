@@ -10,11 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 
 /**
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/8/27 15:26
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Configuration
 @ConfigurationProperties(prefix = "app.shiro")

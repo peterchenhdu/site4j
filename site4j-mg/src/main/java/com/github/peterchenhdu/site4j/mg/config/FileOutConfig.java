@@ -8,10 +8,8 @@ import com.github.peterchenhdu.site4j.mg.config.po.TableInfo;
 /**
  * <p>
  * 输出文件配置
- * </p>
- *
- * @author hubin
- * @since 2017-01-18
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public abstract class FileOutConfig {
 

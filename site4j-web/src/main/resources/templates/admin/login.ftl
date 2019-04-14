@@ -53,7 +53,7 @@
                                     <div>
                                         <h1><i class="fa fa-coffee"></i> ${config.siteName}后台管理系统</h1>
                                         <p>Copyright © 2018 <a href="https://www.zhyd.me" target="_blank"
-                                                               style="margin: 0">yadong.zhang</a>. All Rights Reserved.
+                                                               style="margin: 0">site4j</a>. All Rights Reserved.
                                         </p>
                                     </div>
                                 </div>

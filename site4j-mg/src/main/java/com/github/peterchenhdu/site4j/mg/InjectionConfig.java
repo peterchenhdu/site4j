@@ -12,10 +12,8 @@ import java.util.Map;
 /**
  * <p>
  * 抽象的对外接口
- * </p>
- *
- * @author hubin
- * @since 2016-12-07
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public abstract class InjectionConfig {
 

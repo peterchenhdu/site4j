@@ -11,9 +11,8 @@ import org.junit.Test;
 
 /**
  * Md5UtilsTest
- *
- * @author PiChen
- * @since 2018/10/20 23:14
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Slf4j
 public class Md5UtilsTest {

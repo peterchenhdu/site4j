@@ -8,10 +8,8 @@ import com.baomidou.mybatisplus.enums.IdType;
 /**
  * <p>
  * 全局配置
- * </p>
- *
- * @author hubin
- * @since 2016-12-02
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class GlobalConfig {
 

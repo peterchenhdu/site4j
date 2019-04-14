@@ -6,10 +6,8 @@ package com.github.peterchenhdu.site4j.mg.config.rules;
 /**
  * <p>
  * 表字段类型
- * </p>
- *
- * @author hubin
- * @since 2017-01-11
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public enum DbColumnType {
     // 基本类型

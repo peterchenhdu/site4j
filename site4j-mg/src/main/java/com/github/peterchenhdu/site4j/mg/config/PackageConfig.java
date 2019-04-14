@@ -8,9 +8,8 @@ import com.baomidou.mybatisplus.toolkit.StringUtils;
 /**
  * <p>
  * 跟包相关的配置项
- *
- * @author YangHu, tangguo, hubin
- * @since 2016-08-30
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class PackageConfig {
 

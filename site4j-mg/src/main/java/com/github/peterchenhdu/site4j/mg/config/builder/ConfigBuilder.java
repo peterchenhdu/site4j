@@ -33,10 +33,8 @@ import com.baomidou.mybatisplus.toolkit.StringUtils;
 /**
  * <p>
  * 配置汇总 传递给文件生成工具
- * </p>
- *
- * @author YangHu, tangguo, hubin
- * @since 2016-08-30
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class ConfigBuilder {
 

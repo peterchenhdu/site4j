@@ -12,7 +12,7 @@
  Target Server Version : 90609
  File Encoding         : 65001
 
- Date: 25/03/2019 22:25:26
+ Date: 14/04/2019 20:36:37
 */
 
 
@@ -20,7 +20,7 @@
 -- Sequence structure for biz_article_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."biz_article_id_seq";
-CREATE SEQUENCE "public"."biz_article_id_seq" 
+CREATE SEQUENCE "public"."biz_article_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -31,7 +31,7 @@ CACHE 1;
 -- Sequence structure for biz_article_look_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."biz_article_look_id_seq";
-CREATE SEQUENCE "public"."biz_article_look_id_seq" 
+CREATE SEQUENCE "public"."biz_article_look_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -42,7 +42,7 @@ CACHE 1;
 -- Sequence structure for biz_article_love_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."biz_article_love_id_seq";
-CREATE SEQUENCE "public"."biz_article_love_id_seq" 
+CREATE SEQUENCE "public"."biz_article_love_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -53,7 +53,7 @@ CACHE 1;
 -- Sequence structure for biz_article_tags_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."biz_article_tags_id_seq";
-CREATE SEQUENCE "public"."biz_article_tags_id_seq" 
+CREATE SEQUENCE "public"."biz_article_tags_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -64,7 +64,7 @@ CACHE 1;
 -- Sequence structure for biz_comment_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."biz_comment_id_seq";
-CREATE SEQUENCE "public"."biz_comment_id_seq" 
+CREATE SEQUENCE "public"."biz_comment_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -75,7 +75,7 @@ CACHE 1;
 -- Sequence structure for biz_tags_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."biz_tags_id_seq";
-CREATE SEQUENCE "public"."biz_tags_id_seq" 
+CREATE SEQUENCE "public"."biz_tags_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -86,7 +86,7 @@ CACHE 1;
 -- Sequence structure for biz_type_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."biz_type_id_seq";
-CREATE SEQUENCE "public"."biz_type_id_seq" 
+CREATE SEQUENCE "public"."biz_type_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -97,7 +97,7 @@ CACHE 1;
 -- Sequence structure for search_count_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."search_count_id_seq";
-CREATE SEQUENCE "public"."search_count_id_seq" 
+CREATE SEQUENCE "public"."search_count_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -108,7 +108,7 @@ CACHE 1;
 -- Sequence structure for search_history_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."search_history_id_seq";
-CREATE SEQUENCE "public"."search_history_id_seq" 
+CREATE SEQUENCE "public"."search_history_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -119,7 +119,7 @@ CACHE 1;
 -- Sequence structure for sys_config_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."sys_config_id_seq";
-CREATE SEQUENCE "public"."sys_config_id_seq" 
+CREATE SEQUENCE "public"."sys_config_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -130,7 +130,7 @@ CACHE 1;
 -- Sequence structure for sys_link_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."sys_link_id_seq";
-CREATE SEQUENCE "public"."sys_link_id_seq" 
+CREATE SEQUENCE "public"."sys_link_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -141,7 +141,7 @@ CACHE 1;
 -- Sequence structure for sys_notice_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."sys_notice_id_seq";
-CREATE SEQUENCE "public"."sys_notice_id_seq" 
+CREATE SEQUENCE "public"."sys_notice_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -152,7 +152,7 @@ CACHE 1;
 -- Sequence structure for sys_resources_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."sys_resources_id_seq";
-CREATE SEQUENCE "public"."sys_resources_id_seq" 
+CREATE SEQUENCE "public"."sys_resources_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -163,7 +163,7 @@ CACHE 1;
 -- Sequence structure for sys_role_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."sys_role_id_seq";
-CREATE SEQUENCE "public"."sys_role_id_seq" 
+CREATE SEQUENCE "public"."sys_role_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -174,18 +174,7 @@ CACHE 1;
 -- Sequence structure for sys_role_resources_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."sys_role_resources_id_seq";
-CREATE SEQUENCE "public"."sys_role_resources_id_seq" 
-INCREMENT 1
-MINVALUE  1
-MAXVALUE 9223372036854775807
-START 1
-CACHE 1;
-
--- ----------------------------
--- Sequence structure for sys_template_id_seq
--- ----------------------------
-DROP SEQUENCE IF EXISTS "public"."sys_template_id_seq";
-CREATE SEQUENCE "public"."sys_template_id_seq" 
+CREATE SEQUENCE "public"."sys_role_resources_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -196,7 +185,7 @@ CACHE 1;
 -- Sequence structure for sys_user_id_seq
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."sys_user_id_seq";
-CREATE SEQUENCE "public"."sys_user_id_seq" 
+CREATE SEQUENCE "public"."sys_user_id_seq"
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 9223372036854775807
@@ -2273,10 +2262,10 @@ COMMENT ON COLUMN "public"."dict"."update_time" IS '更新时间';
 -- ----------------------------
 -- Records of dict
 -- ----------------------------
-INSERT INTO "public"."dict" VALUES ('ee594c18be9f441b9669db46861e4d34', 'sys_stat', 'article_count', '2', '2019-02-05 00:00:00+08', '2019-03-24 23:00:00+08');
-INSERT INTO "public"."dict" VALUES ('4f0e2047ef014aea8b34e8d1a5d240ae', 'sys_stat', 'tag_count', '4', '2019-02-05 00:00:00+08', '2019-03-24 23:00:00+08');
-INSERT INTO "public"."dict" VALUES ('4ce39a5ac4174136b0c9ffc36d71d090', 'sys_stat', 'comment_count', '0', '2019-02-05 00:00:00+08', '2019-03-24 23:00:00+08');
-INSERT INTO "public"."dict" VALUES ('479ce84dc0114816abaa790f25fb2794', 'sys_stat', 'type_count', '1', '2019-02-05 00:00:00+08', '2019-03-24 23:00:00+08');
+INSERT INTO "public"."dict" VALUES ('ee594c18be9f441b9669db46861e4d34', 'sys_stat', 'article_count', '2', '2019-02-05 00:00:00+08', '2019-04-14 20:28:02+08');
+INSERT INTO "public"."dict" VALUES ('4f0e2047ef014aea8b34e8d1a5d240ae', 'sys_stat', 'tag_count', '4', '2019-02-05 00:00:00+08', '2019-04-14 20:28:02+08');
+INSERT INTO "public"."dict" VALUES ('4ce39a5ac4174136b0c9ffc36d71d090', 'sys_stat', 'comment_count', '0', '2019-02-05 00:00:00+08', '2019-04-14 20:28:02+08');
+INSERT INTO "public"."dict" VALUES ('479ce84dc0114816abaa790f25fb2794', 'sys_stat', 'type_count', '1', '2019-02-05 00:00:00+08', '2019-04-14 20:28:02+08');
 
 -- ----------------------------
 -- Table structure for image
@@ -2294,6 +2283,8 @@ CREATE TABLE "public"."image" (
 -- Records of image
 -- ----------------------------
 INSERT INTO "public"."image" VALUES ('02c56760fb5f486aa83f0c5887d1c158', 'https://peterchenhdu-1257309286.cos.ap-chengdu.myqcloud.com/site4j/article/20190211123259002.jpg', '2019-02-11 12:32:59.616+08', '2019-02-11 12:32:59.616+08');
+INSERT INTO "public"."image" VALUES ('8900218817a24f70b208ba6521494647', 'https://peterchenhdu-1257309286.cos.ap-chengdu.myqcloud.com/null', '2019-04-11 22:36:44.083+08', '2019-04-11 22:36:44.083+08');
+INSERT INTO "public"."image" VALUES ('5e070d32eebd47b1861951c9f544eab1', 'https://peterchenhdu-1257309286.cos.ap-chengdu.myqcloud.com/null', '2019-04-11 22:36:44.104+08', '2019-04-11 22:36:44.104+08');
 
 -- ----------------------------
 -- Table structure for resource
@@ -2302,10 +2293,10 @@ DROP TABLE IF EXISTS "public"."resource";
 CREATE TABLE "public"."resource" (
   "id" varchar(32) COLLATE "pg_catalog"."default" NOT NULL DEFAULT nextval('sys_resources_id_seq'::regclass),
   "name" varchar(100) COLLATE "pg_catalog"."default",
-  "type" varchar(50) COLLATE "pg_catalog"."default",
-  "url" varchar(200) COLLATE "pg_catalog"."default",
+  "type" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
+  "url" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
   "permission" varchar(100) COLLATE "pg_catalog"."default",
-  "parent_id" varchar(64) COLLATE "pg_catalog"."default" DEFAULT 0,
+  "parent_id" varchar(64) COLLATE "pg_catalog"."default",
   "sort" int4,
   "icon" varchar(100) COLLATE "pg_catalog"."default",
   "create_time" timestamptz(0),
@@ -2316,192 +2307,88 @@ CREATE TABLE "public"."resource" (
 -- ----------------------------
 -- Records of resource
 -- ----------------------------
-INSERT INTO "public"."resource" VALUES ('6f44d7eef72742f6b1561d4ffdb249c5', '上传文件到MD文档', 'button', '/admin/api/upload2TencentCosForMd', 'api:upload2TencentCosForMd', '58f10b91b41548a3a292106fe55641f4', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('1aeaebdbf3f54c179c9100002ccdab48', '上传文件', 'button', '/admin/api/upload2TencentCos', 'api:upload2TencentCos', '58f10b91b41548a3a292106fe55641f4', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('7e7b577bc6fd4bfe8f91563be2eab2ea', '查询素材库', 'button', '/admin/api/material', 'api:material', '58f10b91b41548a3a292106fe55641f4', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('7715f8e752174efe9024f18046ab4ffb', '查询图片', 'button', '/admin/api/queryImage', 'api:queryImage', '58f10b91b41548a3a292106fe55641f4', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('940969cdb9cc4aaf9ebaff3f64c78332', '文章历史记录查询', 'button', '/admin/bizArticleLook/list', 'bizArticleLook:list', '481c3955ffee4583ae558e1f1553460f', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('4f39ed7d7a254c358e7632cdd08f1373', '查看所有模块', 'button', '/admin/common/allModules', 'common:allModules', '18565b789b0b4612b0116d12b6f6ce1c', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('602b83975b9d4ea990370ae50ef89d2d', '新增公告', 'button', '/admin/notice/add', 'notice:add', '366ff3c64df649acb9ef0c784e4e020d', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('046e86e84d60493f9393c493bec6ba59', '查看单个公告', 'button', '/admin/notice/get/{id}', 'notice:get', '366ff3c64df649acb9ef0c784e4e020d', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('de80d7501fa7486bae1c49a8c21740ea', '修改公告', 'button', '/admin/notice/update', 'notice:update', '366ff3c64df649acb9ef0c784e4e020d', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('44c7856f07904d3f86eb6b8fbc17558c', '单个删除公告', 'button', '/admin/notice/delete', 'notice:delete', '366ff3c64df649acb9ef0c784e4e020d', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('b4c0ff0db9424f8f8e60befe97b3e31b', '查询公告', 'button', '/admin/notice/query', 'notice:query', '366ff3c64df649acb9ef0c784e4e020d', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('349e23ed1bf1480b8f5065e331b920b6', '发布公告', 'button', '/admin/notice/publish/{id}', 'notice:publish', '366ff3c64df649acb9ef0c784e4e020d', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('5b9c1792dc374f878730e718ec4a4da6', '撤回公告', 'button', '/admin/notice/reCall/{id}', 'notice:reCall', '366ff3c64df649acb9ef0c784e4e020d', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('df6462c7942047f0a0d9f51de48fbf76', '批量删除公告', 'button', '/admin/notice/batchDelete', 'notice:batchDelete', '366ff3c64df649acb9ef0c784e4e020d', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('b7e49754a78044959fd149acfd360cf3', '新增资源', 'button', '/admin/resource/add', 'resource:add', 'b91cee970a0045b3a8742adf6dc55971', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('a645057a5fe94be1a645c9535884109c', '查看单个资源', 'button', '/admin/resource/get/{id}', 'resource:get', 'b91cee970a0045b3a8742adf6dc55971', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('92d2ce8a66324c52a07fe5d35e08eb18', '修改资源', 'button', '/admin/resource/update', 'resource:update', 'b91cee970a0045b3a8742adf6dc55971', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('24d77a8e52664d79a456fab8d11ca42d', '单个删除资源', 'button', '/admin/resource/delete', 'resource:delete', 'b91cee970a0045b3a8742adf6dc55971', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('478baebc65734d9b815fa139d0f3ac51', '查询资源', 'button', '/admin/resource/query', 'resource:query', 'b91cee970a0045b3a8742adf6dc55971', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('bf379f982f6e4625906cd6a4b392f617', '修改资源', 'button', '/admin/resource/queryResourceTree', 'resource:queryResourceTree', 'b91cee970a0045b3a8742adf6dc55971', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('32c12a42886a44fd8d8bb39e5e13dd0c', '批量删除资源', 'button', '/admin/resource/batchDelete', 'resource:batchDelete', 'b91cee970a0045b3a8742adf6dc55971', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('414968e6a1eb4156b6d59798c113c588', '删除文章', 'button', '/admin/article/remove', 'article:remove', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('1e332d53010649f48760024ffbe0ee10', '查看文章', 'button', '/admin/article/get/{id}', 'article:get', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('54fb2828ab314e39bdf31d1b4eff606d', '修改文章', 'button', '/admin/article/update/{type}', 'article:update', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('33cc9716a9ba45899d0b0fddb2a59cc5', '查询文章', 'button', '/admin/article/list', 'article:list', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('e8a05d700a2b484287fbeeab1a2f7c4e', '路由到发布文章页面', 'button', '/admin/article/publish', 'article:publish', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('2657d7eedd5c416e98d94f2ec8bb6818', '路由到修改文章页面', 'button', '/admin/article/update/{id}', 'article:update', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('717509808c6a4896899219bd119a63b3', '新增文章', 'button', '/admin/article/save', 'article:save', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('f7ff0856eb6842798679e811aea2624e', '路由到发布MD文档文章页面', 'button', '/admin/article/publishMd', 'article:publishMd', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('437fb85ea4b641c08d0e90940ee45c7d', '推送到百度', 'button', '/admin/article/pushToBaidu/{type}', 'article:pushToBaidu', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('b8ae01393e314bc19e1155c177d6c3a9', '发布文章', 'button', '/admin/article/batchPublish', 'article:batchPublish', '1bda8d48b3a3479cbd0dca46cdbec821', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('b0c73500514e47a78afe0c363c6d75fe', '删除批量', 'button', '/admin/comment/remove', 'comment:remove', 'd3e83087f01546be83d84961fd231c52', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('fedf0ee4dac042bb82e67cd830a14d31', '查看评论', 'button', '/admin/comment/get/{id}', 'comment:get', 'd3e83087f01546be83d84961fd231c52', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('790a3b89ec864a5dbbc7f37f3f97170c', '查询评论', 'button', '/admin/comment/list', 'comment:list', 'd3e83087f01546be83d84961fd231c52', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('93e2d4220d4546369f7051038b0eb08b', '修改评论', 'button', '/admin/comment/audit', 'comment:audit', 'd3e83087f01546be83d84961fd231c52', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('fc6983b1560c4f15bbbd64f2ad824dd8', '回复评论', 'button', '/admin/comment/reply', 'comment:reply', 'd3e83087f01546be83d84961fd231c52', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('211672546ee34d909a7e70695615295f', '编辑评论', 'button', '/admin/comment/edit', 'comment:edit', 'd3e83087f01546be83d84961fd231c52', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('093737c1cdd2419a864b39283418becf', '查看未处理的评论', 'button', '/admin/comment/listVerifying', 'comment:listVerifying', 'd3e83087f01546be83d84961fd231c52', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('1bda8d48b3a3479cbd0dca46cdbec821', '文章管理', 'menu', '/admin/article', 'article', '3520849d3c464f91998c97184cce325c', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:55:03+08');
-INSERT INTO "public"."resource" VALUES ('366ff3c64df649acb9ef0c784e4e020d', '公告管理', 'menu', '/admin/notice', 'notice', '0becba68f81743aa9ed118d8aaee37f7', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:55:41+08');
-INSERT INTO "public"."resource" VALUES ('58f10b91b41548a3a292106fe55641f4', 'API接口', 'menu', '/admin/api', 'api', 'f0e8606857004ce6b3abef0368bb927e', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:56:21+08');
-INSERT INTO "public"."resource" VALUES ('d3e83087f01546be83d84961fd231c52', '评论管理', 'menu', '/admin/comment', 'comment', '3520849d3c464f91998c97184cce325c', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:56:42+08');
-INSERT INTO "public"."resource" VALUES ('bf2972477625468aae12190c7f045e52', '系统配置', 'menu', '/admin/config', 'config', '0becba68f81743aa9ed118d8aaee37f7', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:58:02+08');
-INSERT INTO "public"."resource" VALUES ('8a473a515f284314a4fd6d00a163a384', '查看系统配置', 'button', '/admin/config/get', 'config:get', 'bf2972477625468aae12190c7f045e52', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('d846202a3da045b589f422c9aa49ca71', '修改系统配置', 'button', '/admin/config/edit', 'config:edit', 'bf2972477625468aae12190c7f045e52', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('9df173e2c1ed4d1295a13ab5eb0e8b05', '新增友情链接', 'button', '/admin/link/add', 'link:add', '2b7746d70d454ec0a4a6965a08c8c389', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('25f0baf93ecd4f52936abda0c4a9c40a', '删除友情链接', 'button', '/admin/link/remove', 'link:remove', '2b7746d70d454ec0a4a6965a08c8c389', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('f46262a11a2d46d3a5dae109d0a6a0db', '查看单个友情链接', 'button', '/admin/link/get/{id}', 'link:get', '2b7746d70d454ec0a4a6965a08c8c389', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('375d540dfb964a09986df0862df7c615', '查看友情链接', 'button', '/admin/link/list', 'link:list', '2b7746d70d454ec0a4a6965a08c8c389', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('91c1f1e6c445465cbb2c8713028a0d6c', '编辑友情链接', 'button', '/admin/link/edit', 'link:edit', '2b7746d70d454ec0a4a6965a08c8c389', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('a36d266c902c4f458bc249be1278fb2d', '新增模板', 'button', '/admin/template/add', 'template:add', '1a91d6e8fd8f482e9187ecf532e8a887', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('e3a7a81526e1468ab3e180ef368ab24b', '删除模板', 'button', '/admin/template/remove', 'template:remove', '1a91d6e8fd8f482e9187ecf532e8a887', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('83a1ea9528a54752ae5c1b08a4c15923', '查看单个模板', 'button', '/admin/template/get/{id}', 'template:get', '1a91d6e8fd8f482e9187ecf532e8a887', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('606f69f2eaa1457b9b2379d661e9d357', '查询模板', 'button', '/admin/template/list', 'template:list', '1a91d6e8fd8f482e9187ecf532e8a887', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('0cc6a3bda30740c18ac4d8bc123af430', '编辑模板', 'button', '/admin/template/edit', 'template:edit', '1a91d6e8fd8f482e9187ecf532e8a887', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('2ae32ec8201f4d17b209b18af9f711fa', '新增类别', 'button', '/admin/type/add', 'type:add', '29bdc7aaaf4e4e0a81051661236dcf41', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('baa83fc381cd4f0ea5ce46d5692d2ec4', '删除类别', 'button', '/admin/type/remove', 'type:remove', '29bdc7aaaf4e4e0a81051661236dcf41', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('0e55bea6104141d6a9dfdb97bdc83bd3', '查看单个类别', 'button', '/admin/type/get/{id}', 'type:get', '29bdc7aaaf4e4e0a81051661236dcf41', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('cffc9b715cc74a68a6450606b6fb1c3c', '查询类别', 'button', '/admin/type/list', 'type:list', '29bdc7aaaf4e4e0a81051661236dcf41', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('a0640caae76d46389e84b73ac34acb7d', '查看所有类别', 'button', '/admin/type/listAll', 'type:listAll', '29bdc7aaaf4e4e0a81051661236dcf41', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('4053a613bf2e4ffda36c9411d2b9d8a2', '编辑类别', 'button', '/admin/type/edit', 'type:edit', '29bdc7aaaf4e4e0a81051661236dcf41', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('d3c3add42163467da9035d881f7d2807', '查看父类别', 'button', '/admin/type/listParent', 'type:listParent', '29bdc7aaaf4e4e0a81051661236dcf41', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('c337b324e68c49e8a7579c4c9bd84b8f', '新增角色', 'button', '/admin/role/add', 'role:add', '9605129342eb41419c9292b1b5165560', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('426ba1b010f848b5b5245d0b3d49ace4', '批量删除角色', 'button', '/admin/role/batchDelete', 'role:batchDelete', '9605129342eb41419c9292b1b5165560', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('d5691fb0ddcb480d96d152aa45a0d561', '查看单个角色', 'button', '/admin/role/get/{id}', 'role:get', '9605129342eb41419c9292b1b5165560', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('482c780958d242eab6ceb74436532cc7', '删除单个角色', 'button', '/admin/role/delete', 'role:delete', '9605129342eb41419c9292b1b5165560', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('d185b96c749040b8ad79de61ffdcf492', '查看所有角色', 'button', '/admin/role/query', 'role:query', '9605129342eb41419c9292b1b5165560', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('a5c97ca92e594934a157c400bf4ea80b', '分配角色资源', 'button', '/admin/role/allotResource', 'role:allotResource', '9605129342eb41419c9292b1b5165560', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('dbe0ca6408494b3cacf303f8864c00ec', '更新角色', 'button', '/admin/role/update', 'role:update', '9605129342eb41419c9292b1b5165560', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('8cd5bb12b3c14562b1b453f88e9d3a8d', '新增标签', 'button', '/admin/tag/add', 'tag:add', 'c591677afc244baeaada8d7376913734', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('b645f90eccdc46c99fa62e06079e634a', '查看单个标签', 'button', '/admin/tag/get/{id}', 'tag:get', 'c591677afc244baeaada8d7376913734', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('4277cdedcd3841bfbb708a20c6d91577', '删除单个标签', 'button', '/admin/tag/delete', 'tag:delete', 'c591677afc244baeaada8d7376913734', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('8e85b61a8ec8478babcedb2cc1a53cd0', '查询标签列表', 'button', '/admin/tag/query', 'tag:query', 'c591677afc244baeaada8d7376913734', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('db5c8ff9174e4459afc1a37115b0d1c9', '更新标签', 'button', '/admin/tag/update', 'tag:update', 'c591677afc244baeaada8d7376913734', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('1aafb56bae944b05a0945d087a656bf6', '批量删除标签', 'button', '/admin/tag/batchDelete', 'tag:batchDelete', 'c591677afc244baeaada8d7376913734', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('bfc938adc7cc45468892a088f314773e', '新增用户', 'button', '/admin/user/add', 'user:add', 'f546aaf6c075454b806658b4d88f39d3', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('c778323bfdcb43d0b437a2fb3f5a1646', '查看单个用户信息', 'button', '/admin/user/get/{id}', 'user:get', 'f546aaf6c075454b806658b4d88f39d3', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('c6a048411e6840f4b6c98f67484dd415', '修改用户', 'button', '/admin/user/update', 'user:update', 'f546aaf6c075454b806658b4d88f39d3', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('774c25a030894cc98c1a75539e703367', '单个删除用户', 'button', '/admin/user/delete', 'user:delete', 'f546aaf6c075454b806658b4d88f39d3', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('7ce48c588c7947f8bc502ae0863ed38c', '查询用户列表.', 'button', '/admin/user/query', 'user:query', 'f546aaf6c075454b806658b4d88f39d3', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('72eb6c80d80b467394710a5515bb95f3', '批量删除用户', 'button', '/admin/user/batchDelete', 'user:batchDelete', 'f546aaf6c075454b806658b4d88f39d3', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:47:06+08');
-INSERT INTO "public"."resource" VALUES ('b91cee970a0045b3a8742adf6dc55971', '资源管理', 'menu', '/admin/resource', 'resource', '039a10b90d934c0789bc202271ae3433', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:53:35+08');
-INSERT INTO "public"."resource" VALUES ('2b7746d70d454ec0a4a6965a08c8c389', '友情链接管理', 'menu', '/admin/link', 'link', '0becba68f81743aa9ed118d8aaee37f7', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:56:54+08');
-INSERT INTO "public"."resource" VALUES ('29bdc7aaaf4e4e0a81051661236dcf41', '类型管理', 'menu', '/admin/type', 'type', '3520849d3c464f91998c97184cce325c', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:57:08+08');
-INSERT INTO "public"."resource" VALUES ('9605129342eb41419c9292b1b5165560', '角色管理', 'menu', '/admin/role', 'role', '039a10b90d934c0789bc202271ae3433', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:57:32+08');
-INSERT INTO "public"."resource" VALUES ('c591677afc244baeaada8d7376913734', '标签管理', 'menu', '/admin/tag', 'tag', '3520849d3c464f91998c97184cce325c', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:57:45+08');
-INSERT INTO "public"."resource" VALUES ('3520849d3c464f91998c97184cce325c', '文章管理', 'menu', NULL, NULL, '0', 1, NULL, '2019-03-24 22:51:02+08', '2019-03-24 22:58:46+08');
-INSERT INTO "public"."resource" VALUES ('0becba68f81743aa9ed118d8aaee37f7', '网站管理', 'menu', NULL, NULL, '0', 2, NULL, '2019-03-24 22:52:35+08', '2019-03-24 22:58:57+08');
-INSERT INTO "public"."resource" VALUES ('039a10b90d934c0789bc202271ae3433', '权限管理', 'menu', NULL, NULL, '0', 3, NULL, '2019-03-24 22:52:27+08', '2019-03-24 22:59:05+08');
-INSERT INTO "public"."resource" VALUES ('2893d4adf41c4ca4b6bd7e991fad6652', '网站数据', 'menu', NULL, NULL, '0', 4, NULL, '2019-03-24 22:52:45+08', '2019-03-24 22:59:09+08');
-INSERT INTO "public"."resource" VALUES ('481c3955ffee4583ae558e1f1553460f', '文章查看记录', 'menu', '/admin/bizArticleLook', 'bizArticleLook', '2893d4adf41c4ca4b6bd7e991fad6652', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:55:33+08');
-INSERT INTO "public"."resource" VALUES ('1a91d6e8fd8f482e9187ecf532e8a887', '模板管理', 'menu', '/admin/template', 'template', '0becba68f81743aa9ed118d8aaee37f7', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:57:17+08');
-INSERT INTO "public"."resource" VALUES ('18565b789b0b4612b0116d12b6f6ce1c', '公共模块', 'menu', '/admin/common', 'common', 'f0e8606857004ce6b3abef0368bb927e', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:58:15+08');
-INSERT INTO "public"."resource" VALUES ('f0e8606857004ce6b3abef0368bb927e', '待分类', 'menu', NULL, NULL, '0', 5, NULL, '2019-03-24 22:55:23+08', '2019-03-24 22:59:13+08');
-INSERT INTO "public"."resource" VALUES ('f546aaf6c075454b806658b4d88f39d3', '用户管理', 'menu', '/admin/user', 'user', '039a10b90d934c0789bc202271ae3433', NULL, NULL, '2019-03-24 22:47:06+08', '2019-03-24 22:56:10+08');
-
--- ----------------------------
--- Table structure for resource_copy1
--- ----------------------------
-DROP TABLE IF EXISTS "public"."resource_copy1";
-CREATE TABLE "public"."resource_copy1" (
-  "id" varchar(32) COLLATE "pg_catalog"."default" NOT NULL DEFAULT nextval('sys_resources_id_seq'::regclass),
-  "name" varchar(100) COLLATE "pg_catalog"."default",
-  "type" varchar(50) COLLATE "pg_catalog"."default",
-  "url" varchar(200) COLLATE "pg_catalog"."default",
-  "permission" varchar(100) COLLATE "pg_catalog"."default",
-  "parent_id" varchar(64) COLLATE "pg_catalog"."default" DEFAULT 0,
-  "sort" int4,
-  "icon" varchar(100) COLLATE "pg_catalog"."default",
-  "create_time" timestamptz(0),
-  "update_time" timestamptz(0),
-  "available" bool,
-  "module" varchar(64) COLLATE "pg_catalog"."default",
-  "operation" varchar(64) COLLATE "pg_catalog"."default"
-)
-;
-
--- ----------------------------
--- Records of resource_copy1
--- ----------------------------
-INSERT INTO "public"."resource_copy1" VALUES ('7761500b31c34188b43651975881ad11', '标签管理', 'menu', '/admin/tag', 'tag', '20', NULL, NULL, '2019-03-21 22:33:58+08', '2019-03-21 22:33:58+08', 't', 'tag', 'query');
-INSERT INTO "public"."resource_copy1" VALUES ('76d22c9557d54351a751339e0e29196a', '新增标签', 'button', '/admin/tag/add', 'tag:add', '7761500b31c34188b43651975881ad11', NULL, NULL, '2019-03-21 22:34:44+08', '2019-03-21 22:34:44+08', 't', 'tag', 'add');
-INSERT INTO "public"."resource_copy1" VALUES ('3c2604108c954f49a60fee127bbaf44b', '批量删除标签', 'button', '/admin/tag/batchDelete', 'tag:batchDelete', '7761500b31c34188b43651975881ad11', NULL, NULL, '2019-03-21 22:35:09+08', '2019-03-21 22:35:09+08', 't', 'tag', 'batchDelete');
-INSERT INTO "public"."resource_copy1" VALUES ('29fbcddeebb64354bfff500a85927864', '修改标签', 'button', '/admin/tag/update', 'tag:update', '7761500b31c34188b43651975881ad11', NULL, NULL, '2019-03-21 22:35:24+08', '2019-03-21 22:35:24+08', 't', 'tag', 'update');
-INSERT INTO "public"."resource_copy1" VALUES ('e04108abd5fa48c0a6e3405badca92b7', '查询标签', 'button', '/admin/tag/query', 'tag:query', '7761500b31c34188b43651975881ad11', NULL, NULL, '2019-03-21 22:35:36+08', '2019-03-21 22:35:36+08', 't', 'tag', 'query');
-INSERT INTO "public"."resource_copy1" VALUES ('6e8ab65c6c734e56a73e9192598280cd', '删除标签', 'button', '/admin/tag/delete', 'tag:delete', '7761500b31c34188b43651975881ad11', NULL, NULL, '2019-03-21 22:35:53+08', '2019-03-21 22:35:53+08', 't', 'tag', 'delete');
-INSERT INTO "public"."resource_copy1" VALUES ('7b3e762842f549c68b7b183043be494e', '新增用户', 'button', '/admin/user/add', 'user:add', '71e303af504c4fb5b06e526995576104', NULL, NULL, '2019-03-18 23:04:13+08', '2019-03-18 23:04:13+08', 't', 'user', 'add');
-INSERT INTO "public"."resource_copy1" VALUES ('26e039b95db84c2fa675527d70fecce3', '修改用户', 'button', '/admin/user/update', 'user:update', '71e303af504c4fb5b06e526995576104', NULL, NULL, '2019-03-18 23:14:37+08', '2019-03-18 23:14:37+08', 't', 'user', 'update');
-INSERT INTO "public"."resource_copy1" VALUES ('b363c885086f47d99d770f85b499ad2c', '批量删除用户', 'button', '/admin/user/batchDelete', 'user:batchDelete', '71e303af504c4fb5b06e526995576104', NULL, NULL, '2019-03-18 23:16:04+08', '2019-03-18 23:16:04+08', 't', 'user', 'batchDelete');
-INSERT INTO "public"."resource_copy1" VALUES ('2754a7b0c2d14d0b87d05ff110029b98', '查询用户', 'button', '/admin/user/query', 'user:query', '71e303af504c4fb5b06e526995576104', NULL, NULL, '2019-03-18 23:16:48+08', '2019-03-18 23:16:48+08', 't', 'user', 'query');
-INSERT INTO "public"."resource_copy1" VALUES ('1584db12eb914223a7f7ac0fba74f336', '删除角色', 'button', '/admin/role/delete', 'role:delete', '4277f3a6d4a84d6cb60c22d8df056b1b', NULL, NULL, '2019-03-19 23:04:23+08', '2019-03-19 23:04:23+08', 't', 'role', 'delete');
-INSERT INTO "public"."resource_copy1" VALUES ('29a0964463b54e6598939bc62ca8d9c4', '修改角色', 'button', '/admin/role/update', 'role:update', '4277f3a6d4a84d6cb60c22d8df056b1b', NULL, NULL, '2019-03-19 23:04:39+08', '2019-03-19 23:04:39+08', 't', 'role', 'update');
-INSERT INTO "public"."resource_copy1" VALUES ('b879750354c44addb1e8337411670b90', '批量删除角色', 'button', '/admin/role/batchDelete', 'role:batchDelete', '4277f3a6d4a84d6cb60c22d8df056b1b', NULL, NULL, '2019-03-19 23:04:52+08', '2019-03-19 23:04:52+08', 't', 'role', 'batchDelete');
-INSERT INTO "public"."resource_copy1" VALUES ('9c2b763dadd44071ba23745b9f766a92', '新增角色', 'button', '/admin/role/add', 'role:add', '4277f3a6d4a84d6cb60c22d8df056b1b', NULL, NULL, '2019-03-19 23:05:08+08', '2019-03-19 23:05:08+08', 't', 'role', 'add');
-INSERT INTO "public"."resource_copy1" VALUES ('3155017caf1c45c5b450336d96d89849', '公告管理', 'menu', '/admin/notice', 'notice', '40', NULL, NULL, '2019-03-20 22:55:57+08', '2019-03-20 23:00:59+08', 't', 'notice', 'query');
-INSERT INTO "public"."resource_copy1" VALUES ('666', '网站数据', 'menu', '', '', '0', 3, 'fa fa-cogs', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('e2cd74790440466b985b5f91b7163c88', '查看浏览记录', 'menu', '/admin/article/bizArticleLook', 'bizArticleLook', '666', NULL, NULL, '2019-03-10 19:23:03+08', '2019-03-10 19:35:02+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('594fc97aeb764d11ac6e2da0fd5719ae', '页面管理', 'menu', '/admin/page', 'page', '40', NULL, NULL, '2019-03-21 22:45:46+08', '2019-03-21 22:45:46+08', 't', 'page', 'query');
-INSERT INTO "public"."resource_copy1" VALUES ('8', '权限管理', 'menu', '', '', '0', 3, 'fa fa-cogs', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('20', '文章管理', 'menu', '', '', '0', 1, 'fa fa-list', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('21', '文章列表', 'menu', '/admin/articles', 'articles', '20', 1, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('22', '发表文章', 'button', NULL, 'article:publish', '21', 2, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('23', '批量删除文章', 'button', NULL, 'article:batchDelete', '21', 3, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('24', '批量推送文章', 'button', NULL, 'article:batchPush', '21', 4, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('25', '推送文章', 'button', NULL, 'article:push', '21', 5, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('26', '置顶文章', 'button', NULL, 'article:top', '21', 6, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('27', '推荐文章', 'button', NULL, 'article:recommend', '21', 7, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('28', '编辑文章', 'button', NULL, 'article:edit,article:get', '21', 8, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('29', '删除文章', 'button', NULL, 'article:delete', '21', 9, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('30', '分类列表', 'menu', '/admin/article/types', 'types', '20', 2, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('31', '添加分类', 'button', NULL, 'type:add', '30', 2, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('32', '批量删除分类', 'button', NULL, 'type:batchDelete', '30', 3, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('33', '编辑分类', 'button', NULL, 'type:edit,type:get', '30', 4, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('34', '删除分类', 'button', NULL, 'type:delete', '30', 5, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('40', '网站管理', 'menu', '', '', '0', 2, 'fa fa-globe', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('41', '友情链接', 'menu', '/admin/links', 'links', '40', 2, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('42', '添加友情链接', 'button', NULL, 'link:add', '41', 2, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('43', '批量删除友情链接', 'button', NULL, 'link:batchDelete', '41', 3, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('44', '编辑友情链接', 'button', NULL, 'link:edit,link:get', '41', 4, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('45', '删除友情链接', 'button', NULL, 'link:delete', '41', 5, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('46', '评论管理', 'menu', '/admin/comments', 'comments', '40', 2, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('47', '批量删除评论', 'button', NULL, 'comment:batchDelete', '46', 2, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('48', '回复评论', 'button', NULL, 'comment:reply', '46', 3, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('49', '审核评论', 'button', NULL, 'comment:audit', '46', 4, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('50', '删除评论', 'button', NULL, 'comment:delete', '46', 5, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('51', '模板管理', 'menu', '/admin/templates', 'templates', '40', 3, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('52', '添加模板', 'button', NULL, 'template:add', '51', 2, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('53', '批量删除模板', 'button', NULL, 'template:batchDelete', '51', 3, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('54', '编辑模板', 'button', NULL, 'template:edit,template:get', '51', 4, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('55', '删除模板', 'button', NULL, 'template:delete', '51', 5, NULL, '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08', 't', NULL, NULL);
-INSERT INTO "public"."resource_copy1" VALUES ('553426a278134d9e93e2977786228283', '删除用户', 'button', '/admin/user/delete', 'user:delete', '71e303af504c4fb5b06e526995576104', NULL, NULL, '2019-03-18 23:12:39+08', '2019-03-18 23:12:39+08', 't', 'user', 'delete');
-INSERT INTO "public"."resource_copy1" VALUES ('57149072adc24cf19a1bea7b7e6e5fbf', '查询角色', 'button', '/admin/role/query', 'role:query', '4277f3a6d4a84d6cb60c22d8df056b1b', NULL, NULL, '2019-03-19 23:15:44+08', '2019-03-19 23:15:44+08', 't', 'role', 'query');
-INSERT INTO "public"."resource_copy1" VALUES ('308fc321d13d41f1818368fab2528ea4', '发布公告', 'button', '/admin/notice/publish', 'notice:publish', '3155017caf1c45c5b450336d96d89849', NULL, NULL, '2019-03-20 23:02:07+08', '2019-03-20 23:02:07+08', 't', 'notice', 'publish');
-INSERT INTO "public"."resource_copy1" VALUES ('d2a81247f3d84da7bc7e9269850f9120', '撤回公告', 'button', '/admin/notice/reCall', 'notice:reCall', '3155017caf1c45c5b450336d96d89849', NULL, NULL, '2019-03-20 23:02:24+08', '2019-03-20 23:02:24+08', 't', 'notice', 'reCall');
-INSERT INTO "public"."resource_copy1" VALUES ('567e30eb001346a0985184ef4050270f', '删除公告', 'button', '/admin/notice/delete', 'notice:delete', '3155017caf1c45c5b450336d96d89849', NULL, NULL, '2019-03-20 23:02:43+08', '2019-03-20 23:02:43+08', 't', 'notice', 'delete');
-INSERT INTO "public"."resource_copy1" VALUES ('1f8f039707d64ddea1f7d664abf0134a', '批量删除公告', 'button', '/admin/notice/batchDelete', 'notice:batchDelete', '3155017caf1c45c5b450336d96d89849', NULL, NULL, '2019-03-20 23:02:56+08', '2019-03-20 23:02:56+08', 't', 'notice', 'batchDelete');
-INSERT INTO "public"."resource_copy1" VALUES ('51856e38e5374d27baa6867a5fe1347b', '修改公告', 'button', '/admin/notice/update', 'notice:update', '3155017caf1c45c5b450336d96d89849', NULL, NULL, '2019-03-20 23:03:13+08', '2019-03-20 23:03:13+08', 't', 'notice', 'update');
-INSERT INTO "public"."resource_copy1" VALUES ('f0b1c972a76b4ef6a7c3314567c3cfc4', '新增公告', 'button', '/admin/notice/add', 'notice:add', '3155017caf1c45c5b450336d96d89849', NULL, NULL, '2019-03-20 23:03:26+08', '2019-03-20 23:03:26+08', 't', 'notice', 'add');
-INSERT INTO "public"."resource_copy1" VALUES ('4277f3a6d4a84d6cb60c22d8df056b1b', '角色管理', 'menu', '/admin/role', 'role', '8', 2, NULL, '2019-03-19 23:01:53+08', '2019-03-20 23:18:53+08', 't', 'role', 'query');
-INSERT INTO "public"."resource_copy1" VALUES ('71e303af504c4fb5b06e526995576104', '用户管理', 'menu', '/admin/user', 'user', '8', 1, NULL, '2019-03-18 22:42:47+08', '2019-03-20 23:19:21+08', 't', 'user', 'query');
-INSERT INTO "public"."resource_copy1" VALUES ('69c3949f4c374627b62ddb449dd426ec', '资源管理', 'menu', '/admin/resource', 'resource', '8', NULL, NULL, '2019-03-20 23:36:47+08', '2019-03-20 23:36:47+08', 't', 'resource', 'query');
-INSERT INTO "public"."resource_copy1" VALUES ('9864e99b67f34a27bd539cd83766215c', '分配资源角色', 'button', '/admin/role/allotResource', 'role:allotResource', '4277f3a6d4a84d6cb60c22d8df056b1b', NULL, NULL, '2019-03-20 23:39:05+08', '2019-03-20 23:39:05+08', 't', 'role', 'allotResource');
-INSERT INTO "public"."resource_copy1" VALUES ('1abfe53afdf049619721841498123f59', '批量删除资源', 'button', '/admin/resource/batchDelete', 'resource:batchDelete', '69c3949f4c374627b62ddb449dd426ec', NULL, NULL, '2019-03-20 23:38:19+08', '2019-03-20 23:47:19+08', 't', 'resource', 'batchDelete');
-INSERT INTO "public"."resource_copy1" VALUES ('8640553f1e0f41cbb5b3a20c51d6a8e4', '修改资源', 'button', '/admin/resource/update', 'resource:update', '69c3949f4c374627b62ddb449dd426ec', NULL, NULL, '2019-03-20 23:38:08+08', '2019-03-20 23:47:25+08', 't', 'resource', 'update');
-INSERT INTO "public"."resource_copy1" VALUES ('fd3afea3b98944c49474f9ceb4b0d9c0', '新增资源', 'button', '/admin/resource/add', 'resource:add', '69c3949f4c374627b62ddb449dd426ec', NULL, NULL, '2019-03-20 23:37:50+08', '2019-03-20 23:47:30+08', 't', 'resource', 'add');
-INSERT INTO "public"."resource_copy1" VALUES ('c73f103636ee44d891a77c99547001f4', '删除资源', 'button', '/admin/resource/delete', 'resource:delete', '69c3949f4c374627b62ddb449dd426ec', NULL, NULL, '2019-03-20 23:37:32+08', '2019-03-20 23:47:35+08', 't', 'resource', 'delete');
+INSERT INTO "public"."resource" VALUES ('67591ea5743c46c3a5d91b6c9a6efb54', '批量删除角色', 'button', '/admin/role/batchDelete', 'role:batchDelete', 'ba374ceeb0764b2b984a9bb6d5d8bb74', 2, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('c30f831d9e4542cc85e37d2cad85026d', '发布文章', 'button', '/admin/article/batchPublish', 'article:batchPublish', '9a1f58b74ae74bfda9ec95c08a9780bc', 6, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('0850217b3245425793aaa5390fc26426', '查看单个角色', 'button', '/admin/role/get/{id}', 'role:get', 'ba374ceeb0764b2b984a9bb6d5d8bb74', 3, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('3a846b6a4f8342578ad944a0f55a9a3d', '查询文章', 'button', '/admin/article/list', 'article:list', '9a1f58b74ae74bfda9ec95c08a9780bc', 4, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('27d5a03d6b0f4866ad998627c2f821e3', '修改评论', 'button', '/admin/comment/audit', 'comment:audit', '293680e9f3a34a7db9b0b0757642f3ba', 4, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('cc0f43978374434c979443c2d7421b97', '新增用户', 'button', '/admin/user/add', 'user:add', '484164d749094b5f8c7a169409e3fa49', 1, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('3858ac3721ba442894dd9d6aa3af7ed9', '路由到修改文章页面', 'button', '/admin/article/update/{id}', 'article:update', '9a1f58b74ae74bfda9ec95c08a9780bc', 10, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('46e65cacc48f4d0da1b3632358e3499e', '类型管理', 'menu', '/admin/type', 'type', '89cde44a9e704f5482ec233e84f687d6', 11, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('9a71fac526424dca9147ce95750425fd', '新增类别', 'button', '/admin/type/add', 'type:add', '46e65cacc48f4d0da1b3632358e3499e', 1, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('922ccac23f6b4fe29dd8b1f5a46f2617', '查看系统配置', 'button', '/admin/config/get', 'config:get', 'e82c352c0fcd4ed6a9b545b84801371f', 1, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('ba374ceeb0764b2b984a9bb6d5d8bb74', '角色管理', 'menu', '/admin/role', 'role', 'e6c733a484c849248569ac497b885ff2', 12, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('a969ec441fb74420b047aff8ad67eff3', '查询公告', 'button', '/admin/notice/query', 'notice:query', '0edac716432a4765a40e4fabfd13d0e4', 5, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('ca7aba8676064392827d1b527fbf996a', '修改文章', 'button', '/admin/article/update/{type}', 'article:update', '9a1f58b74ae74bfda9ec95c08a9780bc', 3, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('ca753f5e3c7c418aafa8f47c3af00ccc', '新增公告', 'button', '/admin/notice/add', 'notice:add', '0edac716432a4765a40e4fabfd13d0e4', 1, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('4e0d102fdde04c42b2c2a156d8f7b1d5', '批量删除用户', 'button', '/admin/user/batchDelete', 'user:batchDelete', '484164d749094b5f8c7a169409e3fa49', 7, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('be0de28b583e4b87808f69efebdddee8', '路由到发布文章页面', 'button', '/admin/article/publish', 'article:publish', '9a1f58b74ae74bfda9ec95c08a9780bc', 5, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('b13f4cfe233b4f3c9730ec450f4ce93d', '新增标签', 'button', '/admin/tag/add', 'tag:add', 'af38723769d64e56a43fa95165fd75c5', 1, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('6428f76794ab43d78ad39bb4322c4579', '查看单个类别', 'button', '/admin/type/get/{id}', 'type:get', '46e65cacc48f4d0da1b3632358e3499e', 3, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('1630c1b901b64e1fa37117a136fa6771', '发布公告', 'button', '/admin/notice/publish/{id}', 'notice:publish', '0edac716432a4765a40e4fabfd13d0e4', 6, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('e58b129a53914c13903bbc7ea8646392', '查询类别', 'button', '/admin/type/list', 'type:list', '46e65cacc48f4d0da1b3632358e3499e', 4, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('211d151ae0e04113a983198612fd14f6', '查询标签列表', 'button', '/admin/tag/query', 'tag:query', 'af38723769d64e56a43fa95165fd75c5', 4, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('b0a8495b773b4fa795e917f0303af85b', '查看单个标签', 'button', '/admin/tag/get/{id}', 'tag:get', 'af38723769d64e56a43fa95165fd75c5', 2, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('c67c7c496cf0432092ef925b78594843', '分配角色资源', 'button', '/admin/role/allotResource', 'role:allotResource', 'ba374ceeb0764b2b984a9bb6d5d8bb74', 6, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('9d2b10b63a164427bb21d6d86b6bdaf8', '更新标签', 'button', '/admin/tag/update', 'tag:update', 'af38723769d64e56a43fa95165fd75c5', 7, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('6584514c68c84cc89f9ba2b7f2bbcbf2', '新增文章', 'button', '/admin/article/save', 'article:save', '9a1f58b74ae74bfda9ec95c08a9780bc', 11, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('8767213e9b25496ca271f9ec2cc86844', '批量删除标签', 'button', '/admin/tag/batchDelete', 'tag:batchDelete', 'af38723769d64e56a43fa95165fd75c5', 6, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('dca1b1bb80ac4a0d89f9bc90abeb26b6', '查看评论', 'button', '/admin/comment/get/{id}', 'comment:get', '293680e9f3a34a7db9b0b0757642f3ba', 2, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('e51df199733d4715b5d5c7684de0fdda', '单个删除公告', 'button', '/admin/notice/delete', 'notice:delete', '0edac716432a4765a40e4fabfd13d0e4', 4, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('af38723769d64e56a43fa95165fd75c5', '标签管理', 'menu', '/admin/tag', 'tag', '89cde44a9e704f5482ec233e84f687d6', 13, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('11604c8673404aa3bf2cd4e2f3f886b6', '查看所有角色', 'button', '/admin/role/query', 'role:query', 'ba374ceeb0764b2b984a9bb6d5d8bb74', 5, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('d043c44da5fd47b385994e2a7e16d2b9', '编辑评论', 'button', '/admin/comment/edit', 'comment:edit', '293680e9f3a34a7db9b0b0757642f3ba', 8, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('3dfea74fbab44968aab5d29eefccfa1b', '编辑类别', 'button', '/admin/type/edit', 'type:edit', '46e65cacc48f4d0da1b3632358e3499e', 8, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('6a298c6b7c204bba9b1e0731cd942977', '单个删除用户', 'button', '/admin/user/delete', 'user:delete', '484164d749094b5f8c7a169409e3fa49', 4, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('5ad96f53198a4844bb07997b5e8f8fb2', '查询评论', 'button', '/admin/comment/list', 'comment:list', '293680e9f3a34a7db9b0b0757642f3ba', 3, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('300a786d6dc14626a2e751bbde95cfa6', '修改公告', 'button', '/admin/notice/update', 'notice:update', '0edac716432a4765a40e4fabfd13d0e4', 3, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('2f1379d7dad7484c8a202f503b448f6b', '删除批量', 'button', '/admin/comment/remove', 'comment:remove', '293680e9f3a34a7db9b0b0757642f3ba', 1, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('440c5f73a212465ba7e87cbbd1f5b022', '新增角色', 'button', '/admin/role/add', 'role:add', 'ba374ceeb0764b2b984a9bb6d5d8bb74', 1, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('13e3d97958874b90889b0c575d81c433', '查询用户列表.', 'button', '/admin/user/query', 'user:query', '484164d749094b5f8c7a169409e3fa49', 5, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('b0b2df81d75c4414a94f9765dd175c9c', '回复评论', 'button', '/admin/comment/reply', 'comment:reply', '293680e9f3a34a7db9b0b0757642f3ba', 6, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('9a1f58b74ae74bfda9ec95c08a9780bc', '文章管理', 'menu', '/admin/article', 'article', '89cde44a9e704f5482ec233e84f687d6', 6, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('5d3c1365e29d44ec933915a54e4ad3c9', '查看所有类别', 'button', '/admin/type/listAll', 'type:listAll', '46e65cacc48f4d0da1b3632358e3499e', 6, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('484164d749094b5f8c7a169409e3fa49', '用户管理', 'menu', '/admin/user', 'user', 'e6c733a484c849248569ac497b885ff2', 14, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('e82c352c0fcd4ed6a9b545b84801371f', '系统配置', 'menu', '/admin/config', 'config', 'c975405347114c3aa5f950940c566cd9', 8, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('bef00d00e6004334bbae5957a7154fb2', '查看未处理的评论', 'button', '/admin/comment/listVerifying', 'comment:listVerifying', '293680e9f3a34a7db9b0b0757642f3ba', 7, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('64898f3a73a74afe924d4295c2b9ee47', '删除文章', 'button', '/admin/article/remove', 'article:remove', '9a1f58b74ae74bfda9ec95c08a9780bc', 1, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('eba03331fd79451f8cf772b91a1d84c6', '删除单个标签', 'button', '/admin/tag/delete', 'tag:delete', 'af38723769d64e56a43fa95165fd75c5', 3, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('634bf7bc0ca449fca52a7fe41a8cc312', '修改用户', 'button', '/admin/user/update', 'user:update', '484164d749094b5f8c7a169409e3fa49', 3, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('cfef4061b1e84e2a82be28ce0af74510', '查看单个友情链接', 'button', '/admin/link/get/{id}', 'link:get', '00e4858811a24927b4d26a1e721ddd1e', 3, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('58a76c5b92be4879a327d88e9dbb7caa', '删除类别', 'button', '/admin/type/remove', 'type:remove', '46e65cacc48f4d0da1b3632358e3499e', 2, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('4fc3a835534c4d03aece89891f1bba55', '查看单个用户信息', 'button', '/admin/user/get/{id}', 'user:get', '484164d749094b5f8c7a169409e3fa49', 2, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('c976ac2f7b4e4c1bbe187a4cf77a2366', '更新角色', 'button', '/admin/role/update', 'role:update', 'ba374ceeb0764b2b984a9bb6d5d8bb74', 7, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('eb195b33a6b94d03bb39e77217c337e2', '路由到发布MD文档文章页面', 'button', '/admin/article/publishMd', 'article:publishMd', '9a1f58b74ae74bfda9ec95c08a9780bc', 7, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('a24f62db14c7479bbcdfad5af8d9fea2', '新增友情链接', 'button', '/admin/link/add', 'link:add', '00e4858811a24927b4d26a1e721ddd1e', 1, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('5ad9b49efcec456684bc20086a02f3cb', '删除友情链接', 'button', '/admin/link/remove', 'link:remove', '00e4858811a24927b4d26a1e721ddd1e', 2, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('4109a456784f4dec80fa5b530d06dbbe', '编辑友情链接', 'button', '/admin/link/edit', 'link:edit', '00e4858811a24927b4d26a1e721ddd1e', 5, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('e71fec56005c4ba2894c37e7065afe17', '查看父类别', 'button', '/admin/type/listParent', 'type:listParent', '46e65cacc48f4d0da1b3632358e3499e', 7, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('0edac716432a4765a40e4fabfd13d0e4', '公告管理', 'menu', '/admin/notice', 'notice', 'c975405347114c3aa5f950940c566cd9', 4, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('b8dade9ef210457f8573d9b27687a320', '文章查看记录', 'menu', '/admin/bizArticleLook', 'bizArticleLook', '2e64e8dd443140efb55317a9c487308a', 2, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('368c6d843252468bafa24d4e461c9b54', '查看文章', 'button', '/admin/article/get/{id}', 'article:get', '9a1f58b74ae74bfda9ec95c08a9780bc', 2, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('b12d837bdc1b4199b2b233de84546265', '删除单个角色', 'button', '/admin/role/delete', 'role:delete', 'ba374ceeb0764b2b984a9bb6d5d8bb74', 4, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('935c7b1744204d0ba91e4736b0638f21', '撤回公告', 'button', '/admin/notice/reCall/{id}', 'notice:reCall', '0edac716432a4765a40e4fabfd13d0e4', 9, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('00e4858811a24927b4d26a1e721ddd1e', '友情链接管理', 'menu', '/admin/link', 'link', 'c975405347114c3aa5f950940c566cd9', 9, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('293680e9f3a34a7db9b0b0757642f3ba', '评论管理', 'menu', '/admin/comment', 'comment', '89cde44a9e704f5482ec233e84f687d6', 8, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('255491c2acc64c358b2a8db502e3cacc', '查看单个公告', 'button', '/admin/notice/get/{id}', 'notice:get', '0edac716432a4765a40e4fabfd13d0e4', 2, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('5594b42669db450ea77e072dbd27682c', '批量删除公告', 'button', '/admin/notice/batchDelete', 'notice:batchDelete', '0edac716432a4765a40e4fabfd13d0e4', 7, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('ba919adc178848cc96343bc6e6cd30b8', '查看友情链接', 'button', '/admin/link/list', 'link:list', '00e4858811a24927b4d26a1e721ddd1e', 4, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('4721b3a5211b4a8e9ca64c8699983b1e', '文章历史记录查询', 'button', '/admin/bizArticleLook/query', 'bizArticleLook:query', 'b8dade9ef210457f8573d9b27687a320', 1, NULL, '2019-04-07 22:07:03+08', '2019-04-07 22:07:03+08');
+INSERT INTO "public"."resource" VALUES ('89cde44a9e704f5482ec233e84f687d6', '文章管理', 'menu', '/admin/wenzhangguanli', 'wenzhangguanli', '', 3, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('bc6b70590d4e4487bea4b59bc0240469', '资源管理', 'menu', '/admin/resource', 'resource', '18dae978550845c8bcb0d7b37d66edb0', 4, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('91da463e2e3b4d018e73779b78f14ad8', '查询资源树', 'button', '/admin/resource/queryResourceTree', 'resource:queryResourceTree', 'bc6b70590d4e4487bea4b59bc0240469', 12, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('d8d91b8b445b402b944f7f0538a233de', '单个删除资源', 'button', '/admin/resource/delete', 'resource:delete', 'bc6b70590d4e4487bea4b59bc0240469', 4, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('b172af36ef5f44bd9aa7ee0ff5dd699b', '查看单个资源', 'button', '/admin/resource/get/{id}', 'resource:get', 'bc6b70590d4e4487bea4b59bc0240469', 2, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('5403f876a95240898a973e3c41d4ad78', '批量删除资源', 'button', '/admin/resource/batchDelete', 'resource:batchDelete', 'bc6b70590d4e4487bea4b59bc0240469', 8, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('34619ec77b4f4d9eb8644a96315fc690', '新增资源', 'button', '/admin/resource/add', 'resource:add', 'bc6b70590d4e4487bea4b59bc0240469', 1, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('9eab7deab8964a5a96cd887bb0c85221', '修改资源', 'button', '/admin/resource/update', 'resource:update', 'bc6b70590d4e4487bea4b59bc0240469', 3, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('2caf9eb5aff94b939c1ba4cccdb7f642', '查询同一级别的资源列表', 'button', '/admin/resource/querySameLevelResource', 'resource:querySameLevelResource', 'bc6b70590d4e4487bea4b59bc0240469', 11, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('40745e37e57f443f8644bbdaaa6cb4e2', '修改资源排序', 'button', '/admin/resource/updateSort', 'resource:updateSort', 'bc6b70590d4e4487bea4b59bc0240469', 10, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('608350922d564b36b43ad0a7f9d2d0e8', '查询资源', 'button', '/admin/resource/query', 'resource:query', 'bc6b70590d4e4487bea4b59bc0240469', 6, NULL, '2019-04-14 19:22:10+08', '2019-04-14 19:22:10+08');
+INSERT INTO "public"."resource" VALUES ('c975405347114c3aa5f950940c566cd9', '网站管理', 'menu', '/admin/wangzhanguanli', 'wangzhanguanli', '', 2, NULL, '2019-03-29 23:37:51+08', '2019-03-29 23:37:51+08');
+INSERT INTO "public"."resource" VALUES ('2e64e8dd443140efb55317a9c487308a', '网站数据', 'menu', '/admin/wangzhanshuju', 'wangzhanshuju', '', 1, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('e6c733a484c849248569ac497b885ff2', '权限管理', 'menu', '/admin/quanxianguanli', 'quanxianguanli', '', 4, NULL, '2019-03-29 23:37:52+08', '2019-03-29 23:37:52+08');
+INSERT INTO "public"."resource" VALUES ('9ee48029ce2048c7ac87f58f0f988989', '修改系统配置', 'button', '/admin/config/update', 'config:update', 'e82c352c0fcd4ed6a9b545b84801371f', 2, NULL, '2019-04-12 23:25:17+08', '2019-04-12 23:25:17+08');
 
 -- ----------------------------
 -- Table structure for search_count
@@ -2555,14 +2442,12 @@ CREATE TABLE "public"."sys_config" (
   "weibo" varchar(255) COLLATE "pg_catalog"."default",
   "github" varchar(255) COLLATE "pg_catalog"."default",
   "maintenance_data" date,
-  "comment" varchar(16) COLLATE "pg_catalog"."default" DEFAULT 1,
-  "qiuniu_base_path" varchar(255) COLLATE "pg_catalog"."default",
-  "qiniu_access_key" varchar(100) COLLATE "pg_catalog"."default",
-  "qiniu_secret_key" varchar(100) COLLATE "pg_catalog"."default",
-  "qiniu_bucket_name" varchar(100) COLLATE "pg_catalog"."default",
+  "comment" bool,
+  "tencent_cos_base_path" varchar(255) COLLATE "pg_catalog"."default",
+  "tencent_cos_access_key" varchar(100) COLLATE "pg_catalog"."default",
+  "tencent_cos_secret_key" varchar(100) COLLATE "pg_catalog"."default",
+  "tencent_cos_region_name" varchar(100) COLLATE "pg_catalog"."default",
   "baidu_push_token" varchar(100) COLLATE "pg_catalog"."default",
-  "wx_praise_code" varchar(200) COLLATE "pg_catalog"."default",
-  "zfb_praise_code" varchar(200) COLLATE "pg_catalog"."default",
   "baidu_api_ak" varchar(100) COLLATE "pg_catalog"."default",
   "create_time" timestamptz(0),
   "update_time" timestamptz(0),
@@ -2574,7 +2459,7 @@ COMMENT ON COLUMN "public"."sys_config"."comment" IS '是否开启评论';
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
-INSERT INTO "public"."sys_config" VALUES ('1', 'SITE4J，专注于Java技术分享。', 'SITE4J,Java技术资源站。', 'localhost', 'http://peterchenhdu.club:8089', 'https://localhost', 'SITE4J', '分享、传播Java技术', 'https://localhost/img/favicon.svg', 'https://localhost', '风一样的码农', '1052067939@qq.com', '#', '1052067939', '#', '#', '2018-11-11', '1', 'https://peterchenhdu-1257309286.cos.ap-chengdu.myqcloud.com/', 'AKIDNhxqcNgc7qX6YsvFE5oO3oSzVr36hnPq', 'XwE81syyqY6Xn5JPfpocR8dx65uZQ8i7', 'peterchenhdu-1257309286', 'BIhFDCipf0ZqwgGp', 'qrcode/wx_code.png', 'qrcode/zfb_code.png', '5f6c6a8fa13beda75a56933cb9be8c58', '2018-09-02 00:00:00+08', '2018-09-08 00:00:00+08', NULL);
+INSERT INTO "public"."sys_config" VALUES ('1', 'SITE4J，2专注于Java技术分享。', 'SITE4J,Java技术资源站。', 'localhost', 'https://localhost', 'https://localhost', 'SITE4J', '分享、传播Java技术', 'https://localhost/img/favicon.svg', 'https://localhost', '风一样的码农', '1052067939@qq.com', '#', '1052067939', '#', '#', '2019-10-28', 't', 'https://peterchenhdu-1257309286.cos.ap-chengdu.myqcloud.com/', 'AKIDNhxqcNgc7qX6YsvFE5oO3oSzVr36hnPq', 'XwE81syyqY6Xn5JPfpocR8dx65uZQ8i7', 'peterchenhdu-1257309286', 'BIhFDCipf0ZqwgGp', '5f6c6a8fa13beda75a56933cb9be8c58', '2018-09-02 00:00:00+08', '2019-04-12 23:11:53+08', 'f');
 
 -- ----------------------------
 -- Table structure for sys_link
@@ -2600,7 +2485,7 @@ CREATE TABLE "public"."sys_link" (
 -- ----------------------------
 -- Records of sys_link
 -- ----------------------------
-INSERT INTO "public"."sys_link" VALUES ('a7d3ac74bdd7408aa0de7e118c4dec88', 'aa', 'aa', 'aa', 'aa', 'aa', 'aa', 'aa', 'ADMIN', '2019-03-21 22:20:29+08', '2019-03-21 22:20:29+08', 't', 't');
+INSERT INTO "public"."sys_link" VALUES ('a7d3ac74bdd7408aa0de7e118c4dec88', 'aa', 'aa', 'aa', 'aa', 'aa', 'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1555240479&di=c3772489d667dd813711db35a05c6f69&src=http://pic49.huitu.com/res/20160113/881453_20160113222243059600_1.jpg', 'aa', 'ADMIN', '2019-03-21 22:20:29+08', '2019-04-14 19:15:22+08', 'f', 'f');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -2731,6 +2616,9 @@ INSERT INTO "public"."sys_role_resources" VALUES ('65', '1', '65', '2018-09-02 0
 INSERT INTO "public"."sys_role_resources" VALUES ('66', '1', '66', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
 INSERT INTO "public"."sys_role_resources" VALUES ('67', '1', '67', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
 INSERT INTO "public"."sys_role_resources" VALUES ('68', '1', '68', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
+INSERT INTO "public"."sys_role_resources" VALUES ('b7d2d6c4d5414f92bacfd2463e4cb9c9', '003ab960d9be46c3a952b48d0273e860', '7ea02913cb1a4448a285bf9a6b272385', '2019-03-29 20:59:14+08', '2019-03-29 20:59:14+08');
+INSERT INTO "public"."sys_role_resources" VALUES ('6e30711f6aea4144a6875566858b7d5b', '003ab960d9be46c3a952b48d0273e860', '9d763b6264854878a41471032c5894a1', '2019-03-29 20:59:14+08', '2019-03-29 20:59:14+08');
+INSERT INTO "public"."sys_role_resources" VALUES ('eb54e28ce6044822a6d4aeb4fb543f69', '003ab960d9be46c3a952b48d0273e860', 'd2314952079c499eb9a0baf0944badd0', '2019-03-29 20:59:14+08', '2019-03-29 20:59:14+08');
 INSERT INTO "public"."sys_role_resources" VALUES ('93', '3', '40', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
 INSERT INTO "public"."sys_role_resources" VALUES ('94', '3', '46', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
 INSERT INTO "public"."sys_role_resources" VALUES ('95', '3', '48', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
@@ -2750,445 +2638,6 @@ INSERT INTO "public"."sys_role_resources" VALUES ('6fd214a1e62c43f4917bc565f102c
 INSERT INTO "public"."sys_role_resources" VALUES ('2c814ea3ee5c485baccae67806847e29', 'b5eaf07fa3a84d4c9c5889bb31316cac', '22', '2019-03-15 23:19:31+08', '2019-03-15 23:19:31+08');
 INSERT INTO "public"."sys_role_resources" VALUES ('245bdee6897f485cb2cd32dde8f5afac', 'b5eaf07fa3a84d4c9c5889bb31316cac', '30', '2019-03-15 23:19:31+08', '2019-03-15 23:19:31+08');
 INSERT INTO "public"."sys_role_resources" VALUES ('52ed0062300e4d8c8943149994e6b0f6', 'b5eaf07fa3a84d4c9c5889bb31316cac', '31', '2019-03-15 23:19:31+08', '2019-03-15 23:19:31+08');
-
--- ----------------------------
--- Table structure for sys_template
--- ----------------------------
-DROP TABLE IF EXISTS "public"."sys_template";
-CREATE TABLE "public"."sys_template" (
-  "id" varchar(32) COLLATE "pg_catalog"."default" NOT NULL DEFAULT nextval('sys_template_id_seq'::regclass),
-  "ref_key" varchar(100) COLLATE "pg_catalog"."default",
-  "ref_value" text COLLATE "pg_catalog"."default",
-  "create_time" timestamptz(0),
-  "update_time" timestamptz(0)
-)
-;
-
--- ----------------------------
--- Records of sys_template
--- ----------------------------
-INSERT INTO "public"."sys_template" VALUES ('1', 'SITE_MAP_XML', '<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-	<url>
-		<loc>${config.siteUrl}</loc>
-		<priority>1.0</priority>
-		<lastmod>${.now?string("yyyy-MM-dd")}</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-		<loc>${config.siteUrl}/guestbook</loc>
-		<priority>0.6</priority>
-		<lastmod>${.now?string("yyyy-MM-dd")}</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-		<loc>${config.siteUrl}/updateLog</loc>
-		<priority>0.6</priority>
-		<lastmod>${.now?string("yyyy-MM-dd")}</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-		<loc>${config.siteUrl}/recommended</loc>
-		<priority>0.6</priority>
-		<lastmod>${.now?string("yyyy-MM-dd")}</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<#list articleList as item>
-		<url>
-			<loc>${config.siteUrl}/article/${item.id}</loc>
-			<priority>0.6</priority>
-			<lastmod>${item.updateTime?string("yyyy-MM-dd")}</lastmod>
-			<changefreq>daily</changefreq>
-		</url>
-	</#list>
-	<#list articleTypeList as item>
-	   <url>
-			<loc>${config.siteUrl}/type/${item.id}</loc>
-			<priority>0.6</priority>
-			<lastmod>${item.updateTime?string("yyyy-MM-dd")}</lastmod>
-			<changefreq>daily</changefreq>
-		</url>
-	</#list>
-	
-	<#list articleTagsList as item>
-	   <url>
-			<loc>${config.siteUrl}/tag/${item.id}</loc>
-			<priority>0.6</priority>
-			<lastmod>${item.updateTime?string("yyyy-MM-dd")}</lastmod>
-			<changefreq>daily</changefreq>
-		</url>
-	</#list>
-</urlset>', '2018-09-02 00:00:00+08', '2018-09-18 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('2', 'TM_SITE_MAP_TXT', '${config.siteUrl}
-${config.siteUrl}/guestbook
-${config.siteUrl}/updateLog
-${config.siteUrl}/recommended
-<#list articleList as item>
-${config.siteUrl}/article/${item.id}
-</#list>
-<#list articleTypeList as item>
-${config.siteUrl}/type/${item.id}
-</#list>
-<#list articleTagsList as item>
-${config.siteUrl}/tag/${item.id}
-</#list>', '2018-09-02 00:00:00+08', '2018-09-18 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('3', 'TM_SITE_MAP_HTML', '<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>${config.siteName} 网站地图</title>
-    <meta name="author" content="SiteMapX.com"/>
-    <meta name="robots" content="index,follow"/>
-    <style type="text/css">
-        body {
-            color: #000000;
-            background: #ffffff;
-            margin: 20px;
-            font-family: Verdana, Arial, Helvetica, sans-serif;
-            font-size: 12px;
-        }
-
-        #myTable {
-            list-style: none;
-            margin: 10px 0px 10px 0px;
-            padding: 0px;
-            width: 100%;
-            min-width: 804px;
-        }
-
-        #myTable li {
-            list-style-type: none;
-            width: 100%;
-            min-width: 404px;
-            height: 20px;
-            line-height: 20px;
-        }
-
-        .pull-left{
-            float: left!important;
-        }
-        .pull-right{
-            float: right!important;
-        }
-
-        #myTable li .T1-h {
-            font-weight: bold;
-            min-width: 300px;
-        }
-
-        #myTable li .T2-h {
-            width: 200px;
-            font-weight: bold;
-        }
-
-        #myTable li .T3-h {
-            width: 200px;
-            font-weight: bold;
-        }
-
-        #myTable li .T4-h {
-            width: 100px;
-            font-weight: bold;
-        }
-
-        #myTable li .T1 {
-            min-width: 300px;
-        }
-
-        #myTable li .T2 {
-            width: 200px;
-        }
-
-        #myTable li .T3 {
-            width: 200px;
-        }
-
-        #myTable li .T4 {
-            width: 100px;
-        }
-
-        #footer {
-            padding: 2px;
-            margin: 0px;
-            font-size: 8pt;
-            color: gray;
-            min-width: 900px;
-        }
-
-        #footer a {
-            color: gray;
-        }
-
-        .myClear {
-            clear: both;
-        }
-
-        #nav, #content, #footer {padding: 8px; border: 1px solid #EEEEEE; clear: both; width: 95%; margin: auto; margin-top: 10px;}
-
-    </style>
-</head>
-<body>
-<h2 style="text-align: center; margin-top: 20px">${config.siteName?if_exists} 网站地图 </h2>
-<div id="nav"><a href="${config.siteUrl?if_exists}"><strong>${config.siteName?if_exists}</strong></a> &raquo; <a href="${config.siteUrl?if_exists}/sitemap.html">站点地图</a></div>
-<div id="content">
-    <h3>最新文章</h3>
-    <ul id="myTable">
-        <li>
-            <div class="T1-h pull-left">URL</div>
-            <div class="T2-h pull-right">Last Change</div>
-            <div class="T3-h pull-right">Change Frequency</div>
-            <div class="T4-h pull-right">Priority</div>
-        </li>
-        <div class="myClear"></div>
-        <li>
-            <div class="T1 pull-left"><a href="${config.siteUrl}" title="${config.siteName}">${config.siteName} | 专注Java技术分享</a></div>
-            <div class="T2 pull-right">${.now?string("yyyy-MM-dd")}</div>
-            <div class="T3 pull-right">daily</div>
-            <div class="T4 pull-right">1</div>
-        </li>
-        <div class="myClear"></div>
-        <li>
-            <div class="T1 pull-left"><a href="${config.siteUrl}/guestbook" title="${config.siteName}">留言板 | ${config.siteName}</a></div>
-            <div class="T2 pull-right">${.now?string("yyyy-MM-dd")}</div>
-            <div class="T3 pull-right">daily</div>
-            <div class="T4 pull-right">0.6</div>
-        </li>
-        <div class="myClear"></div>
-        <li>
-            <div class="T1 pull-left"><a href="${config.siteUrl}/updateLog" title="${config.siteName}">网站更新记录 | ${config.siteName}</a></div>
-            <div class="T2 pull-right">${.now?string("yyyy-MM-dd")}</div>
-            <div class="T3 pull-right">daily</div>
-            <div class="T4 pull-right">0.6</div>
-        </li>
-		<div class="myClear"></div>
-        <li>
-            <div class="T1 pull-left"><a href="${config.siteUrl}/recommended" title="${config.siteName}">站长推荐 | ${config.siteName}</a></div>
-            <div class="T2 pull-right">${.now?string("yyyy-MM-dd")}</div>
-            <div class="T3 pull-right">daily</div>
-            <div class="T4 pull-right">0.6</div>
-        </li>
-        <div class="myClear"></div>
-        <#list articleList as item>
-            <li>
-                <div class="T1 pull-left"><a href="${config.siteUrl}/article/${item.id}" title="${item.title}">${item.title} | ${config.siteName}</a></div>
-                <div class="T2 pull-right">${item.updateTime?string("yyyy-MM-dd")}</div>
-                <div class="T3 pull-right">daily</div>
-                <div class="T4 pull-right">0.6</div>
-            </li>
-            <div class="myClear"></div>
-        </#list>
-    </ul>
-</div>
-<div id="content">
-    <h3>分类目录</h3>
-    <ul id="myTable">
-        <#list articleTypeList as item>
-            <li>
-                <div class="T1 pull-left"><a href="${config.siteUrl}/type/${item.id}" title="${item.name}">${item.name} | ${config.siteName}</a></div>
-                <div class="T2 pull-right">${item.updateTime?string("yyyy-MM-dd")}</div>
-                <div class="T3 pull-right">daily</div>
-                <div class="T4 pull-right">0.6</div>
-            </li>
-            <div class="myClear"></div>
-        </#list>
-    </ul>
-</div>
-<div id="content">
-    <h3>标签目录</h3>
-    <ul id="myTable">
-        <#list articleTagsList as item>
-            <li>
-                <div class="T1 pull-left"><a href="${config.siteUrl}/tag/${item.id}" title="${item.name}">${item.name} | ${config.siteName}</a></div>
-                <div class="T2 pull-right">${item.updateTime?string("yyyy-MM-dd")}</div>
-                <div class="T3 pull-right">daily</div>
-                <div class="T4 pull-right">0.6</div>
-            </li>
-            <div class="myClear"></div>
-        </#list>
-    </ul>
-</div>
-<div id="footer">
-    该文件由<a href="${config.siteUrl}" title="${config.siteName}">${config.siteName}</a>网站自动生成。
-</div>
-</body>
-</html>', '2018-09-02 00:00:00+08', '2018-09-18 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('4', 'TM_ROBOTS', 'Crawl-delay: 5
-Sitemap: https://peterchenhdu.club/sitemap.txt
-Sitemap: https://peterchenhdu.club/sitemap.xml
-Sitemap: https://peterchenhdu.club/sitemap.html
-', '2018-09-02 00:00:00+08', '2018-09-04 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('5', 'TM_LINKS', '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>友情链接操作通知</title>
-</head>
-<body>
-<div style="border-radius:5px;font-size:13px;width:680px;font-family:微软雅黑,''Helvetica Neue'',Arial,sans-serif;margin:10px auto 0px;border:1px solid #eee;max-width:100%">
-    <div style="width:100%;background:#2f889a;color:#ffffff;border-radius:5px 5px 0 0">
-        <p style="font-size:15px;word-break:break-all;padding:20px 32px;margin:0">
-            友情链接操作通知
-        </p>
-    </div>
-    <div style="margin:0px auto;width:90%">
-        <p>站长<a href="${link.url?if_exists}" target="_blank">${link.name?if_exists}</a>，您好!</p>
-        <p>您于 ${link.createTime?string(''yyyy-MM-dd HH:mm:ss'')} 提交的友链申请已通过系统审核。以下为您提交的信息，请确认（如有误，请联系我）！</p>
-        <p>
-        <ul>
-            <li>${link.name?if_exists}</li>
-            <li>${link.url?if_exists}</li>
-            <li>${link.description?if_exists}</li>
-            <li>${link.email?if_exists}</li>
-            <li>${link.qq?if_exists}</li>
-            <li><img src="${link.favicon?if_exists}" width="100" alt="LOGO"></li>
-        </ul>
-        </p>
-        <p>本站会不定期检查连接有效性，如果因为贵站改版、服务到期等原因导致无法正常访问的，我会暂时停掉贵站友链，待贵站可以正常访问后，本站会继续启用贵站友链。</p>
-        <p>特别注意：以下情况，本站将在不做任何通知下，<strong>取消友链</strong>！</p>
-        <ul>
-            <li>私自取消本站友情链接</li>
-            <li>更换域名且未通知本站</li>
-            <li>网站内容长期不更新</li>
-            <li>友链上使用诸如nofollow之类的属性</li>
-        </ul>
-        <p>感谢您对 <a style="text-decoration:none;" href="${config.siteUrl?if_exists}" target="_blank">${config.siteName?if_exists}</a> 的关注，如您有任何疑问，欢迎来我网站<a style="text-decoration:none;" href="${config.siteUrl}/guestbook" target="_blank">留言</a>。</p>
-        <p>（注：此邮件由系统自动发出，请勿回复。）</p>
-    </div>
-    <div class="adL">
-    </div>
-</div>
-</body>
-</html>', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('6', 'TM_COMMENT_AUDIT', '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>评论审核结果通知</title>
-</head>
-<body>
-<div style="border-radius:5px;font-size:13px;width:680px;font-family:微软雅黑,''Helvetica Neue'',Arial,sans-serif;margin:10px auto 0px;border:1px solid #eee;max-width:100%">
-    <div style="width:100%;background:#2f889a;color:#ffffff;border-radius:5px 5px 0 0">
-        <p style="font-size:15px;word-break:break-all;padding:20px 32px;margin:0">
-            评论审核结果通知
-        </p>
-    </div>
-    <div style="margin:0px auto;width:90%">
-        <p>${comment.nickname?if_exists}，您好!</p>
-        <p>
-            您于 ${comment.createTime?string(''yyyy-MM-dd HH:mm:ss'')} 在文章《${config.siteUrl?if_exists}${comment.sourceUrl?if_exists}》 上发表的<span class="il">评论</span>：
-        </p>
-        <div style="background:#efefef;margin:15px 0px;padding:1px 15px;border-radius:5px;font-size:14px;color:#333">${comment.content}</div>
-        <#if comment.status == ''APPROVED''>
-        <p>已通过管理员审核并显示。</p>
-        <p>
-            您可以点击 <a style="text-decoration:none;" href="${config.siteUrl}${comment.sourceUrl}" target="_blank">链接</a>查看回复的完整內容。
-        </p>
-        <#elseif comment.status == ''REJECT''>
-        <p>审核失败！失败原因：</p>
-        <p style="background:#efefef;margin:15px 0px;padding:1px 15px;border-radius:5px;font-size:14px;color:#333">${comment.remark}</p>
-        <#elseif comment.status == ''DELETED''>
-        <p>已被管理员删除！删除原因：</p>
-        <p style="background:#efefef;margin:15px 0px;padding:1px 15px;border-radius:5px;font-size:14px;color:#333">${comment.remark}</p>
-        <#else>
-        <p>管理员正在审核中！审核通过后将给您及时发送通知！</p>
-        </#if>
-        <p>感谢您对 <a style="text-decoration:none;" href="${config.siteUrl}" target="_blank">${config.siteName}</a> 的关注，如您有任何疑问，欢迎来我网站<a style="text-decoration:none;" href="${config.siteUrl}/guestbook" target="_blank">留言</a>。</p>
-        <p>（注：此邮件由系统自动发出，请勿回复。）</p>
-    </div>
-    <div class="adL">
-    </div>
-</div>
-</body>
-</html>', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('7', 'TM_COMMENT_REPLY', '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>评论回复通知</title>
-</head>
-<body>
-<div style="border-radius:5px;font-size:13px;width:680px;font-family:微软雅黑,''Helvetica Neue'',Arial,sans-serif;margin:10px auto 0px;border:1px solid #eee;max-width:100%">
-    <div style="width:100%;background:#2f889a;color:#ffffff;border-radius:5px 5px 0 0">
-        <p style="font-size:15px;word-break:break-all;padding:20px 32px;margin:0">
-            评论回复通知
-        </p>
-    </div>
-    <div style="margin:0px auto;width:90%">
-        <p>${comment.nickname}，您好!</p>
-        <p>
-            您于 ${comment.createTime?string(''yyyy-MM-dd HH:mm:ss'')} 在文章《${config.siteUrl}${comment.sourceUrl}》 上发表的<span class="il">评论</span>：
-        </p>
-        <div style="background:#efefef;margin:15px 0px;padding:1px 15px;border-radius:5px;font-size:14px;color:#333">${comment.content}</div>
-        <p>
-            有了 <strong>新的回复</strong>！您可以点击 <a style="text-decoration:none;" href="${config.siteUrl}${comment.sourceUrl}" target="_blank">链接</a>查看回复的完整內容。
-        </p>
-        <p>感谢您对 <a style="text-decoration:none;" href="${config.siteUrl}" target="_blank">${config.siteName}</a> 的关注，如您有任何疑问，欢迎来我网站<a style="text-decoration:none;" href="${config.siteUrl}/guestbook" target="_blank">留言</a>。</p>
-        <p>（注：此邮件由系统自动发出，请勿回复。）</p>
-    </div>
-    <div class="adL">
-    </div>
-</div>
-</body>
-</html>', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('8', 'TM_LINKS_TO_ADMIN', '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>友情链接操作通知</title>
-</head>
-<body>
-<div style="border-radius:5px;font-size:13px;width:680px;font-family:微软雅黑,''Helvetica Neue'',Arial,sans-serif;margin:10px auto 0px;border:1px solid #eee;max-width:100%">
-    <div style="width:100%;background:#2f889a;color:#ffffff;border-radius:5px 5px 0 0">
-        <p style="font-size:15px;word-break:break-all;padding:20px 32px;margin:0">
-            友情链接操作通知
-        </p>
-    </div>
-    <div style="margin:0px auto;width:90%">
-        <p>有新的友情链接加入，信息如下</p>
-        <p>
-        <ul>
-            <li>${link.name?if_exists}</li>
-            <li>${link.url?if_exists}</li>
-            <li>${link.description?if_exists}</li>
-            <#if link.favicon?exists><li><img src="${link.favicon?if_exists}" width="100" alt="LOGO"></li></#if>
-        </ul>
-        </p>
-        <p><a style="text-decoration:none;" href="http://admin.zhyd.me" target="_blank">去后台继续审核</a>。</p>
-        <p>（注：此邮件由系统自动发出，请勿回复。）</p>
-    </div>
-    <div class="adL">
-    </div>
-</div>
-</body>
-</html>', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
-INSERT INTO "public"."sys_template" VALUES ('9', 'TM_NEW_COMMENT', '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>新评论通知</title>
-</head>
-<body>
-<div style="border-radius:5px;font-size:13px;width:680px;font-family:微软雅黑,''Helvetica Neue'',Arial,sans-serif;margin:10px auto 0px;border:1px solid #eee;max-width:100%">
-    <div style="width:100%;background:#2f889a;color:#ffffff;border-radius:5px 5px 0 0">
-        <p style="font-size:15px;word-break:break-all;padding:20px 32px;margin:0">
-            新评论通知
-        </p>
-    </div>
-    <div style="margin:0px auto;width:90%">
-        <p>
-            评论内容：
-        </p>
-        <div style="background:#efefef;margin:15px 0px;padding:1px 15px;border-radius:5px;font-size:14px;color:#333"><#if comment?exists>${comment.content}<#else>**无评论内容**</#if></div>
-        <p>
-            <a style="text-decoration:none;" href="${config.siteUrl}${comment.sourceUrl}" target="_blank">查看完整评论</a>
-        </p>
-        <p>（注：此邮件由系统自动发出，请勿回复。）</p>
-    </div>
-    <div class="adL">
-    </div>
-</div>
-</body>
-</html>', '2018-09-02 00:00:00+08', '2018-09-02 00:00:00+08');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -3220,7 +2669,7 @@ COMMENT ON COLUMN "public"."sys_user"."status" IS '用户状态';
 -- ----------------------------
 INSERT INTO "public"."sys_user" VALUES ('2', 'admin', 'ZFhLG9pRCV7p/nQuqnqmawxJAgxlQFZvxpGshHsg37c=', '后羿', '18257113785', '1052067939@qq.com', NULL, '0:0:0:0:0:0:0:1', '2019-02-01 00:00:00+08', 5, 'SS', 1, '2018-09-02 00:00:00+08', '2019-02-01 00:00:00+08', '2');
 INSERT INTO "public"."sys_user" VALUES ('3', 'comment-admin', 'mW8nbvEeP0akZEQZS5u/ZKji/0iEzAPyUK2R0d6VKQY=', '小鱼人', '15156767890', '1052067939@qq.com', NULL, '0:0:0:0:0:0:0:1', '2018-05-22 00:00:00+08', 1, 'AA', 1, '2018-09-02 00:00:00+08', '2018-09-16 00:00:00+08', '3');
-INSERT INTO "public"."sys_user" VALUES ('1', 'root', 'jZQTLZxjzbMwZftZQzNcCA==', '超级管理员', '18257113785', '1052067939@qq.com', 'https://static.zhyd.me/static/img/favicon.ico', '0:0:0:0:0:0:0:1', '2019-03-24 22:42:13+08', 367, 'root123456', 1, '2018-09-02 00:00:00+08', '2019-03-24 22:42:13+08', '1');
+INSERT INTO "public"."sys_user" VALUES ('1', 'root', 'jZQTLZxjzbMwZftZQzNcCA==', '超级管理员', '18257113785', '1052067939@qq.com', 'https://static.zhyd.me/static/img/favicon.ico', '0:0:0:0:0:0:0:1', '2019-04-14 19:14:08+08', 394, 'root123456', 1, '2018-09-02 00:00:00+08', '2019-04-14 19:14:08+08', '1');
 INSERT INTO "public"."sys_user" VALUES ('6375f5d2eb1c468ea43d3ab2620deda2', 'AAAAA', '3ETSUly4A1G5jwO0rXGCTw==', 'AA', 'A', 'A', NULL, NULL, NULL, 0, 'A', 1, '2019-03-20 21:54:43+08', '2019-03-20 21:54:43+08', '3');
 INSERT INTO "public"."sys_user" VALUES ('44d7ccf4404c4e3eb38bf1cd9a8ac6b4', 'BB', 'tizpCMZKi35/JU7eFxU5Bg==', 'BB', 'BB', 'BB', NULL, NULL, NULL, 0, 'BB', 1, '2019-03-20 21:58:43+08', '2019-03-20 21:58:43+08', '2');
 
@@ -3272,9 +2721,6 @@ SELECT setval('"public"."sys_role_id_seq"', 2, false);
 ALTER SEQUENCE "public"."sys_role_resources_id_seq"
 OWNED BY "public"."sys_role_resources"."id";
 SELECT setval('"public"."sys_role_resources_id_seq"', 2, false);
-ALTER SEQUENCE "public"."sys_template_id_seq"
-OWNED BY "public"."sys_template"."id";
-SELECT setval('"public"."sys_template_id_seq"', 2, false);
 ALTER SEQUENCE "public"."sys_user_id_seq"
 OWNED BY "public"."sys_user"."id";
 SELECT setval('"public"."sys_user_id_seq"', 2, false);
@@ -3325,11 +2771,6 @@ ALTER TABLE "public"."dict" ADD CONSTRAINT "pk_dict" PRIMARY KEY ("id");
 ALTER TABLE "public"."resource" ADD CONSTRAINT "pk_sys_resources" PRIMARY KEY ("id");
 
 -- ----------------------------
--- Primary Key structure for table resource_copy1
--- ----------------------------
-ALTER TABLE "public"."resource_copy1" ADD CONSTRAINT "resource_copy1_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
 -- Primary Key structure for table search_count
 -- ----------------------------
 ALTER TABLE "public"."search_count" ADD CONSTRAINT "pk_search_count" PRIMARY KEY ("id");
@@ -3363,11 +2804,6 @@ ALTER TABLE "public"."sys_role" ADD CONSTRAINT "pk_sys_role" PRIMARY KEY ("id");
 -- Primary Key structure for table sys_role_resources
 -- ----------------------------
 ALTER TABLE "public"."sys_role_resources" ADD CONSTRAINT "pk_sys_role_resources" PRIMARY KEY ("id");
-
--- ----------------------------
--- Primary Key structure for table sys_template
--- ----------------------------
-ALTER TABLE "public"."sys_template" ADD CONSTRAINT "pk_sys_template" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table sys_user

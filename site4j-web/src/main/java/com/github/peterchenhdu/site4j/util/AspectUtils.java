@@ -13,11 +13,8 @@ import java.lang.reflect.Method;
 /**
  * AOP相关的工具
  *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/6/29 11:59
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class AspectUtils {
 

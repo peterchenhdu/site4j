@@ -26,8 +26,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author PiChen
- * @since 2019/2/8
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Configuration
 public class LocalDateTimeConfig {

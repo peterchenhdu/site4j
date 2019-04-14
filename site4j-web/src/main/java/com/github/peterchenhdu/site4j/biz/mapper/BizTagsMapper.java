@@ -11,11 +11,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/16 16:26
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Repository
 public interface BizTagsMapper extends BaseMapper<BizTags> {

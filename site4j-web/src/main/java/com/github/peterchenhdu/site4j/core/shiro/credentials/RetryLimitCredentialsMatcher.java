@@ -20,12 +20,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Shiro-密码输入错误的状态下重试次数的匹配管理
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/24 14:37
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class RetryLimitCredentialsMatcher extends CredentialsMatcher {
 

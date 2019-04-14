@@ -23,12 +23,8 @@ import java.util.Map;
 
 /**
  * 页面跳转类
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/18 11:48
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Controller
 public class RenderController {

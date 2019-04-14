@@ -5,11 +5,8 @@ package com.github.peterchenhdu.site4j.enums;
 
 /**
  * 图片类型
- *
- * @author chenpi
- * @version 1.0
- * @since 2018/4/16 16:26
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public enum ImageType {
     QR_CODE_IMAGE("qr_code_image", "site4j/qrcode/", "二维码图片"),

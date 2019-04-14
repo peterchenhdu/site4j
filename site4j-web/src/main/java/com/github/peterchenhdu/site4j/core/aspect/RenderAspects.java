@@ -20,10 +20,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * 提到core模块中，方便控制前后台
- *
- * @author chenpi
- * @version 2.0
- * @since 2018/5/17 17:06
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Slf4j
 @Component

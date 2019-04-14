@@ -8,10 +8,8 @@ import com.baomidou.mybatisplus.enums.FieldFill;
 /**
  * <p>
  * 字段填充
- * </p>
- *
- * @author hubin
- * @since 2017-06-26
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class TableFill {
 

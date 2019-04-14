@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
  *  - Mapper接口
- * @author PiChen
- * @since 2018-10-28 09:20:24
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public interface SearchHistoryMapper extends BaseMapper<SearchHistory> {
 }

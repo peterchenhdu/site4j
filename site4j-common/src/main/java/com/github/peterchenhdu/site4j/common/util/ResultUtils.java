@@ -17,12 +17,8 @@ import java.util.Map;
 
 /**
  * 接口返回工具类，支持ModelAndView、ResponseVO、PageResult
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/18 11:48
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class ResultUtils {
 

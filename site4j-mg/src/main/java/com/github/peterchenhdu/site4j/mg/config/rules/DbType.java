@@ -5,9 +5,8 @@ package com.github.peterchenhdu.site4j.mg.config.rules;
 
 /**
  * 数据库类型定义
- *
- * @author YangHu
- * @since 2016/8/30
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public enum DbType {
     MYSQL("mysql"),

@@ -11,8 +11,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @author PiChen
- * @since 2019/3/17
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public enum OperationEnum {
     ADD("add", "新增"),

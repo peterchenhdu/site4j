@@ -11,8 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 /**
- * @author PiChen
- * @since 2019/2/11
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public interface IImageService {
 

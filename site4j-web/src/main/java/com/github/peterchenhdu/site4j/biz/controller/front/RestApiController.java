@@ -26,12 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 网站接口类，申请友链、评论、点赞等
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/18 11:48
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Slf4j
 @RestController

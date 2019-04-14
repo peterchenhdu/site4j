@@ -12,11 +12,9 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
- * </p>
  *
- * @author PiChen
- * @since 2019-03-19
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class SysUser implements Serializable {
 

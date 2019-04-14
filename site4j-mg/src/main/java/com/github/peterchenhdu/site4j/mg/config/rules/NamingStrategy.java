@@ -8,9 +8,8 @@ import com.baomidou.mybatisplus.toolkit.StringUtils;
 
 /**
  * 从数据库表到文件的命名策略
- *
- * @author YangHu, tangguo
- * @since 2016/8/30
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public enum NamingStrategy {
     /**

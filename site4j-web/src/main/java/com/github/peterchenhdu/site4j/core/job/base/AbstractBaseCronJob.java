@@ -13,9 +13,8 @@ import static org.quartz.CronScheduleBuilder.cronSchedule;
 
 /**
  * AbstractBaseCronJob
- *
- * @author PiChen
- * @since 2019/2/3
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public abstract class AbstractBaseCronJob implements Job {
 

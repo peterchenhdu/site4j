@@ -14,9 +14,8 @@ import java.util.Arrays;
 
 /**
  * 文件操作工具类
- *
- * @author chenpi
- * @since 2018/01/09 17:40
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Slf4j
 public class FileUtil {

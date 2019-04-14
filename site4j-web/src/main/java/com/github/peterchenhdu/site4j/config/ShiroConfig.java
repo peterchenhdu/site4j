@@ -33,12 +33,8 @@ import org.springframework.core.annotation.Order;
 
 /**
  * Shiro配置类
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/24 14:37
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Configuration
 @Order(1)

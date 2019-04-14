@@ -210,5 +210,5 @@
         });
     });
 </script>
-<script src="/js/zhyd.publish-article.js"></script>
+<script src="/js/site4j.publish-article.js"></script>
 </@footer>

@@ -231,7 +231,7 @@
     zhyd.initMdEditor(op);
     articleId = '${id}';
 </script>
-<script src="/js/zhyd.publish-article.js"></script>
+<script src="/js/site4j.publish-article.js"></script>
 <script>
     console.log('init_SmartWizard');
 

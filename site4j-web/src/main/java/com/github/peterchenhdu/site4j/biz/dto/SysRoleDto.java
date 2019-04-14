@@ -7,8 +7,8 @@ package com.github.peterchenhdu.site4j.biz.dto;
 import com.github.peterchenhdu.site4j.biz.entity.SysRole;
 
 /**
- * @author PiChen
- * @since 2019/3/14
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class SysRoleDto extends SysRole {
     private Integer selected;

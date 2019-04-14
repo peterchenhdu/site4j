@@ -18,12 +18,8 @@ import java.util.Map;
 
 /**
  * 站点相关的接口类，主要为sitemap和robots的生成
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/18 11:48
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @RestController
 public class RestWebSiteController {

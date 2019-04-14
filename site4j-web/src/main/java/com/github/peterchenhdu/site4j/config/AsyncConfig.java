@@ -9,11 +9,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 /**
  * 异步线程配置
  *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/28 11:04
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Configuration
 @EnableAsync

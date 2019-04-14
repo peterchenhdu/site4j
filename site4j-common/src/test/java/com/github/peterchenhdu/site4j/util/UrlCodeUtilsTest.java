@@ -9,8 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 /**
- * @author PiChen
- * @since 2018/10/21
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Slf4j
 public class UrlCodeUtilsTest {

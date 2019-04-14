@@ -16,12 +16,8 @@ import java.util.Set;
  * 该自定义的Manager扩展的功能：<br/>
  * 1.增加database参数，可跟随配置文件的数据库索引选择redis数据库保存相关数据，避免了多个项目共用一个redis database所潜在的问题<br/>
  * 2.修改expire参数，默认值为30天 = 2592000s <br/>
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/6/12 14:22
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class CustomRedisManager extends RedisManager {
     private static JedisPool jedisPool = null;

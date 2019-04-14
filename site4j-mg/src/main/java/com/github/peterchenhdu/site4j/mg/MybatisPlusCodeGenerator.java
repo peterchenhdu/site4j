@@ -13,9 +13,8 @@ import com.github.peterchenhdu.site4j.mg.config.rules.NamingStrategy;
 
 /**
  * Mybatis Plus代码生成器
- *
- * @author PiChen
- * @since 2019/02/02
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class MybatisPlusCodeGenerator {
 

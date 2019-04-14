@@ -18,8 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author PiChen
- * @since 2019/3/3
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Component
 public class FrontPageConfig implements ResourceLoaderAware {

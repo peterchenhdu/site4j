@@ -24,12 +24,8 @@ import java.time.LocalDateTime;
 
 /**
  * 文章浏览记录aop操作
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/18 11:48
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Slf4j
 @Component

@@ -9,8 +9,8 @@ import com.github.peterchenhdu.site4j.biz.entity.SearchCount;
 import java.util.List;
 
 /**
- * @author PiChen
- * @since 2018/10/28
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public interface ISearchCountService {
     List<SearchCount> listHot(Integer size);

@@ -6,10 +6,8 @@ package com.github.peterchenhdu.site4j.mg.config;
 /**
  * <p>
  * 模板路径配置项
- * </p>
- *
- * @author tzg hubin
- * @since 2017-06-17
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class TemplateConfig {
 

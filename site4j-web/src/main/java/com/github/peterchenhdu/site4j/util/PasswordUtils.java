@@ -9,9 +9,8 @@ import com.github.peterchenhdu.site4j.constant.SysConstants;
 
 /**
  * 密码工具类
- *
- * @author chenpi
- * @since 2019/02/17 17:40
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class PasswordUtils {
 

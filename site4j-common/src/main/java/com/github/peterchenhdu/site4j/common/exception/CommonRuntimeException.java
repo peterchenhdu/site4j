@@ -8,9 +8,8 @@ import com.github.peterchenhdu.site4j.common.util.I18nUtils;
 
 /**
  * BaseRuntimeException
- *
- * @author PiChen
- * @since 2018/10/20 23:03
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class CommonRuntimeException extends RuntimeException {
     private String code;

@@ -10,11 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/8/07 18:13
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class XssKillerUtil {
     private static final String[] WHITE_LIST = {"p", "strong", "pre", "code", "span", "blockquote", "em", "a"};

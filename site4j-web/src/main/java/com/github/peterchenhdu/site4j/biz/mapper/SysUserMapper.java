@@ -10,10 +10,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 /**
  * <p>
  *  Mapper 接口
- * </p>
- *
- * @author PiChen
- * @since 2019-03-19
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public interface SysUserMapper extends BaseMapper<SysUser> {
 

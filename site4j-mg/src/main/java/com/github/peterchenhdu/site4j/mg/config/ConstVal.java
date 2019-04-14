@@ -7,9 +7,8 @@ import java.nio.charset.Charset;
 
 /**
  * 定义常量
- *
- * @author YangHu, tangguo
- * @since 2016/8/31
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class ConstVal {
 

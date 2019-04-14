@@ -19,9 +19,8 @@ import java.util.Properties;
 
 /**
  * 公共字段持久化拦截器
- *
- * @author chenpi
- * @since 2018年1月19日
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})})
 @Component

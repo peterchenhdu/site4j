@@ -20,11 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/7/15 15:24
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Slf4j
 @Component

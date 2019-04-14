@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 
 /**
  * null - 实体类
- * @author PiChen
- * @since 2019-02-11 12:16:08
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 public class Image {
     private String id;

@@ -51,11 +51,8 @@ import java.util.stream.Collectors;
 
 /**
  * 程序启动后通过ApplicationRunner处理一些事务
- *
- * @author chenpi
- * @version 1.0
- * @since 2018/6/6 16:07
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Slf4j
 @Component

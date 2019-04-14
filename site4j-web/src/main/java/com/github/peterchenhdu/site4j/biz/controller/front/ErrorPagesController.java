@@ -28,13 +28,8 @@ import java.util.Map;
  * 此处指需要记录
  * <p/>
  * 要注意，这个类里面的代码一定不能有异常或者潜在异常发生，否则可能会让程序陷入死循环。
- * <p/>
- *
- * @author chenpi
- * @version 1.0
- *
- * @since 2018/4/16 16:26
- * @since 1.0
+ * <p>
+ * Created by chenpi on 2019/02/05.
  */
 @Slf4j
 @Controller
