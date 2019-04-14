@@ -118,6 +118,20 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
     }
 
     /**
+     * 查询所有非叶子节点
+     *
+     * @return List
+     */
+    @Override
+    public List<ResourcesDto> queryNotLeafResource() {
+        List<ResourcesDto> allResourcesDtoList = listAll();
+        List<String> parentIdList = allResourcesDtoList.stream().map(ResourcesDto::getParentId).collect(Collectors.toList());
+
+        List<ResourcesDto> test =allResourcesDtoList.stream().filter(dto-> parentIdList.contains(dto.getId())).collect(Collectors.toList());
+        return test;
+    }
+
+    /**
      * 获取资源的url和permission
      *
      * @return
@@ -157,11 +171,12 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
     }
 
 
-    //todo 考虑下并发操作
+    //todo 考虑下并发操作 有问题 待修复
     @Override
     @Transactional
     public void updateSort(String rId, boolean isUp) {
         Resource resource = resourceMapper.selectById(rId);
+        Integer sort = resource.getSort();
         String pId = resource.getParentId();
         Wrapper<Resource> wrapper = new EntityWrapper<>();
         wrapper.eq("parent_id", pId);
@@ -171,15 +186,15 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
 
         Resource otherResource;
         if(isUp) {
-
-            otherResource = rList.size() == 2 ? rList.get(1):rList.get(2);
-            resource.setSort(resource.getSort() + 1);
-            otherResource.setSort(resource.getSort());
-
-        } else {
             otherResource = rList.size() == 2 ? rList.get(1):rList.get(0);
             resource.setSort(resource.getSort() - 1);
-            otherResource.setSort(resource.getSort());
+            otherResource.setSort(sort);
+
+
+        } else {
+            otherResource = rList.size() == 2 ? rList.get(1):rList.get(2);
+            resource.setSort(resource.getSort() + 1);
+            otherResource.setSort(sort);
         }
 
         resourceMapper.updateById(otherResource);

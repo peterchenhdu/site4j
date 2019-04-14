@@ -18,6 +18,7 @@
                         <div class="panel-body">
                             <form id="formSearch" class="form-horizontal" onkeydown="if(event.keyCode===13) return false;">
                                 <div class="form-group" style="margin-top:15px">
+
                                     <label class="control-label col-sm-1" for="search-type">资源类别</label>
                                     <div class="col-sm-3">
                                         <select class="form-control" name="search-type" id="search-type">
@@ -26,6 +27,18 @@
                                             <option value="button">按钮</option>
                                         </select>
                                     </div>
+
+                                    <label class="control-label col-sm-1" for="search-parentId">父级资源</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="search-parentId" id="search-parentId">
+                                            <option value="-1">请选择</option>
+                                            <option value="">Site4J系统</option>
+                                            <#list searchResources as item>
+                                                <option value="${item.id}">${item.name}</option>
+                                            </#list>
+                                        </select>
+                                    </div>
+
                                     <label class="control-label col-sm-1" for="search-name">资源名称</label>
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control" name="search-name" id="search-name"
@@ -231,6 +244,7 @@
                 params = $.extend({}, params);
                 params.type = $("#search-type").val();
                 params.name = $("#search-name").val();
+                params.parentId = $("#search-parentId").val();
                 return params;
             },
             modalName: "资源"
@@ -261,7 +275,7 @@
                     for (var i = 0; i < data.length; i++) {
                         var appendElement = '';
                         if (data[i].id === resourcesId ) {
-                            appendElement +='<div class="green hljs-strong just-mark"><span class="glyphicon glyphicon-upload green"></span><span class="glyphicon glyphicon glyphicon-download green"></span> - ';
+                            appendElement +='<div class="green hljs-strong just-mark" id="sortElement" data-id="'+resourcesId+'"><span class="glyphicon glyphicon-upload green"></span><span class="glyphicon glyphicon glyphicon-download green"></span> - ';
                         } else {
                             appendElement +='<div class="just-mark"><span class="glyphicon glyphicon-ban-circle red "></span><span class="glyphicon glyphicon-ban-circle red"></span> - ';
                         }
@@ -283,7 +297,7 @@
                         $.ajax({
                             async: false,
                             type: "POST",
-                            data: {rId: resourcesId,isUp:true},
+                            data: {rId: $("#sortElement").attr("data-id"),isUp:true},
                             url: '/admin/resource/updateSort',
                             dataType: 'json',
                             success: function (json) {
@@ -302,7 +316,7 @@
                         $.ajax({
                             async: false,
                             type: "POST",
-                            data: {rId: resourcesId,isUp:false},
+                            data: {rId: $("#sortElement").attr("data-id"),isUp:false},
                             url: '/admin/resource/updateSort',
                             dataType: 'json',
                             success: function (json) {

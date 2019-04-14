@@ -22,6 +22,7 @@ import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -55,10 +56,12 @@ public class ResourceController {
     @ApiOperation(value = "路由到资源管理页面")
     @BusinessLog("进入资源列表页")
     @GetMapping("")
-    public ModelAndView resources() {
+    public ModelAndView resources(Model model) {
+
+
+        model.addAttribute("searchResources", resourcesService.queryNotLeafResource());
         return ResultUtils.view("admin/resources/list");
     }
-
 
 
     @ApiOperation(value = "查询同一级别的资源列表")

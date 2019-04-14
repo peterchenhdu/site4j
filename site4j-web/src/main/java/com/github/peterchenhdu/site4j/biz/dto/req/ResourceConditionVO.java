@@ -20,6 +20,7 @@ public class ResourceConditionVO extends BasePagingQueryDto {
 
     private String name;
     private String type;
+    private String parentId;
 
     public String getName() {
         return name;
@@ -35,6 +36,14 @@ public class ResourceConditionVO extends BasePagingQueryDto {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 }
 

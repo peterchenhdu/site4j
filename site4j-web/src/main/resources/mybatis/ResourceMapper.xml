@@ -37,11 +37,14 @@
         <if test="type !=null and type != ''">
         AND com.type =#{type , jdbcType=VARCHAR}
         </if>
+        <if test="parentId !=null and parentId != '-1'">
+            AND com.parent_id =#{parentId , jdbcType=VARCHAR}
+        </if>
         <if test="name !=null and name != ''">
             AND com.name like '%'|| #{name , jdbcType=VARCHAR}||'%'
         </if>
         ORDER by
-        com.create_time DESC
+        com.sort asc
     </select>
 
 

@@ -123,6 +123,7 @@ public class BlogApplicationRunner implements ApplicationRunner {
                     newCodeResourceList.add(newCodeParentMenuList.get(0));
                     parentId = newCodeParentMenuList.get(0).getId();
                 } else {
+                    //新增
                     parentId = UuidUtils.getUuid();
                     Resource menuResource = new Resource();
                     menuResource.setIcon("");

@@ -51,6 +51,12 @@ public interface SysResourcesService extends IService<Resource> {
     List<ResourcesDto> querySameLevelResource(String rid);
 
     /**
+     * 查询所有非叶子节点
+     * @return List
+     */
+    List<ResourcesDto> queryNotLeafResource();
+
+    /**
      * 获取资源的url和permission
      *
      * @return
