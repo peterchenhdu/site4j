@@ -74,8 +74,8 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-3" for="status">状态: </label>
                         <div class="col-md-7 col-sm-7 col-xs-7">
                             <ul class="list-unstyled list-inline">
-                                <li><input type="radio" class="square" name="status" value="1"> 启用</li>
-                                <li><input type="radio" class="square" name="status" value="0"> 禁用</li>
+                                <li><input type="radio" class="square" name="status" value="true"> 启用</li>
+                                <li><input type="radio" class="square" name="status" value="false"> 禁用</li>
                             </ul>
                         </div>
                     </div>
@@ -83,8 +83,8 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-3" for="homePageDisplay">首页显示: </label>
                         <div class="col-md-7 col-sm-7 col-xs-7">
                             <ul class="list-unstyled list-inline">
-                                <li><input type="radio" class="square" name="homePageDisplay" value="1"> 是</li>
-                                <li><input type="radio" class="square" name="homePageDisplay" value="0"> 否</li>
+                                <li><input type="radio" class="square" name="homePageDisplay" value="true"> 是</li>
+                                <li><input type="radio" class="square" name="homePageDisplay" value="false"> 否</li>
                             </ul>
                         </div>
                     </div>
@@ -178,11 +178,12 @@
                     editable: false,
                     width: '40px',
                     formatter: function (code, row, index) {
-                        return code ? "启用" : "<strong style='color: red;' title='" + row.remark + "'>禁用</strong>";
+                        console.log("code:" + code + ",row:" + row + ",index:" + index);
+                        return code ? "<strong class='green'>启用</strong>" : "<strong class='red'>禁用</strong>";
                     }
                 }, {
                     field: 'homePageDisplay',
-                    title: '首页',
+                    title: '首页显示',
                     editable: false,
                     width: '40px',
                     formatter: function (code) {
@@ -195,22 +196,12 @@
                     width: '40px'
                 }, {
                     field: 'email',
-                    title: '联系方式',
+                    title: '联系方式[email/qq]',
                     editable: false,
                     width: '60px',
                     formatter: function (code, row, index) {
-                        var html = '';
-                        if (row.email) {
-                            html += '<a href="mailto:' + row.email + '" target="_blank" rel="external nofollow"><i class="fa fa fa-envelope fa-fw"></i></a>';
-                        }
-                        html = html ? html : '-';
-                        html += '/';
-                        if (row.qq) {
-                            html += '<a href="javascript:void(0);" target="_blank" onclick="window.open(\'tencent://message/?uin=' + row.qq + '&amp;Site=www.zhyd.me&amp;Menu=yes\')" rel="external nofollow"><i class="fa fa fa-qq fa-fw"></i></a>';
-                        } else {
-                            html += '-';
-                        }
-                        return html;
+                        console.log("code:" + code + ",row:" + row + ",index:" + index);
+                        return row.email+"/"+row.qq;
                     }
                 }, {
                     field: 'updateTime',
@@ -226,17 +217,7 @@
                     width: '150px',
                     formatter: operateFormatter //自定义方法，添加操作按钮
                 }
-            ],
-            rowStyle: function (row, index) {
-                //这里有5个取值代表5中颜色['active', 'success', 'info', 'warning', 'danger'];
-                var strclass = "";
-                if (row.status) {
-                    // strclass = 'success';//还有一个active
-                } else {
-                    strclass = 'danger';
-                }
-                return {'classes': strclass}
-            }
+            ]
         };
         //1.初始化Table
         $.tableUtil.init(options);
