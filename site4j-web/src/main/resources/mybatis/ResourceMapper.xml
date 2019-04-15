@@ -70,7 +70,7 @@
         LEFT JOIN sys_user u ON rr.role_id = u.role_id
         LEFT JOIN resource node ON node.parent_id = re.id and node.type=#{type}
         WHERE
-        (re.parent_id = '0' OR re.parent_id IS NULL )
+        (re.parent_id = '' OR re.parent_id IS NULL )
         <if test="userId != null">
             AND u.id = #{userId}
         </if>

@@ -43,23 +43,6 @@ public class RestApiController {
     @Autowired
     private SysNoticeService noticeService;
 
-    @PostMapping("/autoLink")
-    public BaseResponse autoLink(@Validated LinkDto link, BindingResult bindingResult) {
-        log.info("申请友情链接......");
-        log.info(JsonUtils.obj2json(link));
-        if (bindingResult.hasErrors()) {
-            return ResultUtils.error(bindingResult.getFieldError().getDefaultMessage());
-        }
-        try {
-            sysLinkService.autoLink(link);
-        } catch (CommonRuntimeException e) {
-            log.error("客户端自助申请友链发生异常", e);
-            return ResultUtils.error(e.getMsg());
-        }
-        return ResultUtils.success("已成功添加友链，祝您生活愉快！");
-    }
-
-
 
     @PostMapping("/comments")
     public BaseResponse comments(CommentConditionVO vo) {

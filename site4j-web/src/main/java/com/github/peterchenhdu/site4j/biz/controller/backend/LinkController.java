@@ -30,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Api(value="友情链接管理", tags="网站管理")
 @RestController
 @RequestMapping("/admin/link")
-public class RestLinkController {
+public class LinkController {
     @Autowired
     private SysLinkService linkService;
     @Autowired
@@ -80,12 +80,7 @@ public class RestLinkController {
     @ApiOperation(value="编辑友情链接")
     @PostMapping("/edit")
     public BaseResponse edit(LinkDto link) {
-        try {
-            linkService.updateSelective(link);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResultUtils.error("友情链接修改失败！");
-        }
+        linkService.updateSelective(link);
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }
 

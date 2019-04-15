@@ -15,6 +15,7 @@ import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 /**
+ * LinkDto
  * <p>
  * Created by chenpi on 2019/02/05.
  */
@@ -63,7 +64,7 @@ public class LinkDto {
     }
 
     @NotEmpty(message = "站点描述不能为空")
-    @Length(max = 30, min = 1, message = "站点描述这么长，亲你是想参加作文比赛么？^_^")
+    @Length(max = 30, min = 1, message = "站点描述太长")
     public String getDescription() {
         return this.sysLink.getDescription();
     }

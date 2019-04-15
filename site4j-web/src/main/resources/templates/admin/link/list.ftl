@@ -10,6 +10,54 @@
         <div class="x_panel">
             <div class="x_content">
                 <div class="<#--table-responsive-->">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">查询条件</div>
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal" onkeydown="if(event.keyCode===13) return false;">
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" for="search-status">状态</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="search-status" id="search-status">
+                                            <option value="">请选择</option>
+                                            <option value="true">启用</option>
+                                            <option value="false">禁用</option>
+                                        </select>
+                                    </div>
+                                    <label class="control-label col-sm-1" for="search-homePageDisplay">首页显示</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="search-homePageDisplay" id="search-homePageDisplay">
+                                            <option value="">请选择</option>
+                                            <option value="true">是</option>
+                                            <option value="false">否</option>
+                                        </select>
+                                    </div>
+                                    <label class="control-label col-sm-1" for="search-name">名称</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="search-name" id="search-name"
+                                               placeholder="请输入名称...">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" for="search-description">描述</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="search-description" id="search-description"
+                                               placeholder="请输入描述...">
+                                    </div>
+                                    <div class="col-sm-4" style="text-align:left;">
+                                        <button type="button" style="margin-left:50px" id="btn_query"
+                                                class="btn btn-primary">查询
+                                        </button>
+
+                                        <button type="reset" style="margin-left:20px" id="btn_reset"
+                                                class="btn btn-primary">重置
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="btn-group hidden-xs" id="toolbar">
                     <@shiro.hasPermission name="link:add">
                         <button id="btn_add" type="button" class="btn btn-default" title="新增友链">
@@ -74,8 +122,8 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-3" for="status">状态: </label>
                         <div class="col-md-7 col-sm-7 col-xs-7">
                             <ul class="list-unstyled list-inline">
-                                <li><input type="radio" class="square" name="status" value="true"> 启用</li>
-                                <li><input type="radio" class="square" name="status" value="false"> 禁用</li>
+                                <li><label><input type="radio" class="square" name="status" value="true"></label> 启用</li>
+                                <li><label><input type="radio" class="square" name="status" value="false"></label> 禁用</li>
                             </ul>
                         </div>
                     </div>
@@ -83,8 +131,8 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-3" for="homePageDisplay">首页显示: </label>
                         <div class="col-md-7 col-sm-7 col-xs-7">
                             <ul class="list-unstyled list-inline">
-                                <li><input type="radio" class="square" name="homePageDisplay" value="true"> 是</li>
-                                <li><input type="radio" class="square" name="homePageDisplay" value="false"> 否</li>
+                                <li><label><input type="radio" class="square" name="homePageDisplay" value="true"></label> 是</li>
+                                <li><label><input type="radio" class="square" name="homePageDisplay" value="false"></label> 否</li>
                             </ul>
                         </div>
                     </div>
@@ -119,22 +167,6 @@
 <!--/添加弹框-->
 <@footer>
 <script>
-    /**
-     * 操作按钮
-     * @param code
-     * @param row
-     * @param index
-     * @returns {string}
-     */
-    function operateFormatter(code, row, index) {
-        var trId = row.id;
-        var operateBtn = [
-            '<@shiro.hasPermission name="link:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
-            '<@shiro.hasPermission name="link:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>'
-        ];
-        return operateBtn.join('');
-    }
-
     $(function () {
         var options = {
             modalName: "友情链接",
@@ -215,9 +247,23 @@
                     field: 'operate',
                     title: '操作',
                     width: '150px',
-                    formatter: operateFormatter //自定义方法，添加操作按钮
+                    formatter: function (code, row, index) {
+                        console.log('code:' + code + 'row:' + row + 'index:' + index);
+                        var operateBtn = [];
+                        operateBtn.push('<@permissionUpdateBtn permission="link:edit" id="' + row.id +'" />');
+                        operateBtn.push('<@permissionDelBtn permission="link:delete" id="' + row.id +'" />');
+                        return operateBtn.join('');
+                    }
                 }
-            ]
+            ],
+            queryParams: function (params) {
+                params = $.extend({}, params);
+                params.status = $("#search-status").val();
+                params.homePageDisplay = $("#search-homePageDisplay").val();
+                params.name = $("#search-name").val();
+                params.description = $("#search-description").val();
+                return params;
+            }
         };
         //1.初始化Table
         $.tableUtil.init(options);
