@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleArchivesDto;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.*;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleLookMapper;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleLoveMapper;
@@ -82,7 +82,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      * @return PageInfo
      */
     @Override
-    public PageInfoDto<ArticleDto> findPageBreakByCondition(ArticleConditionVO vo) {
+    public PageInfoDto<ArticleDto> query(ArticleQueryDto vo) {
         //保存搜索记录
         if(ObjectUtils.isNotEmpty(vo.getKeywords())){
             log.info("开始搜索内容，关键字:{}", vo.getKeywords());
@@ -103,7 +103,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
 
 
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
-        List<BizArticle> list = bizArticleMapper.findPageBreakByCondition(vo);
+        List<BizArticle> list = bizArticleMapper.query(vo);
         if (CollectionUtils.isEmpty(list)) {
             return null;
         }
@@ -137,11 +137,11 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      */
     @Override
     public List<ArticleDto> listRecommended(int pageSize) {
-        ArticleConditionVO vo = new ArticleConditionVO();
+        ArticleQueryDto vo = new ArticleQueryDto();
         vo.setRecommended(true);
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
         vo.setPageSize(pageSize);
-        PageInfoDto pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = this.query(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 
@@ -153,10 +153,10 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      */
     @Override
     public List<ArticleDto> listRecent(int pageSize) {
-        ArticleConditionVO vo = new ArticleConditionVO();
+        ArticleQueryDto vo = new ArticleQueryDto();
         vo.setPageSize(pageSize);
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
-        PageInfoDto pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = this.query(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 
@@ -168,11 +168,11 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      */
     @Override
     public List<ArticleDto> listRandom(int pageSize) {
-        ArticleConditionVO vo = new ArticleConditionVO();
+        ArticleQueryDto vo = new ArticleQueryDto();
         vo.setRandom(true);
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
         vo.setPageSize(pageSize);
-        PageInfoDto pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = this.query(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 
@@ -189,7 +189,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         if (null == article) {
             return listRandom(pageSize);
         }
-        ArticleConditionVO vo = new ArticleConditionVO();
+        ArticleQueryDto vo = new ArticleQueryDto();
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
         List<BizTags> tags = article.getTags();
         if (!CollectionUtils.isEmpty(tags)) {
@@ -201,7 +201,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         }
         vo.setTypeId(article.getTypeId());
         vo.setPageSize(pageSize);
-        PageInfoDto pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = this.query(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 
@@ -302,7 +302,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
             this.updateSelective(article);
         } else {
             article.setUserId(SessionUtil.getUser().getId());
-            articleId = this.insert(article).getId();
+            articleId = this.save(article).getId();
         }
         if (ObjectUtils.isNotEmpty(articleId)) {
             articleTagsService.removeByArticleId(articleId);
@@ -374,7 +374,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      * @return ArticleDto
      */
     @Transactional(rollbackFor = Exception.class)
-    public ArticleDto insert(ArticleDto entity) {
+    public ArticleDto save(ArticleDto entity) {
         Assert.notNull(entity, "Article不可为空！");
         entity.setUpdateTime(LocalDateTime.now());
         entity.setCreateTime(LocalDateTime.now());
@@ -410,7 +410,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      * @return boolean
      */
     @Transactional(rollbackFor = Exception.class)
-    public boolean removeByPrimaryKey(String primaryKey) {
+    public boolean deleteById(String primaryKey) {
         boolean result = bizArticleMapper.deleteById(primaryKey) > 0;
         // 删除标签记录
         Wrapper<BizArticleTags> loveExample = new EntityWrapper<>();
@@ -452,7 +452,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      * @return ArticleDto
      */
     @Override
-    public ArticleDto getByPrimaryKey(String primaryKey) {
+    public ArticleDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         BizArticle entity = bizArticleMapper.get(primaryKey);
         return null == entity ? null : new ArticleDto(entity);

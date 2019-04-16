@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.mapper;
 
 import com.github.peterchenhdu.site4j.biz.entity.BizType;
-import com.github.peterchenhdu.site4j.biz.dto.req.TypeConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +23,7 @@ public interface BizTypeMapper extends BaseMapper<BizType> {
      * @param vo
      * @return
      */
-    List<BizType> findPageBreakByCondition(TypeConditionVO vo);
+    List<BizType> query(TypeQueryDto vo);
 
     List<BizType> listParent();
 

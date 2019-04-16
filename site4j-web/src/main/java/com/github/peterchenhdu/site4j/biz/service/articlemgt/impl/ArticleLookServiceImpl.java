@@ -35,7 +35,7 @@ public class ArticleLookServiceImpl extends ServiceImpl<BizArticleLookMapper, Bi
      * @return Integer
      */
     @Override
-    public Integer insert(ArticleLookDto dto) {
+    public Integer save(ArticleLookDto dto) {
         return this.baseMapper.insert(BeanConvertUtils.doConvert(dto, BizArticleLook.class));
     }
 

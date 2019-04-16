@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.NoticeDto;
 import com.github.peterchenhdu.site4j.biz.dto.SysNoticeDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.NoticeQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
 import com.github.peterchenhdu.site4j.biz.mapper.SysNoticeMapper;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
@@ -43,7 +43,7 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper, SysNotice
      * @return PageInfoDto
      */
     @Override
-    public PageInfoDto<NoticeDto> findPageBreakByCondition(NoticeConditionVO vo) {
+    public PageInfoDto<NoticeDto> query(NoticeQueryDto vo) {
         Wrapper<SysNotice> example = new EntityWrapper<>();
         if (ObjectUtils.isNotEmpty(vo.getStatus())) {
             example.eq("status", vo.getStatus());
@@ -85,7 +85,7 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper, SysNotice
      * @return NoticeDto
      */
     @Override
-    public NoticeDto insert(NoticeDto entity) {
+    public NoticeDto save(NoticeDto entity) {
         Assert.notNull(entity, "Notice不可为空！");
         sysNoticeMapper.insert(entity.getSysNotice());
         return entity;
@@ -98,7 +98,7 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper, SysNotice
      * @return boolean
      */
     @Override
-    public boolean removeByPrimaryKey(String primaryKey) {
+    public boolean deleteById(String primaryKey) {
         return sysNoticeMapper.deleteById(primaryKey) > 0;
     }
 
@@ -122,7 +122,7 @@ public class SysNoticeServiceImpl extends ServiceImpl<SysNoticeMapper, SysNotice
      * @return NoticeDto
      */
     @Override
-    public NoticeDto getByPrimaryKey(String primaryKey) {
+    public NoticeDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         SysNotice entity = sysNoticeMapper.selectById(primaryKey);
         return null == entity ? null : new NoticeDto(entity);

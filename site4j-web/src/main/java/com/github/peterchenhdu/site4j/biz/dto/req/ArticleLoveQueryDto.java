@@ -3,7 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.biz.dto.req;
 
-import com.github.peterchenhdu.site4j.biz.dto.RoleDto;
+import com.github.peterchenhdu.site4j.biz.dto.ArticleLoveDto;
 import com.github.peterchenhdu.site4j.common.base.BasePagingQueryDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class RoleConditionVO extends BasePagingQueryDto {
-    private RoleDto role;
+public class ArticleLoveQueryDto extends BasePagingQueryDto {
+    private ArticleLoveDto articleLove;
 }
 

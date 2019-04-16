@@ -10,16 +10,16 @@ import com.github.peterchenhdu.site4j.common.base.BasePagingQueryDto;
  * Created by chenpi on 2019/02/05.
  */
 
-public class LinkConditionVO extends BasePagingQueryDto {
+public class LinkQueryDto extends BasePagingQueryDto {
     private String name;
     private String description;
     private Boolean status;
     private Boolean homePageDisplay;
 
-    public LinkConditionVO() {
+    public LinkQueryDto() {
     }
 
-    public LinkConditionVO(Boolean status, Boolean homePageDisplay) {
+    public LinkQueryDto(Boolean status, Boolean homePageDisplay) {
         this.status = status;
         this.homePageDisplay = homePageDisplay;
     }

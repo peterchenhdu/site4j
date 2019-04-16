@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.controller.backend;
 
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
@@ -64,7 +64,7 @@ public class RestArticleController {
     @GetMapping("/update/{id}")
     public ModelAndView edit(@PathVariable("id") String id, Model model) {
         model.addAttribute("id", id);
-        ArticleDto article = articleService.getByPrimaryKey(id);
+        ArticleDto article = articleService.queryById(id);
         if (article.getIsMarkdown()) {
             return ResultUtils.view("admin/article/publish-md");
         }
@@ -73,8 +73,8 @@ public class RestArticleController {
 
     @ApiOperation(value="查询文章")
     @PostMapping("/list")
-    public BasePagingResultDto list(ArticleConditionVO vo) {
-        PageInfoDto<ArticleDto> pageInfo = articleService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(ArticleQueryDto vo) {
+        PageInfoDto<ArticleDto> pageInfo = articleService.query(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
@@ -85,7 +85,7 @@ public class RestArticleController {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
         for (String id : ids) {
-            articleService.removeByPrimaryKey(id);
+            articleService.deleteById(id);
         }
         return ResultUtils.success("成功删除 [" + ids.length + "] 篇文章");
     }
@@ -93,7 +93,7 @@ public class RestArticleController {
     @ApiOperation(value="查看文章")
     @PostMapping("/get/{id}")
     public BaseResponse get(@PathVariable String id) {
-        return ResultUtils.success(null, this.articleService.getByPrimaryKey(id));
+        return ResultUtils.success(null, this.articleService.queryById(id));
     }
 
     @ApiOperation(value="新增文章")

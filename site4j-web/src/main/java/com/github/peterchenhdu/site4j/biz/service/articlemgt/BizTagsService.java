@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.TagsDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.TagsConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public interface BizTagsService {
      * @param entity
      * @return
      */
-    TagsDto insert(TagsDto entity);
+    TagsDto save(TagsDto entity);
 
     /**
      * 批量插入，支持批量插入的数据库可以使用，例如MySQL,H2等，另外该接口限制实体包含id属性并且必须为自增列
@@ -39,7 +39,7 @@ public interface BizTagsService {
      * @param primaryKey
      * @return
      */
-    boolean removeByPrimaryKey(String primaryKey);
+    boolean deleteById(String primaryKey);
 
     /**
      * 根据主键更新实体全部字段，null值会被更新
@@ -63,7 +63,7 @@ public interface BizTagsService {
      * @param primaryKey
      * @return
      */
-    TagsDto getByPrimaryKey(String primaryKey);
+    TagsDto queryById(String primaryKey);
 
     /**
      * 根据实体中的属性进行查询，只能有一个返回值，有多个结果时抛出异常，查询条件使用等号
@@ -94,7 +94,7 @@ public interface BizTagsService {
      * @param vo
      * @return
      */
-    PageInfoDto<TagsDto> findPageBreakByCondition(TagsConditionVO vo);
+    PageInfoDto<TagsDto> query(TagQueryDto vo);
 
     int queryCount();
 }

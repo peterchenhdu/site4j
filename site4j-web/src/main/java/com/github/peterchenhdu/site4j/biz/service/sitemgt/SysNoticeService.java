@@ -7,7 +7,7 @@ package com.github.peterchenhdu.site4j.biz.service.sitemgt;
 import com.github.peterchenhdu.site4j.biz.dto.NoticeDto;
 import com.github.peterchenhdu.site4j.biz.dto.SysNoticeDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
-import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.NoticeQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -26,7 +26,7 @@ public interface SysNoticeService extends IService<SysNotice> {
      * @param vo vo
      * @return PageInfoDto
      */
-    PageInfoDto<NoticeDto> findPageBreakByCondition(NoticeConditionVO vo);
+    PageInfoDto<NoticeDto> query(NoticeQueryDto vo);
 
     /**
      * 获取已发布的通知列表
@@ -41,7 +41,7 @@ public interface SysNoticeService extends IService<SysNotice> {
      * @param primaryKey primaryKey
      * @return NoticeDto
      */
-    NoticeDto getByPrimaryKey(String primaryKey);
+    NoticeDto queryById(String primaryKey);
 
     /**
      * 修改通知
@@ -57,7 +57,7 @@ public interface SysNoticeService extends IService<SysNotice> {
      * @param primaryKey primaryKey
      * @return boolean
      */
-    boolean removeByPrimaryKey(String primaryKey);
+    boolean deleteById(String primaryKey);
 
     /**
      * 保存通知
@@ -65,5 +65,5 @@ public interface SysNoticeService extends IService<SysNotice> {
      * @param entity entity
      * @return NoticeDto
      */
-    NoticeDto insert(NoticeDto entity);
+    NoticeDto save(NoticeDto entity);
 }

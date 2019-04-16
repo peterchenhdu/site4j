@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.dto.UserPwdDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysRole;
 import com.github.peterchenhdu.site4j.biz.entity.SysUser;
-import com.github.peterchenhdu.site4j.biz.dto.req.UserConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.UserQueryDto;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
 import com.github.peterchenhdu.site4j.common.util.web.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
@@ -62,7 +62,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      */
 
     @Override
-    public UserDto getByPrimaryKey(String primaryKey) {
+    public UserDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         SysUser sysUser = this.selectById(primaryKey);
         return ObjectUtils.isEmpty(sysUser) ? null : new UserDto(sysUser);
@@ -89,12 +89,24 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return PageInfo
      */
     @Override
-    public PageInfoDto<UserDto> findPageBreakByCondition(UserConditionVO vo) {
+    public PageInfoDto<UserDto> query(UserQueryDto vo) {
         Page<SysUser> page = PageUtils.getPage(vo);
 
 
         Wrapper<SysUser> wrapper = new EntityWrapper<>();
-//        wrapper.like("nickname", vo.getKeywords());
+        if(ObjectUtils.isNotEmpty(vo.getUsername())) {
+            wrapper.like("username", vo.getUsername());
+        }
+        if(ObjectUtils.isNotEmpty(vo.getNickname())) {
+            wrapper.like("nickname", vo.getNickname());
+        }
+        if(ObjectUtils.isNotEmpty(vo.getRoleId())) {
+            wrapper.eq("role_id", vo.getRoleId());
+        }
+        if(ObjectUtils.isNotEmpty(vo.getStatus())) {
+            wrapper.eq("status", vo.getStatus());
+        }
+
         wrapper.orderBy("create_time", false);
 
         List<SysUser> userList = baseMapper.selectPage(page, wrapper);
@@ -174,7 +186,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (!userPwd.getNewPassword().equals(userPwd.getNewPasswordRepeat())) {
             throw new CommonRuntimeException("新密码不一致！");
         }
-        UserDto user = this.getByPrimaryKey(userPwd.getId());
+        UserDto user = this.queryById(userPwd.getId());
         if (null == user) {
             throw new CommonRuntimeException("用户编号错误！请不要手动操作用户ID！");
         }

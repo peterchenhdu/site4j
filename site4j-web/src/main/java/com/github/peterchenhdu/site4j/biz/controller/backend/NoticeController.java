@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.controller.backend;
 import com.github.peterchenhdu.site4j.biz.dto.NoticeDto;
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
-import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.NoticeQueryDto;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
@@ -42,8 +42,8 @@ public class NoticeController {
 
     @ApiOperation(value="查询公告")
     @PostMapping("/query")
-    public BasePagingResultDto query(NoticeConditionVO vo) {
-        PageInfoDto<NoticeDto> pageInfo = noticeService.findPageBreakByCondition(vo);
+    public BasePagingResultDto query(NoticeQueryDto vo) {
+        PageInfoDto<NoticeDto> pageInfo = noticeService.query(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
@@ -54,7 +54,7 @@ public class NoticeController {
         if (null != user) {
             notice.setUserId(user.getId());
         }
-        noticeService.insert(notice);
+        noticeService.save(notice);
         return ResultUtils.success("系统通知添加成功");
     }
 
@@ -65,7 +65,7 @@ public class NoticeController {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
         for (String id : ids) {
-            noticeService.removeByPrimaryKey(id);
+            noticeService.deleteById(id);
         }
         return ResultUtils.success("成功删除 [" + ids.length + "] 个系统通知");
     }
@@ -80,7 +80,7 @@ public class NoticeController {
     @ApiOperation(value="查看单个公告")
     @PostMapping("/get/{id}")
     public BaseResponse get(@PathVariable String id) {
-        return ResultUtils.success(null, this.noticeService.getByPrimaryKey(id));
+        return ResultUtils.success(null, this.noticeService.queryById(id));
     }
 
     @ApiOperation(value="修改公告")

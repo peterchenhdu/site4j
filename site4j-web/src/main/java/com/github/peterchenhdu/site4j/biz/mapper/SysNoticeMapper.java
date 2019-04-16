@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.mapper;
 
 import com.github.peterchenhdu.site4j.biz.entity.SysNotice;
-import com.github.peterchenhdu.site4j.biz.dto.req.NoticeConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.NoticeQueryDto;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
@@ -23,5 +23,5 @@ public interface SysNoticeMapper extends BaseMapper<SysNotice> {
      * @param vo
      * @return
      */
-    List<SysNotice> findPageBreakByCondition(NoticeConditionVO vo);
+    List<SysNotice> query(NoticeQueryDto vo);
 }

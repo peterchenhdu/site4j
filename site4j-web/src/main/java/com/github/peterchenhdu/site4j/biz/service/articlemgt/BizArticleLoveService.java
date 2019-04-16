@@ -18,7 +18,7 @@ public interface BizArticleLoveService  {
      * @param entity entity
      * @return ArticleLoveDto
      */
-    ArticleLoveDto insert(ArticleLoveDto entity);
+    ArticleLoveDto save(ArticleLoveDto entity);
 
 
 }

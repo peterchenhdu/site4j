@@ -4,6 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.dto.req;
 
 import com.github.peterchenhdu.site4j.common.base.BasePagingQueryDto;
+import com.github.peterchenhdu.site4j.biz.dto.ArticleTagsDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,12 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class TypeConditionVO extends BasePagingQueryDto {
-    private String pid;
-    private String name;
-    private String description;
-    private Integer sort;
-    private Boolean available;
-    private String icon;
+public class ArticleTagQueryDto extends BasePagingQueryDto {
+    private ArticleTagsDto articleTags;
 }
 

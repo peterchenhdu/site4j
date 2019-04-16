@@ -82,7 +82,7 @@ public class ShiroRealm extends AuthorizingRealm {
         UserDto user = new UserDto(userService.selectById(userId));
 
         // 赋予角色
-        RoleDto role = roleService.getByPrimaryKey(user.getRoleId());
+        RoleDto role = roleService.queryById(user.getRoleId());
         info.addRole(role.getName());
 
 

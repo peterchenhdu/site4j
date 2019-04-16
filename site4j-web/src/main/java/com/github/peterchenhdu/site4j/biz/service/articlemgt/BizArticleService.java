@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticle;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +28,7 @@ public interface BizArticleService extends IService<BizArticle> {
      * @param vo
      * @return
      */
-    PageInfoDto<ArticleDto> findPageBreakByCondition(ArticleConditionVO vo);
+    PageInfoDto<ArticleDto> query(ArticleQueryDto vo);
 
     /**
      * 站长推荐
@@ -135,7 +135,7 @@ public interface BizArticleService extends IService<BizArticle> {
     Map<String, List> listArchives();
 
     List<ArticleDto> listAll();
-    ArticleDto getByPrimaryKey(String primaryKey);
+    ArticleDto queryById(String primaryKey);
     boolean updateSelective(ArticleDto entity);
-    boolean removeByPrimaryKey(String primaryKey);
+    boolean deleteById(String primaryKey);
 }

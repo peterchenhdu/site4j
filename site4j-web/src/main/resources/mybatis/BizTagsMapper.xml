@@ -17,7 +17,7 @@
         update_time
     </sql>
 
-    <select id="findPageBreakByCondition" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.TagsConditionVO" resultMap="rm">
+    <select id="query" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto" resultMap="rm">
         SELECT
         t.*
         FROM

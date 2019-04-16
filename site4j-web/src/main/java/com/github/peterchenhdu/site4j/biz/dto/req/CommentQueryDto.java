@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class CommentConditionVO extends BasePagingQueryDto {
+public class CommentQueryDto extends BasePagingQueryDto {
     private String userId;
     private String sid;
     private String pid;

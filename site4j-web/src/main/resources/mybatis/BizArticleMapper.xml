@@ -44,7 +44,7 @@
         </collection>
     </resultMap>
 
-    <select id="findPageBreakByCondition" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO" resultMap="rm">
+    <select id="query" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto" resultMap="rm">
         SELECT
         a.*,
         btype.id AS btype_id,

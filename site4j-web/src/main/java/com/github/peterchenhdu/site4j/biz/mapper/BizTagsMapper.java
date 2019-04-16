@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.mapper;
 
 import com.github.peterchenhdu.site4j.biz.entity.BizTags;
-import com.github.peterchenhdu.site4j.biz.dto.req.TagsConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +23,7 @@ public interface BizTagsMapper extends BaseMapper<BizTags> {
      * @param vo
      * @return
      */
-    List<BizTags> findPageBreakByCondition(TagsConditionVO vo);
+    List<BizTags> query(TagQueryDto vo);
 
     List<BizTags> findByName(String name);
 }

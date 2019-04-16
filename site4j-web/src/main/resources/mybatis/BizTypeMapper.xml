@@ -40,7 +40,7 @@
         update_time
     </sql>
 
-    <select id="findPageBreakByCondition" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.TypeConditionVO" resultMap="rm">
+    <select id="query" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto" resultMap="rm">
         SELECT
         t.*,
         parent.id parent_id,

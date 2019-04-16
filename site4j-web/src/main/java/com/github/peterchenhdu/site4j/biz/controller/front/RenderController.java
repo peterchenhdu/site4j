@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +47,9 @@ public class RenderController {
      * @param model
      * @return
      */
-    private void loadIndexPage(ArticleConditionVO vo, Model model) {
+    private void loadIndexPage(ArticleQueryDto vo, Model model) {
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
-        PageInfoDto<ArticleDto> pageInfo = bizArticleService.findPageBreakByCondition(vo);
+        PageInfoDto<ArticleDto> pageInfo = bizArticleService.query(vo);
         model.addAttribute("page", pageInfo);
         model.addAttribute("model", vo);
     }
@@ -62,7 +62,7 @@ public class RenderController {
      * @return
      */
     @RequestMapping("/")
-    public ModelAndView home(ArticleConditionVO vo, Model model) {
+    public ModelAndView home(ArticleQueryDto vo, Model model) {
         model.addAttribute("url", INDEX_URL);
         loadIndexPage(vo, model);
 
@@ -78,7 +78,7 @@ public class RenderController {
      * @return
      */
     @RequestMapping("/index/{pageNumber}")
-    public ModelAndView type(@PathVariable("pageNumber") Integer pageNumber, ArticleConditionVO vo, Model model) {
+    public ModelAndView type(@PathVariable("pageNumber") Integer pageNumber, ArticleQueryDto vo, Model model) {
         vo.setPageNumber(pageNumber);
         model.addAttribute("url", INDEX_URL);
         loadIndexPage(vo, model);
@@ -95,7 +95,7 @@ public class RenderController {
      */
     @GetMapping("/type/{typeId}")
     public ModelAndView type(@PathVariable("typeId") String typeId, Model model) {
-        ArticleConditionVO vo = new ArticleConditionVO();
+        ArticleQueryDto vo = new ArticleQueryDto();
         vo.setTypeId(typeId);
         model.addAttribute("url", "type/" + typeId);
         loadIndexPage(vo, model);
@@ -113,7 +113,7 @@ public class RenderController {
      */
     @GetMapping("/type/{typeId}/{pageNumber}")
     public ModelAndView type(@PathVariable("typeId") String typeId, @PathVariable("pageNumber") Integer pageNumber, Model model) {
-        ArticleConditionVO vo = new ArticleConditionVO();
+        ArticleQueryDto vo = new ArticleQueryDto();
         vo.setTypeId(typeId);
         vo.setPageNumber(pageNumber);
         model.addAttribute("url", "type/" + typeId);
@@ -131,7 +131,7 @@ public class RenderController {
      */
     @GetMapping("/tag/{tagId}")
     public ModelAndView tag(@PathVariable("tagId") String tagId, Model model) {
-        ArticleConditionVO vo = new ArticleConditionVO();
+        ArticleQueryDto vo = new ArticleQueryDto();
         vo.setTagId(tagId);
         model.addAttribute("url", "tag/" + tagId);
         loadIndexPage(vo, model);
@@ -149,7 +149,7 @@ public class RenderController {
      */
     @GetMapping("/tag/{tagId}/{pageNumber}")
     public ModelAndView tag(@PathVariable("tagId") String tagId, @PathVariable("pageNumber") Integer pageNumber, Model model) {
-        ArticleConditionVO vo = new ArticleConditionVO();
+        ArticleQueryDto vo = new ArticleQueryDto();
         vo.setTagId(tagId);
         vo.setPageNumber(pageNumber);
         model.addAttribute("url", "tag/" + tagId);
@@ -167,7 +167,7 @@ public class RenderController {
      */
     @GetMapping("/article/{articleId}")
     public ModelAndView article(Model model, @PathVariable("articleId") String articleId) {
-        ArticleDto article = bizArticleService.getByPrimaryKey(articleId);
+        ArticleDto article = bizArticleService.queryById(articleId);
         if (article == null || ArticleStatusEnum.UNPUBLISHED.getCode() == article.getStatusEnum().getCode()) {
             return ResultUtils.redirect("/error/404");
         }

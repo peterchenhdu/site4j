@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.mapper;
 
 import com.github.peterchenhdu.site4j.biz.entity.BizComment;
-import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.CommentQueryDto;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +23,7 @@ public interface BizCommentMapper extends BaseMapper<BizComment> {
      * @param vo
      * @return
      */
-    List<BizComment> findPageBreakByCondition(CommentConditionVO vo);
+    List<BizComment> query(CommentQueryDto vo);
 
     /**
      * 点赞

@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.ResourcesDto;
 import com.github.peterchenhdu.site4j.biz.dto.view.ZTreeNodeDto;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesService;
 import com.github.peterchenhdu.site4j.core.shiro.ShiroService;
-import com.github.peterchenhdu.site4j.biz.dto.req.ResourceConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ResourceQueryDto;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
@@ -70,8 +70,8 @@ public class ResourceController {
 
     @ApiOperation(value = "查询资源")
     @PostMapping("/query")
-    public BasePagingResultDto getAll(ResourceConditionVO vo) {
-        PageInfoDto<ResourcesDto> pageInfo = resourcesService.findPageBreakByCondition(vo);
+    public BasePagingResultDto getAll(ResourceQueryDto vo) {
+        PageInfoDto<ResourcesDto> pageInfo = resourcesService.query(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
@@ -84,7 +84,7 @@ public class ResourceController {
     @ApiOperation(value = "新增资源")
     @PostMapping(value = "/add")
     public BaseResponse add(@Valid ResourcesDto resources) {
-        resourcesService.insert(resources);
+        resourcesService.save(resources);
         //更新权限
         updatePermission();
         return ResultUtils.success("成功");
@@ -111,7 +111,7 @@ public class ResourceController {
     @ApiOperation(value = "单个删除资源")
     @PostMapping(value = "/delete")
     public BaseResponse delete(String id) {
-        resourcesService.removeByPrimaryKey(id);
+        resourcesService.deleteById(id);
         //更新权限
         updatePermission();
         return ResultUtils.success("成功删除");
@@ -120,7 +120,7 @@ public class ResourceController {
     @ApiOperation(value = "查看单个资源")
     @PostMapping("/get/{id}")
     public BaseResponse get(@PathVariable String id) {
-        return ResultUtils.success(this.resourcesService.getByPrimaryKey(id));
+        return ResultUtils.success(this.resourcesService.queryById(id));
     }
 
     @ApiOperation(value = "修改资源")

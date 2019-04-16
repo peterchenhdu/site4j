@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizType;
-import com.github.peterchenhdu.site4j.biz.dto.req.TypeConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -25,7 +25,7 @@ public interface BizTypeService extends IService<BizType> {
      * @param vo
      * @return
      */
-    PageInfoDto<TypeDto> findPageBreakByCondition(TypeConditionVO vo);
+    PageInfoDto<TypeDto> query(TypeQueryDto vo);
 
     List<TypeDto> listParent();
 
@@ -33,9 +33,9 @@ public interface BizTypeService extends IService<BizType> {
 
     int queryCount();
 
-    TypeDto insert(TypeDto entity);
+    TypeDto save(TypeDto entity);
     List<TypeDto> listAll();
-    TypeDto getByPrimaryKey(String primaryKey);
+    TypeDto queryById(String primaryKey);
     boolean updateSelective(TypeDto entity);
-    boolean removeByPrimaryKey(String primaryKey);
+    boolean deleteById(String primaryKey);
 }

@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.biz.service.sitemgt;
 
 
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.LinkConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.LinkQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public interface SysLinkService {
      * @param entity entity
      * @return LinkDto
      */
-    LinkDto insert(LinkDto entity);
+    LinkDto save(LinkDto entity);
 
 
     /**
@@ -32,7 +32,7 @@ public interface SysLinkService {
      * @param primaryKey primaryKey
      * @return boolean
      */
-    boolean removeByPrimaryKey(String primaryKey);
+    boolean deleteById(String primaryKey);
 
 
     /**
@@ -49,7 +49,7 @@ public interface SysLinkService {
      * @param primaryKey primaryKey
      * @return LinkDto
      */
-    LinkDto getByPrimaryKey(String primaryKey);
+    LinkDto queryById(String primaryKey);
 
 
     /**
@@ -66,7 +66,7 @@ public interface SysLinkService {
      * @param vo vo
      * @return PageInfoDto
      */
-    PageInfoDto<LinkDto> findPageBreakByCondition(LinkConditionVO vo);
+    PageInfoDto<LinkDto> query(LinkQueryDto vo);
 
     /**
      * 查询可在首页显示的友情链接列表

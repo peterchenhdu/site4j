@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.biz.entity.SysRole;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleResourcesService;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
 import com.github.peterchenhdu.site4j.core.shiro.ShiroService;
-import com.github.peterchenhdu.site4j.biz.dto.req.RoleConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.RoleQueryDto;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
@@ -47,8 +47,8 @@ public class RoleController {
 
     @ApiOperation(value="查看所有角色")
     @PostMapping("/query")
-    public BasePagingResultDto getAll(RoleConditionVO vo) {
-        PageInfoDto<SysRole> pageInfo = roleService.findPageBreakByCondition(vo);
+    public BasePagingResultDto getAll(RoleQueryDto vo) {
+        PageInfoDto<SysRole> pageInfo = roleService.query(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
@@ -67,7 +67,7 @@ public class RoleController {
     @ApiOperation(value="新增角色")
     @PostMapping(value = "/add")
     public BaseResponse add(RoleDto role) {
-        roleService.insert(role);
+        roleService.save(role);
         return ResultUtils.success("成功");
     }
 
@@ -78,8 +78,8 @@ public class RoleController {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
         for (String id : ids) {
-            roleService.removeByPrimaryKey(id);
-            roleResourcesService.removeByRoleId(id);
+            roleService.deleteById(id);
+            roleResourcesService.deleteByRoleId(id);
         }
         return ResultUtils.success("成功删除 [" + ids.length + "] 个角色");
     }
@@ -87,15 +87,15 @@ public class RoleController {
     @ApiOperation(value="删除单个角色")
     @PostMapping(value = "/delete")
     public BaseResponse delete(String id) {
-        roleService.removeByPrimaryKey(id);
-        roleResourcesService.removeByRoleId(id);
+        roleService.deleteById(id);
+        roleResourcesService.deleteByRoleId(id);
         return ResultUtils.success("成功删除");
     }
 
     @ApiOperation(value="查看单个角色")
     @PostMapping("/get/{id}")
     public BaseResponse get(@PathVariable String id) {
-        return ResultUtils.success(null, this.roleService.getByPrimaryKey(id));
+        return ResultUtils.success(null, this.roleService.queryById(id));
     }
 
     @ApiOperation(value="更新角色")

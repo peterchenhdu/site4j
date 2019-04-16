@@ -7,7 +7,7 @@ package com.github.peterchenhdu.site4j.biz.service.usermgt;
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.dto.UserPwdDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysUser;
-import com.github.peterchenhdu.site4j.biz.dto.req.UserConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.UserQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -26,7 +26,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param vo
      * @return
      */
-    PageInfoDto<UserDto> findPageBreakByCondition(UserConditionVO vo);
+    PageInfoDto<UserDto> query(UserQueryDto vo);
 
     /**
      * 更新用户最后一次登录的状态信息
@@ -61,7 +61,7 @@ public interface SysUserService extends IService<SysUser> {
     boolean updatePwd(UserPwdDto userPwd) throws Exception;
 
     UserDto getOneByEntity(UserDto entity);
-    UserDto getByPrimaryKey(String primaryKey);
+    UserDto queryById(String primaryKey);
     boolean updateSelective(UserDto entity);
 
 

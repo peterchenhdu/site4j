@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.config.freemarker.template;
 
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
@@ -63,12 +63,12 @@ public class ArticleTagDirective implements TemplateDirectiveModel {
                     break;
                 case "typeList":
                     // 按文章分类查询
-                    ArticleConditionVO vo = new ArticleConditionVO();
+                    ArticleQueryDto vo = new ArticleQueryDto();
                     vo.setTypeId(typeId);
                     // 已发布状态
                     vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
                     vo.setPageSize(pageSize);
-                    PageInfoDto<ArticleDto> pageInfo = articleService.findPageBreakByCondition(vo);
+                    PageInfoDto<ArticleDto> pageInfo = articleService.query(vo);
                     environment.setVariable("typeList", builder.build().wrap(null == pageInfo ? null : pageInfo.getList()));
                     break;
                 default:

@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.biz.mapper;
 
 import com.github.peterchenhdu.site4j.biz.dto.ResourcesDto;
 import com.github.peterchenhdu.site4j.biz.entity.Resource;
-import com.github.peterchenhdu.site4j.biz.dto.req.ResourceConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ResourceQueryDto;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.stereotype.Repository;
@@ -26,7 +26,7 @@ public interface ResourceMapper extends BaseMapper<Resource> {
      * @param vo
      * @return
      */
-    List<ResourcesDto> findPageBreakByCondition(Page<ResourcesDto> page, ResourceConditionVO vo);
+    List<ResourcesDto> query(Page<ResourcesDto> page, ResourceQueryDto vo);
 
     List<ResourcesDto> listUserResources(Map<String, Object> map);
 

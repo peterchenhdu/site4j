@@ -4,7 +4,6 @@
 package com.github.peterchenhdu.site4j.biz.dto.req;
 
 import com.github.peterchenhdu.site4j.common.base.BasePagingQueryDto;
-import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +13,12 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class UserConditionVO extends BasePagingQueryDto {
-    private UserDto user;
+public class TypeQueryDto extends BasePagingQueryDto {
+    private String pid;
+    private String name;
+    private String description;
+    private Integer sort;
+    private Boolean available;
+    private String icon;
 }
+

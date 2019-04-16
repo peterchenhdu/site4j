@@ -10,7 +10,7 @@ import com.github.peterchenhdu.site4j.biz.dto.BizCommentDto;
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
 import com.github.peterchenhdu.site4j.biz.dto.ConfigDto;
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.CommentQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizComment;
 import com.github.peterchenhdu.site4j.biz.mapper.BizCommentMapper;
 import com.github.peterchenhdu.site4j.biz.service.common.MailService;
@@ -73,9 +73,9 @@ public class BizCommentServiceImpl implements BizCommentService {
      * @return
      */
     @Override
-    public PageInfoDto<CommentDto> findPageBreakByCondition(CommentConditionVO vo) {
+    public PageInfoDto<CommentDto> query(CommentQueryDto vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
-        List<BizComment> list = bizCommentMapper.findPageBreakByCondition(vo);
+        List<BizComment> list = bizCommentMapper.query(vo);
         if (CollectionUtils.isEmpty(list)) {
             return null;
         }
@@ -93,8 +93,8 @@ public class BizCommentServiceImpl implements BizCommentService {
      */
     @Override
 //    @RedisCache
-    public Map<String, Object> list(CommentConditionVO vo) {
-        PageInfoDto pageInfo = findPageBreakByCondition(vo);
+    public Map<String, Object> list(CommentQueryDto vo) {
+        PageInfoDto pageInfo = query(vo);
         Map<String, Object> map = new HashMap<>();
         if (pageInfo != null) {
             map.put("commentList", convert2DTO(pageInfo.getList()));
@@ -228,7 +228,7 @@ public class BizCommentServiceImpl implements BizCommentService {
         if (StringUtils.isEmpty(comment.getStatus())) {
             comment.setStatus(CommentStatusEnum.VERIFYING.toString());
         }
-        this.insert(comment);
+        this.save(comment);
         this.sendEmail(comment);
         return comment;
     }
@@ -240,7 +240,7 @@ public class BizCommentServiceImpl implements BizCommentService {
         try {
             if (null != comment.getPid()) {
                 // 给被评论的用户发送通知
-                CommentDto commentDB = this.getByPrimaryKey(comment.getPid());
+                CommentDto commentDB = this.queryById(comment.getPid());
                 mailService.send(commentDB, TemplateKeyEnum.COMMENT_REPLY, false);
             } else {
                 mailService.sendToAdmin(comment);
@@ -259,11 +259,11 @@ public class BizCommentServiceImpl implements BizCommentService {
     @Override
     @RedisCache
     public List<CommentDto> listRecentComment(int pageSize) {
-        CommentConditionVO vo = new CommentConditionVO();
+        CommentQueryDto vo = new CommentQueryDto();
         vo.setPageSize(pageSize);
         vo.setStatus(CommentStatusEnum.APPROVED.toString());
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
-        List<BizComment> list = bizCommentMapper.findPageBreakByCondition(vo);
+        List<BizComment> list = bizCommentMapper.query(vo);
         if (CollectionUtils.isEmpty(list)) {
             return null;
         }
@@ -282,10 +282,10 @@ public class BizCommentServiceImpl implements BizCommentService {
      */
     @Override
     public List<CommentDto> listVerifying(int pageSize) {
-        CommentConditionVO vo = new CommentConditionVO();
+        CommentQueryDto vo = new CommentQueryDto();
         vo.setPageSize(pageSize);
         vo.setStatus(CommentStatusEnum.VERIFYING.toString());
-        PageInfoDto pageInfo = findPageBreakByCondition(vo);
+        PageInfoDto pageInfo = query(vo);
         return null == pageInfo ? null : pageInfo.getList();
     }
 
@@ -339,7 +339,7 @@ public class BizCommentServiceImpl implements BizCommentService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     @RedisCache(flush = true)
-    public CommentDto insert(CommentDto entity) {
+    public CommentDto save(CommentDto entity) {
         Assert.notNull(entity, "Comment不可为空！");
         entity.setUpdateTime(LocalDateTime.now());
         entity.setCreateTime(LocalDateTime.now());
@@ -368,7 +368,7 @@ public class BizCommentServiceImpl implements BizCommentService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     @RedisCache(flush = true)
-    public boolean removeByPrimaryKey(String primaryKey) {
+    public boolean deleteById(String primaryKey) {
         return bizCommentMapper.deleteById(primaryKey) > 0;
     }
 
@@ -409,7 +409,7 @@ public class BizCommentServiceImpl implements BizCommentService {
      * @return
      */
     @Override
-    public CommentDto getByPrimaryKey(String primaryKey) {
+    public CommentDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         BizComment entity = bizCommentMapper.getById(primaryKey);
         return null == entity ? null : new CommentDto(entity);

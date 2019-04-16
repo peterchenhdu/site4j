@@ -24,7 +24,7 @@
         </collection>
     </resultMap>
 
-    <select id="findPageBreakByCondition" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.ResourceConditionVO"
+    <select id="query" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.ResourceQueryDto"
             resultMap="rm">
         SELECT
         com.*,

@@ -42,7 +42,7 @@ public class SysRoleResourcesServiceImpl extends ServiceImpl<SysRoleResourcesMap
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public void addRoleResources(String roleId, String resourcesId) {
         //删除
-        removeByRoleId(roleId);
+        deleteByRoleId(roleId);
         //添加
         if (!StringUtils.isEmpty(resourcesId)) {
             String[] resourcesArr = resourcesId.split(",");
@@ -69,7 +69,7 @@ public class SysRoleResourcesServiceImpl extends ServiceImpl<SysRoleResourcesMap
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
-    public void removeByRoleId(String roleId) {
+    public void deleteByRoleId(String roleId) {
         //删除
         Wrapper<SysRoleResources> example = new EntityWrapper<>();
         example.eq("role_id", roleId);

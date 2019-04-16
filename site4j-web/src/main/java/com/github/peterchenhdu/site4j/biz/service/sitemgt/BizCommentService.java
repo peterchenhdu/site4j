@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.service.sitemgt;
 
 
-import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.CommentQueryDto;
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 
@@ -25,7 +25,7 @@ public interface BizCommentService {
      * @param entity
      * @return
      */
-    CommentDto insert(CommentDto entity);
+    CommentDto save(CommentDto entity);
 
     /**
      * 批量插入，支持批量插入的数据库可以使用，例如MySQL,H2等，另外该接口限制实体包含id属性并且必须为自增列
@@ -40,7 +40,7 @@ public interface BizCommentService {
      * @param primaryKey
      * @return
      */
-    boolean removeByPrimaryKey(String primaryKey);
+    boolean deleteById(String primaryKey);
 
     /**
      * 根据主键更新实体全部字段，null值会被更新
@@ -64,7 +64,7 @@ public interface BizCommentService {
      * @param primaryKey
      * @return
      */
-    CommentDto getByPrimaryKey(String primaryKey);
+    CommentDto queryById(String primaryKey);
 
     /**
      * 根据实体中的属性进行查询，只能有一个返回值，有多个结果时抛出异常，查询条件使用等号
@@ -95,13 +95,13 @@ public interface BizCommentService {
      * @param vo
      * @return
      */
-    PageInfoDto<CommentDto> findPageBreakByCondition(CommentConditionVO vo);
+    PageInfoDto<CommentDto> query(CommentQueryDto vo);
 
     /**
      * @param vo
      * @return
      */
-    Map<String, Object> list(CommentConditionVO vo);
+    Map<String, Object> list(CommentQueryDto vo);
 
     /**
      * admin发表评论

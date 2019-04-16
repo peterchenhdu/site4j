@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ArticleConditionVO extends BasePagingQueryDto {
+public class ArticleQueryDto extends BasePagingQueryDto {
     private ArticleDto article;
     private String typeId;
     private String tagId;

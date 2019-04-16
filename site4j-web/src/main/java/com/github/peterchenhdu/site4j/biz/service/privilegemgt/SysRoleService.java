@@ -4,32 +4,29 @@
 package com.github.peterchenhdu.site4j.biz.service.privilegemgt;
 
 
-import com.github.peterchenhdu.site4j.biz.dto.RoleDto;
-import com.github.peterchenhdu.site4j.biz.entity.SysRole;
-import com.github.peterchenhdu.site4j.biz.dto.req.RoleConditionVO;
-import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
+import com.github.peterchenhdu.site4j.biz.dto.RoleDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.RoleQueryDto;
+import com.github.peterchenhdu.site4j.biz.entity.SysRole;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+
+import java.util.List;
 
 /**
  * 角色
- *
  * <p>
  * Created by chenpi on 2019/02/05.
  */
 public interface SysRoleService extends IService<SysRole> {
+    PageInfoDto<SysRole> query(RoleQueryDto vo);
 
+    RoleDto queryById(String primaryKey);
 
-
-    /**
-     * 分页查询
-     *
-     * @param vo
-     * @return
-     */
-    PageInfoDto<SysRole> findPageBreakByCondition(RoleConditionVO vo);
-
-    RoleDto getByPrimaryKey(String primaryKey);
     boolean updateSelective(RoleDto entity);
-    boolean removeByPrimaryKey(String primaryKey);
-    RoleDto insert(RoleDto entity);
+
+    boolean deleteById(String primaryKey);
+
+    RoleDto save(RoleDto entity);
+
+    List<RoleDto> queryAllAvailableRoleList();
 }

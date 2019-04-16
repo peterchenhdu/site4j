@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizType;
 import com.github.peterchenhdu.site4j.biz.mapper.BizTypeMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
-import com.github.peterchenhdu.site4j.biz.dto.req.TypeConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
@@ -43,9 +43,9 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
      * @return
      */
     @Override
-    public PageInfoDto<TypeDto> findPageBreakByCondition(TypeConditionVO vo) {
+    public PageInfoDto<TypeDto> query(TypeQueryDto vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
-        List<BizType> list = bizTypeMapper.findPageBreakByCondition(vo);
+        List<BizType> list = bizTypeMapper.query(vo);
         List<TypeDto> boList = getTypes(list);
         if (boList == null) return null;
         return new PageInfoDto<>(PageHelper.getTotal(), boList);
@@ -59,7 +59,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
 
     @Override
     public List<TypeDto> listTypeForMenu() {
-        TypeConditionVO vo = new TypeConditionVO();
+        TypeQueryDto vo = new TypeQueryDto();
         vo.setPageNumber(1);
         vo.setPageSize(100);
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
@@ -93,7 +93,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public TypeDto insert(TypeDto entity) {
+    public TypeDto save(TypeDto entity) {
         Assert.notNull(entity, "Type不可为空！");
         List<BizType> list = bizTypeMapper.findByName(entity.getName());
         if(!list.isEmpty()) {
@@ -115,7 +115,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean removeByPrimaryKey(String primaryKey) {
+    public boolean deleteById(String primaryKey) {
         return bizTypeMapper.deleteById(primaryKey) > 0;
     }
 
@@ -145,7 +145,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
      * @return
      */
     @Override
-    public TypeDto getByPrimaryKey(String primaryKey) {
+    public TypeDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         BizType entity = bizTypeMapper.selectById(primaryKey);
         return null == entity ? null : new TypeDto(entity);
@@ -158,7 +158,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
      */
     @Override
     public List<TypeDto> listAll() {
-        TypeConditionVO vo = new TypeConditionVO();
+        TypeQueryDto vo = new TypeQueryDto();
         vo.setPageNumber(1);
         vo.setPageSize(100);
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());

@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.ArticleTagsDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticleTags;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleTagsConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleTagQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -25,7 +25,7 @@ public interface BizArticleTagsService extends IService<BizArticleTags> {
      * @param vo
      * @return
      */
-    PageInfoDto<ArticleTagsDto> findPageBreakByCondition(ArticleTagsConditionVO vo);
+    PageInfoDto<ArticleTagsDto> query(ArticleTagQueryDto vo);
 
     /**
      * 通过文章id删除文章-标签关联数据

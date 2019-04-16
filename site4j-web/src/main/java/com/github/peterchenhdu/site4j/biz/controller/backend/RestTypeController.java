@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.biz.controller.backend;
 
 import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
-import com.github.peterchenhdu.site4j.biz.dto.req.TypeConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
@@ -44,15 +44,15 @@ public class RestTypeController {
 
     @ApiOperation(value="查询类别")
     @PostMapping("/list")
-    public BasePagingResultDto list(TypeConditionVO vo) {
-        PageInfoDto<TypeDto> pageInfo = typeService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(TypeQueryDto vo) {
+        PageInfoDto<TypeDto> pageInfo = typeService.query(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
     @ApiOperation(value="新增类别")
     @PostMapping(value = "/add")
     public BaseResponse add(TypeDto type) {
-        typeService.insert(type);
+        typeService.save(type);
         return ResultUtils.success("文章类型添加成功！新类型 - " + type.getName());
     }
 
@@ -63,7 +63,7 @@ public class RestTypeController {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
         for (String id : ids) {
-            typeService.removeByPrimaryKey(id);
+            typeService.deleteById(id);
         }
         return ResultUtils.success("成功删除 [" + ids.length + "] 个文章类型");
     }
@@ -71,7 +71,7 @@ public class RestTypeController {
     @ApiOperation(value="查看单个类别")
     @PostMapping("/get/{id}")
     public BaseResponse get(@PathVariable String id) {
-        return ResultUtils.success(null, this.typeService.getByPrimaryKey(id));
+        return ResultUtils.success(null, this.typeService.queryById(id));
     }
 
     @ApiOperation(value="编辑类别")

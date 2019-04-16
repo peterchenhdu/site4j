@@ -54,7 +54,7 @@ public class ArticleLookAspects {
             String userIp = IpUtils.getRealIp(WebUtils.getRequest());
             //文章ID
             String articleId =  args[1].toString();
-            ArticleDto bizArticle = bizArticleService.getByPrimaryKey(articleId);
+            ArticleDto bizArticle = bizArticleService.queryById(articleId);
             //判断文章是否存在
             if (ObjectUtils.isEmpty(bizArticle)) {
                 log.warn("{}-该文章不存在！", articleId);
@@ -70,7 +70,7 @@ public class ArticleLookAspects {
             if (SessionUtil.getUser() != null) {
                 articleLook.setUserId(SessionUtil.getUser().getId());
             }
-            articleLookService.insert(articleLook);
+            articleLookService.save(articleLook);
         }
     }
 }

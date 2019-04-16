@@ -29,7 +29,7 @@ public interface SysRoleResourcesService extends IService<SysRoleResources> {
      *
      * @param roleId
      */
-    void removeByRoleId(String roleId);
+    void deleteByRoleId(String roleId);
 
     List<String> queryResourceByRoleId(String roleId);
 

@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.controller.backend;
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
 import com.github.peterchenhdu.site4j.biz.service.common.MailService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
-import com.github.peterchenhdu.site4j.biz.dto.req.LinkConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.LinkQueryDto;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
@@ -45,8 +45,8 @@ public class LinkController {
 
     @ApiOperation(value="查看友情链接")
     @PostMapping("/list")
-    public BasePagingResultDto list(LinkConditionVO vo) {
-        PageInfoDto<LinkDto> pageInfo = linkService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(LinkQueryDto vo) {
+        PageInfoDto<LinkDto> pageInfo = linkService.query(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
@@ -54,7 +54,7 @@ public class LinkController {
     @PostMapping(value = "/add")
     public BaseResponse add(LinkDto link) {
         link.setSource(LinkSourceEnum.ADMIN);
-        linkService.insert(link);
+        linkService.save(link);
         mailService.send(link, TemplateKeyEnum.LINKS);
         return ResultUtils.success("成功");
     }
@@ -66,7 +66,7 @@ public class LinkController {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
         for (String id : ids) {
-            linkService.removeByPrimaryKey(id);
+            linkService.deleteById(id);
         }
         return ResultUtils.success("成功删除 [" + ids.length + "] 个友情链接");
     }
@@ -74,7 +74,7 @@ public class LinkController {
     @ApiOperation(value="查看单个友情链接")
     @PostMapping("/get/{id}")
     public BaseResponse get(@PathVariable String id) {
-        return ResultUtils.success(null, this.linkService.getByPrimaryKey(id));
+        return ResultUtils.success(null, this.linkService.queryById(id));
     }
 
     @ApiOperation(value="编辑友情链接")

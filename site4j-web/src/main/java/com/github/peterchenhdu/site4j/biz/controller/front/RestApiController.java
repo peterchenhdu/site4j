@@ -4,8 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.controller.front;
 
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
-import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.CommentQueryDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.BizCommentService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
@@ -13,12 +12,9 @@ import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysNoticeService;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.enums.CommentStatusEnum;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
-import com.github.peterchenhdu.site4j.common.util.JsonUtils;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +41,7 @@ public class RestApiController {
 
 
     @PostMapping("/comments")
-    public BaseResponse comments(CommentConditionVO vo) {
+    public BaseResponse comments(CommentQueryDto vo) {
         vo.setStatus(CommentStatusEnum.APPROVED.toString());
         return ResultUtils.success(null, commentService.list(vo));
     }

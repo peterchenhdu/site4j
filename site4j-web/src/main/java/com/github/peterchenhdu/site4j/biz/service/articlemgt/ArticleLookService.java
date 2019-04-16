@@ -23,7 +23,7 @@ public interface ArticleLookService extends IService<BizArticleLook> {
      * @param dto dto
      * @return Integer
      */
-    Integer insert(ArticleLookDto dto);
+    Integer save(ArticleLookDto dto);
 
     /**
      * 浏览记录查询

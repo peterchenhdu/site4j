@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.service.privilegemgt.impl;
 
 import com.github.peterchenhdu.site4j.biz.dto.ResourcesDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.ResourceConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ResourceQueryDto;
 import com.github.peterchenhdu.site4j.biz.dto.view.ZTreeNodeDto;
 import com.github.peterchenhdu.site4j.biz.entity.Resource;
 import com.github.peterchenhdu.site4j.biz.mapper.ResourceMapper;
@@ -49,9 +49,9 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
      * @return
      */
     @Override
-    public PageInfoDto<ResourcesDto> findPageBreakByCondition(ResourceConditionVO vo) {
+    public PageInfoDto<ResourcesDto> query(ResourceQueryDto vo) {
         Page<ResourcesDto> page = PageUtils.getPage(vo);
-        List<ResourcesDto> resourcesDtoList = resourceMapper.findPageBreakByCondition(page, vo);
+        List<ResourcesDto> resourcesDtoList = resourceMapper.query(page, vo);
         return new PageInfoDto<>(page.getTotal(), resourcesDtoList);
     }
 
@@ -160,7 +160,7 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
      * @return
      */
     @Override
-    public ResourcesDto insert(ResourcesDto dto) {
+    public ResourcesDto save(ResourcesDto dto) {
         Assert.notNull(dto, "Resources不可为空！");
         Resource entity = BeanConvertUtils.doConvert(dto, Resource.class);
         resourceMapper.insert(entity);
@@ -206,7 +206,7 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
      * @return
      */
     @Override
-    public boolean removeByPrimaryKey(String primaryKey) {
+    public boolean deleteById(String primaryKey) {
         return resourceMapper.deleteById(primaryKey) > 0;
     }
 
@@ -231,7 +231,7 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
      * @return
      */
     @Override
-    public ResourcesDto getByPrimaryKey(String primaryKey) {
+    public ResourcesDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         Resource sysResources = resourceMapper.selectById(primaryKey);
         return null == sysResources ? null : new ResourcesDto(sysResources);

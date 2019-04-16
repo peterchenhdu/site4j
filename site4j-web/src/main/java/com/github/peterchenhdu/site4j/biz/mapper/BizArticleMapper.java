@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.biz.mapper;
 
 import com.github.peterchenhdu.site4j.biz.entity.BizArticle;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticleArchives;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -26,7 +26,7 @@ public interface BizArticleMapper extends BaseMapper<BizArticle> {
      * @param vo
      * @return
      */
-    List<BizArticle> findPageBreakByCondition(ArticleConditionVO vo);
+    List<BizArticle> query(ArticleQueryDto vo);
 
     /**
      * 统计指定文章的标签集合

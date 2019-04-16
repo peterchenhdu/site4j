@@ -64,7 +64,7 @@
         update_time
     </sql>
 
-    <select id="findPageBreakByCondition" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO" resultMap="rm">
+    <select id="query" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.CommentQueryDto" resultMap="rm">
         SELECT
         t.*,
         f.id AS parent_id,

@@ -4,7 +4,7 @@
 package com.github.peterchenhdu.site4j.biz.controller.backend;
 
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.CommentConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.CommentQueryDto;
 import com.github.peterchenhdu.site4j.biz.service.common.MailService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.BizCommentService;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
@@ -45,8 +45,8 @@ public class RestCommentController {
 
     @ApiOperation(value="查询评论")
     @PostMapping("/list")
-    public BasePagingResultDto list(CommentConditionVO vo) {
-        PageInfoDto<CommentDto> pageInfo = commentService.findPageBreakByCondition(vo);
+    public BasePagingResultDto list(CommentQueryDto vo) {
+        PageInfoDto<CommentDto> pageInfo = commentService.query(vo);
         return ResultUtils.tablePage(pageInfo);
     }
 
@@ -68,7 +68,7 @@ public class RestCommentController {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
         for (String id : ids) {
-            commentService.removeByPrimaryKey(id);
+            commentService.deleteById(id);
         }
         return ResultUtils.success("成功删除 [" + ids.length + "] 条评论");
     }
@@ -76,7 +76,7 @@ public class RestCommentController {
     @ApiOperation(value="查看评论")
     @PostMapping("/get/{id}")
     public BaseResponse get(@PathVariable String id) {
-        return ResultUtils.success(null, this.commentService.getByPrimaryKey(id));
+        return ResultUtils.success(null, this.commentService.queryById(id));
     }
 
     @ApiOperation(value="编辑评论")
@@ -107,7 +107,7 @@ public class RestCommentController {
                 commentService.commentForAdmin(comment);
             }
             if (null != sendEmail && sendEmail) {
-                CommentDto commentDB = commentService.getByPrimaryKey(comment.getId());
+                CommentDto commentDB = commentService.queryById(comment.getId());
                 mailService.send(commentDB, TemplateKeyEnum.COMMENT_AUDIT, true);
             }
         } catch (Exception e) {

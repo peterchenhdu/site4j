@@ -6,7 +6,7 @@ package com.github.peterchenhdu.site4j.biz.service.privilegemgt;
 import com.github.peterchenhdu.site4j.biz.dto.ResourcesDto;
 import com.github.peterchenhdu.site4j.biz.dto.view.ZTreeNodeDto;
 import com.github.peterchenhdu.site4j.biz.entity.Resource;
-import com.github.peterchenhdu.site4j.biz.dto.req.ResourceConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.ResourceQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -26,7 +26,7 @@ public interface SysResourcesService extends IService<Resource> {
      * @param vo
      * @return
      */
-    PageInfoDto<ResourcesDto> findPageBreakByCondition(ResourceConditionVO vo);
+    PageInfoDto<ResourcesDto> query(ResourceQueryDto vo);
 
     /**
      * 获取用户的资源列表
@@ -70,10 +70,10 @@ public interface SysResourcesService extends IService<Resource> {
     List<ResourcesDto> listByUserId(String userId);
 
     List<ResourcesDto> listAll();
-    ResourcesDto getByPrimaryKey(String primaryKey);
+    ResourcesDto queryById(String primaryKey);
     boolean updateSelective(ResourcesDto entity);
-    boolean removeByPrimaryKey(String primaryKey);
-    ResourcesDto insert(ResourcesDto entity);
+    boolean deleteById(String primaryKey);
+    ResourcesDto save(ResourcesDto entity);
 
 
     void updateSort(String rId, boolean isUp);

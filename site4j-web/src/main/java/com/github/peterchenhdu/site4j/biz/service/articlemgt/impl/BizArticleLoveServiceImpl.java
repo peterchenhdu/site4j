@@ -34,7 +34,7 @@ public class BizArticleLoveServiceImpl implements BizArticleLoveService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ArticleLoveDto insert(ArticleLoveDto entity) {
+    public ArticleLoveDto save(ArticleLoveDto entity) {
         Assert.notNull(entity, "ArticleLove不可为空！");
 
         LocalDateTime now = LocalDateTime.now();

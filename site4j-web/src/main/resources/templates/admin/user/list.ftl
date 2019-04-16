@@ -10,6 +10,56 @@
         <div class="x_panel">
             <div class="x_content">
                 <div class="<#--table-responsive-->">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">查询条件</div>
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal" onkeydown="if(event.keyCode===13) return false;">
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" for="search-username">用户名</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="search-username" id="search-username"
+                                               placeholder="请输入用户名...">
+                                    </div>
+                                    <label class="control-label col-sm-1" for="search-nickname">昵称</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="search-nickname" id="search-nickname"
+                                               placeholder="请输入昵称...">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:15px">
+                                    <label class="control-label col-sm-1" for="search-roleId">用户角色</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="search-roleId" id="search-roleId">
+                                            <option value="">请选择</option>
+                                            <#list roleList as item>
+                                                <option value="${item.id}">${item.description}</option>
+                                            </#list>
+                                        </select>
+                                    </div>
+                                    <label class="control-label col-sm-1" for="search-status">用户状态</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="search-status" id="search-status">
+                                            <option value="">请选择</option>
+                                            <option value="1">正常</option>
+                                            <option value="0">禁用</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-4" style="text-align:left;">
+                                        <button type="button" style="margin-left:50px" id="btn_query"
+                                                class="btn btn-primary">查询
+                                        </button>
+
+                                        <button type="reset" style="margin-left:20px" id="btn_reset"
+                                                class="btn btn-primary">重置
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="btn-group hidden-xs" id="toolbar">
                     <@shiro.hasPermission name="user:add">
                         <button id="btn_add" type="button" class="btn btn-default" title="新增用户">
@@ -121,27 +171,6 @@
 <!--/添加用户弹框-->
 <@footer>
 <script>
-    /**
-     * 操作按钮
-     * @param code
-     * @param row
-     * @param index
-     * @returns {string}
-     */
-    function operateFormatter(code, row, index) {
-        var currentUserId = '${user.id}';
-        var trUserId = row.id;
-        var operateBtn = [];
-        if (row.username !== 'root') {
-            operateBtn.push('<@shiro.hasPermission name="user:update"><a class="btn btn-xs btn-primary btn-update" data-id="' + trUserId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>');
-            if (currentUserId !== trUserId) {
-                operateBtn.push('<@shiro.hasPermission name="user:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trUserId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>');
-            }
-        }
-
-        return operateBtn.join('');
-    }
-
     $(function () {
         var options = {
             url: "/admin/user/query",
@@ -172,7 +201,10 @@
                 }, {
                     field: 'status',
                     title: '状态',
-                    editable: false
+                    editable: false,
+                    formatter: function (code) {
+                        return (code && code === 1) ? "<strong class='green'>正常</strong>" : "<strong class='red'>禁用</strong>";
+                    }
                 }, {
                     field: 'lastLoginTime',
                     title: '最后登录时间',
@@ -191,9 +223,29 @@
                 }, {
                     field: 'operate',
                     title: '操作',
-                    formatter: operateFormatter //自定义方法，添加操作按钮
+                    formatter: function (code, row, index) {
+                        console.log('code:' + code + 'row:' + row + 'index:' + index);
+                        var operateBtn = [];
+                        var currentUserId = '${user.id}';
+                        var trUserId = row.id;
+                        if (row.username !== 'root') {
+                            operateBtn.push('<@permissionUpdateBtn permission="user:update" id="' + row.id +'" />');
+                            if (currentUserId !== trUserId) {
+                                operateBtn.push('<@permissionDelBtn permission="user:delete" id="' + row.id +'" />');
+                            }
+                        }
+                        return operateBtn.join('');
+                    }
                 }
             ],
+            queryParams: function (params) {
+                params = $.extend({}, params);
+                params.username = $("#search-username").val();
+                params.nickname = $("#search-nickname").val();
+                params.roleId = $("#search-roleId").val();
+                params.status = $("#search-status").val();
+                return params;
+            },
             modalName: "用户"
         };
         //1.初始化Table

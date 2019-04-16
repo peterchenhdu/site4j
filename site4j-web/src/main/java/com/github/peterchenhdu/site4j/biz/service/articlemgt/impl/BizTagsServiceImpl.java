@@ -7,7 +7,7 @@ import com.github.peterchenhdu.site4j.biz.dto.TagsDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizTags;
 import com.github.peterchenhdu.site4j.biz.mapper.BizTagsMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTagsService;
-import com.github.peterchenhdu.site4j.biz.dto.req.TagsConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
@@ -42,9 +42,9 @@ public class BizTagsServiceImpl implements BizTagsService {
      * @return
      */
     @Override
-    public PageInfoDto<TagsDto> findPageBreakByCondition(TagsConditionVO vo) {
+    public PageInfoDto<TagsDto> query(TagQueryDto vo) {
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
-        List<BizTags> list = bizTagsMapper.findPageBreakByCondition(vo);
+        List<BizTags> list = bizTagsMapper.query(vo);
         if (CollectionUtils.isEmpty(list)) {
             return null;
         }
@@ -70,7 +70,7 @@ public class BizTagsServiceImpl implements BizTagsService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     @RedisCache(flush = true)
-    public TagsDto insert(TagsDto entity) {
+    public TagsDto save(TagsDto entity) {
         Assert.notNull(entity, "Tags不可为空！");
 
         List<BizTags> list = bizTagsMapper.findByName(entity.getName());
@@ -105,7 +105,7 @@ public class BizTagsServiceImpl implements BizTagsService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     @RedisCache(flush = true)
-    public boolean removeByPrimaryKey(String primaryKey) {
+    public boolean deleteById(String primaryKey) {
         return bizTagsMapper.deleteById(primaryKey) > 0;
     }
 
@@ -156,7 +156,7 @@ public class BizTagsServiceImpl implements BizTagsService {
      * @return
      */
     @Override
-    public TagsDto getByPrimaryKey(String primaryKey) {
+    public TagsDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         BizTags entity = bizTagsMapper.selectById(primaryKey);
         return null == entity ? null : new TagsDto(entity);

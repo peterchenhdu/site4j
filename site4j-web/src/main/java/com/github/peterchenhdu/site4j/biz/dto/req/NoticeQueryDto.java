@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class NoticeConditionVO extends BasePagingQueryDto {
+public class NoticeQueryDto extends BasePagingQueryDto {
     private String status;
     private String title;
     private String content;

@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
-import com.github.peterchenhdu.site4j.biz.dto.req.LinkConditionVO;
+import com.github.peterchenhdu.site4j.biz.dto.req.LinkQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysLink;
 import com.github.peterchenhdu.site4j.biz.mapper.SysLinkMapper;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
@@ -47,7 +47,7 @@ public class SysLinkServiceImpl implements SysLinkService {
      * @return PageInfoDto
      */
     @Override
-    public PageInfoDto<LinkDto> findPageBreakByCondition(LinkConditionVO vo) {
+    public PageInfoDto<LinkDto> query(LinkQueryDto vo) {
 
         Wrapper<SysLink> example = new EntityWrapper<>();
 
@@ -85,9 +85,9 @@ public class SysLinkServiceImpl implements SysLinkService {
     @Override
     @RedisCache
     public List<LinkDto> listOfIndex() {
-        LinkConditionVO vo = new LinkConditionVO(true, true);
+        LinkQueryDto vo = new LinkQueryDto(true, true);
         vo.setPageSize(100);
-        PageInfoDto<LinkDto> pageInfo = this.findPageBreakByCondition(vo);
+        PageInfoDto<LinkDto> pageInfo = this.query(vo);
         return pageInfo == null ? null : pageInfo.getList();
     }
 
@@ -101,7 +101,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     @RedisCache(flush = true)
-    public LinkDto insert(LinkDto entity) {
+    public LinkDto save(LinkDto entity) {
         Assert.notNull(entity, "Link不可为空！");
         entity.setUpdateTime(LocalDateTime.now());
         entity.setCreateTime(LocalDateTime.now());
@@ -122,7 +122,7 @@ public class SysLinkServiceImpl implements SysLinkService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     @RedisCache(flush = true)
-    public boolean removeByPrimaryKey(String primaryKey) {
+    public boolean deleteById(String primaryKey) {
         return sysLinkMapper.deleteById(primaryKey) > 0;
     }
 
@@ -150,7 +150,7 @@ public class SysLinkServiceImpl implements SysLinkService {
      * @return LinkDto
      */
     @Override
-    public LinkDto getByPrimaryKey(String primaryKey) {
+    public LinkDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         SysLink entity = sysLinkMapper.selectById(primaryKey);
         return null == entity ? null : new LinkDto(entity);
