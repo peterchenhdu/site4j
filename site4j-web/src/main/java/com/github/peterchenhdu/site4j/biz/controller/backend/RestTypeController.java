@@ -39,7 +39,7 @@ public class RestTypeController {
     @GetMapping("")
     public ModelAndView types(Model model) {
         model.addAttribute("module", frontPageConfig.getFrontModule("type"));
-        return ResultUtils.view("admin/common-mgt");
+        return ResultUtils.view("admin/article/types");
     }
 
     @ApiOperation(value="查询类别")

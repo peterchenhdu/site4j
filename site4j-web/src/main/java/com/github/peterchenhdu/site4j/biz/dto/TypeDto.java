@@ -3,11 +3,10 @@
  */
 package com.github.peterchenhdu.site4j.biz.dto;
 
-import com.github.peterchenhdu.site4j.biz.entity.BizType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.peterchenhdu.site4j.biz.entity.BizType;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * <p>
@@ -100,22 +99,6 @@ public class TypeDto {
 
     public void setUpdateTime(LocalDateTime updateTime) {
         this.bizType.setUpdateTime(updateTime);
-    }
-
-    public BizType getParent() {
-        return this.bizType.getParent();
-    }
-
-    public void setParent(BizType parent) {
-        this.bizType.setParent(parent);
-    }
-
-    public List<BizType> getNodes() {
-        return this.bizType.getNodes();
-    }
-
-    public void setNodes(List<BizType> nodes) {
-        this.bizType.setNodes(nodes);
     }
 
 }

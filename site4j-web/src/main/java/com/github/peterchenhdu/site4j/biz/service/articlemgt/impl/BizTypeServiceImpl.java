@@ -3,18 +3,21 @@
  */
 package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizType;
 import com.github.peterchenhdu.site4j.biz.mapper.BizTypeMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
-import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
-import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
+import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +27,7 @@ import org.springframework.util.CollectionUtils;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 分类
@@ -39,16 +43,17 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
     /**
      * 分页查询
      *
-     * @param vo
-     * @return
+     * @param vo vo
+     * @return PageInfoDto
      */
     @Override
     public PageInfoDto<TypeDto> query(TypeQueryDto vo) {
-        PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
-        List<BizType> list = bizTypeMapper.query(vo);
-        List<TypeDto> boList = getTypes(list);
-        if (boList == null) return null;
-        return new PageInfoDto<>(PageHelper.getTotal(), boList);
+        Page<BizType> page = PageUtils.getPage(vo);
+        List<BizType> list = bizTypeMapper.query(page, vo);
+        List<TypeDto> boList = list.stream()
+                .map(dto-> BeanConvertUtils.doConvert(dto, TypeDto.class))
+                .collect(Collectors.toList());
+        return new PageInfoDto<>(page.getTotal(), boList);
     }
 
     @Override

@@ -80,14 +80,14 @@
                                 <li>
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" class="flat" checked name="available" value="1"> 可用
+                                            <input type="radio" class="flat" checked name="available" value="true"> 可用
                                         </label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" class="flat" name="available" value="0"> 禁用
+                                            <input type="radio" class="flat" name="available" value="false"> 禁用
                                         </label>
                                     </div>
                                 </li>
@@ -113,22 +113,6 @@
 </div>
 <@footer>
 <script>
-    /**
-     * 操作按钮
-     * @param code
-     * @param row
-     * @param index
-     * @returns {string}
-     */
-    function operateFormatter(code, row, index) {
-        var trId = row.id;
-        var operateBtn = [
-            '<@shiro.hasPermission name="type:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
-            '<@shiro.hasPermission name="type:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>'
-        ];
-        return operateBtn.join('');
-    }
-
     $(function () {
         var options = {
             modalName: "分类",
@@ -141,21 +125,10 @@
                 {
                     checkbox: true
                 }, {
-                    field: 'id',
-                    title: 'ID',
-                    width: '60px',
-                    editable: false
-                }, {
                     field: 'name',
                     title: '名称',
                     width: '100px',
-                    editable: false,
-                    formatter: function (code, row, index) {
-                        var id = row.id;
-                        return '<a href="' + appConfig.wwwPath + '/admin/type/' + id + '" target="_blank">' + row
-                                        .name +
-                                '</a>';
-                    }
+                    editable: false
                 }, {
                     field: 'parent.name',
                     title: '父级分类',
@@ -182,13 +155,20 @@
                     width: '50px',
                     editable: false,
                     formatter: function (code, row, index) {
+                        console.log('code:' + code + 'row:' + row + 'index:' + index);
                         return '<i class="' + row.icon + '"></i>';
                     }
                 }, {
                     field: 'operate',
                     title: '操作',
                     width: '150px',
-                    formatter: operateFormatter //自定义方法，添加操作按钮
+                    formatter: function (code, row, index) {
+                        console.log('code:' + code + 'row:' + row + 'index:' + index);
+                        var operateBtn = [];
+                        operateBtn.push('<@permissionUpdateBtn permission="type:edit" id="' + row.id +'" />');
+                        operateBtn.push('<@permissionDelBtn permission="type:delete" id="' + row.id +'" />');
+                        return operateBtn.join('');
+                    }
                 }
             ]
         };

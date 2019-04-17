@@ -12,23 +12,6 @@
         <result property="icon" jdbcType="VARCHAR" column="icon"/>
         <result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
         <result property="updateTime" jdbcType="TIMESTAMP" column="update_time"/>
-        <association property="parent" javaType="com.github.peterchenhdu.site4j.biz.entity.BizType">
-            <result property="id" jdbcType="BIGINT" column="parent_id"/>
-            <result property="pid" jdbcType="BIGINT" column="parent_pid"/>
-            <result property="name" jdbcType="VARCHAR" column="parent_name"/>
-            <result property="description" jdbcType="VARCHAR" column="parent_description"/>
-            <result property="available" jdbcType="BIT" column="parent_available"/>
-            <result property="icon" jdbcType="VARCHAR" column="parent_icon"/>
-        </association>
-        <collection property="nodes" column="node_id" javaType="ArrayList"
-                    ofType="com.github.peterchenhdu.site4j.biz.entity.BizType">
-            <result property="id" jdbcType="BIGINT" column="node_id"/>
-            <result property="pid" jdbcType="BIGINT" column="node_pid"/>
-            <result property="name" jdbcType="VARCHAR" column="node_name"/>
-            <result property="description" jdbcType="VARCHAR" column="node_description"/>
-            <result property="available" jdbcType="BIT" column="node_available"/>
-            <result property="icon" jdbcType="VARCHAR" column="node_icon"/>
-        </collection>
     </resultMap>
     <sql id="Base_Column_List">
         id,
@@ -42,19 +25,7 @@
 
     <select id="query" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto" resultMap="rm">
         SELECT
-        t.*,
-        parent.id parent_id,
-        parent.pid parent_pid,
-        parent.name parent_name,
-        parent.description parent_description,
-        parent.available parent_available,
-        parent.icon parent_icon,
-        node.id node_id,
-        node.pid node_pid,
-        node.name node_name,
-        node.description node_description,
-        node.available node_available,
-        node.icon node_icon
+        t.*
         FROM
         biz_type t
         LEFT JOIN biz_type parent ON t.pid = parent.id
@@ -63,13 +34,6 @@
         1 = 1
         <if test="pid != null and pid != ''">
             AND t.pid = #{pid}
-        </if>
-        <if test="keywords != null and keywords != '' ">
-            AND (
-            t.name LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
-            t.description LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') OR
-            t.icon LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
-            )
         </if>
         ORDER BY
         t.sort ASC
@@ -88,19 +52,7 @@
 
     <select id="listTypeForMenu" resultMap="rm">
         SELECT
-        t.*,
-        parent.id parent_id,
-        parent.pid parent_pid,
-        parent.name parent_name,
-        parent.description parent_description,
-        parent.available parent_available,
-        parent.icon parent_icon,
-        node.id node_id,
-        node.pid node_pid,
-        node.name node_name,
-        node.description node_description,
-        node.available node_available,
-        node.icon node_icon
+        t.*
         FROM
         biz_type t
         LEFT JOIN biz_type parent ON t.pid = parent.id
