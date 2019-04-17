@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.backend.article;
 
 import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
@@ -29,7 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Api(value="类型管理", tags="文章管理")
 @RestController
 @RequestMapping("/admin/type")
-public class RestTypeController {
+public class TypeController {
     @Autowired
     private BizTypeService typeService;
     @Autowired
@@ -39,7 +39,7 @@ public class RestTypeController {
     @GetMapping("")
     public ModelAndView types(Model model) {
         model.addAttribute("module", frontPageConfig.getFrontModule("type"));
-        return ResultUtils.view("admin/article/types");
+        return ResultUtils.view("admin/article/type");
     }
 
     @ApiOperation(value="查询类别")
@@ -56,9 +56,9 @@ public class RestTypeController {
         return ResultUtils.success("文章类型添加成功！新类型 - " + type.getName());
     }
 
-    @ApiOperation(value="删除类别")
-    @PostMapping(value = "/remove")
-    public BaseResponse remove(String[] ids) {
+    @ApiOperation(value="批量删除类别")
+    @PostMapping(value = "/batchDelete")
+    public BaseResponse batchDelete(String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
@@ -67,6 +67,13 @@ public class RestTypeController {
         }
         return ResultUtils.success("成功删除 [" + ids.length + "] 个文章类型");
     }
+    @ApiOperation(value = "删除单个标签")
+    @PostMapping(value = "/delete")
+    public BaseResponse delete(String id) {
+        typeService.deleteById(id);
+        return ResultUtils.success("成功删除");
+    }
+
 
     @ApiOperation(value="查看单个类别")
     @PostMapping("/get/{id}")

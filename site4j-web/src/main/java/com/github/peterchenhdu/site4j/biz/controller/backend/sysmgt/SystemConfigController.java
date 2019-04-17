@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.backend.sysmgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.ConfigDto;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
@@ -33,7 +33,7 @@ public class SystemConfigController {
     @BusinessLog("进入系统配置页")
     @GetMapping("")
     public ModelAndView config() {
-        return ResultUtils.view("admin/config");
+        return ResultUtils.view("admin/sysmgt/config");
     }
 
 

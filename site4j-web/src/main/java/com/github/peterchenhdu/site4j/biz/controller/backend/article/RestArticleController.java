@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.backend.article;
 
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
@@ -42,7 +42,7 @@ public class RestArticleController {
     @BusinessLog("进入文章列表页")
     @GetMapping("")
     public ModelAndView articles() {
-        return ResultUtils.view("admin/article/list");
+        return ResultUtils.view("admin/article/article");
     }
 
     @ApiOperation(value="路由到发布文章页面")

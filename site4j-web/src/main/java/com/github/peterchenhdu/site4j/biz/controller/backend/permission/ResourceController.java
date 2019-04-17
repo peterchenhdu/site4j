@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.backend.permission;
 
 import com.github.peterchenhdu.site4j.biz.dto.ResourcesDto;
 import com.github.peterchenhdu.site4j.biz.dto.view.ZTreeNodeDto;
@@ -58,7 +58,7 @@ public class ResourceController {
 
 
         model.addAttribute("searchResources", resourcesService.queryNotLeafResource());
-        return ResultUtils.view("admin/resources/list");
+        return ResultUtils.view("admin/permission/resource");
     }
 
 

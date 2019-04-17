@@ -3,10 +3,11 @@
  */
 package com.github.peterchenhdu.site4j.biz.mapper;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.github.peterchenhdu.site4j.biz.entity.BizType;
-import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
+import com.github.peterchenhdu.site4j.biz.entity.BizType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public interface BizTypeMapper extends BaseMapper<BizType> {
      * @param vo
      * @return
      */
-    List<BizType> query(Page<BizType> page, TypeQueryDto vo);
+    List<TypeDto> query(Page<BizType> page, TypeQueryDto vo);
 
     List<BizType> listParent();
 

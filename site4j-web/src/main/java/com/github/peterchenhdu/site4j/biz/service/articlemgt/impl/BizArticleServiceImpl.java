@@ -122,7 +122,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         List<ArticleDto> boList = new LinkedList<>();
         for (BizArticle bizArticle : list) {
             BizArticle tagArticle = tagMap.get(bizArticle.getId());
-            bizArticle.setTags(tagArticle.getTags());
+            bizArticle.setTags(tagArticle==null?Collections.EMPTY_LIST:tagArticle.getTags());
             boList.add(new ArticleDto(bizArticle));
         }
 

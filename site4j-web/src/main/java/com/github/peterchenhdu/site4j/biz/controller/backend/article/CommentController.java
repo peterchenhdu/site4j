@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.backend.article;
 
 import com.github.peterchenhdu.site4j.biz.dto.CommentDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.CommentQueryDto;
@@ -30,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Api(value="评论管理", tags="文章管理")
 @RestController
 @RequestMapping("/admin/comment")
-public class RestCommentController {
+public class CommentController {
     @Autowired
     private BizCommentService commentService;
     @Autowired
@@ -40,7 +40,7 @@ public class RestCommentController {
     @BusinessLog("进入评论页")
     @GetMapping("")
     public ModelAndView comments() {
-        return ResultUtils.view("admin/comment/list");
+        return ResultUtils.view("admin/article/comment");
     }
 
     @ApiOperation(value="查询评论")

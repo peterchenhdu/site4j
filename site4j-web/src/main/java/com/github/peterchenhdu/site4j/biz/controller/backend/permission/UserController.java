@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.backend.permission;
 
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.UserQueryDto;
@@ -45,7 +45,7 @@ public class UserController {
     @GetMapping("")
     public ModelAndView user(Model model) {
         model.addAttribute("roleList", roleService.queryAllAvailableRoleList());
-        return ResultUtils.view("admin/user/list");
+        return ResultUtils.view("admin/permission/user");
     }
 
     @ApiOperation(value = "查询用户列表.")

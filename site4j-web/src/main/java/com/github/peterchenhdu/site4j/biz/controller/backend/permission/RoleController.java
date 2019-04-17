@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.backend.permission;
 
 import com.github.peterchenhdu.site4j.biz.dto.RoleDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysRole;
@@ -42,7 +42,7 @@ public class RoleController {
     @BusinessLog("进入角色列表页")
     @GetMapping("")
     public ModelAndView roles() {
-        return ResultUtils.view("admin/role/list");
+        return ResultUtils.view("admin/permission/role");
     }
 
     @ApiOperation(value="查看所有角色")

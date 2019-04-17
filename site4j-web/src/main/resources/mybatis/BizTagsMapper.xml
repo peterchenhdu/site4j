@@ -24,6 +24,12 @@
         biz_tags t
         WHERE
         1 = 1
+        <if test="name != null and name != ''">
+            AND t.name like '%'|| #{name , jdbcType=VARCHAR}||'%'
+        </if>
+        <if test="description != null and description != ''">
+            AND t.description like '%'|| #{description , jdbcType=VARCHAR}||'%'
+        </if>
     </select>
 
     <select id="findByName" parameterType="java.lang.String" resultMap="rm">

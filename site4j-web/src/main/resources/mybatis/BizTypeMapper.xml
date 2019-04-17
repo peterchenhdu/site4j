@@ -23,9 +23,11 @@
         update_time
     </sql>
 
-    <select id="query" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto" resultMap="rm">
+    <select id="query" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto"
+            resultType="com.github.peterchenhdu.site4j.biz.dto.TypeDto">
         SELECT
-        t.*
+        t.*,
+        parent.name as parentName
         FROM
         biz_type t
         LEFT JOIN biz_type parent ON t.pid = parent.id
@@ -34,6 +36,12 @@
         1 = 1
         <if test="pid != null and pid != ''">
             AND t.pid = #{pid}
+        </if>
+        <if test="name != null and name != ''">
+            AND t.name like '%'|| #{name , jdbcType=VARCHAR}||'%'
+        </if>
+        <if test="available != null">
+            AND t.available = #{available}
         </if>
         ORDER BY
         t.sort ASC
@@ -44,10 +52,8 @@
         t.*
         FROM
         biz_type t
-        WHERE
-        t.pid = '' OR t.pid IS NULL
         ORDER BY
-        t.sort ASC
+        t.create_time DESC
     </select>
 
     <select id="listTypeForMenu" resultMap="rm">

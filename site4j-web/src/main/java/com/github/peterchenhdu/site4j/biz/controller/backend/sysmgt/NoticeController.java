@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.backend.sysmgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.NoticeDto;
 import com.github.peterchenhdu.site4j.biz.dto.UserDto;
@@ -37,7 +37,7 @@ public class NoticeController {
     @BusinessLog("进入系统通知页")
     @GetMapping("")
     public ModelAndView notices() {
-        return ResultUtils.view("admin/notice/list");
+        return ResultUtils.view("admin/sysmgt/notice");
     }
 
     @ApiOperation(value="查询公告")

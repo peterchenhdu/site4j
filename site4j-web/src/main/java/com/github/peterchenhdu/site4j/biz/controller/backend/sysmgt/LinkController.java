@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2011-2025 PiChen
  */
-package com.github.peterchenhdu.site4j.biz.controller.backend;
+package com.github.peterchenhdu.site4j.biz.controller.backend.sysmgt;
 
 import com.github.peterchenhdu.site4j.biz.dto.LinkDto;
 import com.github.peterchenhdu.site4j.biz.service.common.MailService;
@@ -40,7 +40,7 @@ public class LinkController {
     @BusinessLog("进入链接页")
     @GetMapping("")
     public ModelAndView links() {
-        return ResultUtils.view("admin/link/list");
+        return ResultUtils.view("admin/sysmgt/link");
     }
 
     @ApiOperation(value="查看友情链接")

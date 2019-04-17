@@ -27,7 +27,6 @@ import org.springframework.util.CollectionUtils;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 分类
@@ -49,11 +48,9 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
     @Override
     public PageInfoDto<TypeDto> query(TypeQueryDto vo) {
         Page<BizType> page = PageUtils.getPage(vo);
-        List<BizType> list = bizTypeMapper.query(page, vo);
-        List<TypeDto> boList = list.stream()
-                .map(dto-> BeanConvertUtils.doConvert(dto, TypeDto.class))
-                .collect(Collectors.toList());
-        return new PageInfoDto<>(page.getTotal(), boList);
+        List<TypeDto> list = bizTypeMapper.query(page, vo);
+
+        return new PageInfoDto<>(page.getTotal(), list);
     }
 
     @Override
@@ -85,7 +82,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         }
         List<TypeDto> boList = new ArrayList<>();
         for (BizType bizType : list) {
-            boList.add(new TypeDto(bizType));
+            boList.add(BeanConvertUtils.doConvert(bizType, TypeDto.class));
         }
         return boList;
     }
@@ -108,7 +105,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         entity.setUpdateTime(LocalDateTime.now());
         entity.setCreateTime(LocalDateTime.now());
         entity.setId(UuidUtils.getUuid());
-        bizTypeMapper.insert(entity.getBizType());
+        bizTypeMapper.insert(entity);
         return entity;
     }
 
@@ -140,7 +137,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         }
 
         entity.setUpdateTime(LocalDateTime.now());
-        return bizTypeMapper.updateById(entity.getBizType()) > 0;
+        return bizTypeMapper.updateById(entity) > 0;
     }
 
     /**
@@ -153,7 +150,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
     public TypeDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         BizType entity = bizTypeMapper.selectById(primaryKey);
-        return null == entity ? null : new TypeDto(entity);
+        return null == entity ? null : BeanConvertUtils.doConvert(entity, TypeDto.class);
     }
 
     /**
