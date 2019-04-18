@@ -31,7 +31,7 @@
     <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-                <a href="/" class="site_title"><i class="fa fa-coffee"></i> <span>${config.siteName}</span></a>
+                <a href="#" class="site_title"><i class="fa fa-coffee"></i> <span>${config.siteName}</span></a>
             </div>
             <div class="clearfix"></div>
             <@shiro.user>

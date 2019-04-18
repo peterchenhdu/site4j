@@ -78,7 +78,7 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
             sysResources.stream().filter(dto-> dto.getId().equals(list.get(0).getParentId()))
                     .forEach(dto-> dto.setExpand(true));
         }
-        
+
         return sysResources;
     }
 
