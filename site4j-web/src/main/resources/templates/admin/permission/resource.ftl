@@ -58,18 +58,6 @@
                         </div>
                     </div>
 
-                    <div class="btn-group hidden-xs" id="toolbar">
-                    <@shiro.hasPermission name="resource:add">
-                        <button id="btn_add" type="button" class="btn btn-default" title="新增资源">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                    </@shiro.hasPermission>
-                    <@shiro.hasPermission name="resource:batchDelete">
-                        <button id="btn_delete_ids" type="button" class="btn btn-default" title="删除选中">
-                            <i class="fa fa-trash-o"></i>
-                        </button>
-                    </@shiro.hasPermission>
-                    </div>
 
                     <table id="table-list"></table>
                 </div>
@@ -123,7 +111,7 @@
                                 class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" name="name" id="name"
-                                   required="required" placeholder="请输入资源名称"/>
+                                   required="required" placeholder="请输入资源名称" readonly/>
                         </div>
                     </div>
 
@@ -131,7 +119,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">资源类型: <span
                                 class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="type" id="type" required="required" class="form-control col-md-7 col-xs-12">
+                            <select name="type" id="type" required="required" class="form-control col-md-7 col-xs-12" disabled>
                                 <option value="">请选择</option>
                                 <option value="menu">菜单</option>
                                 <option value="button">按钮</option>
@@ -139,13 +127,13 @@
                         </div>
                     </div>
 
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">父级资源: </label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <input type="hidden" id="parentId" name="parentId">
-                            <ul id="treeDemo" class="ztree"></ul>
-                        </div>
-                    </div>
+                    <#--<div class="item form-group">-->
+                        <#--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">父级资源: </label>-->
+                        <#--<div class="col-md-6 col-sm-6 col-xs-6">-->
+                            <#--<input type="hidden" id="parentId" name="parentId">-->
+                            <#--<ul id="treeDemo" class="ztree"></ul>-->
+                        <#--</div>-->
+                    <#--</div>-->
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="icon">资源图标: </label>
@@ -236,7 +224,6 @@
                     var operateBtn = [];
                     operateBtn.push('<@permissionUpdateBtn permission="resource:update" id="' + row.id +'" />');
                     operateBtn.push('<@permissionSortBtn permission="resource:sort" id="' + row.id +'" />');
-                    operateBtn.push('<@permissionDelBtn permission="resource:delete" id="' + row.id +'" />');
                     return operateBtn.join('');
                 }
             }],
