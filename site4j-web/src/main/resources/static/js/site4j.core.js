@@ -317,7 +317,7 @@ $(document).ready(function () {
         var a = Array.prototype.slice.call(document.querySelectorAll(".js-switch"));
         a.forEach(function (a) {
             new Switchery(a, {
-                color: "#26B99A"
+                color: "#428bca"
             })
         })
     }

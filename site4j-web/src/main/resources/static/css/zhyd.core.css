@@ -2342,7 +2342,7 @@ a.star {
 
 .compose .compose-header {
     padding: 5px;
-    background: #169F85;
+    background: #3691ff;
     color: #fff;
     border-top-left-radius: 5px
 }
@@ -2603,12 +2603,12 @@ a.btn-danger, a.btn-primary, a.btn-success, a.btn-warning {
 }
 
 .btn-success {
-    background: #26B99A;
-    border: 1px solid #169F85
+    background: #428bca;
+    border: 1px solid #3691ff
 }
 
 .btn-success.active, .btn-success:active, .btn-success:focus, .btn-success:hover, .open .dropdown-toggle.btn-success {
-    background: #169F85
+    background: #3b7cff
 }
 
 .btn-dark {
@@ -3744,7 +3744,7 @@ ul.project_files li a i {
 .price {
     font-size: 40px;
     font-weight: 400;
-    color: #26B99A;
+    color: #428bca;
     margin: 0
 }
 
@@ -4459,7 +4459,7 @@ fieldset {
 }
 
 .progress-bar-success {
-    background-color: #26B99A
+    background-color: #428bca
 }
 
 .progress_summary .progress {
