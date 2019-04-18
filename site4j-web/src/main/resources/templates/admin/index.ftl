@@ -1,4 +1,4 @@
-<#include "admin/include/macros.ftl">
+<#include "/admin/include/macros.ftl">
 <@header>
 <style>
     .about ul {

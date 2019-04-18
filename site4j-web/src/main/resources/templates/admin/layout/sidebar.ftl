@@ -40,11 +40,3 @@
         </ul>
     </div>
 </div>
-<div class="sidebar-footer hidden-small">
-    <a>&nbsp;</a>
-    <a>&nbsp;</a>
-    <a>&nbsp;</a>
-    <a href="/passport/logout" data-toggle="tooltip" data-placement="top" title="" data-original-title="退出系统">
-        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-    </a>
-</div>
