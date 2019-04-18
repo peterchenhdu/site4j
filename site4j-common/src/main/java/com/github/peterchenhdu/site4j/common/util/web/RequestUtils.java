@@ -48,6 +48,11 @@ public class RequestUtils {
         return request.getRequestURL().toString();
     }
 
+    public static String getRequestUri() {
+        HttpServletRequest request = WebUtils.getRequest();
+        return request.getRequestURI();
+    }
+
     public static String getMethod() {
         HttpServletRequest request = WebUtils.getRequest();
         return request.getMethod();

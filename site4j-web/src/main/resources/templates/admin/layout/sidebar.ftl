@@ -12,7 +12,7 @@
                         <li>
                             <a><i class="${item.icon?if_exists}"></i> ${item.name?if_exists}<span
                                     class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
+                            <ul class="nav child_menu" <#if item.expand> style="display: block;"</#if>>
                                 <#list item.nodes as node>
                                     <#if node.permission?if_exists>
                                         <@shiro.hasPermission name="${node.permission?if_exists}">

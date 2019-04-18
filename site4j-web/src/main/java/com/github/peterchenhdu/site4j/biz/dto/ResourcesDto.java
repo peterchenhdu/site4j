@@ -29,6 +29,11 @@ public class ResourcesDto {
     @NotNull
     private String icon;
 
+    /**
+     * 菜单展开标记
+     */
+    private Boolean expand;
+
     public ResourcesDto() {
     }
 
@@ -117,6 +122,14 @@ public class ResourcesDto {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Boolean getExpand() {
+        return expand;
+    }
+
+    public void setExpand(Boolean expand) {
+        this.expand = expand;
     }
 }
 

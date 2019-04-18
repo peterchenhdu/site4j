@@ -43,6 +43,9 @@
         <if test="name !=null and name != ''">
             AND com.name like '%'|| #{name , jdbcType=VARCHAR}||'%'
         </if>
+        <if test="url !=null and url != ''">
+            AND com.url = #{url , jdbcType=VARCHAR}
+        </if>
         ORDER by
         com.sort asc
     </select>

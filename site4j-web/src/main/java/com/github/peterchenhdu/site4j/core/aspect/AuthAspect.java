@@ -52,10 +52,9 @@ public class AuthAspect {
         boolean publicServiceFlag = clazz.isAnnotationPresent(PublicService.class);
         boolean requiresUserFlag = method.isAnnotationPresent(RequiresUser.class);
         boolean requiresPermissionsFlag = method.isAnnotationPresent(RequiresPermissions.class);
+        boolean notNeedAuthFlag = publicServiceFlag || requiresUserFlag || requiresPermissionsFlag;
 
-        if(publicServiceFlag || requiresUserFlag || requiresPermissionsFlag) {
-            return point.proceed();
-        } else if (ObjectUtils.isNotEmpty(uri) && uri.startsWith("/admin")) {
+        if (ObjectUtils.isNotEmpty(uri) && uri.startsWith("/admin") && !notNeedAuthFlag) {
             //执行默认url拦截
             String[] arr = uri.split("/");
             if (arr.length == 3) {

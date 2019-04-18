@@ -18,6 +18,7 @@ public class ResourceQueryDto extends BasePagingQueryDto {
     private String name;
     private String type;
     private String parentId;
+    private String url;
 
     public String getName() {
         return name;
@@ -41,6 +42,14 @@ public class ResourceQueryDto extends BasePagingQueryDto {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
 

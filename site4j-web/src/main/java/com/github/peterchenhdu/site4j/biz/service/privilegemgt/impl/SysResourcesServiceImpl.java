@@ -11,7 +11,9 @@ import com.github.peterchenhdu.site4j.biz.mapper.ResourceMapper;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesService;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleResourcesService;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
+import com.github.peterchenhdu.site4j.common.util.web.RequestUtils;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
@@ -67,6 +69,16 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
         if (CollectionUtils.isEmpty(sysResources)) {
             return Collections.emptyList();
         }
+
+        //根据当前URL判断该URL的父级菜单是否需要展开
+        ResourceQueryDto queryDto = new ResourceQueryDto();
+        queryDto.setUrl(RequestUtils.getRequestUri());
+        List<ResourcesDto> list = query(queryDto).getList();
+        if(ObjectUtils.isNotEmpty(list)) {
+            sysResources.stream().filter(dto-> dto.getId().equals(list.get(0).getParentId()))
+                    .forEach(dto-> dto.setExpand(true));
+        }
+        
         return sysResources;
     }
 
