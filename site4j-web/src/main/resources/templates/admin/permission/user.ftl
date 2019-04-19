@@ -118,14 +118,9 @@
                             <select name="roleId" id="roleId" required="required" class="form-control col-md-7
                             col-xs-12">
                                 <option value="">请选择</option>
-                            <@zhydTag method="roles">
-                                <#if roles?? && roles?size gt 0>
-                                    <#list roles as item>
-                                        <option value="${item.id}">${item.description}</option>
-                                    </#list>
-                                <#else>
-                                </#if>
-                            </@zhydTag>
+                                <#list roleList as item>
+                                    <option value="${item.id}">${item.description}</option>
+                                </#list>
                             </select>
                         </div>
                     </div>

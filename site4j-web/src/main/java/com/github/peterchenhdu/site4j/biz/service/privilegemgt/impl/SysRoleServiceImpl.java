@@ -16,6 +16,7 @@ import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
+import com.github.peterchenhdu.site4j.enums.RoleTypeEnum;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -69,6 +70,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         example.eq("available", Boolean.TRUE);
         example.orderBy("create_time DESC");
         return this.baseMapper.selectList(example).stream()
+                .filter(dto-> !RoleTypeEnum.SUPER_ADMIN.getKey().equals(dto.getType()))
                 .map(dto -> BeanConvertUtils.doConvert(dto, RoleDto.class))
                 .collect(Collectors.toList());
     }
