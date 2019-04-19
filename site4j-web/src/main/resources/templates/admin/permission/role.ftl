@@ -10,6 +10,49 @@
         <div class="x_panel">
             <div class="x_content">
                 <div class="<#--table-responsive-->">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">查询条件</div>
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal" onkeydown="if(event.keyCode===13) return false;">
+                                <div class="form-group" style="margin-top:15px">
+
+                                    <label class="control-label col-sm-1" for="search-type">角色类型</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="search-type" id="search-type">
+                                            <option value="">请选择</option>
+                                            <#list roleTypeList as item>
+                                            <option value="${item.key}">${item.description}</option>
+                                            </#list>
+                                        </select>
+                                    </div>
+
+                                    <label class="control-label col-sm-1" for="search-name">角色名称</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="search-name" id="search-name"
+                                               placeholder="请输入角色名称...">
+                                    </div>
+
+                                    <label class="control-label col-sm-1" for="search-description">角色描述</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="search-description" id="search-description"
+                                               placeholder="请输入角色描述...">
+                                    </div>
+
+                                    <div class="col-sm-4" style="text-align:left;">
+                                        <button type="button" style="margin-left:50px" id="btn_query"
+                                                class="btn btn-primary">查询
+                                        </button>
+
+                                        <button type="reset" style="margin-left:20px" id="btn_reset"
+                                                class="btn btn-primary">重置
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="btn-group hidden-xs" id="toolbar">
                     <@shiro.hasPermission name="role:add">
                         <button id="btn_add" type="button" class="btn btn-default" title="新增角色">
@@ -76,6 +119,20 @@
                                    required="required" placeholder="请输入角色名称"/>
                         </div>
                     </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="type">角色类型: <span
+                                class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select name="type" id="type" required="required" class="form-control col-md-7 col-xs-12" >
+                                <option value="">请选择</option>
+                                <#list roleTypeList as item>
+                                    <option value="${item.key}">${item.description}</option>
+                                </#list>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">角色描述: <span
                                 class="required">*</span></label>
@@ -98,24 +155,6 @@
 <!--/添加角色弹框-->
 <@footer>
 <script>
-    /**
-     * 操作按钮
-     * @param code
-     * @param row
-     * @param index
-     * @returns {string}
-     */
-    function operateFormatter(code, row, index) {
-        var trId = row.id;
-        var operateBtn = [];
-        if (row.name !== 'role:root') {
-            operateBtn.push('<@shiro.hasPermission name="role:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>');
-            operateBtn.push('<@shiro.hasPermission name="role:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>');
-            operateBtn.push('<@shiro.hasPermission name="role:allotResource"><a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-circle-thin"></i>分配资源</a></@shiro.hasPermission>');
-        }
-        return operateBtn.join('');
-    }
-
     $(function () {
         var options = {
             url: "/admin/role/query",
@@ -132,14 +171,47 @@
                 title: '角色名',
                 editable: false
             }, {
+                field: 'type',
+                title: '角色类型',
+                editable: false,
+                formatter: function (value) {
+                    if (value === "normal_admin") {
+                        return "系统管理员";
+                    } else if(value==="super_admin"){
+                        return "超级管理员";
+                    } else if(value==="normal_user"){
+                        return "普通用户";
+                    } else {
+                        return "未知用户";
+                    }
+
+                }
+            }, {
                 field: 'description',
                 title: '角色描述',
                 editable: false
             },  {
                 field: 'operate',
                 title: '操作',
-                formatter: operateFormatter //自定义方法，添加操作按钮
+                formatter: function operateFormatter(code, row, index) {
+                    console.log('code:' + code + 'row:' + row + 'index:' + index);
+                    var trId = row.id;
+                    var operateBtn = [];
+                    if (row.type !== 'super_admin') {
+                        operateBtn.push('<@shiro.hasPermission name="role:edit"><a class="btn btn-xs btn-primary btn-update" data-id="' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>');
+                        operateBtn.push('<@shiro.hasPermission name="role:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>');
+                        operateBtn.push('<@shiro.hasPermission name="role:allotResource"><a class="btn btn-xs btn-info btn-allot" data-id="' + trId + '"><i class="fa fa-circle-thin"></i>分配资源</a></@shiro.hasPermission>');
+                    }
+                    return operateBtn.join('');
+                }
             }],
+            queryParams: function (params) {
+                params = $.extend({}, params);
+                params.type = $("#search-type").val();
+                params.name = $("#search-name").val();
+                params.description = $("#search-description").val();
+                return params;
+        },
             modalName: "角色"
         };
         //1.初始化Table

@@ -13,6 +13,7 @@ import com.github.peterchenhdu.site4j.biz.entity.SysRole;
 import com.github.peterchenhdu.site4j.biz.mapper.SysRoleMapper;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
@@ -35,6 +36,15 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public PageInfoDto<SysRole> query(RoleQueryDto vo) {
         Wrapper<SysRole> example = new EntityWrapper<>();
+        if (ObjectUtils.isNotEmpty(vo.getType())) {
+            example.eq("type", vo.getType());
+        }
+        if (ObjectUtils.isNotEmpty(vo.getName())) {
+            example.like("name", vo.getName());
+        }
+        if (ObjectUtils.isNotEmpty(vo.getDescription())) {
+            example.like("description", vo.getDescription());
+        }
         example.orderBy("create_time DESC");
         Page<SysRole> page = PageUtils.getPage(vo);
         List<SysRole> sysRoles = this.baseMapper.selectPage(page, example);
@@ -49,7 +59,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         entity.setUpdateTime(LocalDateTime.now());
         entity.setId(UuidUtils.getUuid());
         entity.setAvailable(true);
-        this.baseMapper.insert(entity.getSysRole());
+        this.baseMapper.insert(entity);
         return entity;
     }
 
@@ -74,7 +84,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     public boolean updateSelective(RoleDto entity) {
         Assert.notNull(entity, "Role不可为空！");
         entity.setUpdateTime(LocalDateTime.now());
-        return this.baseMapper.updateById(entity.getSysRole()) > 0;
+        return this.baseMapper.updateById(entity) > 0;
     }
 
 
@@ -82,7 +92,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     public RoleDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         SysRole sysRole = this.baseMapper.selectById(primaryKey);
-        return null == sysRole ? null : new RoleDto(sysRole);
+        return null == sysRole ? null : BeanConvertUtils.doConvert(sysRole, RoleDto.class);
     }
 
 

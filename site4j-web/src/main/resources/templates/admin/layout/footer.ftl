@@ -1,9 +1,9 @@
-<footer>
-    <div class="pull-right">
-        Copyright © 2018 - 2025 · Powered by Site4J. All Rights Reserved.
-    </div>
-    <div class="clearfix"></div>
-</footer>
+<#--<footer>-->
+    <#--<div class="pull-right">-->
+        <#--Copyright © 2018 - 2025 · Powered by Site4J. All Rights Reserved.-->
+    <#--</div>-->
+    <#--<div class="clearfix"></div>-->
+<#--</footer>-->
 </div>
 </div>
 <script type="text/javascript">

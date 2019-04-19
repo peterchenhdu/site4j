@@ -52,12 +52,6 @@ var zhyd = window.zhyd || {
             return validator.checkAll($(this)) || (b = !1), b && this.submit(), !1
         }));
     },
-    initHelloMsg: function () {
-        var $helloMsg = $("#hello_msg");
-        var now = new Date();
-        var nowHours = now.getHours();
-        $helloMsg.html((nowHours >= 0 && nowHours <= 5) ? "凌晨好" : (nowHours > 5 && nowHours <= 9) ? "早上好" : ((nowHours > 9 && nowHours <= 12) ? "上午好" : ((nowHours > 12 && nowHours <= 13) ? "中午好" : ((nowHours > 13 && nowHours <= 18) ? "下午好" : "晚上好"))));
-    },
     initWangEditor: function (options) {
         // 全屏插件
         window.wangEditor.fullscreen = {
@@ -393,7 +387,6 @@ $(document).ready(function () {
         $this.uploadPreview({imgContainer: $this.data("preview-container")});
     });
 
-    zhyd.initHelloMsg();
 
     $("#updPassBtn").click(function () {
         var $form = $("#updPassForm");

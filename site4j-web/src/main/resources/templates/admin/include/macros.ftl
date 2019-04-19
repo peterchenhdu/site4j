@@ -38,7 +38,7 @@
                 <div class="profile clearfix">
 
                     <div class="profile_info">
-                        <span id="hello_msg">&nbsp;</span>
+                        <span id="hello_msg">${commonInfoDto.helloMsg}</span>
                         <h2>尊敬的管理员</h2>
                     </div>
                 </div>

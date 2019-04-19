@@ -74,9 +74,9 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
         ResourceQueryDto queryDto = new ResourceQueryDto();
         queryDto.setUrl(RequestUtils.getRequestUri());
         List<ResourcesDto> list = query(queryDto).getList();
-        if(ObjectUtils.isNotEmpty(list)) {
-            sysResources.stream().filter(dto-> dto.getId().equals(list.get(0).getParentId()))
-                    .forEach(dto-> dto.setExpand(true));
+        if (ObjectUtils.isNotEmpty(list)) {
+            sysResources.stream().filter(dto -> dto.getId().equals(list.get(0).getParentId()))
+                    .forEach(dto -> dto.setExpand(true));
         }
 
         return sysResources;
@@ -113,7 +113,7 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
         Resource resource = resourceMapper.selectById(rid);
         String pId = resource.getParentId();
         Wrapper<Resource> wrapper = new EntityWrapper<>();
-        if(pId == null) {
+        if (pId == null) {
             wrapper.isNull("parent_id");
         } else {
             wrapper.eq("parent_id", pId);
@@ -136,7 +136,7 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
         List<ResourcesDto> allResourcesDtoList = listAll();
         List<String> parentIdList = allResourcesDtoList.stream().map(ResourcesDto::getParentId).collect(Collectors.toList());
 
-        List<ResourcesDto> test =allResourcesDtoList.stream().filter(dto-> parentIdList.contains(dto.getId())).collect(Collectors.toList());
+        List<ResourcesDto> test = allResourcesDtoList.stream().filter(dto -> parentIdList.contains(dto.getId())).collect(Collectors.toList());
         return test;
     }
 
@@ -191,17 +191,17 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
         wrapper.eq("parent_id", pId);
         wrapper.in("sort", new Integer[]{resource.getSort() - 1, resource.getSort(), resource.getSort() + 1});
         wrapper.orderBy("sort");
-        List<Resource> rList= resourceMapper.selectList(wrapper);
+        List<Resource> rList = resourceMapper.selectList(wrapper);
 
         Resource otherResource;
-        if(isUp) {
-            otherResource = rList.size() == 2 ? rList.get(1):rList.get(0);
+        if (isUp) {
+            otherResource = rList.size() == 2 ? rList.get(1) : rList.get(0);
             resource.setSort(resource.getSort() - 1);
             otherResource.setSort(sort);
 
 
         } else {
-            otherResource = rList.size() == 2 ? rList.get(1):rList.get(2);
+            otherResource = rList.size() == 2 ? rList.get(1) : rList.get(2);
             resource.setSort(resource.getSort() + 1);
             otherResource.setSort(sort);
         }
@@ -232,8 +232,13 @@ public class SysResourcesServiceImpl extends ServiceImpl<ResourceMapper, Resourc
     @Override
     public boolean updateSelective(ResourcesDto dto) {
         Assert.notNull(dto, "Resources不可为空！");
-        Resource entity = BeanConvertUtils.doConvert(dto, Resource.class);
-        return resourceMapper.updateById(entity) > 0;
+
+
+        Resource entity = this.baseMapper.selectById(dto.getId());
+
+        entity.setIcon(dto.getIcon());
+
+        return resourceMapper.updateAllColumnById(entity) > 0;
     }
 
     /**

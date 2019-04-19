@@ -15,7 +15,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li><a data-toggle="modal" title="修改密码" data-target="#updPasswordModal">修改密码</a></li>
-                        <@shiro.hasRole name="role:root">
+                        <@shiro.hasRole name="super_admin">
                             <li>
                                 <a href="/admin/config">
                                     <span>系统配置</span>

@@ -15,9 +15,11 @@ import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
+import com.github.peterchenhdu.site4j.enums.RoleTypeEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,7 +43,9 @@ public class RoleController {
     @ApiOperation(value="路由到角色管理页面")
     @BusinessLog("进入角色列表页")
     @GetMapping("")
-    public ModelAndView roles() {
+    public ModelAndView roles(Model model) {
+
+        model.addAttribute("roleTypeList", RoleTypeEnum.toList());
         return ResultUtils.view("admin/permission/role");
     }
 

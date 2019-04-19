@@ -223,7 +223,10 @@
                     console.log('code:' + code + 'row:' + row + 'index:' + index);
                     var operateBtn = [];
                     operateBtn.push('<@permissionUpdateBtn permission="resource:update" id="' + row.id +'" />');
-                    operateBtn.push('<@permissionSortBtn permission="resource:sort" id="' + row.id +'" />');
+                    if(row.type === 'menu') {
+                        operateBtn.push('<@permissionSortBtn permission="resource:sort" id="' + row.id +'" />');
+                    }
+
                     return operateBtn.join('');
                 }
             }],

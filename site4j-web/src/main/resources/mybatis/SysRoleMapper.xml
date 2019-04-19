@@ -5,6 +5,7 @@
     <resultMap id="rm" type="com.github.peterchenhdu.site4j.biz.entity.SysRole">
         <result property="id" jdbcType="BIGINT" column="id"/>
         <result property="name" jdbcType="VARCHAR" column="name"/>
+        <result property="type" jdbcType="VARCHAR" column="type"/>
         <result property="description" jdbcType="VARCHAR" column="description"/>
         <result property="available" jdbcType="BIT" column="available"/>
         <result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
