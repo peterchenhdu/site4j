@@ -6,6 +6,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleArchivesDto;
@@ -24,13 +25,14 @@ import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
 import com.github.peterchenhdu.site4j.common.base.BaseEntity;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
+import com.github.peterchenhdu.site4j.common.util.PageUtils;
+import com.github.peterchenhdu.site4j.common.util.UuidUtils;
+import com.github.peterchenhdu.site4j.common.util.web.IpUtils;
+import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import com.github.peterchenhdu.site4j.enums.ImageType;
-import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
-import com.github.peterchenhdu.site4j.common.util.web.IpUtils;
-import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,8 +104,8 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
 
 
 
-        PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
-        List<BizArticle> list = bizArticleMapper.query(vo);
+        Page<BizArticle> page = PageUtils.getPage(vo);
+        List<BizArticle> list = bizArticleMapper.query(page, vo);
         if (CollectionUtils.isEmpty(list)) {
             return null;
         }
@@ -126,7 +128,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
             boList.add(new ArticleDto(bizArticle));
         }
 
-        return new PageInfoDto<>(PageHelper.getTotal(), boList);
+        return new PageInfoDto<>(page.getTotal(), boList);
     }
 
     /**

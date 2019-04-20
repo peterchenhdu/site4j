@@ -27,11 +27,7 @@
                                 <i class="fa fa-trash-o"></i> 批量发布
                             </button>
                         </@shiro.hasPermission>
-                        <@shiro.hasPermission name="article:batchPush">
-                            <button id="btn_push_ids" type="button" class="btn btn-info" title="批量推送">
-                                <i class="fa fa-send-o"></i> 批量推送到百度
-                            </button>
-                        </@shiro.hasPermission>
+
                         </div>
                         <table id="table-list">
                         </table>
@@ -55,7 +51,6 @@
         var recommended = row.recommended ? '<i class="fa fa-thumbs-o-down"></i>取消推荐' : '<i class="fa fa-thumbs-o-up"></i>推荐';
         var top = row.top ? '<i class="fa fa-arrow-circle-down"></i>取消置顶' : '<i class="fa fa-arrow-circle-up"></i>置顶';
         var operateBtn = [
-            '<@shiro.hasPermission name="article:push"><a class="btn btn-xs btn-info btn-push" title="推送" data-id="' + trId + '"><i class="fa fa-send-o"></i>推送</a></@shiro.hasPermission>',
             '<@shiro.hasPermission name="article:edit"><a class="btn btn-xs btn-primary" href="/admin/article/update/' + trId + '"><i class="fa fa-edit"></i>编辑</a></@shiro.hasPermission>',
             '<@shiro.hasPermission name="article:delete"><a class="btn btn-xs btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o"></i>删除</a></@shiro.hasPermission>',
             '<@shiro.hasPermission name="article:top"><a class="btn btn-xs btn-success btn-top" data-id="' + trId + '">' + top + '</a></@shiro.hasPermission>',
@@ -82,21 +77,25 @@
                         var title = code;
                         title = title.length > 10 ? (title.substr(0, 10) + '...') : title;
                         var id = row.id;
-                        // var original= row.original ? "原创" : "转载";
-                        // return '<strong>['+original+']</strong> <a href="' + appConfig.wwwPath + '/article/' + id + '" target="_blank">' + code + '</a>';
-                        var status = row.status ? '<span class="label label-success">已发布</span>' : '<span class="label label-danger">草稿</span>';
 
-                        return status + '<a href="' + appConfig.wwwPath + '/article/' + id + '" target="_blank"' +
+                        return '<a href="' + appConfig.wwwPath + '/article/' + id + '" target="_blank"' +
                                 ' title="' + code + '">' + code + '</a>';
                     }
                 }, {
+                    field: 'status',
+                    title: '状态',
+                    width: '80px',
+                    editable: false,
+                    formatter: function (code) {
+                        return code ? '<span class="label label-success">已发布</span>' : '<span class="label label-danger">草稿</span>';
+                    }
+                },{
                     field: 'type',
                     title: '分类',
                     width: '80px',
                     editable: false,
                     formatter: function (code) {
-                        var type = code;
-                        return '<a href="' + appConfig.wwwPath + '/type/' + type.id + '" target="_blank"> ' + type.name + '</a> ';
+                        return  code.name;
                     }
                 }, {
                     field: 'tags',
