@@ -160,10 +160,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
      */
     @Override
     public List<TypeDto> listAll() {
-        TypeQueryDto vo = new TypeQueryDto();
-        vo.setPageNumber(1);
-        vo.setPageSize(100);
-        PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
+
         List<BizType> entityList = bizTypeMapper.selectList(new EntityWrapper<>());
 
         List<TypeDto> list = getTypes(entityList);

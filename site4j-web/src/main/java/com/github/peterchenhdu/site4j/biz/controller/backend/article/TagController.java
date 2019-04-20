@@ -84,5 +84,11 @@ public class TagController {
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }
 
+    @ApiOperation(value = "查询标签列表")
+    @PostMapping("/listAll")
+    public BaseResponse listAll() {
+        return ResultUtils.success(tagsService.listAll());
+    }
+
 
 }
