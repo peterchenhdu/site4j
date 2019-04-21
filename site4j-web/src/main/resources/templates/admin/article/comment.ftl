@@ -147,37 +147,52 @@
                     checkbox: true
                 }, {
                     field: 'avatar',
-                    title: '作者',
+                    title: '评论者',
                     editable: false,
                     width: '200px',
-                    formatter: function (code, row, index) {
-                        return '<ul class="list-unstyled" style="max-width: 200px;">' +
-                                '<li><a href="' + row.url + '" target="_blank"><img src="' + filterXSS(row.avatar) + '" style="width: 20px;border-radius: 50%;position: relative;top: -2px;"/>' + filterXSS(row.nickname) + '</a></li>' +
-                                '<li>IP: <span style="color: #a9a9a9;">' + row.ip + '</span></li>' +
-                                '<li>地址: <span style="color: #a9a9a9;">' + row.address + '</span></li>' +
-                                // '<li>邮箱: <span style="color: #a9a9a9;">'+filterXSS(row.email)+'</span></li>' +
-                                '<li>设备: <span style="color: #a9a9a9;">' + row.os + ' ' + row.browser + '</span></li>' +
-                                '<li style="color: #a9a9a9;">' + row.createTimeString + '</li></ul>';
+                    formatter: function (code, row) {
+                        return '<a href="' + row.url + '" target="_blank">' + filterXSS(row.nickname) + '</a>';
                     }
                 }, {
-                    field: 'content',
-                    title: '内容',
+                    field: 'ip',
+                    title: '评论者IP',
+                    editable: false,
+                    width: '200px'
+                }, {
+                    field: 'browser',
+                    title: '评论者浏览器',
+                    editable: false,
+                    width: '300px'
+                }, {
+                    field: 'articleTitle',
+                    title: '评论文章',
                     editable: false,
                     width: '260px',
-                    formatter: function (code, row, index) {
+                    formatter: function (code, row) {
+                        return '<a href="' + appConfig.wwwPath + row.sourceUrl + '" target="_blank">' + row.articleTitle + '</a>';
+                    }
+                },{
+                    field: 'content',
+                    title: '评论内容',
+                    editable: false,
+                    width: '260px',
+                    formatter: function (code, row) {
                         var content = filterXSS(row.content);
-                        var source = '<a href="' + appConfig.wwwPath + row.sourceUrl + '" target="_blank">' + row.articleTitle + '</a>';
                         var $parent = row.parent;
                         var parent = $parent ? '<div style="background-color: #f1f1f1;padding: 5px;margin: 5px;border-radius: 4px;"><div style="padding-left: 10px;"><i class="fa fa-quote-left fa-fw"></i><strong>原评：</strong>' + filterXSS($parent.content) + '</div></div>' : '';
-                        return '<div style="border-bottom: 1px solid #dcddde;margin-bottom: 10px;">评论自：' + source + '</div>' +
-                                '<div class="col-md-12">' + content + parent + '</div>';
+                        return '<div class="col-md-12">' + content + parent + '</div>';
                     }
+                }, {
+                    field: 'createTimeString',
+                    title: '评论时间',
+                    editable: false,
+                    width: '260px'
                 }, {
                     field: 'support',
                     title: '赞/踩',
                     width: '40px',
                     editable: false,
-                    formatter: function (code, row, index) {
+                    formatter: function (code, row) {
                         return row.support + "/" + row.oppose;
                     }
                 }, {
@@ -185,13 +200,13 @@
                     title: '状态',
                     width: '40px',
                     editable: false,
-                    formatter: function (code, row, index) {
+                    formatter: function (code, row) {
                         var html = '';
-                        if (code == 'VERIFYING') {
+                        if (code === 'VERIFYING') {
                             html = '<span class="label label-danger">' + row.statusDesc + '</span>';
-                        } else if (code == 'REJECT') {
+                        } else if (code === 'REJECT') {
                             html = '<span class="label label-warning">' + row.statusDesc + '</span>';
-                        } else if (code == 'DELETED') {
+                        } else if (code === 'DELETED') {
                             html = '<span class="label label-danger">' + row.statusDesc + '</span>';
                         } else {
                             html = '<span class="label label-success">' + row.statusDesc + '</span>';
@@ -208,9 +223,9 @@
             rowStyle: function (row, index) {
                 //这里有5个取值代表5中颜色['active', 'success', 'info', 'warning', 'danger'];
                 var strclass = "";
-                if (row.status == 'REJECT' || row.status == 'DELETED') {
+                if (row.status === 'REJECT' || row.status === 'DELETED') {
                     strclass = 'warning';
-                } else if (row.status == 'VERIFYING') {
+                } else if (row.status === 'VERIFYING') {
                     strclass = 'danger';
                 }
                 return {'classes': strclass}

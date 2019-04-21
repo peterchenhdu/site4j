@@ -9,12 +9,7 @@
             <li class="active">发布文章-Markdown编辑器</li>
         </ol>
         <div class="x_panel">
-            <div class="x_title">
-                <h2>发布文章
-                    <small>Markdown编辑器，使用 <a href="/admin/article/publish">HTML编辑器</a></small>
-                </h2>
-                <div class="clearfix"></div>
-            </div>
+
             <div class="x_content">
 
 
@@ -22,63 +17,88 @@
                     <input type="hidden" name="id">
                     <input type="hidden" name="isMarkdown" value="1">
 
-                    <div class="ln_solid"></div>
+
                     <div class="custom-panel">
                         <div class="custom-container">
                             <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title"></label>
-                                <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control col-md-7 col-xs-12" name="title"
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章标题</label>
+                                <div class="col-md-11 col-sm-11 col-xs-11">
+                                    <input type="text" class="form-control col-md-11 col-xs-11" name="title"
                                            id="title" required="required" placeholder="请输入标题"/>
                                 </div>
                             </div>
 
-                            <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1"
-                                       for="originalAuthor">原作者 </label>
-                                <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control col-md-7 col-xs-12" name="originalAuthor"
-                                           id="originalAuthor" placeholder="请输入原作者"/>
-                                </div>
-                            </div>
 
                             <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="originalLink">原文链接 </label>
-                                <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input type="text" class="form-control col-md-7 col-xs-12" name="originalLink"
-                                           id="originalLink" placeholder="请输入原文链接"/>
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="contentMd"></label>
-                                <div class="col-md-10 col-sm-10 col-xs-10">
-                                            <textarea class="form-control col-md-7 col-xs-12" id="content"
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="contentMd">文章正文</label>
+                                <div class="col-md-11 col-sm-11 col-xs-11">
+                                            <textarea class="form-control col-md-11 col-xs-11" id="content"
                                                       name="content" style="display: none"
                                                       required="required"></textarea>
-                                    <textarea class="form-control col-md-7 col-xs-12 valid" id="contentMd"
+                                    <textarea class="form-control col-md-11 col-xs-11 valid" id="contentMd"
                                               name="contentMd" style="display: none"
                                               required="required"></textarea>
                                 </div>
                             </div>
 
                             <div class="item form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-2" for="title">文章类型 <span
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章类型 <span
                                         class="required">*</span></label>
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                    <select class="form-control" name="original" required="required"
-                                            id="original" style="width: 120px;">
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <select class="form-control col-md-7 col-xs-12" name="original" required="required"
+                                            id="original">
                                         <option value="0">转载</option>
                                         <option value="1">原创</option>
                                     </select>
                                 </div>
+
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1"
+                                       for="originalAuthor">原作者 </label>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" name="originalAuthor"
+                                           id="originalAuthor" placeholder="请输入原作者"/>
+                                </div>
+
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="originalLink">原文链接 </label>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" name="originalLink"
+                                           id="originalLink" placeholder="请输入原文链接"/>
+                                </div>
+
+
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章分类 <span
+                                        class="required">*</span></label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                     <select class="form-control" name="typeId" required="required" id="typeId"
                                             style="width: 120px;"></select>
                                 </div>
+
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="status">文章状态 <span
+                                        class="required">*</span></label>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <ul class="list-unstyled list-inline">
+                                        <li>
+                                            <input type="radio" class="square" checked name="status" value="1">
+                                            发布
+                                        </li>
+                                        <li>
+                                            <input type="radio" class="square" name="status" value="0"> 草稿
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="comment">开启评论 <span
+                                        class="required">*</span></label>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <input type="checkbox" class="square" name="comment" id="comment">
+                                </div>
+
                             </div>
+
                             <div class="item form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-2" for="title">文章封面 <span
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章封面 <span
                                         class="required">*</span></label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                     <div class="choose-local-img">
@@ -93,53 +113,33 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-2" for="mobile">文章标签 <span
+
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="mobile">文章标签 <span
                                         class="required">*</span></label>
 
-                                <div class="disable-content">
+                                <div class="disable-content col-md-7 col-sm-7 col-xs-7">
                                     <ul class="list-unstyled list-inline" id="tag-list"
                                         style="line-height: 30px;"></ul>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-2" for="status">文章状态 <span
-                                    class="required">*</span></label>
-                            <div class="col-md-10 col-sm-10 col-xs-10">
-                                <ul class="list-unstyled list-inline">
-                                    <li>
-                                        <input type="radio" class="square" checked name="status" value="1">
-                                        发布
-                                    </li>
-                                    <li>
-                                        <input type="radio" class="square" name="status" value="0"> 草稿
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-2" for="comment">开启评论 <span
-                                    class="required">*</span></label>
-                            <div class="col-md-10 col-sm-10 col-xs-10">
-                                <input type="checkbox" class="square" name="comment" id="comment">
-                            </div>
+
+
                         </div>
 
+
                         <div class="item form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-2" for="password">摘要 <span
+                            <label class="control-label col-md-1 col-sm-1 col-xs-1" for="password">摘要 <span
                                     class="required">*</span></label>
-                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                            <textarea class="form-control col-md-7 col-xs-12" id="description"
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                            <textarea class="form-control col-md-11 col-xs-11" id="description"
                                                       name="description" required="required"></textarea>
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-2" for="password">关键词 <span
+                            <label class="control-label col-md-1 col-sm-1 col-xs-1" for="password">关键词 <span
                                     class="required">*</span></label>
-                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                            <textarea class="form-control col-md-7 col-xs-12" id="keywords"
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                            <textarea class="form-control col-md-11 col-xs-11" id="keywords"
                                                       name="keywords" required="required"></textarea>
                             </div>
                         </div>
@@ -148,7 +148,8 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-10 col-sm-10 col-xs-12">
-                            <button type="button" class="btn btn-success publishBtn" onclick="submitMd()"><i class="fa fa-pencil">
+                            <button type="button" class="btn btn-success publishBtn" onclick="submitMd()"><i
+                                    class="fa fa-pencil">
                                 发布文章</i></button>
                         </div>
                     </div>
@@ -220,8 +221,7 @@
 <script>
 
 
-
-    function submitMd(){
+    function submitMd() {
         $("#publishForm").ajaxSubmit({
             type: "post",
             url: "/admin/article/save",

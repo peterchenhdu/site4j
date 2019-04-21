@@ -14,6 +14,7 @@ import com.github.peterchenhdu.site4j.biz.mapper.BizTypeMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
@@ -25,7 +26,9 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 分类
@@ -66,7 +69,24 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         List<BizType> entityList = bizTypeMapper.listTypeForMenu();
 
 
-        return getTypes(entityList);
+        Map<String, TypeDto> map = new HashMap<>();
+
+        entityList.forEach(entity->{
+            if(ObjectUtils.isEmpty(entity.getPid())) {
+                map.put(entity.getId(), BeanConvertUtils.doConvert(entity, TypeDto.class));
+            }
+        });
+
+        entityList.forEach(entity->{
+            if(ObjectUtils.isNotEmpty(entity.getPid())) {
+                map.get(entity.getPid()).getNodes().add(BeanConvertUtils.doConvert(entity, TypeDto.class));
+            }
+        });
+
+
+
+
+        return new ArrayList<>(map.values());
     }
 
     @Override

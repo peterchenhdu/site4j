@@ -5,6 +5,9 @@ package com.github.peterchenhdu.site4j.biz.dto;
 
 import com.github.peterchenhdu.site4j.biz.entity.BizType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <p>
  * Created by chenpi on 2019/02/05.
@@ -12,10 +15,18 @@ import com.github.peterchenhdu.site4j.biz.entity.BizType;
 public class TypeDto extends BizType{
 
     private String parentName;
-
+    private List<TypeDto> nodes = new ArrayList<>();
 
     public TypeDto() {
 
+    }
+
+    public List<TypeDto> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<TypeDto> nodes) {
+        this.nodes = nodes;
     }
 
     public String getParentName() {

@@ -7,8 +7,6 @@ import com.github.peterchenhdu.site4j.common.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.List;
-
 /**
  * <p>
  * Created by chenpi on 2019/02/05.
