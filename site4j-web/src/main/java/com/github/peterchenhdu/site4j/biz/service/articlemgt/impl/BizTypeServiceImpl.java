@@ -6,7 +6,6 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
@@ -64,8 +63,9 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         TypeQueryDto vo = new TypeQueryDto();
         vo.setPageNumber(1);
         vo.setPageSize(100);
-        PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
         List<BizType> entityList = bizTypeMapper.listTypeForMenu();
+
+
         return getTypes(entityList);
     }
 
