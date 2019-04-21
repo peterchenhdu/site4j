@@ -52,13 +52,13 @@ import java.util.stream.Collectors;
 
 /**
  * 文章列表
- *
+ * <p>
  * <p>
  * Created by chenpi on 2019/02/05.
  */
 @Service
 @Slf4j
-public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArticle> implements BizArticleService {
+public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArticle> implements BizArticleService {
 
     @Autowired
     private BizArticleMapper bizArticleMapper;
@@ -77,6 +77,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
 
     @Autowired
     private IImageService imageService;
+
     /**
      * 分页查询
      *
@@ -86,7 +87,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
     @Override
     public PageInfoDto<ArticleDto> query(ArticleQueryDto vo) {
         //保存搜索记录
-        if(ObjectUtils.isNotEmpty(vo.getKeywords())){
+        if (ObjectUtils.isNotEmpty(vo.getKeywords())) {
             log.info("开始搜索内容，关键字:{}", vo.getKeywords());
             String userIp = IpUtils.getRealIp(WebUtils.getRequest());
             String keyWord = vo.getKeywords();
@@ -101,7 +102,6 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
             searchHistory.setCreateTime(LocalDateTime.now());
             searchHistoryService.save(searchHistory);
         }
-
 
 
         Page<BizArticle> page = PageUtils.getPage(vo);
@@ -124,7 +124,8 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         List<ArticleDto> boList = new LinkedList<>();
         for (BizArticle bizArticle : list) {
             BizArticle tagArticle = tagMap.get(bizArticle.getId());
-            bizArticle.setTags(tagArticle==null?Collections.EMPTY_LIST:tagArticle.getTags());
+            bizArticle.setTags(tagArticle == null ? Collections.EMPTY_LIST : tagArticle.getTags());
+            bizArticle.setCoverImage(bizArticle.getCoverImage());
             boList.add(new ArticleDto(bizArticle));
         }
 
@@ -183,7 +184,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      * 搜索同类型、同标签下的文章
      *
      * @param pageSize pageSize
-     * @param article article
+     * @param article  article
      * @return List
      */
     @Override
@@ -284,8 +285,8 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      * 发布文章
      *
      * @param article article
-     * @param tags tags
-     * @param file file
+     * @param tags    tags
+     * @param file    file
      * @return boolean
      */
     @Override
@@ -300,7 +301,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
             article.setCoverImage(filePath);
         }
         String articleId = article.getId();
-        if (ObjectUtils.isNotEmpty(articleId) ) {
+        if (ObjectUtils.isNotEmpty(articleId)) {
             this.updateSelective(article);
         } else {
             article.setUserId(SessionUtil.getUser().getId());
@@ -317,7 +318,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
      * 修改置顶、推荐
      *
      * @param type type
-     * @param id id
+     * @param id   id
      * @return boolean
      */
     @Override
@@ -430,7 +431,6 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
     }
 
 
-
     /**
      * 根据主键更新属性不为null的值
      *
@@ -461,7 +461,6 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
     }
 
 
-
     /**
      * 查询全部结果，listByEntity(null)方法能达到同样的效果
      *
@@ -480,7 +479,6 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper,BizArtic
         }
         return list;
     }
-
 
 
     @Override

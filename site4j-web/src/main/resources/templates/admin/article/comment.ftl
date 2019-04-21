@@ -221,11 +221,11 @@
         //2.初始化Button的点击事件
         $.buttonUtil.init(options);
 
-        var $table-list = $('#table-list');
+        var $tableList = $('#table-list');
         /**
          * 回复
          */
-        $table-list.on('click', '.btn-reply', function () {
+        $tableList.on('click', '.btn-reply', function () {
             var $this = $(this);
             var $replyForm = $("#replyForm");
             $replyForm.find("input,select,textarea").each(function () {
@@ -258,7 +258,7 @@
         /**
          * audit
          */
-        $table-list.on('click', '.btn-audit', function () {
+        $tableList.on('click', '.btn-audit', function () {
             var $this = $(this);
             var userId = $this.attr("data-id");
             var $auditForm = $("#auditForm");

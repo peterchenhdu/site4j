@@ -115,7 +115,7 @@ $(".publishBtn").click(function () {
             url: "/admin/article/save",
             success: function (json) {
                 $.alert.ajaxSuccessConfirm(json, function () {
-                    window.location.href = '/admin/articles';
+                    window.location.href = '/admin/article';
                 });
             },
             error: $.alert.ajaxError

@@ -8,7 +8,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <ol class="breadcrumb">
                 <li><a href="/admin/">首页</a></li>
-                <li><a href="/admin/articles">文章列表</a></li>
+                <li><a href="/admin/article">文章列表</a></li>
                 <li class="active">发布文章-HTML编辑器</li>
             </ol>
             <div class="x_panel">
@@ -166,10 +166,10 @@
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active">
                             <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab"
-                               aria-expanded="true">素材库</a>
+                               aria-expanded="true">从素材库中选择</a>
                         </li>
                         <li role="presentation" class="">
-                            <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">本地图片</a>
+                            <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">本地上传图片</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">

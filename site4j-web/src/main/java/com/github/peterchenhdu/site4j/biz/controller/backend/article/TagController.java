@@ -87,7 +87,7 @@ public class TagController {
     @ApiOperation(value = "查询标签列表")
     @PostMapping("/listAll")
     public BaseResponse listAll() {
-        return ResultUtils.success(tagsService.listAll());
+        return ResultUtils.success(null, tagsService.listAll());
     }
 
 

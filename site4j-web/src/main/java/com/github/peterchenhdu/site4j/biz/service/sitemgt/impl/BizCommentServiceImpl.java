@@ -261,7 +261,7 @@ public class BizCommentServiceImpl implements BizCommentService {
     public List<CommentDto> listRecentComment(int pageSize) {
         CommentQueryDto vo = new CommentQueryDto();
         vo.setPageSize(pageSize);
-        vo.setStatus(CommentStatusEnum.APPROVED.toString());
+//        vo.setStatus(CommentStatusEnum.APPROVED.toString());
         PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
         List<BizComment> list = bizCommentMapper.query(vo);
         if (CollectionUtils.isEmpty(list)) {

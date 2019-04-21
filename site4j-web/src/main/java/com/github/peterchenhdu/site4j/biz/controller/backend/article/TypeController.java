@@ -92,7 +92,7 @@ public class TypeController {
     @ApiOperation(value="查看所有类别")
     @PostMapping("/listAll")
     public BaseResponse listType() {
-        return ResultUtils.success(typeService.listAll());
+        return ResultUtils.success(null, typeService.listAll());
     }
 
     @ApiOperation(value="查看父类别")

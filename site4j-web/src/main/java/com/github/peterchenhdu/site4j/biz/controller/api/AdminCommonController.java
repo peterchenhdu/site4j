@@ -8,9 +8,10 @@ import com.github.peterchenhdu.site4j.biz.entity.Image;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
+import com.github.peterchenhdu.site4j.common.annotation.PublicService;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
-import com.github.peterchenhdu.site4j.enums.ImageType;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
+import com.github.peterchenhdu.site4j.enums.ImageType;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +20,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 公共接口
  * <p>
  * Created by chenpi on 2019/02/05.
  */
+@PublicService
 @RestController
 @RequestMapping("/admin/api")
 public class AdminCommonController {
@@ -70,7 +73,7 @@ public class AdminCommonController {
     @ApiOperation(value="查询素材库")
     @PostMapping("/material")
     public BaseResponse<List<String>> material() {
-        return ResultUtils.success("查询成功", articleService.listMaterial());
+        return ResultUtils.success("查询成功", imageService.query().stream().map(Image::getUrl).collect(Collectors.toList()));
     }
 
     @ApiOperation(value="查询图片")
