@@ -14,6 +14,7 @@ import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
+import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +51,7 @@ public class BizTagsServiceImpl implements BizTagsService {
         }
         List<TagsDto> boList = new ArrayList<>();
         for (BizTags bizTags : list) {
-            boList.add(new TagsDto(bizTags));
+            boList.add(BeanConvertUtils.doConvert(bizTags, TagsDto.class));
         }
 
         return new PageInfoDto<>(PageHelper.getTotal(), boList);
@@ -81,7 +82,7 @@ public class BizTagsServiceImpl implements BizTagsService {
         entity.setUpdateTime(LocalDateTime.now());
         entity.setCreateTime(LocalDateTime.now());
         entity.setId(UuidUtils.getUuid());
-        bizTagsMapper.insert(entity.getBizTags());
+        bizTagsMapper.insert(entity);
         return entity;
     }
 
@@ -124,7 +125,7 @@ public class BizTagsServiceImpl implements BizTagsService {
 
 
         entity.setUpdateTime(LocalDateTime.now());
-        return bizTagsMapper.updateAllColumnById(entity.getBizTags()) > 0;
+        return bizTagsMapper.updateAllColumnById(entity) > 0;
     }
 
     /**
@@ -146,7 +147,7 @@ public class BizTagsServiceImpl implements BizTagsService {
         }
 
         entity.setUpdateTime(LocalDateTime.now());
-        return bizTagsMapper.updateById(entity.getBizTags()) > 0;
+        return bizTagsMapper.updateById(entity) > 0;
     }
 
     /**
@@ -159,7 +160,7 @@ public class BizTagsServiceImpl implements BizTagsService {
     public TagsDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         BizTags entity = bizTagsMapper.selectById(primaryKey);
-        return null == entity ? null : new TagsDto(entity);
+        return null == entity ? null : BeanConvertUtils.doConvert(entity, TagsDto.class);
     }
 
     /**
@@ -171,8 +172,8 @@ public class BizTagsServiceImpl implements BizTagsService {
     @Override
     public TagsDto getOneByEntity(TagsDto entity) {
         Assert.notNull(entity, "Tags不可为空！");
-        BizTags bo = bizTagsMapper.selectOne(entity.getBizTags());
-        return null == bo ? null : new TagsDto(bo);
+        BizTags bo = bizTagsMapper.selectOne(entity);
+        return null == bo ? null : BeanConvertUtils.doConvert(bo, TagsDto.class);
     }
 
     /**
@@ -190,7 +191,7 @@ public class BizTagsServiceImpl implements BizTagsService {
         }
         List<TagsDto> list = new ArrayList<>();
         for (BizTags entity : entityList) {
-            list.add(new TagsDto(entity));
+            list.add(BeanConvertUtils.doConvert(entity, TagsDto.class));
         }
         return list;
     }

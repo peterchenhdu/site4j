@@ -6,12 +6,11 @@ package com.github.peterchenhdu.site4j.biz.controller.backend.article;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
-import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
-import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,8 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class RestArticleController {
     @Autowired
     private BizArticleService articleService;
-    @Autowired
-    private SysConfigService configService;
+
 
     @ApiOperation(value="路由到文章管理页面")
     @BusinessLog("进入文章列表页")
@@ -65,7 +63,7 @@ public class RestArticleController {
     public ModelAndView edit(@PathVariable("id") String id, Model model) {
         model.addAttribute("id", id);
         ArticleDto article = articleService.queryById(id);
-        if (article.getIsMarkdown()) {
+        if (article.getMarkdown()) {
             return ResultUtils.view("admin/article/publish-md");
         }
         return ResultUtils.view("admin/article/publish");

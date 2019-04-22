@@ -183,7 +183,7 @@
                         return '<div class="col-md-12">' + content + parent + '</div>';
                     }
                 }, {
-                    field: 'createTimeString',
+                    field: 'createTime',
                     title: '评论时间',
                     editable: false,
                     width: '260px'

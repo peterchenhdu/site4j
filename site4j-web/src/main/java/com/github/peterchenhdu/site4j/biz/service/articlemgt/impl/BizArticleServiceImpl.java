@@ -33,6 +33,7 @@ import com.github.peterchenhdu.site4j.common.util.web.IpUtils;
 import com.github.peterchenhdu.site4j.common.util.web.WebUtils;
 import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import com.github.peterchenhdu.site4j.enums.ImageType;
+import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import com.github.peterchenhdu.site4j.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,7 +127,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
             BizArticle tagArticle = tagMap.get(bizArticle.getId());
             bizArticle.setTags(tagArticle == null ? Collections.EMPTY_LIST : tagArticle.getTags());
             bizArticle.setCoverImage(bizArticle.getCoverImage());
-            boList.add(new ArticleDto(bizArticle));
+            boList.add(BeanConvertUtils.doConvert(bizArticle, ArticleDto.class));
         }
 
         return new PageInfoDto<>(page.getTotal(), boList);
@@ -223,9 +224,9 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         Map<String, ArticleDto> resultMap = new HashMap<>();
         for (BizArticle entity : entityList) {
             if (entity.getCreateTime().isBefore(insertTime)) {
-                resultMap.put("prev", new ArticleDto(entity));
+                resultMap.put("prev", BeanConvertUtils.doConvert(entity, ArticleDto.class));
             } else {
-                resultMap.put("next", new ArticleDto(entity));
+                resultMap.put("next", BeanConvertUtils.doConvert(entity, ArticleDto.class));
             }
         }
         return resultMap;
@@ -365,7 +366,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         }
         List<ArticleDto> list = new ArrayList<>();
         for (BizArticle entity : entityList) {
-            list.add(new ArticleDto(entity));
+            list.add(BeanConvertUtils.doConvert(entity, ArticleDto.class));
         }
         return list;
     }
@@ -381,10 +382,10 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         Assert.notNull(entity, "Article不可为空！");
         entity.setUpdateTime(LocalDateTime.now());
         entity.setCreateTime(LocalDateTime.now());
-        entity.setOriginal(entity.isOriginal());
-        entity.setComment(entity.isComment());
+        entity.setOriginal(entity.getOriginal());
+        entity.setComment(entity.getComment());
         entity.setId(UuidUtils.getUuid());
-        bizArticleMapper.insert(entity.getBizArticle());
+        bizArticleMapper.insert(entity);
         return entity;
     }
 
@@ -399,9 +400,9 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         for (ArticleDto entity : entities) {
             entity.setUpdateTime(LocalDateTime.now());
             entity.setCreateTime(LocalDateTime.now());
-            entity.setOriginal(entity.isOriginal());
-            entity.setComment(entity.isComment());
-            list.add(entity.getBizArticle());
+            entity.setOriginal(entity.getOriginal());
+            entity.setComment(entity.getComment());
+            list.add(entity);
         }
         this.insertBatch(list);
     }
@@ -442,9 +443,9 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
     public boolean updateSelective(ArticleDto entity) {
         Assert.notNull(entity, "Article不可为空！");
         entity.setUpdateTime(LocalDateTime.now());
-        entity.setOriginal(entity.isOriginal());
-        entity.setComment(entity.isComment());
-        return bizArticleMapper.updateById(entity.getBizArticle()) > 0;
+        entity.setOriginal(entity.getOriginal());
+        entity.setComment(entity.getComment());
+        return bizArticleMapper.updateById(entity) > 0;
     }
 
     /**
@@ -457,7 +458,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
     public ArticleDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
         BizArticle entity = bizArticleMapper.get(primaryKey);
-        return null == entity ? null : new ArticleDto(entity);
+        return null == entity ? null : BeanConvertUtils.doConvert(entity, ArticleDto.class);
     }
 
 
@@ -475,7 +476,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         }
         List<ArticleDto> list = new ArrayList<>();
         for (BizArticle entity : entityList) {
-            list.add(new ArticleDto(entity));
+            list.add(BeanConvertUtils.doConvert(entity, ArticleDto.class));
         }
         return list;
     }
