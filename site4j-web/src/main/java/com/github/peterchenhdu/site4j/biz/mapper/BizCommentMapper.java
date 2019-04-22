@@ -3,6 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.biz.mapper;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.github.peterchenhdu.site4j.biz.entity.BizComment;
 import com.github.peterchenhdu.site4j.biz.dto.req.CommentQueryDto;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
@@ -23,7 +24,7 @@ public interface BizCommentMapper extends BaseMapper<BizComment> {
      * @param vo
      * @return
      */
-    List<BizComment> query(CommentQueryDto vo);
+    List<BizComment> query(Page<BizComment> page, CommentQueryDto vo);
 
     /**
      * 点赞
