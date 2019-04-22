@@ -90,7 +90,7 @@
                         return code ? '<span class="label label-success">已发布</span>' : '<span class="label label-danger">草稿</span>';
                     }
                 },{
-                    field: 'type',
+                    field: 'bizType',
                     title: '分类',
                     width: '80px',
                     editable: false,

@@ -136,7 +136,7 @@ public class BizArticle extends BaseEntity {
         this.status = status;
     }
 
-    public boolean getRecommended() {
+    public Boolean getRecommended() {
         return recommended;
     }
 
