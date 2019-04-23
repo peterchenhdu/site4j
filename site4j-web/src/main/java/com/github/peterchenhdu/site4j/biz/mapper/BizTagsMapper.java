@@ -3,6 +3,7 @@
  */
 package com.github.peterchenhdu.site4j.biz.mapper;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.github.peterchenhdu.site4j.biz.entity.BizTags;
 import com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
@@ -23,7 +24,7 @@ public interface BizTagsMapper extends BaseMapper<BizTags> {
      * @param vo
      * @return
      */
-    List<BizTags> query(TagQueryDto vo);
+    List<BizTags> query(Page<BizTags> page, TagQueryDto vo);
 
     List<BizTags> findByName(String name);
 }

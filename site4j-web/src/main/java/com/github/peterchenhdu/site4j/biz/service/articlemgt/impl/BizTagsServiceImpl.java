@@ -3,17 +3,18 @@
  */
 package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.github.peterchenhdu.site4j.biz.dto.TagsDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizTags;
 import com.github.peterchenhdu.site4j.biz.mapper.BizTagsMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTagsService;
-import com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
-import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
+import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,8 +45,8 @@ public class BizTagsServiceImpl implements BizTagsService {
      */
     @Override
     public PageInfoDto<TagsDto> query(TagQueryDto vo) {
-        PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
-        List<BizTags> list = bizTagsMapper.query(vo);
+        Page<BizTags> page = PageUtils.getPage(vo);
+        List<BizTags> list = bizTagsMapper.query(page, vo);
         if (CollectionUtils.isEmpty(list)) {
             return null;
         }
@@ -54,7 +55,7 @@ public class BizTagsServiceImpl implements BizTagsService {
             boList.add(BeanConvertUtils.doConvert(bizTags, TagsDto.class));
         }
 
-        return new PageInfoDto<>(PageHelper.getTotal(), boList);
+        return new PageInfoDto<>(page.getTotal(), boList);
     }
 
     @Override

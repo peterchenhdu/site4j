@@ -151,7 +151,7 @@
                     editable: false,
                     width: '200px',
                     formatter: function (code, row) {
-                        return '<a href="' + row.url + '" target="_blank">' + filterXSS(row.nickname) + '</a>';
+                        return filterXSS(row.nickname);
                     }
                 }, {
                     field: 'ip',
@@ -163,6 +163,24 @@
                     title: '评论者浏览器',
                     editable: false,
                     width: '300px'
+                }, {
+                    field: 'status',
+                    title: '状态',
+                    width: '40px',
+                    editable: false,
+                    formatter: function (code, row) {
+                        var html = '';
+                        if (code === 'VERIFYING') {
+                            html = '<span class="label label-danger">' + row.statusDesc + '</span>';
+                        } else if (code === 'REJECT') {
+                            html = '<span class="label label-warning">' + row.statusDesc + '</span>';
+                        } else if (code === 'DELETED') {
+                            html = '<span class="label label-danger">' + row.statusDesc + '</span>';
+                        } else {
+                            html = '<span class="label label-success">' + row.statusDesc + '</span>';
+                        }
+                        return html;
+                    }
                 }, {
                     field: 'articleTitle',
                     title: '评论文章',
@@ -194,24 +212,6 @@
                     editable: false,
                     formatter: function (code, row) {
                         return row.support + "/" + row.oppose;
-                    }
-                }, {
-                    field: 'status',
-                    title: '状态',
-                    width: '40px',
-                    editable: false,
-                    formatter: function (code, row) {
-                        var html = '';
-                        if (code === 'VERIFYING') {
-                            html = '<span class="label label-danger">' + row.statusDesc + '</span>';
-                        } else if (code === 'REJECT') {
-                            html = '<span class="label label-warning">' + row.statusDesc + '</span>';
-                        } else if (code === 'DELETED') {
-                            html = '<span class="label label-danger">' + row.statusDesc + '</span>';
-                        } else {
-                            html = '<span class="label label-success">' + row.statusDesc + '</span>';
-                        }
-                        return html;
                     }
                 }, {
                     field: 'operate',

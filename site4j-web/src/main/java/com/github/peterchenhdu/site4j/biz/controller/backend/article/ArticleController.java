@@ -31,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Api(value="文章管理", tags="文章管理")
 @RestController
 @RequestMapping("/admin/article")
-public class RestArticleController {
+public class ArticleController {
     @Autowired
     private BizArticleService articleService;
 

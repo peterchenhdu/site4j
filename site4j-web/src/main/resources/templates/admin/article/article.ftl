@@ -13,8 +13,12 @@
                     <div class="<#--table-responsive-->">
                         <div class="btn-group hidden-xs" id="toolbar">
                         <@shiro.hasPermission name="article:publish">
-                            <a class="btn btn-default" title="发表文章" href="/admin/article/publishMd"> <i
-                                    class="fa fa-pencil"></i> 发表文章 </a>
+                            <a class="btn btn-default" title="发表MD文章" href="/admin/article/publishMd"> <i
+                                    class="fa fa-pencil"></i> 发表MD文章 </a>
+                        </@shiro.hasPermission>
+                        <@shiro.hasPermission name="article:publish">
+                            <a class="btn btn-default" title="发表普通文章" href="/admin/article/publish"> <i
+                                    class="fa fa-pencil"></i> 发表普通文章 </a>
                         </@shiro.hasPermission>
                         <@shiro.hasPermission name="article:batchDelete">
                             <button id="btn_delete_ids" type="button" class="btn btn-default" title="删除选中">

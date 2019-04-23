@@ -22,8 +22,8 @@ public interface BizTypeService extends IService<BizType> {
     /**
      * 分页查询
      *
-     * @param vo
-     * @return
+     * @param vo vo
+     * @return PageInfoDto
      */
     PageInfoDto<TypeDto> query(TypeQueryDto vo);
 
@@ -34,8 +34,12 @@ public interface BizTypeService extends IService<BizType> {
     int queryCount();
 
     TypeDto save(TypeDto entity);
+
     List<TypeDto> listAll();
+
     TypeDto queryById(String primaryKey);
+
     boolean updateSelective(TypeDto entity);
+
     boolean deleteById(String primaryKey);
 }

@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 文章标签管理
  * <p>
@@ -54,7 +56,7 @@ public class TagController {
 
     @ApiOperation(value = "批量删除标签")
     @PostMapping(value = "/batchDelete")
-    public BaseResponse batchDelete(String[] ids) {
+    public BaseResponse batchDelete(@NotNull(message = "请至少选择一条记录") String[] ids) {
         if (null == ids) {
             return ResultUtils.error(500, "请至少选择一条记录");
         }
