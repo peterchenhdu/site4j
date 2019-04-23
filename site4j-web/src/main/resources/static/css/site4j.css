@@ -4,7 +4,7 @@
 
 .x_panel {
     width: 100%;
-    padding: 10px 17px;
+    padding: 5px 5px;
     display: inline-block;
     background: #fff;
     border: 1px solid #E6E9ED;
@@ -32,7 +32,8 @@
 .x_title h2 {
     margin: 5px 0 6px;
     float: left;
-    display: block
+    display: block;
+    font-size: 18px;
 }
 
 .x_title h2 small {
@@ -48,6 +49,13 @@
     float: left;
     clear: both;
     margin-top: 5px
+}
+
+.x_content li{
+    /*width: 300px;*/
+    overflow: hidden;/*超出部分隐藏*/
+    white-space: nowrap;/*不换行*/
+    text-overflow:ellipsis;/*超出部分文字以...显示*/
 }
 
 .x_content h4 {
@@ -728,7 +736,9 @@ span.separation:AFTER {
     font-size: 14px;
     line-height: 1.5;
     background-color: #FFF;
-    padding: 20px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 0;
 }
 
 /* 鍙充晶鐩綍妗� */
