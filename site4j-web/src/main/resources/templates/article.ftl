@@ -95,8 +95,7 @@ canonical="/article/${article.id}">
                         </h1>
                     </div>
 
-                    <div id="site4j-body" class="blog-info-body ${article.isMarkdown?string('markdown-body
-                    editor-preview-active-side', '')}">
+                    <div id="site4j-body" class="blog-info-body ${article.markdown?string('markdown-body editor-preview-active-side', '')}">
                     ${article.content}
                     </div>
                     <div class="separateline"></div>

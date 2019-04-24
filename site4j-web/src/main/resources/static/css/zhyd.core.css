@@ -269,7 +269,7 @@
     top: 0;
     width: 210px;
     z-index: 4000;
-    background: #3E5367;
+    background: #428bca;
     display: none
 }
 
@@ -981,7 +981,7 @@ a {
 }
 
 footer {
-    padding: 0;
+    padding: 5px;
     display: block;
     position: fixed;
     bottom: 0;
