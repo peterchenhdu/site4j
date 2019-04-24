@@ -3,11 +3,9 @@
  */
 package com.github.peterchenhdu.site4j.biz.entity;
 
-import com.github.peterchenhdu.site4j.common.base.BaseEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.github.peterchenhdu.site4j.common.base.BaseEntity;
 import lombok.EqualsAndHashCode;
-
-import java.util.List;
 
 /**
  * <p>
@@ -15,8 +13,7 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = false)
 public class BizArticle extends BaseEntity {
-    List<BizTags> tags;
-    BizType bizType;
+
     private String title;
     private String userId;
     private String coverImage;
@@ -33,28 +30,12 @@ public class BizArticle extends BaseEntity {
     private String description;
     private String keywords;
     private Boolean comment;
-    private Integer lookCount;
-    private Integer commentCount;
-    private Integer loveCount;
+
+
 
     private String originalAuthor;
     private String originalLink;
 
-    public List<BizTags> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<BizTags> tags) {
-        this.tags = tags;
-    }
-
-    public BizType getBizType() {
-        return bizType;
-    }
-
-    public void setBizType(BizType bizType) {
-        this.bizType = bizType;
-    }
 
     public String getTitle() {
         return title;
@@ -176,29 +157,8 @@ public class BizArticle extends BaseEntity {
         this.comment = comment;
     }
 
-    public Integer getLookCount() {
-        return lookCount;
-    }
 
-    public void setLookCount(Integer lookCount) {
-        this.lookCount = lookCount;
-    }
 
-    public Integer getCommentCount() {
-        return commentCount;
-    }
-
-    public void setCommentCount(Integer commentCount) {
-        this.commentCount = commentCount;
-    }
-
-    public Integer getLoveCount() {
-        return loveCount;
-    }
-
-    public void setLoveCount(Integer loveCount) {
-        this.loveCount = loveCount;
-    }
 
     public String getOriginalAuthor() {
         return originalAuthor;

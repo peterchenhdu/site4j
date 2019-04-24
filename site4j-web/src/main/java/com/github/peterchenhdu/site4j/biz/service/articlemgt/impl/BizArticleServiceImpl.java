@@ -106,7 +106,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
 
 
         Page<BizArticle> page = PageUtils.getPage(vo);
-        List<BizArticle> list = bizArticleMapper.query(page, vo);
+        List<ArticleDto> list = bizArticleMapper.query(page, vo);
         if (CollectionUtils.isEmpty(list)) {
             return null;
         }
@@ -114,17 +114,17 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         List<String> ids = list.stream().map(BaseEntity::getId).collect(Collectors.toList());
 
 
-        List<BizArticle> listTag = bizArticleMapper.listTagsByArticleId(ids);
+        List<ArticleDto> listTag = bizArticleMapper.listTagsByArticleId(ids);
 
         // listTag, 重新组装数据为{id: Article}
-        Map<String, BizArticle> tagMap = new LinkedHashMap<>(listTag.size());
-        for (BizArticle bizArticle : listTag) {
+        Map<String, ArticleDto> tagMap = new LinkedHashMap<>(listTag.size());
+        for (ArticleDto bizArticle : listTag) {
             tagMap.put(bizArticle.getId(), bizArticle);
         }
 
         List<ArticleDto> boList = new LinkedList<>();
-        for (BizArticle bizArticle : list) {
-            BizArticle tagArticle = tagMap.get(bizArticle.getId());
+        for (ArticleDto bizArticle : list) {
+            ArticleDto tagArticle = tagMap.get(bizArticle.getId());
             bizArticle.setTags(tagArticle == null ? Collections.EMPTY_LIST : tagArticle.getTags());
             bizArticle.setCoverImage(bizArticle.getCoverImage());
             boList.add(BeanConvertUtils.doConvert(bizArticle, ArticleDto.class));
@@ -217,7 +217,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
     @Override
     public Map<String, ArticleDto> getPrevAndNextArticles(LocalDateTime insertTime) {
         insertTime = null == insertTime ? LocalDateTime.now() : insertTime;
-        List<BizArticle> entityList = bizArticleMapper.getPrevAndNextArticles(insertTime);
+        List<ArticleDto> entityList = bizArticleMapper.getPrevAndNextArticles(insertTime);
         if (CollectionUtils.isEmpty(entityList)) {
             return null;
         }
@@ -360,7 +360,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
     public List<ArticleDto> listHotArticle(int pageSize) {
         PageHelper.startPage(1, pageSize);
 
-        List<BizArticle> entityList = bizArticleMapper.listHotArticle();
+        List<ArticleDto> entityList = bizArticleMapper.listHotArticle();
         if (CollectionUtils.isEmpty(entityList)) {
             return null;
         }

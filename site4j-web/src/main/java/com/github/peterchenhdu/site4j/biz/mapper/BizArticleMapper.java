@@ -5,7 +5,7 @@ package com.github.peterchenhdu.site4j.biz.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.github.peterchenhdu.site4j.biz.dto.ResourcesDto;
+import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticle;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticleArchives;
@@ -28,7 +28,7 @@ public interface BizArticleMapper extends BaseMapper<BizArticle> {
      * @param vo
      * @return
      */
-    List<BizArticle> query(Page<BizArticle> page, ArticleQueryDto vo);
+    List<ArticleDto> query(Page<BizArticle> page, ArticleQueryDto vo);
 
     /**
      * 统计指定文章的标签集合
@@ -36,7 +36,7 @@ public interface BizArticleMapper extends BaseMapper<BizArticle> {
      * @param list
      * @return
      */
-    List<BizArticle> listTagsByArticleId(List<String> list);
+    List<ArticleDto> listTagsByArticleId(List<String> list);
 
     /**
      * 获取文章详情，关联查询文章标签、文章类型
@@ -44,7 +44,7 @@ public interface BizArticleMapper extends BaseMapper<BizArticle> {
      * @param id
      * @return
      */
-    BizArticle get(String id);
+    ArticleDto get(String id);
 
     /**
      * 获取上一篇和下一篇(是否可以通过get时查出来？ BizArticle中关联两个BizArticle：prev & next)
@@ -52,14 +52,14 @@ public interface BizArticleMapper extends BaseMapper<BizArticle> {
      * @param insertTime
      * @return
      */
-    List<BizArticle> getPrevAndNextArticles(LocalDateTime insertTime);
+    List<ArticleDto> getPrevAndNextArticles(LocalDateTime insertTime);
 
     /**
      * 获取热门文章
      *
      * @return
      */
-    List<BizArticle> listHotArticle();
+    List<ArticleDto> listHotArticle();
 
     /**
      * 是否存在文章

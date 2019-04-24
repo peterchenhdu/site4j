@@ -23,8 +23,7 @@
                             <div class="item form-group">
                                 <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章标题</label>
                                 <div class="col-md-11 col-sm-11 col-xs-11">
-                                    <input type="text" class="form-control col-md-11 col-xs-11" name="title"
-                                           id="title" required="required" placeholder="请输入标题"/>
+                                    <input type="text" class="form-control col-md-11 col-xs-11" name="title" id="title" required="required" placeholder="请输入标题"/>
                                 </div>
                             </div>
 
@@ -32,65 +31,47 @@
                             <div class="item form-group">
                                 <label class="control-label col-md-1 col-sm-1 col-xs-1" for="contentMd">文章正文</label>
                                 <div class="col-md-11 col-sm-11 col-xs-11">
-                                            <textarea class="form-control col-md-11 col-xs-11" id="content"
-                                                      name="content" style="display: none"
-                                                      required="required"></textarea>
-                                    <textarea class="form-control col-md-11 col-xs-11 valid" id="contentMd"
-                                              name="contentMd" style="display: none"
-                                              required="required"></textarea>
+                                    <textarea class="form-control col-md-11 col-xs-11" id="content" name="content" style="display: none" required="required"></textarea>
+                                    <textarea class="form-control col-md-11 col-xs-11 valid" id="contentMd" name="contentMd" style="display: none" required="required"></textarea>
                                 </div>
                             </div>
 
                             <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章类型 <span
-                                        class="required">*</span></label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章类型 <span class="required">*</span></label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
-                                    <select class="form-control col-md-7 col-xs-12" name="original" required="required"
-                                            id="original">
+                                    <select class="form-control col-md-7 col-xs-12" name="original" required="required" id="original">
                                         <option value="0">转载</option>
                                         <option value="1">原创</option>
                                     </select>
                                 </div>
 
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1"
-                                       for="originalAuthor">原作者 </label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="originalAuthor">原作者 </label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
-                                    <input type="text" class="form-control col-md-7 col-xs-12" name="originalAuthor"
-                                           id="originalAuthor" placeholder="请输入原作者"/>
+                                    <input type="text" class="form-control col-md-7 col-xs-12" name="originalAuthor" id="originalAuthor" placeholder="请输入原作者"/>
                                 </div>
 
                                 <label class="control-label col-md-1 col-sm-1 col-xs-1" for="originalLink">原文链接 </label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
-                                    <input type="text" class="form-control col-md-7 col-xs-12" name="originalLink"
-                                           id="originalLink" placeholder="请输入原文链接"/>
+                                    <input type="text" class="form-control col-md-7 col-xs-12" name="originalLink" id="originalLink" placeholder="请输入原文链接"/>
                                 </div>
 
 
                             </div>
                             <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章分类 <span
-                                        class="required">*</span></label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章分类 <span class="required">*</span></label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
-                                    <select class="form-control" name="typeId" required="required" id="typeId"
-                                            style="width: 120px;"></select>
+                                    <select class="form-control" name="typeId" required="required" id="typeId" style="width: 120px;"></select>
                                 </div>
 
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="status">文章状态 <span
-                                        class="required">*</span></label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="status">文章状态 <span class="required">*</span></label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                     <ul class="list-unstyled list-inline">
-                                        <li>
-                                            <input type="radio" class="square" checked name="status" value="1">
-                                            发布
-                                        </li>
-                                        <li>
-                                            <input type="radio" class="square" name="status" value="0"> 草稿
-                                        </li>
+                                        <li><input type="radio" class="square" checked name="status" value="1">发布</li>
+                                        <li><input type="radio" class="square" name="status" value="0"> 草稿</li>
                                     </ul>
                                 </div>
 
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="comment">开启评论 <span
-                                        class="required">*</span></label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="comment">开启评论 <span class="required">*</span></label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                     <input type="checkbox" class="square" name="comment" id="comment">
                                 </div>
@@ -98,15 +79,11 @@
                             </div>
 
                             <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章封面 <span
-                                        class="required">*</span></label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章封面 <span class="required">*</span></label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                     <div class="choose-local-img">
-                                        <button type="button" class="btn btn-success" id="file-upload-btn">
-                                            上传图片
-                                        </button>
-                                        <input id="cover-img-file" type="file" name="file" required="required"
-                                               style="display: none">
+                                        <button type="button" class="btn btn-success" id="file-upload-btn">上传图片</button>
+                                        <input id="cover-img-file" type="file" name="file" required="required" style="display: none">
                                         <input id="cover-img-input" type="hidden" name="coverImage">
                                         <div class="preview">
                                             <img class="coverImage" src="" alt="">
@@ -114,12 +91,10 @@
                                     </div>
                                 </div>
 
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="mobile">文章标签 <span
-                                        class="required">*</span></label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="mobile">文章标签 <span class="required">*</span></label>
 
                                 <div class="disable-content col-md-7 col-sm-7 col-xs-7">
-                                    <ul class="list-unstyled list-inline" id="tag-list"
-                                        style="line-height: 30px;"></ul>
+                                    <ul class="list-unstyled list-inline" id="tag-list" style="line-height: 30px;"></ul>
                                 </div>
                             </div>
 
@@ -128,19 +103,15 @@
 
 
                         <div class="item form-group">
-                            <label class="control-label col-md-1 col-sm-1 col-xs-1" for="password">摘要 <span
-                                    class="required">*</span></label>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-1" for="password">摘要 <span class="required">*</span></label>
                             <div class="col-md-11 col-sm-11 col-xs-11">
-                                            <textarea class="form-control col-md-11 col-xs-11" id="description"
-                                                      name="description" required="required"></textarea>
+                                <textarea class="form-control col-md-11 col-xs-11" id="description" name="description" required="required"></textarea>
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="control-label col-md-1 col-sm-1 col-xs-1" for="password">关键词 <span
-                                    class="required">*</span></label>
+                            <label class="control-label col-md-1 col-sm-1 col-xs-1" for="password">关键词 <span class="required">*</span></label>
                             <div class="col-md-11 col-sm-11 col-xs-11">
-                                            <textarea class="form-control col-md-11 col-xs-11" id="keywords"
-                                                      name="keywords" required="required"></textarea>
+                                <textarea class="form-control col-md-11 col-xs-11" id="keywords" name="keywords" required="required"></textarea>
                             </div>
                         </div>
 
@@ -148,14 +119,10 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-10 col-sm-10 col-xs-12">
-                            <button type="button" class="btn btn-success publishBtn" onclick="submitMd()"><i
-                                    class="fa fa-pencil">
-                                发布文章</i></button>
+                            <button type="button" class="btn btn-success publishBtn" onclick="submitMd()"><i class="fa fa-pencil">发布文章</i></button>
                         </div>
                     </div>
-
                 </form>
-
             </div>
         </div>
     </div>
@@ -174,16 +141,14 @@
                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active">
-                            <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab"
-                               aria-expanded="true">素材库</a>
+                            <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">素材库</a>
                         </li>
                         <li role="presentation" class="">
                             <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">本地图片</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active in material-box" id="tab_content1"
-                             aria-labelledby="home-tab">
+                        <div role="tabpanel" class="tab-pane fade active in material-box" id="tab_content1" aria-labelledby="home-tab">
                             <ul class="list-unstyled list-material">
                             </ul>
                         </div>
@@ -197,10 +162,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"> 关闭</i>
-                </button>
-                <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-hand-o-up"> 确定</i>
-                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"> 关闭</i></button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-hand-o-up"> 确定</i></button>
             </div>
         </div>
     </div>
@@ -222,19 +185,21 @@
 
 
     function submitMd() {
-        $("#publishForm").ajaxSubmit({
-            type: "post",
-            url: "/admin/article/save",
-            success: function (json) {
-                $.tool.delCache("smde_" + op.uniqueId);
-                $.alert.ajaxSuccessConfirm(json, function () {
-                    window.location.href = '/admin/article';
-                }, function () {
-                    window.location.href = '/admin/article';
-                });
-            },
-            error: $.alert.ajaxError
-        });
+        if (validator.checkAll($("#publishForm"))) {
+            $("#publishForm").ajaxSubmit({
+                type: "post",
+                url: "/admin/article/save",
+                success: function (json) {
+                    $.tool.delCache("smde_" + op.uniqueId);
+                    $.alert.ajaxSuccessConfirm(json, function () {
+                        window.location.href = '/admin/article';
+                    }, function () {
+                        window.location.href = '/admin/article';
+                    });
+                },
+                error: $.alert.ajaxError
+            });
+        }
     }
 
 
