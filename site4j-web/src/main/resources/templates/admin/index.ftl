@@ -56,7 +56,7 @@
                             </div>
                             <div class="x_content">
                                 <ul class="list-unstyled lately lately-comment">
-                                    <@zhydTag method="recentComments">
+                                    <@site4jTag method="recentComments">
                                         <#if recentComments?? && recentComments?size gt 0>
                                             <#list recentComments as item>
                                                 <li style="line-height: 1.8;border-bottom: 1px solid #e8e9e8;margin-bottom: 10px;">
@@ -69,7 +69,7 @@
                                         <#else>
                                             <li style="line-height: 1.8;"><span>暂无评论</span></li>
                                         </#if>
-                                    </@zhydTag>
+                                    </@site4jTag>
                                 </ul>
                             </div>
                         </div>

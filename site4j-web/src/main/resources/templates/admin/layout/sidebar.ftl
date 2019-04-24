@@ -5,7 +5,7 @@
         <@shiro.user>
             <li><a href="/admin"><i class="fa fa-home"></i>首页</a></li>
         </@shiro.user>
-        <@zhydTag method="menus" userId="${user.id}">
+        <@site4jTag method="menus" userId="${user.id}">
             <#if menus?? && menus?size gt 0>
                 <#list menus as item>
                     <#if item.nodes?? && item.nodes?size gt 0>
@@ -36,7 +36,7 @@
                     </#if>
                 </#list>
             </#if>
-        </@zhydTag>
+        </@site4jTag>
         </ul>
     </div>
 </div>

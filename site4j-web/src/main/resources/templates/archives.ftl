@@ -55,11 +55,11 @@ canonical="/archives">
                         <h1 class="blog-info-title">
                             <strong>文章归档目录</strong>
                         </h1>
-                    <@zhydTag method="siteInfo">
+                    <@site4jTag method="siteInfo">
                         <div class="archives-meta">
                             站点统计：${siteInfo.typeCount!(0)}个分类&nbsp;&nbsp; ${siteInfo.tagCount!(0)}个标签&nbsp;&nbsp; ${siteInfo.articleCount!(0)}篇文章&nbsp;&nbsp; ${siteInfo.commentCount!(0)}条留言&nbsp;&nbsp;
                             最后更新：${siteInfo.recordeTime} </div>
-                    </@zhydTag>
+                    </@site4jTag>
 
                     </div>
                     <div class="blog-info-body">

@@ -25,7 +25,7 @@
                 <li>
                     <a href="/" class="menu_a"><i class="fa fa-home"></i>首页</a>
                 </li>
-            <@zhydTag method="types">
+            <@site4jTag method="types">
                 <#if types?? && types?size gt 0>
                     <#list types as item>
                         <#if item.nodes?exists && item.nodes?size gt 0>
@@ -46,7 +46,7 @@
                         </#if>
                     </#list>
                 </#if>
-            </@zhydTag>
+            </@site4jTag>
 
 
             </ul>

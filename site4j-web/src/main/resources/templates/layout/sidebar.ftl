@@ -5,7 +5,7 @@
     <div class="sidebar-module">
         <h5 class="sidebar-title"><strong><i class="fa fa-tags icon"></i>文章标签</strong></h5>
         <ul class="list-unstyled list-inline">
-        <@zhydTag method="tagsList" pageSize="10">
+        <@site4jTag method="tagsList" pageSize="10">
             <#if tagsList?exists && (tagsList?size > 0)>
                 <#list tagsList as item>
                     <li class="tag-li">
@@ -16,7 +16,7 @@
                     </li>
                 </#list>
             </#if>
-        </@zhydTag>
+        </@site4jTag>
         </ul>
     </div>
 
@@ -132,7 +132,7 @@
         </div>
     </div>
 
-<@zhydTag method="recentComments" pageSize="10">
+<@site4jTag method="recentComments" pageSize="10">
     <#if recentComments?? && recentComments?size gt 0>
         <div class="sidebar-module">
             <h5 class="sidebar-title"><strong><i class="fa fa-comments icon"></i>近期评论</strong></h5>
@@ -151,7 +151,7 @@
             </ul>
         </div>
     </#if>
-</@zhydTag>
+</@site4jTag>
 
     <div class="clear"></div>
 

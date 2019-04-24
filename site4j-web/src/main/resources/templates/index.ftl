@@ -12,7 +12,7 @@ canonical="/${url?if_exists}">
 
             <#if defaultIndex>
 
-                <@zhydTag method="types">
+                <@site4jTag method="types">
                     <#if types?? && types?size gt 0>
                         <#list types as item>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -40,7 +40,7 @@ canonical="/${url?if_exists}">
                             </div>
                         </#list>
                     </#if>
-                </@zhydTag>
+                </@site4jTag>
 
             <#else >
 

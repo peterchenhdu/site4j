@@ -42,7 +42,7 @@ public class FreeMarkerConfig {
     @PostConstruct
     public void setSharedVariable() {
         //设置共享变量
-        configuration.setSharedVariable("zhydTag", customTagDirective);
+        configuration.setSharedVariable("site4jTag", customTagDirective);
         configuration.setSharedVariable("articleTag", articleTagDirective);
         configuration.setSharedVariable("searchLabel", searchLabelDirective);
 

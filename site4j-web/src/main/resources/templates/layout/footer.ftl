@@ -64,7 +64,7 @@
 
             <div class="footer-links col-md-3 col-sm-12"><h4>友情链接</h4>
                 <ul class="list-unstyled list-inline">
-                <@zhydTag method="linkList">
+                <@site4jTag method="linkList">
                     <#list linkList as item>
                         <li>
                             <a href="${item.url}" target="_blank">
@@ -72,7 +72,7 @@
                             </a>
                         </li>
                     </#list>
-                </@zhydTag>
+                </@site4jTag>
 
                 </ul>
             </div>
