@@ -203,7 +203,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
             }
             vo.setTagIds(tagIds);
         }
-        vo.setTypeId(article.getTypeId());
+        vo.setTypeIdList(Arrays.asList(article.getTypeId().split(",")));
         vo.setPageSize(pageSize);
         PageInfoDto pageInfo = this.query(vo);
         return null == pageInfo ? null : pageInfo.getList();

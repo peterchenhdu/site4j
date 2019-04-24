@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -64,7 +65,8 @@ public class ArticleTagDirective implements TemplateDirectiveModel {
                 case "typeList":
                     // 按文章分类查询
                     ArticleQueryDto vo = new ArticleQueryDto();
-                    vo.setTypeId(typeId);
+
+                    vo.setTypeIdList(Arrays.asList(typeId.split(",")));
                     // 已发布状态
                     vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
                     vo.setPageSize(pageSize);

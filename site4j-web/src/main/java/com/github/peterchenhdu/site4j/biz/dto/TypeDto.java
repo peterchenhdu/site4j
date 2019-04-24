@@ -15,6 +15,10 @@ import java.util.List;
 public class TypeDto extends BizType{
 
     private String parentName;
+    /**
+     * 包含自己及子节点id， 逗号分隔
+     */
+    private String subIds;
     private List<TypeDto> nodes = new ArrayList<>();
 
     public TypeDto() {
@@ -35,6 +39,14 @@ public class TypeDto extends BizType{
 
     public void setParentName(String parentName) {
         this.parentName = parentName;
+    }
+
+    public String getSubIds() {
+        return subIds;
+    }
+
+    public void setSubIds(String subIds) {
+        this.subIds = subIds;
     }
 }
 

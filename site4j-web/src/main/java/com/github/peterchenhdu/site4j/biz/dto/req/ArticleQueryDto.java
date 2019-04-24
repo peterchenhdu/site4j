@@ -18,7 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class ArticleQueryDto extends BasePagingQueryDto {
     private ArticleDto article;
-    private String typeId;
+    private List<String> typeIdList;
     private String tagId;
     private Integer status;
     private Boolean top;

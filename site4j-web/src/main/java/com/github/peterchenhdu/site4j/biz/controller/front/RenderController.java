@@ -4,12 +4,12 @@
 package com.github.peterchenhdu.site4j.biz.controller.front;
 
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
-import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
+import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +52,7 @@ public class RenderController {
         vo.setStatus(ArticleStatusEnum.PUBLISHED.getCode());
         PageInfoDto<ArticleDto> pageInfo = bizArticleService.query(vo);
         model.addAttribute("page", pageInfo);
+
         model.addAttribute("model", vo);
     }
 
@@ -64,8 +66,8 @@ public class RenderController {
     @RequestMapping("/")
     public ModelAndView home(ArticleQueryDto vo, Model model) {
         model.addAttribute("url", INDEX_URL);
-        loadIndexPage(vo, model);
-
+//        loadIndexPage(vo, model);
+        model.addAttribute("defaultIndex", true);
         return ResultUtils.view(INDEX_URL);
     }
 
@@ -96,7 +98,7 @@ public class RenderController {
     @GetMapping("/type/{typeId}")
     public ModelAndView type(@PathVariable("typeId") String typeId, Model model) {
         ArticleQueryDto vo = new ArticleQueryDto();
-        vo.setTypeId(typeId);
+        vo.setTypeIdList(Arrays.asList(typeId.split(",")));
         model.addAttribute("url", "type/" + typeId);
         loadIndexPage(vo, model);
 
@@ -114,7 +116,7 @@ public class RenderController {
     @GetMapping("/type/{typeId}/{pageNumber}")
     public ModelAndView type(@PathVariable("typeId") String typeId, @PathVariable("pageNumber") Integer pageNumber, Model model) {
         ArticleQueryDto vo = new ArticleQueryDto();
-        vo.setTypeId(typeId);
+        vo.setTypeIdList(Arrays.asList(typeId.split(",")));
         vo.setPageNumber(pageNumber);
         model.addAttribute("url", "type/" + typeId);
         loadIndexPage(vo, model);

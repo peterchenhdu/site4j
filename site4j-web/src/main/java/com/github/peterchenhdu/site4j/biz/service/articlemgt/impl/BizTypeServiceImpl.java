@@ -66,12 +66,17 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         Map<String, TypeDto> map = new HashMap<>();
         entityList.forEach(entity -> {
             if (ObjectUtils.isEmpty(entity.getPid())) {
-                map.put(entity.getId(), BeanConvertUtils.doConvert(entity, TypeDto.class));
+                TypeDto typeDto = BeanConvertUtils.doConvert(entity, TypeDto.class);
+                if(typeDto == null) return;
+                typeDto.setSubIds(typeDto.getId());
+                map.put(entity.getId(), typeDto);
             }
         });
         entityList.forEach(entity -> {
             if (ObjectUtils.isNotEmpty(entity.getPid())) {
-                map.get(entity.getPid()).getNodes().add(BeanConvertUtils.doConvert(entity, TypeDto.class));
+                TypeDto typeDto = map.get(entity.getPid());
+                typeDto.getNodes().add(BeanConvertUtils.doConvert(entity, TypeDto.class));
+                typeDto.setSubIds(typeDto.getSubIds() + "," + entity.getId());
             }
         });
         return new ArrayList<>(map.values());

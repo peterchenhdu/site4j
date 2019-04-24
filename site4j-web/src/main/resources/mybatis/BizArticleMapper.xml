@@ -83,8 +83,11 @@
         GROUP BY l.article_id
         ) love ON a.id = love.article_id
         WHERE 1 = 1
-        <if test="typeId != null">
-            AND a.type_id = #{typeId}
+        <if test="typeIdList != null and typeIdList.size() > 0">
+            AND a.type_id IN
+            <foreach collection="typeIdList" item="id" open="(" separator=","  close=")">
+                #{id}
+            </foreach>
         </if>
         <choose>
             <when test="tagIds != null">

@@ -7,10 +7,7 @@
     padding: 5px 5px;
     display: inline-block;
     background: #fff;
-    border: 1px solid #E6E9ED;
     -webkit-column-break-inside: avoid;
-    -moz-column-break-inside: avoid;
-    column-break-inside: avoid;
     opacity: 1;
     transition: all .2s ease
 }
@@ -52,7 +49,6 @@
 }
 
 .x_content li{
-    /*width: 300px;*/
     overflow: hidden;/*超出部分隐藏*/
     white-space: nowrap;/*不换行*/
     text-overflow:ellipsis;/*超出部分文字以...显示*/

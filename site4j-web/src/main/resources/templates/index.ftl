@@ -9,112 +9,65 @@ canonical="/${url?if_exists}">
 
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-sm-8 blog-main">
-        <#--<article id="index-chart" class="fade-in" style="padding: 0;height:240px"></article>-->
 
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>最近发布</h2>
+            <#if defaultIndex>
 
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <ul class="list-unstyled lately lately-article">
-                            <#if page.list?? && page.list?size gt 0>
-                                <#list page.list as item>
-                                    <li style="line-height: 1.8;">
-                                        <span>${item.createTime}</span>
-                                        <a href="${config.siteUrl}/article/${item.id}"
-                                           target="_blank">${item.title}</a>
-                                    </li>
-                                </#list>
-                            </#if>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                <@zhydTag method="types">
+                    <#if types?? && types?size gt 0>
+                        <#list types as item>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>${item.name}</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <ul class="list-unstyled lately lately-article">
+                                            <@articleTag method="typeList" pageSize="10" typeId="${item.subIds}">
+                                                <#if typeList?exists && (typeList?size > 0)>
+                                                    <#list typeList as item>
+                                                        <li style="line-height: 1.8;">
+                                                            <span>${item.createTime}</span>
+                                                            <a href="${config.siteUrl}/article/${item.id}" target="_blank">${item.title}</a>
+                                                        </li>
+                                                    </#list>
+                                                </#if>
+                                            </@articleTag>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </#list>
+                    </#if>
+                </@zhydTag>
 
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>最近发布</h2>
+            <#else >
 
-                        <div class="clearfix"></div>
+                <#if page.list?exists && (page.list?size > 0)>
+                    <#list page.list as item>
+                        <div style="padding: 0px">
+                            <a href="${config.siteUrl}/article/${item.id}">${item.type.name} | ${item.title}</a>
+                            <span style="float:right;width: 280px;">
+                                <span ><i class="fa fa-calendar-o fa-fw"></i>${item.createTime}</span>
+                                <span ><i class="fa fa-eye fa-fw"></i>(${item.lookCount!(0)})</span>
+                                <span style="float:right;"><i class="fa fa-comments-o fa-fw"></i>(${item.commentCount!(0)})</span>
+                            </span>
+                        </div>
+                    </#list>
+                    <@pageBar></@pageBar>
+                <#else >
+                    <div class="rows">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="h3 text-center">暂无内容~~~</div>
+                        </div>
+                        <div class="col-md-2 col-sm-12"></div>
                     </div>
-                    <div class="x_content">
-                        <ul class="list-unstyled lately lately-article">
-                        <#if page.list?? && page.list?size gt 0>
-                            <#list page.list as item>
-                                <li style="line-height: 1.8;">
-                                    <span>${item.createTime}</span>
-                                    <a href="${config.siteUrl}/article/${item.id}"
-                                       target="_blank">${item.title}</a>
-                                </li>
-                            </#list>
-                        </#if>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                </#if>
 
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>最近发布</h2>
-
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <ul class="list-unstyled lately lately-article">
-                        <#if page.list?? && page.list?size gt 0>
-                            <#list page.list as item>
-                                <li style="line-height: 1.8;">
-                                    <span>${item.createTime}</span>
-                                    <a href="${config.siteUrl}/article/${item.id}"
-                                       target="_blank">${item.title}</a>
-                                </li>
-                            </#list>
-                        </#if>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            </#if>
 
         </div>
     <#include "layout/sidebar.ftl"/>
     </div>
 </div>
-<script type="text/javascript" src="${config.staticWebSite}/js/echarts-all.js"></script>
-<#--<script type="text/javascript">-->
-    <#--var myChart = echarts.init(document.getElementById('index-chart'));-->
-    <#--var option = {-->
-        <#--tooltip: {-->
-            <#--show: true-->
-        <#--},-->
-        <#--legend: {-->
-            <#--data: ['销量']-->
-        <#--},-->
-        <#--xAxis: [-->
-            <#--{-->
-                <#--type: 'category',-->
-                <#--data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]-->
-            <#--}-->
-        <#--],-->
-        <#--yAxis: [-->
-            <#--{-->
-                <#--type: 'value'-->
-            <#--}-->
-        <#--],-->
-        <#--series: [-->
-            <#--{-->
-                <#--"name": "销量",-->
-                <#--"type": "bar",-->
-                <#--"data": [5, 20, 40, 10, 10, 20]-->
-            <#--}-->
-        <#--]-->
-    <#--};-->
-    <#--myChart.setOption(option);-->
-
-<#--</script>-->
-
 <@footer></@footer>
