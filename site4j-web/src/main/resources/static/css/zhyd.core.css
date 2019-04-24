@@ -573,7 +573,7 @@ body .container.body .right_col {
 body {
     color: #73879C;
     background: #fff;
-    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 13px;
     font-weight: 400;
     line-height: 1.471
@@ -703,10 +703,6 @@ table.no-margin .progress {
 
 a {
     color: #428bca
-}
-
-a:hover {
-    font-weight: bold;
 }
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus, :active, :focus, :visited, a, a:active, a:focus, a:visited {
@@ -985,9 +981,13 @@ a:hover {
 }
 
 footer {
-    background: #fff;
-    padding: 15px 20px;
-    display: block
+    padding: 0;
+    display: block;
+    position: fixed;
+    bottom: 0;
+    color: #FFFFFF;
+    text-align: center;
+    width: 230px;
 }
 
 .nav-sm footer {

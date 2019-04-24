@@ -31,7 +31,7 @@
     <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-                <a href="#" class="site_title"><i class="fa fa-coffee"></i> <span>${config.siteName}</span></a>
+                <span class="site_title"><i class="fa fa-coffee"></i> <span>${config.siteName}</span></span>
             </div>
             <div class="clearfix"></div>
             <@shiro.user>
@@ -45,7 +45,10 @@
             </@shiro.user>
             <br/>
             <#include "/admin/layout/sidebar.ftl"/>
+
+            <footer>Copyright ©2018-2025 <a href="/" style="color: #FFF">Site4J</a></footer>
         </div>
+
     </div>
     <#include "/admin/layout/setting.ftl"/>
 <div class="right_col" role="main">
