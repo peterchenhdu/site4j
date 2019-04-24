@@ -19,6 +19,7 @@ canonical="/${url?if_exists}">
                                 <div class="x_panel">
                                     <div class="x_title">
                                         <h2>${item.name}</h2>
+                                        <a href="/type/${item.subIds}" ><span>更多+</span></a>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -27,7 +28,7 @@ canonical="/${url?if_exists}">
                                                 <#if typeList?exists && (typeList?size > 0)>
                                                     <#list typeList as item>
                                                         <li style="line-height: 1.8;">
-                                                            <span>${item.createTime}</span>
+                                                            <em>${item_index + 1}</em>
                                                             <a href="${config.siteUrl}/article/${item.id}" target="_blank">${item.title}</a>
                                                         </li>
                                                     </#list>
