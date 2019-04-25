@@ -8,6 +8,7 @@ import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysLinkService;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import com.github.peterchenhdu.site4j.enums.ArticleStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +67,10 @@ public class RenderController {
     @RequestMapping("/")
     public ModelAndView home(ArticleQueryDto vo, Model model) {
         model.addAttribute("url", INDEX_URL);
-//        loadIndexPage(vo, model);
-        model.addAttribute("defaultIndex", true);
+        loadIndexPage(vo, model);
+        if(ObjectUtils.isEmpty(vo.getKeywords())) {
+            model.addAttribute("defaultIndex", true);
+        }
         return ResultUtils.view(INDEX_URL);
     }
 
