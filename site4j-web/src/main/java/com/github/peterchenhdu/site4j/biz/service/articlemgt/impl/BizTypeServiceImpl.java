@@ -22,10 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -79,7 +76,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
                 typeDto.setSubIds(typeDto.getSubIds() + "," + entity.getId());
             }
         });
-        return new ArrayList<>(map.values());
+        return new ArrayList<>(map.values()).stream().sorted(Comparator.comparingInt(BizType::getSort)).collect(Collectors.toList());
     }
 
     @Override

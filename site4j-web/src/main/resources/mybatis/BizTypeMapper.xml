@@ -31,7 +31,7 @@
         FROM
         biz_type t
         LEFT JOIN biz_type parent ON t.pid = parent.id
-        LEFT JOIN biz_type node ON node.pid = t.id
+--         LEFT JOIN biz_type node ON node.pid = t.id
         WHERE
         1 = 1
         <if test="pid != null and pid != ''">
