@@ -222,7 +222,7 @@ public class BizCommentServiceImpl implements BizCommentService {
      * @return List
      */
     @Override
-    @RedisCache
+//    @RedisCache
     public List<CommentDto> listRecentComment(int pageSize) {
         CommentQueryDto vo = new CommentQueryDto();
         vo.setPageSize(pageSize);

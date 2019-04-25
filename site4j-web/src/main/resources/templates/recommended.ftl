@@ -28,7 +28,7 @@ canonical="/recommended">
             </article>
         <#else >
             <article class="fade-in">
-                <div class="h3 text-center">亲，啥也没找到啊~~
+                <div class="h3 text-center">暂无内容~~
                 </div>
 
             </article>

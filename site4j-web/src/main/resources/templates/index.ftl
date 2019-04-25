@@ -46,23 +46,52 @@ canonical="/${url?if_exists}">
 
                 <#if page.list?exists && (page.list?size > 0)>
                     <#list page.list as item>
-                        <div style="padding: 0px">
-                            <a href="${config.siteUrl}/article/${item.id}">${item.type.name} | ${item.title}</a>
-                            <span style="float:right;width: 280px;">
-                                <span ><i class="fa fa-calendar-o fa-fw"></i>${item.createTime}</span>
-                                <span ><i class="fa fa-eye fa-fw"></i>(${item.lookCount!(0)})</span>
-                                <span style="float:right;"><i class="fa fa-comments-o fa-fw"></i>(${item.commentCount!(0)})</span>
+                    <article class="fade-in">
+                        <figure class="thumbnail">
+                            <a href="${config.siteUrl}/article/${item.id}">
+                                <#if item.coverImage?exists && (item.coverImage?length > 7)>
+                                    <img width="150" height="150" data-original="${item.coverImage}" class="img-responsive lazy-img" alt="${item.title?if_exists}">
+                                <#else>
+                                    <img width="150" height="150" data-original="${config.staticWebSite}/img/user/11.jpg" class="img-responsive lazy-img" alt="${item.title?if_exists}">
+                                </#if>
+                            </a>
+                            <span class="cat"><a href="${config.siteUrl}/type/${item.typeId}">${item.bizType.name}</a></span>
+                        </figure>
+                        <header class="entry-header">
+                            <h2 class="entry-title">
+                                <a href="${config.siteUrl}/article/${item.id}">${item.title}</a>
+                            </h2>
+                        </header>
+                        <div class="entry-content">
+                            <div class="archive-content">
+                                ${item.description?if_exists}
+                            </div>
+                            <span class="title-l"></span>
+                            <span class="entry-meta">
+                                <span class="date"><i class="fa fa-clock-o fa-fw"></i>${item.createTime?string("yyyy-MM-dd HH:mm:ss")}</span>
+                                <span class="views"><i class="fa fa-eye fa-fw"></i>浏览(${item.lookCount!(0)})</span>
+                                <span class="comment">
+                                    <a href="${config.siteUrl}/article/${item.id}#comment-box" rel="external nofollow">
+                                        <i class="fa fa-comments-o fa-fw"></i>评论(${item.commentCount!(0)})
+                                    </a>
+                                </span>
+                            </span>
+                            <div class="clear"></div>
+                            <span class="entry-more">
+                                <a href="${config.siteUrl}/article/${item.id}">阅读全文</a>
                             </span>
                         </div>
+                    </article>
                     </#list>
                     <@pageBar></@pageBar>
                 <#else >
+                <article class="fade-in" style="height: auto">
                     <div class="rows">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="h3 text-center">暂无内容~~~</div>
+                        <div class="col-md-10 col-sm-12">
+                            <div class="h3 text-center">暂无内容~~</div>
                         </div>
-                        <div class="col-md-2 col-sm-12"></div>
                     </div>
+                </article>
                 </#if>
 
             </#if>

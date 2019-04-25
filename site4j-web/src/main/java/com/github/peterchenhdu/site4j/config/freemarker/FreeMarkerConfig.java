@@ -9,12 +9,20 @@ import com.github.peterchenhdu.site4j.config.freemarker.template.ArticleTagDirec
 import com.github.peterchenhdu.site4j.config.freemarker.template.CustomTagDirective;
 import com.github.peterchenhdu.site4j.config.freemarker.template.SearchLabelDirective;
 import com.jagregory.shiro.freemarker.ShiroTags;
+import freemarker.template.DefaultObjectWrapper;
+import freemarker.template.SimpleDate;
+import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * freemarker配置类
@@ -41,6 +49,7 @@ public class FreeMarkerConfig {
      */
     @PostConstruct
     public void setSharedVariable() {
+
         //设置共享变量
         configuration.setSharedVariable("site4jTag", customTagDirective);
         configuration.setSharedVariable("articleTag", articleTagDirective);
@@ -61,6 +70,26 @@ public class FreeMarkerConfig {
         } catch (TemplateModelException e) {
             e.printStackTrace();
         }
+
+        configuration.setObjectWrapper(new DefaultObjectWrapper(freemarker.template.Configuration.VERSION_2_3_28) {
+            @Override
+            public TemplateModel wrap(Object obj) throws TemplateModelException {
+                if (obj instanceof LocalDateTime) {
+                    Timestamp timestamp = Timestamp.valueOf((LocalDateTime) obj);
+                    return new SimpleDate(timestamp);
+                }
+                if (obj instanceof LocalDate) {
+                    Date date = Date.valueOf((LocalDate) obj);
+                    return new SimpleDate(date);
+                }
+                if (obj instanceof LocalTime) {
+                    Time time = Time.valueOf((LocalTime) obj);
+                    return new SimpleDate(time);
+                }
+                return super.wrap(obj);
+            }
+        });
     }
+
 
 }

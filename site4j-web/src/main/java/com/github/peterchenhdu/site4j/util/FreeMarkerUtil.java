@@ -4,6 +4,7 @@
 package com.github.peterchenhdu.site4j.util;
 
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
+import com.github.peterchenhdu.site4j.common.util.holder.SpringContextHolder;
 import com.github.peterchenhdu.site4j.enums.TemplateKeyEnum;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -41,10 +42,6 @@ public class FreeMarkerUtil {
     private static final String QUOT = "\"";
     private static final String QUOT_CHAR = "&quot;";
 
-
-    //不需要重复创建Configuration 实例； 它的代价很高，Configuration实例就是应用级别的单例。
-    private static final Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
-
     /**
      * Template to String Method Note
      *
@@ -53,6 +50,8 @@ public class FreeMarkerUtil {
      * @return String
      */
     public static String template2String(TemplateKeyEnum templateKeyEnum, final Map<String, Object> map, boolean isNeedEscape) {
+        //不需要重复创建Configuration 实例； 它的代价很高，Configuration实例就是应用级别的单例。
+        Configuration configuration = SpringContextHolder.getBean(Configuration.class);
 
         String key = templateKeyEnum.toString();
         String templateContent;

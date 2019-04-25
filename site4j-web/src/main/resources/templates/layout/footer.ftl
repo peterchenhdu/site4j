@@ -82,7 +82,6 @@
                         <a href="guestbook" target="_blank">问题反馈</a>
                     </li>
                     <li><a href="${config.siteUrl}/recommended" target="_blank"> 站长推荐</a></li>
-                    <li><a href="${config.siteUrl}/updateLog" target="_blank">更新记录</a></li>
                     <li><a href="${config.siteUrl}/archives" target="_blank">归档统计</a></li>
                     <li><a href="${config.siteUrl}/sitemap.html" target="_blank">网站地图</a></li>
                     <li><a href="${config.siteUrl}/admin" target="_blank">后台管理</a></li>
