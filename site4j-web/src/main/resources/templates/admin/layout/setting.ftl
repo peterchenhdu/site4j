@@ -25,7 +25,7 @@
                         <li><a href="/admin/passport/logout"><i class="fa fa-sign-out pull-right"></i> 退出系统</a></li>
                     </ul>
                 </li>
-                <@shiro.hasPermission name="comments">
+                <@shiro.hasPermission name="comment">
                     <li role="presentation" class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                            aria-expanded="false">
