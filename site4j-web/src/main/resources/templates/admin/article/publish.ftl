@@ -20,7 +20,7 @@
                 </div>
                 <div class="x_content">
                     <form id="publishForm" class="form-horizontal form-label-left" novalidate>
-                        <input type="hidden" name="isMarkdown" value="0">
+                        <input type="hidden" name="markdown" value="0">
                         <input type="hidden" name="id">
                         <div class="item form-group">
                             <label class="control-label col-md-1 col-sm-1 col-xs-12" for="title">标题 <span

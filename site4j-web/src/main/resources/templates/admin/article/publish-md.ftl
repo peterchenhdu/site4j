@@ -15,7 +15,7 @@
 
                 <form id="publishForm" class="form-horizontal form-label-left" novalidate>
                     <input type="hidden" name="id">
-                    <input type="hidden" name="isMarkdown" value="1">
+                    <input type="hidden" name="markdown" value="1">
 
 
                     <div class="custom-panel">

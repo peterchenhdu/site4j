@@ -33,7 +33,7 @@ function loadTag() {
                 for (var i = 0, len = data.length; i < len; i++) {
                     var tag = data[i];
                     tagHtml += '<li>'
-                        + '<input type="checkbox" class="square ignore" name="tags" value="' + tag.id + '"> ' + tag.name
+                        + '<input type="checkbox" class="square ignore" name="tagIds" value="' + tag.id + '"> ' + tag.name
                         + '</li>';
                 }
                 $("#tag-list").html(tagHtml);

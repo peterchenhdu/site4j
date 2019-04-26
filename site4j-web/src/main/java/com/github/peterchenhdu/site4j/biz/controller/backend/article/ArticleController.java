@@ -96,8 +96,8 @@ public class ArticleController {
 
     @ApiOperation(value="新增文章")
     @PostMapping("/save")
-    public BaseResponse edit(ArticleDto article, String[] tags, MultipartFile file) {
-        articleService.publish(article, tags, file);
+    public BaseResponse edit(ArticleDto article, String[] tagIds, MultipartFile file) {
+        articleService.publish(article, tagIds, file);
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }
 
