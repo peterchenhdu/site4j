@@ -69,6 +69,8 @@
             url: "/admin/article/list",
             getInfoUrl: "/admin/article/get/{id}",
             removeUrl: "/admin/article/remove",
+            deleteUrl: "/admin/article/delete",
+            batchDeleteUrl: "/admin/article/batchDelete",
             columns: [
                 {
                     checkbox: true

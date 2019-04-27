@@ -4,9 +4,11 @@
 package com.github.peterchenhdu.site4j.biz.service.articlemgt;
 
 
+import com.baomidou.mybatisplus.service.IService;
 import com.github.peterchenhdu.site4j.biz.dto.TagsDto;
-import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto;
+import com.github.peterchenhdu.site4j.biz.entity.BizTags;
+import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
  * <p>
  * Created by chenpi on 2019/02/05.
  */
-public interface BizTagsService {
+public interface BizTagsService extends IService<BizTags> {
 
     /**
      * 保存一个实体，null的属性不会保存，会使用数据库默认值

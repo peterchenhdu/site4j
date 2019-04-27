@@ -184,24 +184,6 @@
 <script>
 
 
-    function submitMd() {
-        if (validator.checkAll($("#publishForm"))) {
-            $("#publishForm").ajaxSubmit({
-                type: "post",
-                url: "/admin/article/save",
-                success: function (json) {
-                    $.tool.delCache("smde_" + op.uniqueId);
-                    $.alert.ajaxSuccessConfirm(json, function () {
-                        window.location.href = '/admin/article';
-                    }, function () {
-                        window.location.href = '/admin/article';
-                    });
-                },
-                error: $.alert.ajaxError
-            });
-        }
-    }
-
 
 </script>
 </@footer>

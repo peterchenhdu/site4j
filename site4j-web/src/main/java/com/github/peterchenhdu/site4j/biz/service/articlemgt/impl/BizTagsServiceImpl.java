@@ -5,6 +5,7 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.TagsDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizTags;
@@ -32,10 +33,12 @@ import java.util.List;
  * Created by chenpi on 2019/02/05.
  */
 @Service
-public class BizTagsServiceImpl implements BizTagsService {
+public class BizTagsServiceImpl extends ServiceImpl<BizTagsMapper, BizTags> implements BizTagsService {
 
     @Autowired
     private BizTagsMapper bizTagsMapper;
+    @Autowired
+    private BizTagsService bizTagsService;
 
     /**
      * 分页查询

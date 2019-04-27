@@ -73,7 +73,7 @@ if (articleId) {
                 var tags = info.tags;
                 for (var i = 0, len = tags.length; i < len; i++) {
                     var tag = tags[i];
-                    $("input[name=tags][value=" + tag.id + "]").iCheck('check');
+                    $("input[name=tagIds][value=" + tag.id + "]").iCheck('check');
                 }
                 if ($('input[name=original]')) {
                     $('input[name=original]').iCheck(info.original ? 'check' : 'uncheck');

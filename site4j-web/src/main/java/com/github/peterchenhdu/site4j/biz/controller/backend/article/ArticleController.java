@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.constraints.NotNull;
+import java.util.Arrays;
+
 /**
  * 文章管理
  *
@@ -76,16 +79,18 @@ public class ArticleController {
         return ResultUtils.tablePage(pageInfo);
     }
 
-    @ApiOperation(value="删除文章")
-    @PostMapping(value = "/remove")
-    public BaseResponse remove(String[] ids) {
-        if (null == ids) {
-            return ResultUtils.error(500, "请至少选择一条记录");
-        }
-        for (String id : ids) {
-            articleService.deleteById(id);
-        }
-        return ResultUtils.success("成功删除 [" + ids.length + "] 篇文章");
+    @ApiOperation(value = "批量删除文章")
+    @PostMapping(value = "/batchDelete")
+    public BaseResponse batchDelete(@NotNull(message = "请至少选择一条记录") String[] ids) {
+        articleService.deleteBatchIds(Arrays.asList(ids));
+        return ResultUtils.success("成功删除[" + ids.length + "]条记录");
+    }
+
+    @ApiOperation(value = "删除单个文章")
+    @PostMapping(value = "/delete")
+    public BaseResponse delete(String id) {
+        articleService.deleteById(id);
+        return ResultUtils.success("成功删除");
     }
 
     @ApiOperation(value="查看文章")
