@@ -109,6 +109,11 @@ if (articleId) {
 
 // 点击保存
 $(".publishBtn").click(function () {
+    if(simplemde) {
+        $("#contentMd").val(simplemde.value());
+        $("#content").val(simplemde.markdown(simplemde.value()));
+    }
+
     if (validator.checkAll($publishForm)) {
         $publishForm.ajaxSubmit({
             type: "post",
