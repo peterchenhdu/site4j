@@ -17,10 +17,13 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 
@@ -34,6 +37,7 @@ import java.util.Arrays;
 @Api(value="文章管理", tags="文章管理")
 @RestController
 @RequestMapping("/admin/article")
+@Validated
 public class ArticleController {
     @Autowired
     private BizArticleService articleService;
@@ -101,7 +105,7 @@ public class ArticleController {
 
     @ApiOperation(value="新增文章")
     @PostMapping("/save")
-    public BaseResponse edit(ArticleDto article, String[] tagIds, MultipartFile file) {
+    public BaseResponse edit(@Valid ArticleDto article, @NotEmpty(message="标签不能为空") String[] tagIds, MultipartFile file) {
         articleService.publish(article, tagIds, file);
         return ResultUtils.success(ResponseStatus.SUCCESS);
     }

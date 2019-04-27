@@ -6,6 +6,7 @@ package com.github.peterchenhdu.site4j.core;
 
 
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.util.I18nUtils;
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
@@ -47,6 +48,13 @@ public class GlobalExceptionHandler {
         //获取第一个诊断错误
         return ResultUtils.error("参数错误:"+exception.getMessage());
     }
+
+    @ExceptionHandler
+    public BaseResponse handle(CommonRuntimeException e) {
+        LogUtils.exception(e);
+        return ResultUtils.error("系统异常：" + e.getCode());
+    }
+
 
     @ExceptionHandler
     public BaseResponse handle(Exception e) {

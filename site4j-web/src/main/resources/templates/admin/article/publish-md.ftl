@@ -79,7 +79,7 @@
                             </div>
 
                             <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章封面 <span class="required">*</span></label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章封面 </label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                     <div class="choose-local-img">
                                         <button type="button" class="btn btn-success" id="file-upload-btn">上传图片</button>
