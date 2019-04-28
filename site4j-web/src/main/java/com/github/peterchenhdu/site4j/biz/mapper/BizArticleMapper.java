@@ -83,7 +83,7 @@ public interface BizArticleMapper extends BaseMapper<BizArticle> {
      * @param status
      * @return
      */
-    int batchUpdateStatus(@Param("list") List<String> list, @Param("status") boolean status);
+    int batchUpdateStatus(@Param("list") List<String> list, @Param("status") int status);
 
     List<BizArticleArchives> listArchives();
 }

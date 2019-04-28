@@ -23,7 +23,6 @@ import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleTagsServi
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.ISearchHistoryService;
 import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
-import com.github.peterchenhdu.site4j.common.base.BaseEntity;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
@@ -111,7 +110,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
             return null;
         }
 
-        List<String> ids = list.stream().map(BaseEntity::getId).collect(Collectors.toList());
+        List<String> ids = list.stream().map(ArticleDto::getId).collect(Collectors.toList());
 
 
         List<ArticleDto> listTag = bizArticleMapper.listTagsByArticleId(ids);
@@ -222,7 +221,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
             return null;
         }
         Map<String, ArticleDto> resultMap = new HashMap<>();
-        for (BizArticle entity : entityList) {
+        for (ArticleDto entity : entityList) {
             if (entity.getCreateTime().isBefore(insertTime)) {
                 resultMap.put("prev", BeanConvertUtils.doConvert(entity, ArticleDto.class));
             } else {
@@ -328,9 +327,9 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         BizArticle article = bizArticleMapper.selectById(id);
         article.setId(id);
         if ("top".equals(type)) {
-            article.setTop(!article.getTop());
+            article.setTop(article.getTop() == null || !article.getTop());
         } else {
-            article.setRecommended(!article.getRecommended());
+            article.setRecommended(article.getRecommended() == null || !article.getRecommended());
         }
         article.setUpdateTime(LocalDateTime.now());
         return bizArticleMapper.updateById(article) > 0;
@@ -341,7 +340,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         if (ids == null || ids.length <= 0) {
             return;
         }
-        bizArticleMapper.batchUpdateStatus(Arrays.asList(ids), status);
+        bizArticleMapper.batchUpdateStatus(Arrays.asList(ids), status?1:0);
     }
 
     @Override
@@ -365,7 +364,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
             return null;
         }
         List<ArticleDto> list = new ArrayList<>();
-        for (BizArticle entity : entityList) {
+        for (ArticleDto entity : entityList) {
             list.add(BeanConvertUtils.doConvert(entity, ArticleDto.class));
         }
         return list;
@@ -385,7 +384,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         entity.setOriginal(entity.getOriginal());
         entity.setComment(entity.getComment());
         entity.setId(UuidUtils.getUuid());
-        bizArticleMapper.insert(entity);
+        bizArticleMapper.insert(BeanConvertUtils.doConvert(entity, BizArticle.class));
         return entity;
     }
 
@@ -402,7 +401,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
             entity.setCreateTime(LocalDateTime.now());
             entity.setOriginal(entity.getOriginal());
             entity.setComment(entity.getComment());
-            list.add(entity);
+            list.add(BeanConvertUtils.doConvert(entity, BizArticle.class));
         }
         this.insertBatch(list);
     }
@@ -445,7 +444,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         entity.setUpdateTime(LocalDateTime.now());
         entity.setOriginal(entity.getOriginal());
         entity.setComment(entity.getComment());
-        return bizArticleMapper.updateById(entity) > 0;
+        return bizArticleMapper.updateById(BeanConvertUtils.doConvert(entity, BizArticle.class)) > 0;
     }
 
     /**
@@ -457,7 +456,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
     @Override
     public ArticleDto queryById(String primaryKey) {
         Assert.notNull(primaryKey, "PrimaryKey不可为空！");
-        BizArticle entity = bizArticleMapper.get(primaryKey);
+        ArticleDto entity = bizArticleMapper.get(primaryKey);
         return null == entity ? null : BeanConvertUtils.doConvert(entity, ArticleDto.class);
     }
 

@@ -84,7 +84,7 @@
                                     class="required">*</span></label>
                             <div class="col-md-11 col-sm-11 col-xs-12">
                                 <div class="input-group">
-                                    <select class="form-control" name="typeId" id="typeId">
+                                    <select class="form-control" required="required" name="typeId" id="typeId">
                                     </select>
                                 </div>
                             </div>

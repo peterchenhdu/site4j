@@ -21,7 +21,7 @@
                     <div class="custom-panel">
                         <div class="custom-container">
                             <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章标题</label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章标题 <span class="required">*</span></label>
                                 <div class="col-md-11 col-sm-11 col-xs-11">
                                     <input type="text" class="form-control col-md-11 col-xs-11" name="title" id="title" required="required" placeholder="请输入标题"/>
                                 </div>
@@ -29,7 +29,7 @@
 
 
                             <div class="item form-group">
-                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="contentMd">文章正文</label>
+                                <label class="control-label col-md-1 col-sm-1 col-xs-1" for="contentMd">文章正文 <span class="required">*</span></label>
                                 <div class="col-md-11 col-sm-11 col-xs-11">
                                     <textarea class="form-control col-md-11 col-xs-11" id="content" name="content" style="display: none" required="required"></textarea>
                                     <textarea class="form-control col-md-11 col-xs-11 valid" id="contentMd" name="contentMd" style="display: none" required="required"></textarea>
@@ -40,6 +40,7 @@
                                 <label class="control-label col-md-1 col-sm-1 col-xs-1" for="title">文章类型 <span class="required">*</span></label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
                                     <select class="form-control col-md-7 col-xs-12" name="original" required="required" id="original">
+                                        <option value="">请选择</option>
                                         <option value="0">转载</option>
                                         <option value="1">原创</option>
                                     </select>
@@ -172,13 +173,16 @@
 <@footer>
 
 <script>
-    var op = {
-        id: "contentMd",
-        uniqueId: "mdEditor_1",
-        uploadUrl: "/admin/api/upload2TencentCosForMd"
-    };
-    zhyd.initMdEditor(op);
     articleId = '${id}';
+    $(function () {
+        var op = {
+            id: "contentMd",
+            uniqueId: "mdEditor_1",
+            uploadUrl: "/admin/api/upload2TencentCosForMd"
+        };
+        zhyd.initMdEditor(op);
+    });
+
 </script>
 <script src="/js/site4j.publish-article.js"></script>
 <script>

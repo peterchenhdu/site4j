@@ -14,7 +14,7 @@ function loadType() {
                 $("select#typeId").html(html);
             }
             $("#refressType").removeClass("fa-spin");
-            $.alert.showSuccessMessage("分类加载完成！");
+            // $.alert.showSuccessMessage("分类加载完成！");
         },
         error: $.alert.ajaxError
     });
@@ -44,7 +44,7 @@ function loadTag() {
                 });
             }
             $("#refressTag").removeClass("fa-spin");
-            $.alert.showSuccessMessage("标签加载完成！");
+            // $.alert.showSuccessMessage("标签加载完成！");
         },
         error: $.alert.ajaxError
     });
@@ -138,7 +138,7 @@ $("#file-upload-btn").click(function () {
             type: "post",
             url: "/admin/api/material",
             success: function (json) {
-                $.alert.ajaxSuccess(json);
+                // $.alert.ajaxSuccess(json);
                 loadImg = true;
                 json.qiniuPath = appConfig.qiniuPath;
                 var $box = $(".list-material");
