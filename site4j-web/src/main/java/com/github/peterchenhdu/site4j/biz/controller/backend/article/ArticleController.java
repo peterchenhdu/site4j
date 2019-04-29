@@ -86,7 +86,7 @@ public class ArticleController {
     @ApiOperation(value = "批量删除文章")
     @PostMapping(value = "/batchDelete")
     public BaseResponse batchDelete(@NotNull(message = "请至少选择一条记录") String[] ids) {
-        articleService.deleteBatchIds(Arrays.asList(ids));
+        articleService.deleteByIds(Arrays.asList(ids));
         return ResultUtils.success("成功删除[" + ids.length + "]条记录");
     }
 

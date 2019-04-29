@@ -22,6 +22,7 @@ import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleTagsService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.ISearchHistoryService;
 import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
+import com.github.peterchenhdu.site4j.biz.service.sitemgt.BizCommentService;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
@@ -74,6 +75,8 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
     private BizArticleTagsService articleTagsService;
     @Autowired
     private ISearchHistoryService searchHistoryService;
+    @Autowired
+    private BizCommentService bizCommentService;
 
     @Autowired
     private IImageService imageService;
@@ -427,8 +430,33 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         Wrapper<BizArticleLove> tagsExample = new EntityWrapper<>();
         tagsExample.eq("article_id", primaryKey);
         bizArticleLoveMapper.delete(tagsExample);
+
+        bizCommentService.deleteBySids(Collections.singletonList(primaryKey));
         return result;
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteByIds(List<String> idList) {
+        bizArticleMapper.deleteBatchIds(idList);
+        // 删除标签记录
+        Wrapper<BizArticleTags> loveExample = new EntityWrapper<>();
+        loveExample.in("article_id", idList);
+        bizArticleTagsMapper.delete(loveExample);
+        // 删除查看记录
+        Wrapper<BizArticleLook> lookExample = new EntityWrapper<>();
+        lookExample.in("article_id", idList);
+        bizArticleLookMapper.delete(lookExample);
+        // 删除赞记录
+        Wrapper<BizArticleLove> tagsExample = new EntityWrapper<>();
+        tagsExample.in("article_id", idList);
+        bizArticleLoveMapper.delete(tagsExample);
+
+        bizCommentService.deleteBySids(idList);
+
+    }
+
+
 
 
     /**

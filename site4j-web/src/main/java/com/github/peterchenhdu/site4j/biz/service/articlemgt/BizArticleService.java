@@ -138,4 +138,6 @@ public interface BizArticleService extends IService<BizArticle> {
     ArticleDto queryById(String primaryKey);
     boolean updateSelective(ArticleDto entity);
     boolean deleteById(String primaryKey);
+
+    void deleteByIds(List<String> idList);
 }

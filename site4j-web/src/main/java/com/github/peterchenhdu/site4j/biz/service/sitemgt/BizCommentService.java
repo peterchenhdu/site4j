@@ -36,6 +36,8 @@ public interface BizCommentService {
      */
     boolean deleteById(String primaryKey);
 
+    Integer deleteBySids(List<String> sidList);
+
 
 
     /**

@@ -26,11 +26,11 @@ public class CommentDto extends BizComment {
         if (title == null) {
             String sid = getSid();
             if ("-1".equals(sid)) {
-                title = "留言板 | 张亚东博客";
+                title = "留言板";
             } else if (" -2".equals(sid)) {
-                title = "友情链接 | 张亚东博客";
+                title = "友情链接";
             } else if ("-3".equals(sid)) {
-                title = "关于 | 张亚东博客";
+                title = "关于";
             }
         }
         return title;

@@ -328,7 +328,14 @@ public class BizCommentServiceImpl implements BizCommentService {
         return bizCommentMapper.deleteById(primaryKey) > 0;
     }
 
-
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    @RedisCache(flush = true)
+    public Integer deleteBySids(List<String> sidList) {
+        Wrapper<BizComment> wrapper = new EntityWrapper<>();
+        wrapper.in("sid", sidList);
+        return bizCommentMapper.delete(wrapper);
+    }
 
     /**
      * 根据主键更新属性不为null的值
