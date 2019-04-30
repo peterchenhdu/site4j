@@ -8,17 +8,23 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.RoleDto;
+import com.github.peterchenhdu.site4j.biz.dto.UserDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.RoleQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysRole;
 import com.github.peterchenhdu.site4j.biz.mapper.SysRoleMapper;
+import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleResourcesService;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
+import com.github.peterchenhdu.site4j.biz.service.usermgt.SysUserService;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.enums.RoleTypeEnum;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
@@ -32,7 +38,10 @@ import java.util.stream.Collectors;
  */
 @Service
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
-
+    @Autowired
+    private SysRoleResourcesService roleResourcesService;
+    @Autowired
+    private SysUserService sysUserService;
 
     @Override
     public PageInfoDto<SysRole> query(RoleQueryDto vo) {
@@ -76,9 +85,17 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     }
 
 
+    @Transactional
     @Override
-    public boolean deleteById(String primaryKey) {
-        return this.baseMapper.deleteById(primaryKey) > 0;
+    public void delete(List<String> roleIdList) {
+
+        List<UserDto> list = sysUserService.listByRoleId(roleIdList);
+        if(ObjectUtils.isNotEmpty(list)) {
+            throw new CommonRuntimeException("存在关联用户，不能删除");
+        }
+
+        this.baseMapper.deleteBatchIds(roleIdList);
+        roleResourcesService.deleteByRoleId(roleIdList);
     }
 
 

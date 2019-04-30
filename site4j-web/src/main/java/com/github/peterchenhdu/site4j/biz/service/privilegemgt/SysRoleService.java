@@ -24,7 +24,7 @@ public interface SysRoleService extends IService<SysRole> {
 
     boolean updateSelective(RoleDto entity);
 
-    boolean deleteById(String primaryKey);
+    void delete(List<String> roleIdList);
 
     RoleDto save(RoleDto entity);
 

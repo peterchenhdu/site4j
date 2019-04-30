@@ -27,9 +27,9 @@ public interface SysRoleResourcesService extends IService<SysRoleResources> {
     /**
      * 通过角色id批量删除
      *
-     * @param roleId
+     * @param roleIdList
      */
-    void deleteByRoleId(String roleId);
+    void deleteByRoleId(List<String> roleIdList);
 
     List<String> queryResourceByRoleId(String roleId);
 

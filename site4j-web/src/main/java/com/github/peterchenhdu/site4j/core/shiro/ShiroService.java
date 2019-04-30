@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +91,7 @@ public class ShiroService {
      * @param roleId roleId
      */
     public void reloadAuthorizingByRoleId(String roleId) {
-        List<UserDto> userList = userService.listByRoleId(roleId);
+        List<UserDto> userList = userService.listByRoleId(Collections.singletonList(roleId));
         if (CollectionUtils.isEmpty(userList)) {
             return;
         }

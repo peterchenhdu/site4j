@@ -47,10 +47,10 @@ public interface SysUserService extends IService<SysUser> {
     /**
      * 通过角色Id获取用户列表
      *
-     * @param roleId
+     * @param roleIdList
      * @return
      */
-    List<UserDto> listByRoleId(String roleId);
+    List<UserDto> listByRoleId(List<String> roleIdList);
 
     /**
      * 修改密码

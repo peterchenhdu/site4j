@@ -160,13 +160,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     /**
      * 通过角色Id获取用户列表
      *
-     * @param roleId roleId
+     * @param roleIdList roleIdList
      * @return List
      */
     @Override
-    public List<UserDto> listByRoleId(String roleId) {
+    public List<UserDto> listByRoleId(List<String> roleIdList) {
         Wrapper<SysUser> wrapper = new EntityWrapper<>();
-        wrapper.eq("role_id", roleId);
+        wrapper.in("role_id", roleIdList);
 
         List<SysUser> userList = baseMapper.selectList(wrapper);
         if (CollectionUtils.isEmpty(userList)) {

@@ -4,25 +4,29 @@
 package com.github.peterchenhdu.site4j.biz.controller.backend.permission;
 
 import com.github.peterchenhdu.site4j.biz.dto.RoleDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.RoleQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.SysRole;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleResourcesService;
 import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysRoleService;
-import com.github.peterchenhdu.site4j.core.shiro.ShiroService;
-import com.github.peterchenhdu.site4j.biz.dto.req.RoleQueryDto;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
-import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.enums.ResponseStatus;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import com.github.peterchenhdu.site4j.enums.RoleTypeEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * 系统角色管理
@@ -32,13 +36,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Api(value="角色管理", tags="权限管理")
 @RestController
 @RequestMapping("/admin/role")
+@Validated
 public class RoleController {
     @Autowired
     private SysRoleService roleService;
     @Autowired
     private SysRoleResourcesService roleResourcesService;
-    @Autowired
-    private ShiroService shiroService;
+
 
     @ApiOperation(value="路由到角色管理页面")
     @BusinessLog("进入角色列表页")
@@ -58,13 +62,9 @@ public class RoleController {
 
     @ApiOperation(value="分配角色资源")
     @PostMapping("/allotResource")
-    public BaseResponse saveRoleResources(String roleId, String resourcesId) {
-        if (StringUtils.isEmpty(roleId)) {
-            return ResultUtils.error("error");
-        }
+    public BaseResponse saveRoleResources(@NotBlank(message="角色不能为空") String roleId,
+                                          @NotBlank(message="资源不能为空") String resourcesId) {
         roleResourcesService.addRoleResources(roleId, resourcesId);
-        // 重新加载所有拥有roleId的用户的权限信息
-        shiroService.reloadAuthorizingByRoleId(roleId);
         return ResultUtils.success("成功");
     }
 
@@ -77,22 +77,15 @@ public class RoleController {
 
     @ApiOperation(value="批量删除角色")
     @PostMapping(value = "/batchDelete")
-    public BaseResponse remove(String[] ids) {
-        if (null == ids) {
-            return ResultUtils.error(500, "请至少选择一条记录");
-        }
-        for (String id : ids) {
-            roleService.deleteById(id);
-            roleResourcesService.deleteByRoleId(id);
-        }
+    public BaseResponse remove(@NotEmpty(message="请至少选择一条记录") String[] ids) {
+        roleService.delete(Arrays.asList(ids));
         return ResultUtils.success("成功删除 [" + ids.length + "] 个角色");
     }
 
     @ApiOperation(value="删除单个角色")
     @PostMapping(value = "/delete")
     public BaseResponse delete(String id) {
-        roleService.deleteById(id);
-        roleResourcesService.deleteByRoleId(id);
+        roleService.delete(Collections.singletonList(id));
         return ResultUtils.success("成功删除");
     }
 
