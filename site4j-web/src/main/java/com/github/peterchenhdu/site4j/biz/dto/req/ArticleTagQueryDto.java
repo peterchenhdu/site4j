@@ -4,7 +4,6 @@
 package com.github.peterchenhdu.site4j.biz.dto.req;
 
 import com.github.peterchenhdu.site4j.common.base.BasePagingQueryDto;
-import com.github.peterchenhdu.site4j.biz.dto.ArticleTagsDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,6 +14,17 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ArticleTagQueryDto extends BasePagingQueryDto {
-    private ArticleTagsDto articleTags;
+    private String tagId;
+    private String articleId;
+
+
+    public ArticleTagQueryDto() {
+
+    }
+
+    public ArticleTagQueryDto(String tagId, String articleId) {
+        this.tagId = tagId;
+        this.articleId = articleId;
+    }
 }
 

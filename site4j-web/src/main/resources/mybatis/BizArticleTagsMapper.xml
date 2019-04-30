@@ -17,14 +17,6 @@
         update_time
     </sql>
 
-    <select id="query" parameterType="com.github.peterchenhdu.site4j.biz.dto.req.ArticleTagQueryDto"
-            resultMap="rm">
-        SELECT
-        t.*
-        FROM
-        biz_article_tags t
-        WHERE
-        1 = 1
-    </select>
+
 </mapper>
 

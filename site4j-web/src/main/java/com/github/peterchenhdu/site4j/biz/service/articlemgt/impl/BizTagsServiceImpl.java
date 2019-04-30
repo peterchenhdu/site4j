@@ -6,14 +6,18 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.github.peterchenhdu.site4j.biz.dto.ArticleTagsDto;
 import com.github.peterchenhdu.site4j.biz.dto.TagsDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleTagQueryDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.TagQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizTags;
 import com.github.peterchenhdu.site4j.biz.mapper.BizTagsMapper;
+import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleTagsService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTagsService;
 import com.github.peterchenhdu.site4j.common.annotation.RedisCache;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
 import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
 import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
@@ -38,7 +42,7 @@ public class BizTagsServiceImpl extends ServiceImpl<BizTagsMapper, BizTags> impl
     @Autowired
     private BizTagsMapper bizTagsMapper;
     @Autowired
-    private BizTagsService bizTagsService;
+    private BizArticleTagsService bizArticleTagsService;
 
     /**
      * 分页查询
@@ -111,6 +115,12 @@ public class BizTagsServiceImpl extends ServiceImpl<BizTagsMapper, BizTags> impl
     @Transactional(rollbackFor = Exception.class)
     @RedisCache(flush = true)
     public boolean deleteById(String primaryKey) {
+        //删除校验
+        PageInfoDto<ArticleTagsDto> page = bizArticleTagsService.query(new ArticleTagQueryDto(primaryKey, null));
+        if(ObjectUtils.isNotEmpty(page.getList())) {
+            throw new CommonRuntimeException("该标签包含关联文章，不能删除");
+        }
+
         return bizTagsMapper.deleteById(primaryKey) > 0;
     }
 

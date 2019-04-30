@@ -3,25 +3,29 @@
  */
 package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleTagsDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.ArticleTagQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.BizArticleTags;
 import com.github.peterchenhdu.site4j.biz.mapper.BizArticleTagsMapper;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleTagsService;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
+import com.github.peterchenhdu.site4j.common.util.PageUtils;
 import com.github.peterchenhdu.site4j.common.util.UuidUtils;
-import com.github.peterchenhdu.site4j.biz.dto.req.ArticleTagQueryDto;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.github.peterchenhdu.site4j.util.BeanConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 文章标签
@@ -44,16 +48,20 @@ public class BizArticleTagsServiceImpl extends ServiceImpl<BizArticleTagsMapper,
      */
     @Override
     public PageInfoDto<ArticleTagsDto> query(ArticleTagQueryDto vo) {
-        PageHelper.startPage(vo.getPageNumber(), vo.getPageSize());
-        List<BizArticleTags> list = bizArticleTagsMapper.query(vo);
-        if (CollectionUtils.isEmpty(list)) {
-            return null;
+        Page<BizArticleTags> page = PageUtils.getPage(vo);
+        Wrapper<BizArticleTags> wrapper = new EntityWrapper<>();
+        if(ObjectUtils.isNotEmpty(vo.getTagId())) {
+            wrapper.eq("tag_id", vo.getTagId());
         }
-        List<ArticleTagsDto> boList = new ArrayList<>();
-        for (BizArticleTags bizArticleTags : list) {
-            boList.add(new ArticleTagsDto(bizArticleTags));
+        if(ObjectUtils.isNotEmpty(vo.getArticleId())) {
+            wrapper.eq("article_id", vo.getArticleId());
         }
-        return new PageInfoDto<>(PageHelper.getTotal(), boList);
+
+        List<ArticleTagsDto> list = bizArticleTagsMapper.selectPage(page, wrapper).stream()
+                .map(entity->BeanConvertUtils.doConvert(entity, ArticleTagsDto.class))
+                .collect(Collectors.toList());
+
+        return new PageInfoDto<>(page.getTotal(), list);
     }
 
     /**
@@ -98,16 +106,16 @@ public class BizArticleTagsServiceImpl extends ServiceImpl<BizArticleTagsMapper,
     /**
      * 批量插入，支持批量插入的数据库可以使用，例如MySQL,H2等，另外该接口限制实体包含id属性并且必须为自增列
      *
-     * @param entities
+     * @param dtoList dtoList
      */
     @Override
-    public void insertList(List<ArticleTagsDto> entities) {
-        Assert.notNull(entities, "ArticleTagss不可为空！");
+    public void insertList(List<ArticleTagsDto> dtoList) {
+        Assert.notNull(dtoList, "ArticleTagss不可为空！");
         List<BizArticleTags> list = new ArrayList<>();
-        for (ArticleTagsDto entity : entities) {
-            entity.setUpdateTime(LocalDateTime.now());
-            entity.setCreateTime(LocalDateTime.now());
-            list.add(entity.getBizArticleTags());
+        for (ArticleTagsDto dto : dtoList) {
+            dto.setUpdateTime(LocalDateTime.now());
+            dto.setCreateTime(LocalDateTime.now());
+            list.add(BeanConvertUtils.doConvert(dto, BizArticleTags.class));
         }
         this.insertBatch(list);
     }

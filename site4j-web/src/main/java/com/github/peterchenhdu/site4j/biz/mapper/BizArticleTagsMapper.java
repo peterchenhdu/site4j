@@ -17,11 +17,5 @@ import java.util.List;
 @Repository
 public interface BizArticleTagsMapper extends BaseMapper<BizArticleTags> {
 
-    /**
-     * 分页查询
-     *
-     * @param vo
-     * @return
-     */
-    List<BizArticleTags> query(ArticleTagQueryDto vo);
+
 }
