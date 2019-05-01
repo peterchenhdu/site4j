@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
 
 /**
  * 文章类型管理
@@ -65,7 +64,9 @@ public class TypeController {
     @ApiOperation(value = "批量删除类别")
     @PostMapping(value = "/batchDelete")
     public BaseResponse batchDelete(@NotNull(message = "请至少选择一条记录") String[] ids) {
-        typeService.deleteBatchIds(Arrays.asList(ids));
+        for(String id:ids) {
+            typeService.deleteById(id);
+        }
         return ResultUtils.success("成功删除[" + ids.length + "]条记录");
     }
 

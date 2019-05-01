@@ -9,8 +9,10 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.TypeDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.TypeQueryDto;
+import com.github.peterchenhdu.site4j.biz.entity.BizArticle;
 import com.github.peterchenhdu.site4j.biz.entity.BizType;
 import com.github.peterchenhdu.site4j.biz.mapper.BizTypeMapper;
+import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizTypeService;
 import com.github.peterchenhdu.site4j.common.dto.PageInfoDto;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
@@ -35,6 +37,8 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
 
     @Autowired
     private BizTypeMapper bizTypeMapper;
+    @Autowired
+    private BizArticleService bizArticleService;
 
     /**
      * 分页查询
@@ -80,6 +84,13 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
     }
 
     @Override
+    public List<String> queryChildByTypeId(String id) {
+        Wrapper<BizType> wrapper = new EntityWrapper<>();
+        wrapper.eq("pid", id);
+        return this.baseMapper.selectList(wrapper).stream().map(BizType::getId).collect(Collectors.toList());
+    }
+
+    @Override
     public int queryCount() {
         Wrapper<BizType> example = new EntityWrapper<>();
         example.eq("available", true);
@@ -114,7 +125,17 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean deleteById(String primaryKey) {
-        return bizTypeMapper.deleteById(primaryKey) > 0;
+        List<String> ids = queryChildByTypeId(primaryKey);
+        ids.add(primaryKey);
+
+
+        Wrapper<BizArticle> wrapper = new EntityWrapper<>();
+        wrapper.in("type_id", ids);
+        int count = bizArticleService.selectCount(wrapper);
+        if(count>0) {
+            throw new CommonRuntimeException("该分类下存在关联文章，不能删除");
+        }
+        return bizTypeMapper.deleteBatchIds(ids) > 0;
     }
 
     /**

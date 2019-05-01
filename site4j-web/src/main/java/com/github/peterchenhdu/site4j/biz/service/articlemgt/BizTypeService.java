@@ -31,6 +31,8 @@ public interface BizTypeService extends IService<BizType> {
 
     List<TypeDto> listTypeForMenu();
 
+    List<String> queryChildByTypeId(String id);
+
     int queryCount();
 
     TypeDto save(TypeDto entity);
