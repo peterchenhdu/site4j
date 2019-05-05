@@ -6,6 +6,7 @@ package com.github.peterchenhdu.site4j.biz.controller.backend.article;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
 import com.github.peterchenhdu.site4j.biz.dto.req.ArticleQueryDto;
 import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
+import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.annotation.BusinessLog;
 import com.github.peterchenhdu.site4j.common.base.BasePagingResultDto;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
@@ -41,6 +42,8 @@ import java.util.Arrays;
 public class ArticleController {
     @Autowired
     private BizArticleService articleService;
+    @Autowired
+    private SysConfigService sysConfigService;
 
 
     @ApiOperation(value="路由到文章管理页面")
@@ -54,14 +57,14 @@ public class ArticleController {
     @BusinessLog(value = "发表文章页[html]")
     @GetMapping("/publish")
     public ModelAndView publish() {
-        return ResultUtils.view("admin/article/publish");
-    }
+        if("wangEditor".equals(sysConfigService.get().getDefaultArticleEditType())) {
+            return ResultUtils.view("admin/article/publish");
+        } else if("Markdown".equals(sysConfigService.get().getDefaultArticleEditType())) {
+            return ResultUtils.view("admin/article/publish-md");
+        } else {
+            return ResultUtils.view("admin/article/publish-md");
+        }
 
-    @ApiOperation(value="路由到发布MD文档文章页面")
-    @BusinessLog(value = "发表文章页[markdown]")
-    @GetMapping("/publishMd")
-    public ModelAndView publishMd() {
-        return ResultUtils.view("admin/article/publish-md");
     }
 
     @ApiOperation(value="路由到修改文章页面")

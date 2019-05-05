@@ -28,6 +28,7 @@
         <result property="tencentCosRegionName" jdbcType="VARCHAR" column="tencent_cos_region_name"/>
         <result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
         <result property="updateTime" jdbcType="TIMESTAMP" column="update_time"/>
+        <result property="defaultArticleEditType" jdbcType="VARCHAR" column="default_article_edit_type"/>
     </resultMap>
 
 

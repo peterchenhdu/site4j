@@ -222,6 +222,15 @@
                                         </div>
                                     </div>
                                     <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="defaultArticleEditType">默认文章类型</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <ul class="list-unstyled list-inline">
+                                                <li><label><input type="radio" class="square" checked name="defaultArticleEditType" value="Markdown"></label> Markdown</li>
+                                                <li><label><input type="radio" class="square" name="defaultArticleEditType" value="wangEditor"></label> wangEditor</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="maintenanceData">维护日期</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <div class='input-group date site4JDateTimePicker'>

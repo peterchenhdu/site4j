@@ -46,6 +46,7 @@ public class SysConfig extends BaseEntity {
     private Boolean maintenance;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime maintenanceData;
+    private String defaultArticleEditType;
 
 
 
