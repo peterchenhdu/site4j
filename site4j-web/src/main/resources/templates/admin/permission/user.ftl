@@ -198,7 +198,7 @@
                     title: '状态',
                     editable: false,
                     formatter: function (code) {
-                        return (code && code === 1) ? "<strong class='green'>正常</strong>" : "<strong class='red'>禁用</strong>";
+                        return (code && code === 1) ? "<span class=\"label label-success\">正常</span>" : "<span class=\"label label-danger\">禁用</strong>";
                     }
                 }, {
                     field: 'lastLoginTime',
