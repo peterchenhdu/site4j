@@ -74,7 +74,7 @@
 
                                 <label class="control-label col-md-1 col-sm-1 col-xs-1" for="comment">开启评论 <span class="required">*</span></label>
                                 <div class="col-md-3 col-sm-3 col-xs-3">
-                                    <input type="checkbox" class="square" name="comment" id="comment">
+                                    <input type="checkbox" class="square" name="comment" checked id="comment">
                                 </div>
 
                             </div>

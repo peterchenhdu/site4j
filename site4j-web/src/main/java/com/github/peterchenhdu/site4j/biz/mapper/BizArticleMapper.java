@@ -28,7 +28,7 @@ public interface BizArticleMapper extends BaseMapper<BizArticle> {
      * @param vo
      * @return
      */
-    List<ArticleDto> query(Page<BizArticle> page, ArticleQueryDto vo);
+    List<ArticleDto> query(Page<ArticleDto> page, ArticleQueryDto vo);
 
     /**
      * 统计指定文章的标签集合

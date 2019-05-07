@@ -56,7 +56,7 @@
         FROM
         biz_article a
         INNER JOIN biz_type btype ON a.type_id = btype.id
-        INNER JOIN biz_article_tags atag ON a.id = atag.article_id
+--         INNER JOIN biz_article_tags atag ON a.id = atag.article_id
         LEFT JOIN (
         SELECT
         l.article_id,
@@ -89,20 +89,20 @@
                 #{id}
             </foreach>
         </if>
-        <choose>
-            <when test="tagIds != null">
-                AND atag.tag_id IN (
-                <foreach collection="tagIds" item="tagId" separator=",">
-                    #{tagId}
-                </foreach>
-                )
-            </when>
-            <otherwise>
-                <if test="tagId != null">
-                    AND atag.tag_id = #{tagId}
-                </if>
-            </otherwise>
-        </choose>
+        <!--<choose>-->
+            <!--<when test="tagIds != null">-->
+                <!--AND atag.tag_id IN (-->
+                <!--<foreach collection="tagIds" item="tagId" separator=",">-->
+                    <!--#{tagId}-->
+                <!--</foreach>-->
+                <!--)-->
+            <!--</when>-->
+            <!--<otherwise>-->
+                <!--<if test="tagId != null">-->
+                    <!--AND atag.tag_id = #{tagId}-->
+                <!--</if>-->
+            <!--</otherwise>-->
+        <!--</choose>-->
         <if test="top != null">
             AND a.top = #{top}
         </if>

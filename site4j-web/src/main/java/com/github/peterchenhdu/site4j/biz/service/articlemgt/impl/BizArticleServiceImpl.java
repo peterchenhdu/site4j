@@ -107,7 +107,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
         }
 
 
-        Page<BizArticle> page = PageUtils.getPage(vo);
+        Page<ArticleDto> page = PageUtils.getPage(vo);
         List<ArticleDto> list = bizArticleMapper.query(page, vo);
         if (CollectionUtils.isEmpty(list)) {
             return null;
