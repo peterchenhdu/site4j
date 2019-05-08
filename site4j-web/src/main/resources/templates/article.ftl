@@ -38,53 +38,7 @@ canonical="/article/${article.id}">
     <div class="row">
         <div class="blog-main">
             <div class="blog-body overflow-initial fade-in">
-                <div class="article-flag">
-                <#if article.original?string('true','false') == 'true'>
-                    <span class="article-blockquote article-blockquote-green"></span>
-                    <span class="article-original article-original-green">
-                            <a href="${config.siteUrl}/article/${article.id}">原创</a>
-                        </span>
 
-                    <span class="blog-info-meta" style="margin-left: 80px">转载请注明出处 - @SITE4J</span>
-
-                    <div class="blog-info-meta pull-right">
-                        <ul class="list-unstyled list-inline">
-                            <li><i class="fa fa-clock-o fa-fw"></i>发表于 ${article.createTime}</li>
-                            <li><i class="fa fa-eye fa-fw"></i><a class="pointer"
-
-                                                                  >浏览 (
-                                <num>${article.lookCount!(0)}</num>
-                                )</a></li>
-                            <li><a href="#comment-box" ><i class="fa fa-comments-o fa-fw"></i>评论
-                                (${article.commentCount!(0)})</a></li>
-                        </ul>
-                    </div>
-                <#else>
-                    <span class="article-blockquote article-blockquote-red"></span>
-                    <span class="article-original article-original-red">
-                            <a href="${config.siteUrl}/article/${article.id}">转载</a>
-                        </span>
-
-
-                        <span class="blog-info-meta" style="margin-left: 80px">原文作者： ${article.originalAuthor}</span>
-                        <span class="blog-info-meta">原文链接： <a target="_blank" href="${article.originalLink}"
-                        >${article.originalLink}</a></span>
-
-
-                    <div class="blog-info-meta pull-right">
-                        <ul class="list-unstyled list-inline">
-                            <li><i class="fa fa-clock-o fa-fw"></i>转载于 ${article.createTime}</li>
-                            <li><i class="fa fa-eye fa-fw"></i><a class="pointer"
-                                                                  >浏览 (
-                                <num>${article.lookCount!(0)}</num>
-                                )</a></li>
-                            <li><a href="#comment-box" ><i class="fa fa-comments-o fa-fw"></i>评论
-                                (${article.commentCount!(0)})</a></li>
-                        </ul>
-                    </div>
-                </#if>
-
-                </div>
 
 
                 <div class="blog-info overflow-initial">
@@ -93,17 +47,48 @@ canonical="/article/${article.id}">
                             <i class="fa fa-newspaper-o"></i>
                             <strong>${article.title}</strong>
                         </h1>
+                        <div class="article-flag" style="margin-left: 5px">
+                        <#if article.original?string('true','false') == 'true'>
+
+
+                            <div class="blog-info-meta pull-right">
+                                <ul class="list-unstyled list-inline">
+                                    <li><i class="fa fa-clock-o fa-fw"></i>发表于 ${article.createTime}</li>
+                                    <li><i class="fa fa-eye fa-fw"></i><a class="pointer"
+
+                                    >浏览 (
+                                        <num>${article.lookCount!(0)}</num>
+                                        )</a></li>
+                                    <li><a href="#comment-box" ><i class="fa fa-comments-o fa-fw"></i>评论
+                                        (${article.commentCount!(0)})</a></li>
+                                </ul>
+                            </div>
+                        <#else>
+
+
+
+                            <span class="blog-info-meta" >原文作者： ${article.originalAuthor}</span>
+                            <span class="blog-info-meta"><a target="_blank" style="color: #999" href="${article.originalLink}">链接地址</a></span>
+                            <span class="blog-info-meta">转载于 ${article.createTime}</span>
+                            <span class="blog-info-meta" ><i class="fa fa-eye fa-fw"></i>浏览 (<num>${article.lookCount!(0)}</num>)</span>
+                            <span class="blog-info-meta"><a href="#comment-box" style="color: #999"><i class="fa fa-comments-o fa-fw"></i>评论(${article.commentCount!(0)})</a></span>
+                        </#if>
+
+                        </div>
                     </div>
+
+
 
                     <div id="site4j-body" class="blog-info-body ${article.markdown?string('markdown-body editor-preview-active-side', '')}">
                     ${article.content}
                     </div>
                     <div class="separateline"></div>
-
-
                 </div>
             </div>
-            <div class="blog-body article-tag" style="margin-left: 10px;">
+
+
+
+            <div class="blog-body article-tag">
                 <div class="cat">
                     <ul class="list-unstyled">
                         <li>
@@ -112,7 +97,7 @@ canonical="/article/${article.id}">
                         </li>
                         <li>
                             <strong>所属分类：</strong>
-                            <a href="${config.siteUrl}/type/${article.typeId}">${article.type.name}</a>
+                            <a href="${config.siteUrl}/type/${article.typeId}">${article.bizType.name}</a>
                         </li>
                         <li>
                             <strong>本文标签：</strong>
@@ -130,16 +115,16 @@ canonical="/article/${article.id}">
                 <nav class="nav-single wow" data-wow-delay="0.3s">
                 <#if other.prev>
                     <a href="${config.siteUrl}/article/${other.prev.id}" rel="prev">
-                            <span class="meta-nav"><span class="post-nav"><i
-                                    class="fa fa-angle-left"></i> 上一篇</span>
-                                <br>${other.prev.title}
+                            <span class="meta-nav"><span class="post-nav"> 上一篇<i
+                                    class="fa fa-angle-left"></i></span>
+                               ${other.prev.title}
                             </span>
                     </a>
                 <#else >
                     <a href="javascript:void(0)" rel="nofollow prev">
-                            <span class="meta-nav" ><span class="post-nav"><i
-                                    class="fa fa-angle-left"></i> 上一篇</span>
-                                <br>已经到第一篇了
+                            <span class="meta-nav" ><span class="post-nav"> 上一篇<i
+                                    class="fa fa-angle-left"></i></span>
+                                已经到第一篇了
                             </span>
                     </a>
                 </#if>
@@ -147,14 +132,14 @@ canonical="/article/${article.id}">
                     <a href="${config.siteUrl}/article/${other.next.id}" rel="next">
                             <span class="meta-nav" ><span class="post-nav">下一篇 <i
                                     class="fa fa-angle-right"></i></span>
-                                <br>${other.next.title}
+                                ${other.next.title}
                             </span>
                     </a>
                 <#else >
                     <a href="${config.siteUrl}/article/1" rel="nofollow next">
                             <span class="meta-nav" ><span class="post-nav">下一篇 <i
                                     class="fa fa-angle-right"></i></span>
-                                <br>已经到最后一篇了
+                                已经到最后一篇了
                             </span>
                     </a>
                 </#if>

@@ -7,7 +7,6 @@ package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleArchivesDto;
 import com.github.peterchenhdu.site4j.biz.dto.ArticleDto;
@@ -360,9 +359,10 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
      */
     @Override
     public List<ArticleDto> listHotArticle(int pageSize) {
-        PageHelper.startPage(1, pageSize);
 
-        List<ArticleDto> entityList = bizArticleMapper.listHotArticle();
+        Page<ArticleDto> page = new Page<>();
+        page.setSize(pageSize);
+        List<ArticleDto> entityList = bizArticleMapper.listHotArticle(page);
         if (CollectionUtils.isEmpty(entityList)) {
             return null;
         }

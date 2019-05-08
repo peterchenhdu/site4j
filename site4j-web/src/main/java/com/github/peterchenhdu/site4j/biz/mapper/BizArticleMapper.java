@@ -59,7 +59,7 @@ public interface BizArticleMapper extends BaseMapper<BizArticle> {
      *
      * @return
      */
-    List<ArticleDto> listHotArticle();
+    List<ArticleDto> listHotArticle(Page<ArticleDto> page);
 
     /**
      * 是否存在文章
