@@ -4,42 +4,13 @@ keywords="${article.keywords?if_exists},${config.siteName}"
 description="${article.description?if_exists}"
 canonical="/article/${article.id}">
 
-<style>
-    .CodeMirror {
-        padding: 0px;
-    }
-
-    .CodeMirror, .CodeMirror-scroll {
-        min-height: 130px;
-        max-height: 200px;
-    }
-
-    .CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
-        background: none;
-    }
-
-    .editor-statusbar {
-        display: none;
-    }
-
-    .editor-preview {
-        overflow-y: initial !important;
-    }
-
-</style>
 </@header>
 
-<#if article.coverImage?exists>
-<img src="${config.qiuniuBasePath}${article.coverImage?if_exists}"
-     onerror="this.src='${config.staticWebSite}/img/default_article_cover.jpg'" style="display: none;" id="cover-img">
-</#if>
 <div class="container custome-container">
 
     <div class="row">
         <div class="blog-main">
             <div class="blog-body overflow-initial fade-in">
-
-
 
                 <div class="blog-info overflow-initial">
                     <div class="bottom-line">
@@ -48,32 +19,17 @@ canonical="/article/${article.id}">
                             <strong>${article.title}</strong>
                         </h1>
                         <div class="article-flag" style="margin-left: 5px">
-                        <#if article.original?string('true','false') == 'true'>
-
-
-                            <div class="blog-info-meta pull-right">
-                                <ul class="list-unstyled list-inline">
-                                    <li><i class="fa fa-clock-o fa-fw"></i>发表于 ${article.createTime}</li>
-                                    <li><i class="fa fa-eye fa-fw"></i><a class="pointer"
-
-                                    >浏览 (
-                                        <num>${article.lookCount!(0)}</num>
-                                        )</a></li>
-                                    <li><a href="#comment-box" ><i class="fa fa-comments-o fa-fw"></i>评论
-                                        (${article.commentCount!(0)})</a></li>
-                                </ul>
-                            </div>
-                        <#else>
-
-
-
-                            <span class="blog-info-meta" >原文作者： ${article.originalAuthor}</span>
+                            <#if article.original?string('true','false') == 'true'>
+                            <span class="blog-info-meta"><i class="fa fa-clock-o fa-fw"></i>发表于 ${article.createTime}</span>
+                            <span class="blog-info-meta"><i class="fa fa-eye fa-fw"></i><a class="pointer">浏览 (<num>${article.lookCount!(0)}</num>)</a></span>
+                            <span class="blog-info-meta"><a href="#comment-box" ><i class="fa fa-comments-o fa-fw"></i>评论(${article.commentCount!(0)})</a></span>
+                            <#else>
+                            <span class="blog-info-meta">原文作者： ${article.originalAuthor}</span>
                             <span class="blog-info-meta"><a target="_blank" style="color: #999" href="${article.originalLink}">链接地址</a></span>
                             <span class="blog-info-meta">转载于 ${article.createTime}</span>
-                            <span class="blog-info-meta" ><i class="fa fa-eye fa-fw"></i>浏览 (<num>${article.lookCount!(0)}</num>)</span>
+                            <span class="blog-info-meta"><i class="fa fa-eye fa-fw"></i>浏览 (<num>${article.lookCount!(0)}</num>)</span>
                             <span class="blog-info-meta"><a href="#comment-box" style="color: #999"><i class="fa fa-comments-o fa-fw"></i>评论(${article.commentCount!(0)})</a></span>
-                        </#if>
-
+                            </#if>
                         </div>
                     </div>
 
@@ -93,7 +49,7 @@ canonical="/article/${article.id}">
                     <ul class="list-unstyled">
                         <li>
                             <strong>支持一下：</strong>
-                            <a href="javascript:;" data-id="${article.id}" ><i class="fa fa-thumbs-up"></i>赞 <i class="count"> ${article.loveCount!(0)}</i> </a>
+                            <a id="support-a" href="javascript:" onclick="$.comment.praise('${article.id}', this)" data-id="${article.id}" ><i class="fa fa-thumbs-up"></i>赞 <i class="count"> ${article.loveCount!(0)}</i> </a>
                         </li>
                         <li>
                             <strong>所属分类：</strong>
@@ -105,7 +61,6 @@ canonical="/article/${article.id}">
                                 <a href="${config.siteUrl}/tag/${item.id}" class="c-label" target="_blank">${item.name}</a>
                             </#list>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -115,32 +70,20 @@ canonical="/article/${article.id}">
                 <nav class="nav-single wow" data-wow-delay="0.3s">
                 <#if other.prev>
                     <a href="${config.siteUrl}/article/${other.prev.id}" rel="prev">
-                            <span class="meta-nav"><span class="post-nav"> 上一篇<i
-                                    class="fa fa-angle-left"></i></span>
-                               ${other.prev.title}
-                            </span>
+                        <span class="meta-nav"><span class="post-nav"> 上一篇<i class="fa fa-angle-left"></i></span>${other.prev.title}</span>
                     </a>
                 <#else >
                     <a href="javascript:void(0)" rel="nofollow prev">
-                            <span class="meta-nav" ><span class="post-nav"> 上一篇<i
-                                    class="fa fa-angle-left"></i></span>
-                                已经到第一篇了
-                            </span>
+                        <span class="meta-nav" ><span class="post-nav"> 上一篇<i class="fa fa-angle-left"></i></span>已经到第一篇了</span>
                     </a>
                 </#if>
                 <#if other.next>
                     <a href="${config.siteUrl}/article/${other.next.id}" rel="next">
-                            <span class="meta-nav" ><span class="post-nav">下一篇 <i
-                                    class="fa fa-angle-right"></i></span>
-                                ${other.next.title}
-                            </span>
+                        <span class="meta-nav" ><span class="post-nav">下一篇 <i class="fa fa-angle-right"></i></span>${other.next.title}</span>
                     </a>
                 <#else >
                     <a href="${config.siteUrl}/article/1" rel="nofollow next">
-                            <span class="meta-nav" ><span class="post-nav">下一篇 <i
-                                    class="fa fa-angle-right"></i></span>
-                                已经到最后一篇了
-                            </span>
+                        <span class="meta-nav" ><span class="post-nav">下一篇 <i class="fa fa-angle-right"></i></span>已经到最后一篇了</span>
                     </a>
                 </#if>
                     <div class="clear"></div>
@@ -148,7 +91,7 @@ canonical="/article/${article.id}">
             </div>
 
             <div class="separateline"></div>
-        <#-- 热门推荐 -->
+            <#-- 热门推荐 -->
             <div class="blog-body clear overflow-initial">
                 <h4 ><i class="fa fa-fire icon"></i><strong>热门推荐</strong></h4>
                 <ul class="list-unstyled">
@@ -159,29 +102,19 @@ canonical="/article/${article.id}">
                                 <div class="line-container">
                                     <div class="line-left">
                                         <#if item.coverImage?exists>
-                                            <img class="lazy-img"
-                                                 data-original="${config.qiuniuBasePath}${item.coverImage}" width="50"
-                                                 height="50" rel="external nofollow"/>
+                                            <img class="lazy-img" data-original="${config.qiuniuBasePath}${item.coverImage}" width="50" height="50" rel="external nofollow"/>
                                         <#else>
-                                            <img class="lazy-img"
-                                                 data-original="${config.staticWebSite}/img/favicon.svg" width="50"
-                                                 height="50" rel="external nofollow"/>
+                                            <img class="lazy-img" data-original="${config.staticWebSite}/img/favicon.svg" width="50" height="50" rel="external nofollow"/>
                                         </#if>
                                     </div>
                                     <div class="line-right">
                                         <div class="text">
-                                            <a href="${config.siteUrl}/article/${item.id}" >
-                                            ${item.title}
-                                            </a>
+                                            <a href="${config.siteUrl}/article/${item.id}" >${item.title}</a>
                                         </div>
                                         <div class="text">
-                                        <#--<div style="display: inline-block">热门指数：</div>-->
-                                        <#--<div class="rating ignore" data-star="5"></div>-->
-                                            <span class="views"  ><i
-                                                    class="fa fa-eye fa-fw"></i>浏览(${item.lookCount!(0)})</span>
+                                            <span class="views"  ><i class="fa fa-eye fa-fw"></i>浏览(${item.lookCount!(0)})</span>
                                             <span class="comment"  >
-                                                <a href="${config.siteUrl}/article/${item.id}#comment-box"
-                                                   rel="external nofollow">
+                                                <a href="${config.siteUrl}/article/${item.id}#comment-box" rel="external nofollow">
                                                     <i class="fa fa-comments-o fa-fw"></i>评论(${item.commentCount!(0)})
                                                 </a>
                                             </span>
@@ -196,7 +129,7 @@ canonical="/article/${article.id}">
                 <div class="clear"></div>
             </div>
             <div class="separateline"></div>
-        <#-- 相关文章 -->
+            <#-- 相关文章 -->
             <div class="blog-body clear overflow-initial">
                 <h4 ><i class="fa fa-google-wallet icon"></i><strong>相关文章</strong></h4>
                 <ul class="list-unstyled">
@@ -205,8 +138,7 @@ canonical="/article/${article.id}">
                         <div class="line-container">
                             <div class="line-right">
                                 <div class="text">
-                                    <a href="${config.siteUrl}/article/${item.id}"
-                                       >
+                                    <a href="${config.siteUrl}/article/${item.id}">
                                     ${item.title}
                                     </a>
                                 </div>
@@ -218,6 +150,7 @@ canonical="/article/${article.id}">
                 <div class="clear"></div>
             </div>
             <div class="separateline"></div>
+
         <#--评论-->
         <#if article.comment>
             <div class="blog-body clear overflow-initial expansion">
@@ -237,57 +170,32 @@ canonical="/article/${article.id}">
 <script type="text/javascript">
 
     //生成目录索引列表
-
     function GenerateContentList()
-
     {
-
-        var jquery_h3_list = $('#site4j-body h1');//如果你的章节标题不是h3,只需要将这里的h3换掉即可
-
+        var $site4jbody = $('#site4j-body');
+        var jquery_h3_list = $site4jbody.find('h1');//如果你的章节标题不是h3,只需要将这里的h3换掉即可
         if(jquery_h3_list.length>0)
-
         {
-
             var content = '<a name="_labelTop"></a>';
-
             content += '<div id="navCategory">';
-
             content += '<h1>阅读目录</h1>';
-
             content += '<ul>';
-
             for(var i =0;i<jquery_h3_list.length;i++)
-
             {
-
                 var go_to_top = '<div style="text-align: right;height:1px;"><a href="#_labelTop"></a><a name="_label' + i + '"></a></div>';
-
                 $(jquery_h3_list[i]).before(go_to_top);
-
-                var li_content = '<li><a href="#_label' + i + '">' + $(jquery_h3_list[i]).text() + '</a></li>';
-
-                content += li_content;
-
+                content += '<li><a href="#_label' + i + '">' + $(jquery_h3_list[i]).text() + '</a></li>';
             }
-
             content += '</ul>';
-
             content += '</div>';
 
-            if($('#site4j-body').length != 0 )
-
+            if($site4jbody.length !== 0 )
             {
-
-                $($('#site4j-body')[0]).prepend(content);
-
+                $($site4jbody[0]).prepend(content);
             }
-
         }
-
     }
-
     GenerateContentList();
-
 </script>
 
 </@footer>

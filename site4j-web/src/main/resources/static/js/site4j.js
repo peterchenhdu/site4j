@@ -969,7 +969,7 @@ $.extend({
                 url: "/api/doSupport/" + pid,
                 success: function (json) {
                     $.alert.ajaxSuccess(json);
-                    if (json.status == 200) {
+                    if (json.status === 200) {
                         $(target).effectBubble({
                             y: -80,
                             className: 'thumb-bubble',
