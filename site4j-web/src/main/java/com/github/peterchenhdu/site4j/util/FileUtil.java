@@ -3,9 +3,11 @@
  */
 package com.github.peterchenhdu.site4j.util;
 
-import com.github.peterchenhdu.site4j.enums.ImageType;
 import com.github.peterchenhdu.site4j.common.exception.CommonRuntimeException;
-import com.github.peterchenhdu.site4j.util.qcloud.TencentCosApi;
+import com.github.peterchenhdu.site4j.common.util.LogUtils;
+import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
+import com.github.peterchenhdu.site4j.enums.ImageType;
+import com.github.peterchenhdu.site4j.util.qcloud.TencentCosUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,40 +24,50 @@ public class FileUtil {
     private static final String[] PICTURE_SUFFIX = {".jpg", ".jpeg", ".png", ".gif", ".bmp"};
 
 
+    /**
+     * 获取文件名的后缀名
+     *
+     * @param fileName 文件名
+     * @return 后缀
+     */
     public static String getSuffix(String fileName) {
         int idx = fileName.lastIndexOf(".");
         idx = idx == -1 ? fileName.length() : idx;
         return fileName.substring(idx);
     }
 
+    /**
+     * 判断后缀名是否为图片格式
+     *
+     * @param suffix 文件后缀
+     * @return 是否是图片
+     */
     private static boolean isPicture(String suffix) {
-        return !StringUtils.isEmpty(suffix) && Arrays.asList(PICTURE_SUFFIX).contains(suffix.toLowerCase());
+        return ObjectUtils.isNotEmpty(suffix) && Arrays.asList(PICTURE_SUFFIX).contains(suffix.toLowerCase());
     }
 
 
-    public static String uploadToTencentCos(MultipartFile file, ImageType uploadType, boolean canBeNull) {
+    /**
+     * 上传图片到腾讯云
+     *
+     * @param file       文件
+     * @param uploadType 图片类型
+     * @return 图片url
+     */
+    public static String uploadToTencentCos(MultipartFile file, ImageType uploadType) {
         // 不可为空并且file为空，抛出异常
-        if (!canBeNull && null == file) {
+        if (null == file) {
             throw new CommonRuntimeException("请选择图片");
         }
-        // 可为空并且file为空，忽略后边的代码，返回null
-        if (canBeNull && null == file) {
-            return null;
+
+        if (!isPicture(getSuffix(file.getOriginalFilename()))) {
+            throw new CommonRuntimeException("只支持图片");
         }
 
         try {
-            String filePath;
-            if (isPicture(getSuffix(file.getOriginalFilename()))) {
-
-                filePath = TencentCosApi.getInstance()
-                        .upload(file.getInputStream(), file.getSize(), file.getOriginalFilename(), uploadType);
-                return filePath;
-            } else {
-                throw new CommonRuntimeException("只支持图片");
-            }
-
+            return TencentCosUtils.getInstance().upload(file, uploadType);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtils.exception(e);
             throw new CommonRuntimeException("上传图片到腾讯云发生异常，请检查腾讯配置是否正常");
         }
     }
@@ -78,7 +90,7 @@ public class FileUtil {
                 continue;
             }
             try {
-                boolean result = TencentCosApi.getInstance().delete(key);
+                boolean result = TencentCosUtils.getInstance().delete(key);
                 if (result) {
                     count++;
                 }

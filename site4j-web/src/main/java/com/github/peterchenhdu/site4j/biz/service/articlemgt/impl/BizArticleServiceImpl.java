@@ -298,7 +298,7 @@ public class BizArticleServiceImpl extends ServiceImpl<BizArticleMapper, BizArti
             throw new CommonRuntimeException("请至少选择一个标签");
         }
         if (null != file) {
-            String filePath = imageService.uploadToTencentCos(file, ImageType.COVER_IMAGE, true);
+            String filePath = imageService.uploadToTencentCos(file, ImageType.COVER_IMAGE);
             // 保存封面图片
             article.setCoverImage(filePath);
         }

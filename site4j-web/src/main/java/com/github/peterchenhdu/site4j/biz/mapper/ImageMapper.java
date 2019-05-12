@@ -8,7 +8,7 @@ import com.github.peterchenhdu.site4j.biz.entity.Image;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
- * null - Mapper接口
+ * 图片 - Mapper接口
  * <p>
  * Created by chenpi on 2019/02/05.
  */

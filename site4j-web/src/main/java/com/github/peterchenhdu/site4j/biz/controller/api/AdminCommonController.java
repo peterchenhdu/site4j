@@ -4,8 +4,8 @@
 package com.github.peterchenhdu.site4j.biz.controller.api;
 
 import com.github.peterchenhdu.site4j.biz.dto.ConfigDto;
+import com.github.peterchenhdu.site4j.biz.dto.req.ImageQueryDto;
 import com.github.peterchenhdu.site4j.biz.entity.Image;
-import com.github.peterchenhdu.site4j.biz.service.articlemgt.BizArticleService;
 import com.github.peterchenhdu.site4j.biz.service.common.IImageService;
 import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.annotation.PublicService;
@@ -33,8 +33,6 @@ import java.util.stream.Collectors;
 public class AdminCommonController {
 
     @Autowired
-    private BizArticleService articleService;
-    @Autowired
     private SysConfigService configService;
     @Autowired
     private IImageService imageService;
@@ -45,18 +43,18 @@ public class AdminCommonController {
      * @param file 文件
      * @return 相对URL路径
      */
-    @ApiOperation(value="上传文件")
+    @ApiOperation(value = "上传文件")
     @PostMapping("/upload2TencentCos")
     public BaseResponse<String> upload2TencentCos(@RequestParam("file") MultipartFile file) {
-        String filePath = imageService.uploadToTencentCos(file, ImageType.ARTICLE_IMAGE, false);
+        String filePath = imageService.uploadToTencentCos(file, ImageType.ARTICLE_IMAGE);
         return ResultUtils.success("图片上传成功", filePath);
     }
 
 
-    @ApiOperation(value="上传文件到MD文档")
+    @ApiOperation(value = "上传文件到MD文档")
     @PostMapping("/upload2TencentCosForMd")
     public Map<String, Object> upload2TencentCosForMd(@RequestParam("file") MultipartFile file) {
-        String filePath = imageService.uploadToTencentCos(file, ImageType.ARTICLE_IMAGE, false);
+        String filePath = imageService.uploadToTencentCos(file, ImageType.ARTICLE_IMAGE);
         ConfigDto config = configService.get();
         Map<String, Object> resultMap = new HashMap<>(3);
         resultMap.put("success", 1);
@@ -70,17 +68,12 @@ public class AdminCommonController {
      *
      * @return Response
      */
-    @ApiOperation(value="查询素材库")
+    @ApiOperation(value = "查询素材库")
     @PostMapping("/material")
     public BaseResponse<List<String>> material() {
-        return ResultUtils.success("查询成功", imageService.query().stream().map(Image::getUrl).collect(Collectors.toList()));
+        ImageQueryDto imageQueryDto = new ImageQueryDto();
+        imageQueryDto.setPageSize(Integer.MAX_VALUE);
+        return ResultUtils.success("查询成功", imageService.query(imageQueryDto).getList().stream().map(Image::getUrl).collect(Collectors.toList()));
     }
-
-    @ApiOperation(value="查询图片")
-    @GetMapping("/queryImage")
-    public BaseResponse<List<Image>> queryImage() {
-        return ResultUtils.success("查询成功", imageService.query());
-    }
-
-
+    
 }
