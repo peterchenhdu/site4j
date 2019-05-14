@@ -75,5 +75,5 @@ public class AdminCommonController {
         imageQueryDto.setPageSize(Integer.MAX_VALUE);
         return ResultUtils.success("查询成功", imageService.query(imageQueryDto).getList().stream().map(Image::getUrl).collect(Collectors.toList()));
     }
-    
+
 }

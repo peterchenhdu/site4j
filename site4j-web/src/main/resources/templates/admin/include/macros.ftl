@@ -27,14 +27,16 @@
 </head>
 <body class="nav-md">
 <div class="container body">
+
 <div class="main_container" style="background-color: #428bca">
+    <@shiro.user>
     <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
                 <span class="site_title"><i class="fa fa-coffee"></i> <span>${config.siteName}</span></span>
             </div>
             <div class="clearfix"></div>
-            <@shiro.user>
+
                 <div class="profile clearfix">
 
                     <div class="profile_info">
@@ -42,7 +44,7 @@
                         <h2>尊敬的管理员</h2>
                     </div>
                 </div>
-            </@shiro.user>
+
             <br/>
             <#include "/admin/layout/sidebar.ftl"/>
 
@@ -50,6 +52,7 @@
         </div>
 
     </div>
+    </@shiro.user>
     <#include "/admin/layout/setting.ftl"/>
 <div class="right_col" role="main">
 </#macro>
