@@ -136,7 +136,7 @@ $("#file-upload-btn").click(function () {
         // 加载素材库
         $.ajax({
             type: "post",
-            url: "/admin/api/material",
+            url: "/admin/article/material",
             success: function (json) {
                 // $.alert.ajaxSuccess(json);
                 loadImg = true;

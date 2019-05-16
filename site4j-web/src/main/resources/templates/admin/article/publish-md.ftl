@@ -178,7 +178,7 @@
         var op = {
             id: "contentMd",
             uniqueId: "mdEditor_1",
-            uploadUrl: "/admin/api/upload2TencentCosForMd"
+            uploadUrl: "/admin/article/upload2TencentCosForMd"
         };
         zhyd.initMdEditor(op);
     });

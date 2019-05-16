@@ -205,7 +205,7 @@
         zhyd.initWangEditor({
             id: "editor",
             contentId: "content",
-            uploadUrl: "/admin/api/upload2TencentCos",
+            uploadUrl: "/admin/article/upload2TencentCos",
             uploadFileName: "file"
         });
     });
