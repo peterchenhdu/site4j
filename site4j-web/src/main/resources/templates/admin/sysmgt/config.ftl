@@ -226,7 +226,7 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <ul class="list-unstyled list-inline">
                                                 <li><label><input type="radio" class="square" checked name="defaultArticleEditType" value="Markdown"></label> Markdown</li>
-                                                <li><label><input type="radio" class="square" name="defaultArticleEditType" value="wangEditor"></label> wangEditor</li>
+                                                <li><label><input type="radio" class="square" name="defaultArticleEditType" value="WangEditor"></label> wangEditor</li>
                                             </ul>
                                         </div>
                                     </div>

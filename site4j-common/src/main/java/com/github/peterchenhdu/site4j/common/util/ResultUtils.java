@@ -49,10 +49,17 @@ public class ResultUtils {
     public static <T> BaseResponse<T> success(String message, T data) {
         return vo(HttpStatus.OK.value(), message, data);
     }
+
     public static <T> BaseResponse<T> success(T data) {
         return vo(HttpStatus.OK.value(), "操作成功", data);
     }
 
+    /**
+     * 返回成功信息
+     *
+     * @param message 信息
+     * @return 返回结果
+     */
     public static BaseResponse success(String message) {
         return success(message, null);
     }
@@ -69,11 +76,17 @@ public class ResultUtils {
         return new BasePagingResultDto(total, list);
     }
 
-    public static BasePagingResultDto tablePage(PageInfoDto info) {
-        if (info == null) {
+    /**
+     * 返回bootstrap table用到的返回json格式
+     *
+     * @param pageInfoDto 分页结果
+     * @return BasePagingResultDto
+     */
+    public static BasePagingResultDto tablePage(PageInfoDto pageInfoDto) {
+        if (pageInfoDto == null) {
             return new BasePagingResultDto(0L, new ArrayList());
         }
-        return tablePage(info.getTotal(), info.getList());
+        return tablePage(pageInfoDto.getTotal(), pageInfoDto.getList());
     }
 
 }

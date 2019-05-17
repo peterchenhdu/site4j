@@ -24,7 +24,7 @@
                             <div class="x_title">
                                 <h2>最近发布</h2>
                                 <@shiro.hasPermission name="article:publish">
-                                    <a href="/admin/article/publishMd" class="btn btn-success btn-xs pull-right"><i
+                                    <a href="/admin/article/publish" class="btn btn-success btn-xs pull-right"><i
                                             class="fa fa-pencil"></i> 发布文章</a>
                                 </@shiro.hasPermission>
                                 <div class="clearfix"></div>
