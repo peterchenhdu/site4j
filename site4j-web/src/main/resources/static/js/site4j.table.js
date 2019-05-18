@@ -39,7 +39,7 @@
                 var $fixedTableBody = $table.closest("div"),
                     // $fixedTableBodyColumns = $fixedTableBody.prev(),
                     $fixedTableContainer = $fixedTableBody.closest("div");
-                $fixedTableContainer.height(h - 300-$('.panel').height());
+                $fixedTableContainer.height(h - 250 - $('.panel').height());
                 // $fixedTableBodyColumns.height(h - 253);
 
             },
