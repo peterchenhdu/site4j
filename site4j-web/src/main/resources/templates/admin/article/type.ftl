@@ -16,9 +16,9 @@
                             <div class="panel-heading">查询条件</div>
                             <div class="panel-body">
                                 <form id="formSearch" class="form-horizontal" onkeydown="if(event.keyCode===13) return false;">
-                                    <div class="form-group" style="margin-top:15px">
+                                    <div class="form-group" >
                                         <label class="control-label col-sm-1" for="search-available">是否启用</label>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <select class="form-control" name="search-available" id="search-available">
                                                 <option value="">请选择</option>
                                                 <option value="true">启用</option>
@@ -26,23 +26,22 @@
                                             </select>
                                         </div>
                                         <label class="control-label col-sm-1" for="search-name">分类名称</label>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <input type="text" class="form-control" name="search-name" id="search-name"
                                                    placeholder="请输入分类名称...">
                                         </div>
-                                    </div>
-                                    <div class="form-group" style="margin-top:15px">
+
                                         <label class="control-label col-sm-1" for="search-pid">父级分类</label>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <select id="search-pid" name="search-pid" class="form-control col-md-5 col-xs-5" target="combox"
                                                     data-url="/admin/type/listParent" data-method="post"></select>
                                         </div>
-                                        <div class="col-sm-4" style="text-align:left;">
-                                            <button type="button" style="margin-left:50px" id="btn_query"
+                                        <div class="col-sm-3" >
+                                            <button type="button"  id="btn_query"
                                                     class="btn btn-primary">查询
                                             </button>
 
-                                            <button type="reset" style="margin-left:20px" id="btn_reset"
+                                            <button type="reset"  id="btn_reset"
                                                     class="btn btn-primary">重置
                                             </button>
                                         </div>

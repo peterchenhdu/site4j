@@ -1150,7 +1150,7 @@ h2 {
 
 .x_panel {
     width: 100%;
-    padding: 10px 17px;
+    padding: 0px 10px;
     display: inline-block;
     background: #fff;
     border: 1px solid #E6E9ED;
@@ -1159,6 +1159,17 @@ h2 {
     column-break-inside: avoid;
     opacity: 1;
     transition: all .2s ease
+}
+
+.panel {
+    margin-bottom: 0;
+}
+
+.panel-body {
+    padding: 5px;
+}
+.panel-body .form-group {
+    margin: 0;
 }
 
 .x_title {

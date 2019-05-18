@@ -36,7 +36,7 @@
                             <li>
                                 <div class="text-center">
                                     <a>
-                                        <strong>See All Alerts</strong>
+                                        <strong>查看所有消息</strong>
                                         <i class="fa fa-angle-right"></i>
                                     </a>
                                 </div>

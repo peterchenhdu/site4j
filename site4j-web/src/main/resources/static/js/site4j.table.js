@@ -4,7 +4,8 @@
             _option: {},
             init: function (options) {
                 $.tableUtil._option = options;
-                $('#table-list').bootstrapTable('destroy').bootstrapTable({
+                var $table = $("#table-list");
+                $table.bootstrapTable('destroy').bootstrapTable({
                     url: options.url,
                     method: 'post',                      //请求方式（*）
                     toolbar: '#toolbar',                //工具按钮用哪个容器
@@ -32,6 +33,15 @@
                     queryParams: options.queryParams,
                     columns: options.columns
                 });
+
+                //动态调整表格高度
+                var h = $(window).height();
+                var $fixedTableBody = $table.closest("div"),
+                    // $fixedTableBodyColumns = $fixedTableBody.prev(),
+                    $fixedTableContainer = $fixedTableBody.closest("div");
+                $fixedTableContainer.height(h - 300-$('.panel').height());
+                // $fixedTableBodyColumns.height(h - 253);
+
             },
 
             refresh: function () {
