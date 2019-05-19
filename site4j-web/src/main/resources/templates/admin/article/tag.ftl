@@ -18,23 +18,20 @@
                                 <form id="formSearch" class="form-horizontal" onkeydown="if(event.keyCode===13) return false;">
                                     <div class="form-group">
                                         <label class="control-label col-sm-1" for="search-name">标签名称</label>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <input type="text" class="form-control" name="search-name" id="search-name"
                                                    placeholder="请输入标签名称...">
                                         </div>
                                         <label class="control-label col-sm-1" for="search-description">标签描述</label>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
                                             <input type="text" class="form-control" name="search-description" id="search-description"
                                                    placeholder="请输入标签描述...">
                                         </div>
 
-                                        <div class="col-sm-4" style="text-align:left;">
-                                            <button type="button" style="margin-left:50px" id="btn_query"
-                                                    class="btn btn-primary">查询
+                                        <div class="col-sm-3" >
+                                            <button type="button"  id="btn_query" class="btn btn-primary">查询
                                             </button>
-
-                                            <button type="reset" style="margin-left:20px" id="btn_reset"
-                                                    class="btn btn-primary">重置
+                                            <button type="reset"  id="btn_reset" class="btn btn-primary">重置
                                             </button>
                                         </div>
                                     </div>

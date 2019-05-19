@@ -17,19 +17,18 @@
                             <form id="formSearch" class="form-horizontal" onkeydown="if(event.keyCode===13) return false;">
                                 <div class="form-group" style="margin-top:15px">
                                     <label class="control-label col-sm-1" for="search-username">用户名</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <input type="text" class="form-control" name="search-username" id="search-username"
                                                placeholder="请输入用户名...">
                                     </div>
                                     <label class="control-label col-sm-1" for="search-nickname">昵称</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <input type="text" class="form-control" name="search-nickname" id="search-nickname"
                                                placeholder="请输入昵称...">
                                     </div>
-                                </div>
-                                <div class="form-group" style="margin-top:15px">
+
                                     <label class="control-label col-sm-1" for="search-roleId">用户角色</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <select class="form-control" name="search-roleId" id="search-roleId">
                                             <option value="">请选择</option>
                                             <#list roleList as item>
@@ -37,22 +36,19 @@
                                             </#list>
                                         </select>
                                     </div>
-                                    <label class="control-label col-sm-1" for="search-status">用户状态</label>
-                                    <div class="col-sm-3">
-                                        <select class="form-control" name="search-status" id="search-status">
-                                            <option value="">请选择</option>
-                                            <option value="1">正常</option>
-                                            <option value="0">禁用</option>
-                                        </select>
-                                    </div>
+                                    <#--<label class="control-label col-sm-1" for="search-status">用户状态</label>-->
+                                    <#--<div class="col-sm-2">-->
+                                        <#--<select class="form-control" name="search-status" id="search-status">-->
+                                            <#--<option value="">请选择</option>-->
+                                            <#--<option value="1">正常</option>-->
+                                            <#--<option value="0">禁用</option>-->
+                                        <#--</select>-->
+                                    <#--</div>-->
 
-                                    <div class="col-sm-4" style="text-align:left;">
-                                        <button type="button" style="margin-left:50px" id="btn_query"
-                                                class="btn btn-primary">查询
+                                    <div class="col-sm-3" >
+                                        <button type="button"  id="btn_query" class="btn btn-primary">查询
                                         </button>
-
-                                        <button type="reset" style="margin-left:20px" id="btn_reset"
-                                                class="btn btn-primary">重置
+                                        <button type="reset"  id="btn_reset" class="btn btn-primary">重置
                                         </button>
                                     </div>
                                 </div>

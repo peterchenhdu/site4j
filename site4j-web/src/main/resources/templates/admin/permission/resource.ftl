@@ -20,7 +20,7 @@
                                 <div class="form-group" style="margin-top:15px">
 
                                     <label class="control-label col-sm-1" for="search-type">资源类别</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <select class="form-control" name="search-type" id="search-type">
                                             <option value="">请选择</option>
                                             <option value="menu">菜单</option>
@@ -29,7 +29,7 @@
                                     </div>
 
                                     <label class="control-label col-sm-1" for="search-parentId">父级资源</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <select class="form-control" name="search-parentId" id="search-parentId">
                                             <option value="-1">请选择</option>
                                             <option value="">Site4J系统</option>
@@ -40,17 +40,14 @@
                                     </div>
 
                                     <label class="control-label col-sm-1" for="search-name">资源名称</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <input type="text" class="form-control" name="search-name" id="search-name"
                                                placeholder="请输入资源名称...">
                                     </div>
-                                    <div class="col-sm-4" style="text-align:left;">
-                                        <button type="button" style="margin-left:50px" id="btn_query"
-                                                class="btn btn-primary">查询
+                                    <div class="col-sm-3" >
+                                        <button type="button"  id="btn_query" class="btn btn-primary">查询
                                         </button>
-
-                                        <button type="reset" style="margin-left:20px" id="btn_reset"
-                                                class="btn btn-primary">重置
+                                        <button type="reset"  id="btn_reset" class="btn btn-primary">重置
                                         </button>
                                     </div>
                                 </div>

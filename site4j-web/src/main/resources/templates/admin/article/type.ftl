@@ -37,12 +37,9 @@
                                                     data-url="/admin/type/listParent" data-method="post"></select>
                                         </div>
                                         <div class="col-sm-3" >
-                                            <button type="button"  id="btn_query"
-                                                    class="btn btn-primary">查询
+                                            <button type="button"  id="btn_query" class="btn btn-primary">查询
                                             </button>
-
-                                            <button type="reset"  id="btn_reset"
-                                                    class="btn btn-primary">重置
+                                            <button type="reset"  id="btn_reset" class="btn btn-primary">重置
                                             </button>
                                         </div>
                                     </div>
