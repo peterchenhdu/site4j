@@ -60,5 +60,4 @@ public class ArticleLookServiceImpl extends ServiceImpl<BizArticleLookMapper, Bi
         List<BizArticleLook> list = this.baseMapper.selectPage(page, wrapper);
         return PageUtils.getPageInfo(page, list);
     }
-
 }

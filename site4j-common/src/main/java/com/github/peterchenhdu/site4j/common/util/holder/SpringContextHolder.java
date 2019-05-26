@@ -8,6 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
+
 /**
  * 获取SpringContext相关
  * <p>
@@ -52,12 +54,26 @@ public class SpringContextHolder implements ApplicationContextAware {
         return appContext.getBean(name, clazz);
     }
 
+
+
+    // 国际化使用
+    public static String getMessage(String key) {
+        return appContext.getMessage(key, null, Locale.getDefault());
+    }
+
+
+    /// 获取当前环境
+    public static String getActiveProfile() {
+        return appContext.getEnvironment().getActiveProfiles()[0];
+    }
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         if (appContext == null) {
             appContext = applicationContext;
         }
     }
+
 
 
 

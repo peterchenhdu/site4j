@@ -4,7 +4,6 @@
 
 package com.github.peterchenhdu.site4j.config;
 
-import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -16,8 +15,11 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import com.github.peterchenhdu.site4j.common.annotation.condition.UsesJava8Condition;
+import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
@@ -30,6 +32,7 @@ import java.time.format.DateTimeFormatter;
  * Created by chenpi on 2019/02/05.
  */
 @Configuration
+@Conditional(UsesJava8Condition.class)
 public class LocalDateTimeConfig {
 
     @Bean
