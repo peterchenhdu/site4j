@@ -11,6 +11,7 @@
         <module>site4j-web</module>
         <module>site4j-common</module>
         <module>site4j-mg</module>
+        <module>site4j-monitor</module>
     </modules>
 
     <name>site4j</name>
