@@ -3,13 +3,11 @@
  */
 package com.github.peterchenhdu.site4j.core.runner;
 
-import com.github.peterchenhdu.site4j.biz.service.privilegemgt.SysResourcesService;
 import com.github.peterchenhdu.site4j.common.constant.CommonConstants;
 import com.github.peterchenhdu.site4j.common.util.DateTimeUtils;
 import com.github.peterchenhdu.site4j.common.util.LogUtils;
 import com.github.peterchenhdu.site4j.common.util.ObjectUtils;
-import com.github.peterchenhdu.site4j.common.util.holder.SpringContextHolder;
-import com.github.peterchenhdu.site4j.core.job.base.AbstractBaseCronJob;
+import com.github.peterchenhdu.site4j.core.runner.service.InitService;
 import lombok.extern.slf4j.Slf4j;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -19,7 +17,6 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +26,10 @@ import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -43,17 +43,12 @@ import java.util.jar.JarFile;
 public class BlogApplicationRunner implements ApplicationRunner {
 
     @Autowired
-    private SysResourcesService sysResourcesService;
+    private InitService initService;
 
     @Transactional
     @Override
     public void run(ApplicationArguments applicationArguments) {
-        //程序启动完成，执行一些初始化操作
-        ApplicationContext appContext = SpringContextHolder.getApplicationContext();
-
-        //启动所有任务
-        Map<String, AbstractBaseCronJob> map = appContext.getBeansOfType(AbstractBaseCronJob.class);
-        map.values().forEach(AbstractBaseCronJob::scheduleJobs);
+        initService.init();
 
 
 //        //获取所有controller

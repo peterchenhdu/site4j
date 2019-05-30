@@ -34,14 +34,16 @@ public class QuartzConfig {
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean(JobFactory jobFactory) throws IOException {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
+        //不自动启动，设置在com.github.peterchenhdu.site4j.core.runner.service.InitService里手动启动
         factory.setAutoStartup(true);
+//        factory.setTaskExecutor();
         factory.setJobFactory(jobFactory);
-        factory.setQuartzProperties(quartzProperties());
+        factory.setQuartzProperties(getQuartzProperties());
         return factory;
     }
 
-    @Bean
-    public Properties quartzProperties() throws IOException {
+
+    private Properties getQuartzProperties() throws IOException {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
         propertiesFactoryBean.setLocation(new ClassPathResource(QUARTZ_PROPERTIES_PATH));
         propertiesFactoryBean.afterPropertiesSet();
