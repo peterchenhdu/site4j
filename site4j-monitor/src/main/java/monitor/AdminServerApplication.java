@@ -2,7 +2,9 @@
  * Copyright (c) 2011-2025 PiChen
  */
 
-package monitor;import de.codecentric.boot.admin.server.config.EnableAdminServer;
+package monitor;
+
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AdminServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run( AdminServerApplication.class, args );
+        SpringApplication.run(AdminServerApplication.class, args);
     }
 
 }

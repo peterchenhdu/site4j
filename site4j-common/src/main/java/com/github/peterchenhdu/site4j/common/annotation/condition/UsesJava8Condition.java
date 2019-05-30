@@ -9,6 +9,8 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
+ * UsesJava8Condition条件注解
+ * <p>
  * Created by PiChen on 2019/5/25.
  */
 public class UsesJava8Condition implements Condition {

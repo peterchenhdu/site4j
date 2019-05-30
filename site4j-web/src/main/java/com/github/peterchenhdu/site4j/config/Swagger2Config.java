@@ -27,7 +27,7 @@ public class Swagger2Config {
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
                 // 为当前包路径
-                .apis(RequestHandlerSelectors.basePackage("club.peterchenhdu"))
+                .apis(RequestHandlerSelectors.basePackage("com.github.peterchenhdu.site4j"))
                 .paths(PathSelectors.any())
                 .build();
     }
