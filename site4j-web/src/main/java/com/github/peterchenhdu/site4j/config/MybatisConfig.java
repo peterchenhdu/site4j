@@ -24,14 +24,14 @@ public class MybatisConfig {
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        return paginationInterceptor;
+        return new PaginationInterceptor();
     }
 
     @Profile(CommonConstants.PROFILE_DEV)
     @Bean
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
+        performanceInterceptor.setWriteInLog(true);
         performanceInterceptor.setMaxTime(1000);
         performanceInterceptor.setFormat(true);
         return performanceInterceptor;
