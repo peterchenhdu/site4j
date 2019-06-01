@@ -4,6 +4,9 @@
 
 package com.github.peterchenhdu.site4j.config;
 
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
@@ -34,21 +37,26 @@ public class DateTimeConfig {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     /**
-     * 响应LocalTime、LocalDate、LocalDateTime转换
+     * LocalTime、LocalDate、LocalDateTime转换
      *
      * @return Converter
      */
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
         return builder -> {
+            //@ResponseBody
             builder.serializerByType(LocalTime.class, new LocalTimeSerializer(TIME_FORMATTER));
             builder.serializerByType(LocalDate.class, new LocalDateSerializer(DATE_FORMATTER));
             builder.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(DATETIME_FORMATTER));
+            //@RequestBody
+            builder.deserializerByType(LocalTime.class, new LocalTimeDeserializer(TIME_FORMATTER));
+            builder.deserializerByType(LocalDate.class, new LocalDateDeserializer(DATE_FORMATTER));
+            builder.deserializerByType(LocalDateTime.class, new LocalDateTimeDeserializer(DATETIME_FORMATTER));
         };
     }
 
     /**
-     * 请求参数LocalDateTime转换
+     * 请求参数LocalDateTime转换(get方法url上的参数)
      *
      * @return Converter
      */
@@ -97,7 +105,7 @@ public class DateTimeConfig {
         //注意，不能转成lambda表达式，会报错
         return new Converter<String, LocalTime>() {
             @Override
-            public LocalTime convert( String source) {
+            public LocalTime convert(String source) {
                 LocalTime time = null;
                 if (ObjectUtils.isNotEmpty(source)) {
                     time = LocalTime.parse(source, TIME_FORMATTER);
