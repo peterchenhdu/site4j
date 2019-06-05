@@ -3,10 +3,12 @@
  */
 package com.github.peterchenhdu.site4j.biz.controller.api;
 
+import com.github.peterchenhdu.site4j.biz.service.sitemgt.SysConfigService;
 import com.github.peterchenhdu.site4j.common.annotation.PublicService;
 import com.github.peterchenhdu.site4j.common.base.BaseResponse;
 import com.github.peterchenhdu.site4j.common.util.ResultUtils;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,9 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/api")
 public class ApiController {
+    @Autowired
+    private SysConfigService sysConfigService;
+
     @ApiOperation(value="test")
     @PostMapping("/test")
     public BaseResponse<Param> saveRoleResources(@RequestBody Param Param) {
