@@ -3,6 +3,13 @@
  */
 package com.github.peterchenhdu.site4j.biz.service.articlemgt.impl;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -23,9 +30,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * 分类
@@ -68,7 +72,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         entityList.forEach(entity -> {
             if (ObjectUtils.isEmpty(entity.getPid())) {
                 TypeDto typeDto = BeanConvertUtils.doConvert(entity, TypeDto.class);
-                if(typeDto == null) return;
+                if (typeDto == null) return;
                 typeDto.setSubIds(typeDto.getId());
                 map.put(entity.getId(), typeDto);
             }
@@ -107,7 +111,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
     @Transactional(rollbackFor = Exception.class)
     public TypeDto save(TypeDto entity) {
         Assert.notNull(entity, "Type不可为空！");
-        List<BizType> list = bizTypeMapper.findByName(entity.getName());
+        List<BizType> list = queryByName(entity.getName());
         if (!list.isEmpty()) {
             throw new CommonRuntimeException("分类已存在");
         }
@@ -115,6 +119,17 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         bizTypeMapper.insert(entity);
         return entity;
     }
+
+    /**
+     * 根据分类名字查询分类
+     *
+     * @param name 分类名字
+     * @return 分类列表
+     */
+    List<BizType> queryByName(String name) {
+        return bizTypeMapper.selectList(new EntityWrapper<BizType>().eq("name", name));
+    }
+
 
     /**
      * 根据主键字段进行删除，方法参数必须包含完整的主键属性
@@ -132,7 +147,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
         Wrapper<BizArticle> wrapper = new EntityWrapper<>();
         wrapper.in("type_id", ids);
         int count = bizArticleService.selectCount(wrapper);
-        if(count>0) {
+        if (count > 0) {
             throw new CommonRuntimeException("该分类下存在关联文章，不能删除");
         }
         return bizTypeMapper.deleteBatchIds(ids) > 0;
@@ -148,7 +163,7 @@ public class BizTypeServiceImpl extends ServiceImpl<BizTypeMapper, BizType> impl
     @Transactional(rollbackFor = Exception.class)
     public boolean updateSelective(TypeDto entity) {
         Assert.notNull(entity, "Type不可为空！");
-        List<BizType> list = bizTypeMapper.findByName(entity.getName());
+        List<BizType> list = queryByName(entity.getName());
         if (!list.isEmpty() && !list.get(0).getId().equals(entity.getId())) {
             throw new CommonRuntimeException("分类已存在");
         }

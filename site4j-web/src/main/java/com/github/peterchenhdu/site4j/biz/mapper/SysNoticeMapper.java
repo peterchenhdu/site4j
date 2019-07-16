@@ -17,11 +17,5 @@ import java.util.List;
 @Repository
 public interface SysNoticeMapper extends BaseMapper<SysNotice> {
 
-    /**
-     * 分页查询
-     *
-     * @param vo
-     * @return
-     */
-    List<SysNotice> query(NoticeQueryDto vo);
+
 }
