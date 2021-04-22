@@ -39,7 +39,7 @@
         <webmagic.version>0.7.3</webmagic.version>
         <shiro-freemarker-tags.version>1.0.0</shiro-freemarker-tags.version>
         <shiro-redis.version>2.4.2.1-RELEASE</shiro-redis.version>
-        <shiro-spring.version>1.4.0</shiro-spring.version>
+        <shiro-spring.version>1.7.0</shiro-spring.version>
         <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
         <tk-mapper-spring-boot-starter.version>2.0.4</tk-mapper-spring-boot-starter.version>
         <mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
