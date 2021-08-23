@@ -35,7 +35,7 @@
         <UserAgentUtils.version>1.21</UserAgentUtils.version>
         <qcloud-java-sdk.version>2.0.7</qcloud-java-sdk.version>
         <cos_api.version>5.4.5</cos_api.version>
-        <jsoup.version>1.11.3</jsoup.version>
+        <jsoup.version>1.14.2</jsoup.version>
         <webmagic.version>0.7.3</webmagic.version>
         <shiro-freemarker-tags.version>1.0.0</shiro-freemarker-tags.version>
         <shiro-redis.version>2.4.2.1-RELEASE</shiro-redis.version>
